@@ -3,22 +3,23 @@ package commands
 import (
 	"context"
 	"fmt"
-	"io"
-	"net"
 	"net/http"
-	"os"
-	"strconv"
+	"sort"
 	"strings"
-	"syscall"
+	"sync"
 	"time"
-
-	"golang.org/x/net/proxy"
+	_ "unsafe"
 
 	"github.com/frogwall/f2ray-core/v5/common/cmdarg"
+	"github.com/frogwall/f2ray-core/v5/common/net"
 	"github.com/frogwall/f2ray-core/v5/common/platform"
 	core "github.com/frogwall/f2ray-core/v5"
 	"github.com/frogwall/f2ray-core/v5/main/commands/base"
+	"github.com/frogwall/f2ray-core/v5/transport/internet/tagged"
 )
+
+//go:linkname toContext github.com/frogwall/f2ray-core/v5.toContext
+func toContext(ctx context.Context, v *core.Instance) context.Context
 
 var CmdPing = &base.Command{
 	CustomFlags: true,
@@ -42,13 +43,21 @@ Arguments:
 		Timeout for ping test in seconds. (default 10)
 
 	-u, -url <url>
-		Test URL. (default "https://www.gstatic.com/generate_204")
+		Test URL. (default "https://connectivitycheck.gstatic.com/generate_204")
+
+	-v, -verbose
+		Show verbose output including debug information.
+
+	-w, -warmup
+		Warmup connections before testing (recommended for accurate results).
 
 Examples:
 
 	{{.Exec}} {{.LongName}} -c config.json
 	{{.Exec}} {{.LongName}} -d /etc/f2ray -t 5
 	{{.Exec}} {{.LongName}} -u https://www.cloudflare.com/cdn-cgi/trace
+	{{.Exec}} {{.LongName}} -c config.json -v
+	{{.Exec}} {{.LongName}} -c config.json -w
 	`,
 	Run: executePing,
 }
@@ -59,14 +68,20 @@ var (
 	pingTimeout     *int
 	pingURL         *string
 	pingFormat      *string
+	pingVerbose     *bool
+	pingWarmup      *bool
 )
 
 func setPingFlags(cmd *base.Command) {
 	pingFormat = cmd.Flag.String("format", core.FormatAuto, "")
-	pingTimeout = cmd.Flag.Int("t", 10, "")
-	pingTimeout = cmd.Flag.Int("timeout", 10, "")
-	pingURL = cmd.Flag.String("u", "https://www.gstatic.com/generate_204", "")
-	pingURL = cmd.Flag.String("url", "https://www.gstatic.com/generate_204", "")
+	pingTimeout = cmd.Flag.Int("t", 5, "")
+	pingTimeout = cmd.Flag.Int("timeout", 5, "")
+	pingURL = cmd.Flag.String("u", "https://connectivitycheck.gstatic.com/generate_204", "")
+	pingURL = cmd.Flag.String("url", "https://connectivitycheck.gstatic.com/generate_204", "")
+	pingVerbose = cmd.Flag.Bool("v", false, "")
+	pingVerbose = cmd.Flag.Bool("verbose", false, "")
+	pingWarmup = cmd.Flag.Bool("w", false, "")
+	pingWarmup = cmd.Flag.Bool("warmup", false, "")
 
 	cmd.Flag.Var(&pingConfigFiles, "config", "")
 	cmd.Flag.Var(&pingConfigFiles, "c", "")
@@ -78,63 +93,6 @@ func executePing(cmd *base.Command, args []string) {
 	setPingFlags(cmd)
 	cmd.Flag.Parse(args)
 
-	// Check if f2ray is running
-	isRunning, pid := checkF2RayRunning()
-	
-	if isRunning {
-		fmt.Printf("F2Ray is running (PID: %d), testing proxy latency...\n", pid)
-		testRunningProxy(*pingURL, *pingTimeout)
-	} else {
-		fmt.Println("F2Ray is not running, starting temporary instance for testing...")
-		testWithTempInstance(*pingURL, *pingTimeout)
-	}
-}
-
-// checkF2RayRunning checks if f2ray is running by reading PID file
-func checkF2RayRunning() (bool, int) {
-	pidFile := "/tmp/f2ray.pid"
-	data, err := os.ReadFile(pidFile)
-	if err != nil {
-		return false, 0
-	}
-
-	pid, err := strconv.Atoi(strings.TrimSpace(string(data)))
-	if err != nil {
-		return false, 0
-	}
-
-	// Check if process exists
-	process, err := os.FindProcess(pid)
-	if err != nil {
-		return false, 0
-	}
-
-	// Send signal 0 to check if process is alive
-	err = process.Signal(syscall.Signal(0))
-	if err != nil {
-		return false, 0
-	}
-
-	return true, pid
-}
-
-// testRunningProxy tests the latency of a running proxy
-func testRunningProxy(testURL string, timeout int) {
-	// Assume SOCKS5 proxy is running on localhost:1080
-	// You may need to parse config to get the actual inbound port
-	proxyAddr := "127.0.0.1:1080"
-	
-	latency, err := measureLatency(proxyAddr, testURL, timeout)
-	if err != nil {
-		fmt.Printf("❌ Ping failed: %v\n", err)
-		os.Exit(1)
-	}
-
-	fmt.Printf("✅ Latency: %d ms\n", latency)
-}
-
-// testWithTempInstance starts a temporary instance and tests latency
-func testWithTempInstance(testURL string, timeout int) {
 	// Get config files
 	pingConfigFiles = getPingConfigFilePath()
 	if len(pingConfigFiles) == 0 {
@@ -147,7 +105,165 @@ func testWithTempInstance(testURL string, timeout int) {
 		base.Fatalf("Failed to load config: %s", err)
 	}
 
-	// Create instance
+	// Extract outbound tags
+	outbounds := extractOutbounds(config)
+	if len(outbounds) == 0 {
+		fmt.Println("No outbound nodes found in config")
+		return
+	}
+
+	if *pingVerbose {
+		fmt.Printf("Testing %d outbound node(s)...\n\n", len(outbounds))
+	}
+
+	// Test all outbounds in parallel
+	testAllOutbounds(config, outbounds, *pingURL, *pingTimeout, *pingVerbose, *pingWarmup)
+}
+
+// pingClient is adapted from observatory/burst/ping.go
+type pingClient struct {
+	destination string
+	httpClient  *http.Client
+}
+
+// newPingClient creates a ping client for a specific outbound handler
+func newPingClient(ctx context.Context, destination string, timeout time.Duration, handler string) *pingClient {
+	return &pingClient{
+		destination: destination,
+		httpClient:  newHTTPClient(ctx, handler, timeout),
+	}
+}
+
+// newHTTPClient creates an HTTP client that routes through a specific outbound handler
+// This is adapted from observatory/burst/ping.go
+func newHTTPClient(ctxv context.Context, handler string, timeout time.Duration) *http.Client {
+	tr := &http.Transport{
+		DisableKeepAlives: true,
+		DialContext: func(ctx context.Context, network, addr string) (net.Conn, error) {
+			dest, err := net.ParseDestination(network + ":" + addr)
+			if err != nil {
+				return nil, err
+			}
+			// Use tagged dialer to route through specific outbound handler
+			return tagged.Dialer(ctxv, dest, handler)
+		},
+	}
+	return &http.Client{
+		Transport: tr,
+		Timeout:   timeout,
+		// Don't follow redirect
+		CheckRedirect: func(req *http.Request, via []*http.Request) error {
+			return http.ErrUseLastResponse
+		},
+	}
+}
+
+// MeasureDelay measures the delay time of the request to destination
+// This is adapted from observatory/burst/ping.go
+func (s *pingClient) MeasureDelay() (time.Duration, error) {
+	if s.httpClient == nil {
+		return 0, fmt.Errorf("pingClient not initialized")
+	}
+	// Use HEAD method to avoid downloading response body
+	req, err := http.NewRequest(http.MethodHead, s.destination, nil)
+	if err != nil {
+		return 0, err
+	}
+	// Don't set User-Agent to match Observatory behavior
+	
+	start := time.Now()
+	resp, err := s.httpClient.Do(req)
+	if err != nil {
+		return 0, err
+	}
+	// Don't wait for body
+	resp.Body.Close()
+	return time.Since(start), nil
+}
+
+// OutboundInfo stores outbound node information
+type OutboundInfo struct {
+	Tag      string
+	Protocol string
+}
+
+// PingResult stores ping test result
+type PingResult struct {
+	Tag     string
+	Latency int64
+	Error   error
+}
+
+// extractOutbounds extracts all outbound configurations from config
+func extractOutbounds(config *core.Config) []OutboundInfo {
+	var outbounds []OutboundInfo
+	
+	// Tags to skip (non-proxy outbounds)
+	skipTags := map[string]bool{
+		"block":     true,
+		"blocked":   true,
+		"reject":    true,
+		"blackhole": true,
+		"direct":    true,
+		"dns":       true,
+	}
+	
+	for _, outbound := range config.Outbound {
+		if outbound.Tag == "" {
+			continue
+		}
+		
+		// Skip special outbounds
+		tagLower := strings.ToLower(outbound.Tag)
+		if skipTags[tagLower] {
+			continue
+		}
+		
+		// Skip tags containing "block" or "reject"
+		if strings.Contains(tagLower, "block") || 
+		   strings.Contains(tagLower, "reject") ||
+		   strings.Contains(tagLower, "direct") {
+			continue
+		}
+		
+		outbounds = append(outbounds, OutboundInfo{
+			Tag: outbound.Tag,
+		})
+	}
+	return outbounds
+}
+
+// warmupOutbounds performs warmup requests to establish connections
+func warmupOutbounds(ctx context.Context, outbounds []OutboundInfo, testURL string, timeout int, verbose bool) {
+	var wg sync.WaitGroup
+	for i, outbound := range outbounds {
+		wg.Add(1)
+		// Spread warmup requests
+		delay := time.Duration(i*100) * time.Millisecond
+		go func(ob OutboundInfo, d time.Duration) {
+			defer wg.Done()
+			if d > 0 {
+				time.Sleep(d)
+			}
+			
+			// Create ping client
+			client := newPingClient(ctx, testURL, time.Duration(timeout)*time.Second, ob.Tag)
+			
+			// Perform warmup request (ignore result)
+			_, err := client.MeasureDelay()
+			if verbose && err != nil {
+				fmt.Printf("  [%s] warmup failed: %v\n", ob.Tag, err)
+			} else if verbose {
+				fmt.Printf("  [%s] warmed up\n", ob.Tag)
+			}
+		}(outbound, delay)
+	}
+	wg.Wait()
+}
+
+// testAllOutbounds tests all outbound nodes in parallel
+func testAllOutbounds(config *core.Config, outbounds []OutboundInfo, testURL string, timeout int, verbose bool, warmup bool) {
+	// Create f2ray instance
 	server, err := core.New(config)
 	if err != nil {
 		base.Fatalf("Failed to create instance: %s", err)
@@ -159,63 +275,99 @@ func testWithTempInstance(testURL string, timeout int) {
 	}
 	defer server.Close()
 
-	// Wait a bit for server to be ready
-	time.Sleep(500 * time.Millisecond)
+	// Create context with server instance
+	ctx := toContext(context.Background(), server)
 
-	// Test latency
-	proxyAddr := "127.0.0.1:1080"
-	latency, err := measureLatency(proxyAddr, testURL, timeout)
-	if err != nil {
-		fmt.Printf("❌ Ping failed: %v\n", err)
-		os.Exit(1)
+	// Warmup phase: establish connections first
+	if warmup {
+		if verbose {
+			fmt.Println("Warming up connections...")
+		}
+		warmupOutbounds(ctx, outbounds, testURL, timeout, verbose)
+		if verbose {
+			fmt.Println("Warmup complete. Starting actual tests...\n")
+		}
 	}
 
-	fmt.Printf("✅ Latency: %d ms\n", latency)
+	results := make(chan PingResult, len(outbounds))
+	var wg sync.WaitGroup
+
+	// Add small delays to avoid all requests starting at the same time
+	// This matches Observatory's behavior using time.AfterFunc
+	for i, outbound := range outbounds {
+		wg.Add(1)
+		// Spread requests over 500ms to avoid connection congestion
+		delay := time.Duration(i*100) * time.Millisecond
+		go func(ob OutboundInfo, d time.Duration) {
+			defer wg.Done()
+			if d > 0 {
+				time.Sleep(d)
+			}
+			latency, err := testSingleOutbound(ctx, ob.Tag, testURL, timeout)
+			results <- PingResult{
+				Tag:     ob.Tag,
+				Latency: latency,
+				Error:   err,
+			}
+		}(outbound, delay)
+	}
+
+	// Wait for all tests to complete
+	go func() {
+		wg.Wait()
+		close(results)
+	}()
+
+	// Collect and display results
+	var allResults []PingResult
+	for result := range results {
+		allResults = append(allResults, result)
+	}
+
+	// Sort by latency (successful ones first, then by latency)
+	sort.Slice(allResults, func(i, j int) bool {
+		if allResults[i].Error != nil && allResults[j].Error == nil {
+			return false
+		}
+		if allResults[i].Error == nil && allResults[j].Error != nil {
+			return true
+		}
+		if allResults[i].Error != nil && allResults[j].Error != nil {
+			return allResults[i].Tag < allResults[j].Tag
+		}
+		return allResults[i].Latency < allResults[j].Latency
+	})
+
+	// Display results
+	if verbose {
+		fmt.Println("Results:")
+		fmt.Println(strings.Repeat("-", 50))
+	}
+	for _, result := range allResults {
+		if result.Error != nil {
+			if verbose {
+				fmt.Printf("[%-20s] ❌ Failed: %v\n", result.Tag, result.Error)
+			} else {
+				fmt.Printf("[%-20s] Failed\n", result.Tag)
+			}
+		} else {
+			fmt.Printf("[%-20s] %d ms\n", result.Tag, result.Latency)
+		}
+	}
 }
 
-// measureLatency measures the latency through a SOCKS5 proxy
-func measureLatency(proxyAddr, testURL string, timeout int) (int64, error) {
-	// Create SOCKS5 dialer
-	dialer, err := proxy.SOCKS5("tcp", proxyAddr, nil, proxy.Direct)
-	if err != nil {
-		return 0, fmt.Errorf("failed to create SOCKS5 dialer: %w", err)
-	}
-
-	// Create HTTP client with proxy
-	client := &http.Client{
-		Transport: &http.Transport{
-			DialContext: func(ctx context.Context, network, addr string) (net.Conn, error) {
-				return dialer.Dial(network, addr)
-			},
-		},
-		Timeout: time.Duration(timeout) * time.Second,
-	}
-
-	// Measure latency
-	start := time.Now()
+// testSingleOutbound tests a single outbound node using tagged dialer
+func testSingleOutbound(ctx context.Context, outboundTag, testURL string, timeout int) (int64, error) {
+	// Create ping client with tagged dialer
+	client := newPingClient(ctx, testURL, time.Duration(timeout)*time.Second, outboundTag)
 	
-	req, err := http.NewRequest("GET", testURL, nil)
+	// Measure delay
+	delay, err := client.MeasureDelay()
 	if err != nil {
-		return 0, fmt.Errorf("failed to create request: %w", err)
-	}
-	req.Header.Set("User-Agent", "F2Ray-Ping/1.0")
-
-	resp, err := client.Do(req)
-	if err != nil {
-		return 0, fmt.Errorf("request failed: %w", err)
-	}
-	defer resp.Body.Close()
-
-	// Read response to ensure full connection
-	io.Copy(io.Discard, resp.Body)
-
-	latency := time.Since(start).Milliseconds()
-	
-	if resp.StatusCode >= 400 {
-		return latency, fmt.Errorf("HTTP %d", resp.StatusCode)
+		return 0, err
 	}
 
-	return latency, nil
+	return delay.Milliseconds(), nil
 }
 
 // getPingConfigFilePath gets config file path for ping command
