@@ -1,59 +1,24 @@
 <div>
   <img width="190" height="210" align="left" src="https://raw.githubusercontent.com/v2fly/v2fly-github-io/master/docs/.vuepress/public/readme-logo.png" alt="V2Ray"/>
   <br>
-  <h1>Project V</h1>
-  <p>Project V is a set of network tools that helps you to build your own computer network. It secures your network connections and thus protects your privacy.</p>
+  <h1>Project F</h1>
+  <p>Project F 从 Project V 源码 fork而来，主要目标是方便地集成多个协议，以 outbounds 出站实现为主，不保证入站功能的完整性。代码从 v2ray-core v5.40.0 开始修改，大多数代码由AI编写，因此不好保证代码质量，紧供测试使用。</p>
 </div>
 
-[![GitHub Test Badge](https://github.com/v2fly/v2ray-core/actions/workflows/test.yml/badge.svg)](https://github.com/v2fly/v2ray-core/actions/workflows/test.yml)
-[![codecov.io](https://codecov.io/gh/v2fly/v2ray-core/branch/master/graph/badge.svg?branch=master)](https://codecov.io/gh/v2fly/v2ray-core?branch=master)
-[![goreportcard](https://goreportcard.com/badge/github.com/v2fly/v2ray-core/v5)](https://goreportcard.com/report/github.com/v2fly/v2ray-core/v5)
-[![Codacy Badge](https://app.codacy.com/project/badge/Grade/e150b7ede2114388921943bf23d95161)](https://app.codacy.com/gh/v2fly/v2ray-core/dashboard)
-[![Downloads](https://img.shields.io/github/downloads/v2fly/v2ray-core/total.svg)](https://github.com/v2fly/v2ray-core/releases/latest)
+原版 V2Ray 的文档请访问 [V2Ray 官网](https://www.v2fly.org)。
 
-## Related Links
+## 新添加的协议
 
-- [Documentation](https://www.v2fly.org) and [Newcomer's Instructions](https://www.v2fly.org/guide/start.html)
-- Welcome to translate V2Ray documents via [Transifex](https://www.transifex.com/v2fly/public/)
+此分支包含了扩展 V2Ray 功能的额外出站协议实现：
 
-## Enhanced Protocol Support (Fork-Specific)
+- **[Naive 协议](NAIVE_ENHANCEMENT_SUMMARY.md)** - 带 uTLS 指纹伪装的 HTTP/2 CONNECT 隧道
+- **[Hysteria2 协议](HYSTERIA2_IMPLEMENTATION_SUMMARY.md)** - 基于 QUIC 的高性能代理，支持拥塞控制
+- **[Mieru 协议](MIERU_IMPLEMENTATION_SUMMARY.md)** - 使用 XChaCha20-Poly1305 加密的代理，支持基于时间的密钥轮换
+- **[Brook 协议](BROOK_IMPLEMENTATION_SUMMARY.md)** - 支持 TCP/WebSocket/QUIC 多传输方式的代理
 
-This fork includes additional outbound protocol implementations that extend V2Ray's capabilities:
+> ⚠️ **注意**：这些协议实现：
+> - 为 **AI 生成的代码**，目前处于**测试阶段**
+> - 主要是**仅出站**的实现
+> - 在生产环境使用前可能需要额外的测试和验证
+> - 不属于官方 V2Ray 项目的一部分
 
-- **[Naive Protocol](NAIVE_ENHANCEMENT_SUMMARY.md)** - HTTP/2 CONNECT tunnel with uTLS fingerprinting
-- **[Hysteria2 Protocol](HYSTERIA2_IMPLEMENTATION_SUMMARY.md)** - High-performance QUIC-based proxy with congestion control
-- **[Mieru Protocol](MIERU_IMPLEMENTATION_SUMMARY.md)** - XChaCha20-Poly1305 encrypted proxy with time-based key rotation
-- **[Brook Protocol](BROOK_IMPLEMENTATION_SUMMARY.md)** - Multi-transport proxy supporting TCP/WebSocket/QUIC
-
-> ⚠️ **Note**: These protocol implementations are:
-> - **AI-generated code** and currently in **testing phase**
-> - Primarily **outbound-only** implementations
-> - May require additional testing and validation before production use
-> - Not part of the official V2Ray project
-
-## Packaging Status
-
-> If you are willing to package V2Ray for other distros/platforms, please let us know or seek for help via [GitHub issues](https://github.com/v2fly/v2ray-core/issues).
-
-[![Packaging status](https://repology.org/badge/vertical-allrepos/v2ray.svg)](https://repology.org/project/v2ray/versions)
-
-## License
-
-[The MIT License (MIT)](https://raw.githubusercontent.com/v2fly/v2ray-core/master/LICENSE)
-
-## Credits
-
-This repo relies on the following third-party projects:
-
-- In production:
-  - [gorilla/websocket](https://github.com/gorilla/websocket)
-  - [quic-go/quic-go](https://github.com/quic-go/quic-go)
-  - [pires/go-proxyproto](https://github.com/pires/go-proxyproto)
-  - [seiflotfy/cuckoofilter](https://github.com/seiflotfy/cuckoofilter)
-  - [google/starlark-go](https://github.com/google/starlark-go)
-  - [jhump/protoreflect](https://github.com/jhump/protoreflect)
-  - [inetaf/netaddr](https://github.com/inetaf/netaddr)
-
-- For testing only:
-  - [miekg/dns](https://github.com/miekg/dns)
-  - [h12w/socks](https://github.com/h12w/socks)
