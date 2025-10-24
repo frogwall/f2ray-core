@@ -5,39 +5,39 @@
 ### 1. 导入 Framework
 
 ```swift
-import V2Ray
+import F2Ray
 ```
 
-### 2. 创建 V2Ray 管理器
+### 2. 创建 F2Ray 管理器
 
 ```swift
 import Foundation
-import V2Ray
+import F2Ray
 
-class V2RayManager {
-    private var instance: MobileV2RayInstance?
+class F2RayManager {
+    private var instance: MobileF2RayInstance?
     private var isRunning = false
     
-    static let shared = V2RayManager()
+    static let shared = F2RayManager()
     
     private init() {}
     
-    // 启动 V2Ray
+    // 启动 F2Ray
     func start(configJSON: String) throws {
         guard !isRunning else {
-            throw V2RayError.alreadyRunning
+            throw F2RayError.alreadyRunning
         }
         
         do {
-            instance = try MobileStartV2Ray(configJSON)
+            instance = try MobileStartF2Ray(configJSON)
             isRunning = true
-            print("✅ V2Ray 启动成功")
+            print("✅ F2Ray 启动成功")
         } catch {
-            throw V2RayError.startFailed(error.localizedDescription)
+            throw F2RayError.startFailed(error.localizedDescription)
         }
     }
     
-    // 停止 V2Ray
+    // 停止 F2Ray
     func stop() throws {
         guard isRunning else {
             return
@@ -47,9 +47,9 @@ class V2RayManager {
             try instance?.stop()
             instance = nil
             isRunning = false
-            print("✅ V2Ray 已停止")
+            print("✅ F2Ray 已停止")
         } catch {
-            throw V2RayError.stopFailed(error.localizedDescription)
+            throw F2RayError.stopFailed(error.localizedDescription)
         }
     }
     
@@ -67,19 +67,19 @@ class V2RayManager {
     // 查询统计
     func queryStats(pattern: String) throws -> String {
         guard let instance = instance else {
-            throw V2RayError.notRunning
+            throw F2RayError.notRunning
         }
         
         do {
             return try instance.queryStats(pattern)
         } catch {
-            throw V2RayError.queryFailed(error.localizedDescription)
+            throw F2RayError.queryFailed(error.localizedDescription)
         }
     }
 }
 
 // 错误定义
-enum V2RayError: LocalizedError {
+enum F2RayError: LocalizedError {
     case alreadyRunning
     case notRunning
     case startFailed(String)
@@ -89,9 +89,9 @@ enum V2RayError: LocalizedError {
     var errorDescription: String? {
         switch self {
         case .alreadyRunning:
-            return "V2Ray 已经在运行"
+            return "F2Ray 已经在运行"
         case .notRunning:
-            return "V2Ray 未运行"
+            return "F2Ray 未运行"
         case .startFailed(let message):
             return "启动失败: \(message)"
         case .stopFailed(let message):
@@ -119,7 +119,7 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         
         // 显示版本
-        versionLabel.text = "V2Ray \(V2RayManager.shared.getVersion())"
+        versionLabel.text = "F2Ray \(F2RayManager.shared.getVersion())"
         updateUI()
     }
     
@@ -127,14 +127,14 @@ class ViewController: UIViewController {
         let config = getConfig()
         
         // 测试配置
-        guard V2RayManager.shared.testConfig(config) else {
+        guard F2RayManager.shared.testConfig(config) else {
             showAlert(title: "错误", message: "配置无效")
             return
         }
         
         // 启动
         do {
-            try V2RayManager.shared.start(configJSON: config)
+            try F2RayManager.shared.start(configJSON: config)
             statusLabel.text = "运行中"
             updateUI()
         } catch {
@@ -144,7 +144,7 @@ class ViewController: UIViewController {
     
     @IBAction func stopButtonTapped(_ sender: UIButton) {
         do {
-            try V2RayManager.shared.stop()
+            try F2RayManager.shared.stop()
             statusLabel.text = "已停止"
             updateUI()
         } catch {

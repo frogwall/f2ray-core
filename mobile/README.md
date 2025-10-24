@@ -1,6 +1,6 @@
-# V2Ray Mobile Library
+# F2Ray Mobile Library
 
-v2ray-core 的移动端封装，支持 iOS 和 Android 平台。
+f2ray-core 的移动端封装，支持 iOS 和 Android 平台。
 
 ## 📦 目录结构
 
@@ -25,23 +25,23 @@ mobile/
 # 或手动编译
 gomobile bind -v \
   -target=ios,iossimulator \
-  -o V2Ray.xcframework \
+  -o F2Ray.xcframework \
   -ldflags="-s -w" \
   ./mobile
 ```
 
 #### 2. 集成到 Xcode 项目
 
-1. 将 `V2Ray.xcframework` 拖入项目
+1. 将 `F2Ray.xcframework` 拖入项目
 2. 在 **General** → **Frameworks, Libraries, and Embedded Content** 中设置为 **Embed & Sign**
-3. 在代码中导入：`import V2Ray`
+3. 在代码中导入：`import F2Ray`
 
 #### 3. 使用示例
 
 ```swift
-import V2Ray
+import F2Ray
 
-// 启动 V2Ray
+// 启动 F2Ray
 let config = """
 {
   "inbounds": [...],
@@ -50,8 +50,8 @@ let config = """
 """
 
 do {
-    let instance = try MobileStartV2Ray(config)
-    print("V2Ray 启动成功")
+    let instance = try MobileStartF2Ray(config)
+    print("F2Ray 启动成功")
     
     // 停止
     try instance.stop()
@@ -70,18 +70,18 @@ do {
 # 使用 gomobile
 gomobile bind -v \
   -target=android \
-  -o v2ray.aar \
+  -o f2ray.aar \
   -ldflags="-s -w" \
   ./mobile
 ```
 
 #### 2. 集成到 Android 项目
 
-1. 将 `v2ray.aar` 复制到 `app/libs/`
+1. 将 `f2ray.aar` 复制到 `app/libs/`
 2. 在 `build.gradle` 中添加依赖：
 ```gradle
 dependencies {
-    implementation files('libs/v2ray.aar')
+    implementation files('libs/f2ray.aar')
 }
 ```
 
@@ -97,8 +97,8 @@ val config = """
 """
 
 try {
-    val instance = Mobile.startV2Ray(config)
-    println("V2Ray 启动成功")
+    val instance = Mobile.startF2Ray(config)
+    println("F2Ray 启动成功")
     
     // 停止
     instance.stop()
@@ -109,32 +109,32 @@ try {
 
 ## 📚 API 文档
 
-### StartV2Ray
+### StartF2Ray
 
-启动 V2Ray 实例
+启动 F2Ray 实例
 
 ```go
-func StartV2Ray(configJSON string) (*V2RayInstance, error)
+func StartF2Ray(configJSON string) (*F2RayInstance, error)
 ```
 
 **参数:**
 - `configJSON`: JSON 格式的配置字符串
 
 **返回:**
-- `*V2RayInstance`: V2Ray 实例
+- `*F2RayInstance`: F2Ray 实例
 - `error`: 错误信息
 
 **示例:**
 ```swift
-let instance = try MobileStartV2Ray(configJSON)
+let instance = try MobileStartF2Ray(configJSON)
 ```
 
-### V2RayInstance.Stop
+### F2RayInstance.Stop
 
-停止 V2Ray 实例
+停止 F2Ray 实例
 
 ```go
-func (v *V2RayInstance) Stop() error
+func (v *F2RayInstance) Stop() error
 ```
 
 **返回:**
@@ -147,7 +147,7 @@ try instance.stop()
 
 ### GetVersion
 
-获取 V2Ray 版本
+获取 F2Ray 版本
 
 ```go
 func GetVersion() string
@@ -159,7 +159,7 @@ func GetVersion() string
 **示例:**
 ```swift
 let version = MobileGetVersion()
-print("V2Ray \(version)")
+print("F2Ray \(version)")
 ```
 
 ### TestConfig
@@ -186,12 +186,12 @@ if error.isEmpty {
 }
 ```
 
-### V2RayInstance.QueryStats
+### F2RayInstance.QueryStats
 
 查询统计信息
 
 ```go
-func (v *V2RayInstance) QueryStats(pattern string) (string, error)
+func (v *F2RayInstance) QueryStats(pattern string) (string, error)
 ```
 
 **参数:**
@@ -282,8 +282,8 @@ Multi-transport proxy (TCP/WebSocket/QUIC)
 ```bash
 gomobile bind -v \
   -target=ios \
-  -o V2Ray.xcframework \
-  -ldflags="-s -w -X github.com/v2fly/v2ray-core/v5.build=release" \
+  -o F2Ray.xcframework \
+  -ldflags="-s -w -X github.com/frogwall/f2ray-core/v5.build=release" \
   -trimpath \
   ./mobile
 ```
@@ -332,7 +332,7 @@ xcode-select --install
 
 使用 strip 减小大小：
 ```bash
-strip -x V2Ray.xcframework/ios-arm64/V2Ray.framework/V2Ray
+strip -x F2Ray.xcframework/ios-arm64/F2Ray.framework/F2Ray
 ```
 
 ### 5. 内存占用过高
@@ -345,7 +345,7 @@ strip -x V2Ray.xcframework/ios-arm64/V2Ray.framework/V2Ray
 
 - [完整编译指南](../BUILD_IOS_FRAMEWORK.md)
 - [Swift 使用示例](example_swift.md)
-- [v2ray-core 文档](https://www.v2fly.org)
+- [f2ray-core 文档](https://github.com/frogwall/f2ray-core)
 - [gomobile 文档](https://pkg.go.dev/golang.org/x/mobile/cmd/gomobile)
 
 ## 🤝 贡献
@@ -358,5 +358,5 @@ MIT License - 详见 [LICENSE](../LICENSE)
 
 ---
 
-**最后更新**: 2025-10-18  
-**适用版本**: v2ray-core v5.x (F2Ray enhanced edition)
+**最后更新**: 2025-10-24  
+**适用版本**: f2ray-core v5.x (F2Ray enhanced edition)

@@ -10,16 +10,16 @@ import (
 	_ "github.com/frogwall/f2ray-core/v5/main/distro/all"
 )
 
-// V2RayInstance represents a V2Ray instance
-type V2RayInstance struct {
+// F2RayInstance represents a F2Ray instance
+type F2RayInstance struct {
 	instance *core.Instance
 	ctx      context.Context
 	cancel   context.CancelFunc
 }
 
-// StartV2Ray starts V2Ray with JSON configuration
+// StartF2Ray starts F2Ray with JSON configuration
 // Returns nil on success, error message on failure
-func StartV2Ray(configJSON string) (*V2RayInstance, error) {
+func StartF2Ray(configJSON string) (*F2RayInstance, error) {
 	if configJSON == "" {
 		return nil, fmt.Errorf("config is empty")
 	}
@@ -33,7 +33,7 @@ func StartV2Ray(configJSON string) (*V2RayInstance, error) {
 	// Create context
 	ctx, cancel := context.WithCancel(context.Background())
 
-	// Create V2Ray instance
+	// Create F2Ray instance
 	instance, err := core.NewWithContext(ctx, config)
 	if err != nil {
 		cancel()
@@ -46,15 +46,15 @@ func StartV2Ray(configJSON string) (*V2RayInstance, error) {
 		return nil, fmt.Errorf("failed to start instance: %v", err)
 	}
 
-	return &V2RayInstance{
+	return &F2RayInstance{
 		instance: instance,
 		ctx:      ctx,
 		cancel:   cancel,
 	}, nil
 }
 
-// Stop stops the V2Ray instance
-func (v *V2RayInstance) Stop() error {
+// Stop stops the F2Ray instance
+func (v *F2RayInstance) Stop() error {
 	if v.instance != nil {
 		err := v.instance.Close()
 		if v.cancel != nil {
@@ -65,7 +65,7 @@ func (v *V2RayInstance) Stop() error {
 	return nil
 }
 
-// GetVersion returns V2Ray version
+// GetVersion returns F2Ray version
 func GetVersion() string {
 	return core.Version()
 }
@@ -86,7 +86,7 @@ func TestConfig(configJSON string) string {
 
 // QueryStats queries statistics by pattern
 // Returns statistics in JSON format
-func (v *V2RayInstance) QueryStats(pattern string) (string, error) {
+func (v *F2RayInstance) QueryStats(pattern string) (string, error) {
 	if v.instance == nil {
 		return "", fmt.Errorf("instance is not running")
 	}
