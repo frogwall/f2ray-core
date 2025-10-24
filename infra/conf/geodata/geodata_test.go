@@ -28,7 +28,7 @@ func init() {
 	geoipPath := filepath.Join(tempPath, "geoip.dat")
 	geositePath := filepath.Join(tempPath, "geosite.dat")
 
-	os.Setenv("v2ray.location.asset", tempPath)
+	os.Setenv("f2ray.location.asset", tempPath)
 
 	if _, err := os.Stat(geoipPath); err != nil && errors.Is(err, fs.ErrNotExist) {
 		common.Must(os.MkdirAll(tempPath, 0o755))

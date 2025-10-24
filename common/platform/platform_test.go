@@ -80,13 +80,13 @@ func TestGetAssetLocation(t *testing.T) {
 		t.Error("asset dir: ", loc, " not in ", exec)
 	}
 
-	os.Setenv("v2ray.location.asset", "/v2ray")
+	os.Setenv("f2ray.location.asset", "/f2ray")
 	if runtime.GOOS == "windows" {
-		if v := platform.GetAssetLocation("t"); v != "\\v2ray\\t" {
+		if v := platform.GetAssetLocation("t"); v != "\\f2ray\\t" {
 			t.Error("asset loc: ", v)
 		}
 	} else {
-		if v := platform.GetAssetLocation("t"); v != "/v2ray/t" {
+		if v := platform.GetAssetLocation("t"); v != "/f2ray/t" {
 			t.Error("asset loc: ", v)
 		}
 	}

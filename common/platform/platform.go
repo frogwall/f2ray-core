@@ -67,20 +67,20 @@ func getExecutableSubDir(dir string) func() string {
 }
 
 func GetPluginDirectory() string {
-	const name = "v2ray.location.plugin"
+	const name = "f2ray.location.plugin"
 	pluginDir := NewEnvFlag(name).GetValue(getExecutableSubDir("plugins"))
 	return pluginDir
 }
 
 func GetConfigurationPath() string {
-	const name = "v2ray.location.config"
+	const name = "f2ray.location.config"
 	configPath := NewEnvFlag(name).GetValue(getExecutableDir)
 	return filepath.Join(configPath, "config.json")
 }
 
-// GetConfDirPath reads "v2ray.location.confdir"
+// GetConfDirPath reads "f2ray.location.confdir"
 func GetConfDirPath() string {
-	const name = "v2ray.location.confdir"
+	const name = "f2ray.location.confdir"
 	configPath := NewEnvFlag(name).GetValue(func() string { return "" })
 	return configPath
 }

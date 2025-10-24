@@ -26,7 +26,7 @@ func init() {
 	tempPath := filepath.Join(wd, "..", "..", "..", "testing", "temp")
 	geoipPath := filepath.Join(tempPath, "geoip.dat")
 
-	os.Setenv("v2ray.location.asset", tempPath)
+	os.Setenv("f2ray.location.asset", tempPath)
 
 	if _, err := os.Stat(geoipPath); err != nil && errors.Is(err, fs.ErrNotExist) {
 		common.Must(os.MkdirAll(tempPath, 0o755))
@@ -37,7 +37,7 @@ func init() {
 }
 
 func TestToCidrList(t *testing.T) {
-	t.Log(os.Getenv("v2ray.location.asset"))
+	t.Log(os.Getenv("f2ray.location.asset"))
 
 	common.Must(filesystem.CopyFile(platform.GetAssetLocation("geoiptestrouter.dat"), platform.GetAssetLocation("geoip.dat"), 0o600))
 

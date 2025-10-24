@@ -35,21 +35,8 @@ build_v2() {
 
 	LDFLAGS="-s -w -buildid= -X github.com/v2fly/v2ray-core/v5.codename=${CODENAME} -X github.com/v2fly/v2ray-core/v5.build=${BUILDNAME} -X github.com/v2fly/v2ray-core/v5.version=${VERSIONTAG}"
 
-    echo ">>> Compile v2ray ..."
-    env CGO_ENABLED=0 go build -o "$TMP"/v2ray"${EXESUFFIX}" -ldflags "$LDFLAGS" ./main
-
     echo ">>> Compile f2ray ..."
-    # Build the alternative entry at top-level f2ray/
-    if [ -d "${SRCDIR}/v2ray-core/f2ray" ] || [ -d "${SRCDIR}/f2ray" ]; then
-        # When nosource=0 we are inside ${SRCDIR}/v2ray-core, when nosource=1 we are already in workdir
-        local F2DIR=./f2ray
-        if [ ! -d "$F2DIR" ] && [ -d "${SRCDIR}/f2ray" ]; then
-            F2DIR="${SRCDIR}/f2ray"
-        fi
-        env CGO_ENABLED=0 go build -o "$TMP"/f2ray"${EXESUFFIX}" -ldflags "$LDFLAGS" "$F2DIR"
-    else
-        echo ">>> Skip f2ray build: no f2ray/ directory found"
-    fi
+    env CGO_ENABLED=0 go build -o "$TMP"/f2ray"${EXESUFFIX}" -ldflags "$LDFLAGS" ./main
 }
 
 build_dat() {
@@ -76,7 +63,7 @@ copyconf() {
 packzip() {
 	echo ">>> Generating zip package"
 	cd "$TMP"
-	local PKG=${SRCDIR}/v2ray-custom-${GOARCH}-${GOOS}-${PKGSUFFIX}${NOW}.zip
+	local PKG=${SRCDIR}/f2ray-custom-${GOARCH}-${GOOS}-${PKGSUFFIX}${NOW}.zip
 	zip -r "$PKG" .
 	echo ">>> Generated: $(basename "$PKG") at $(dirname "$PKG")"
 }
@@ -84,7 +71,7 @@ packzip() {
 packtgz() {
 	echo ">>> Generating tgz package"
 	cd "$TMP"
-	local PKG=${SRCDIR}/v2ray-custom-${GOARCH}-${GOOS}-${PKGSUFFIX}${NOW}.tar.gz
+	local PKG=${SRCDIR}/f2ray-custom-${GOARCH}-${GOOS}-${PKGSUFFIX}${NOW}.tar.gz
 	tar cvfz "$PKG" .
 	echo ">>> Generated: $(basename "$PKG") at $(dirname "$PKG")"
 }

@@ -11,7 +11,7 @@ func LineSeparator() string {
 
 // GetAssetLocation search for `file` in the excutable dir
 func GetAssetLocation(file string) string {
-	const name = "v2ray.location.asset"
+	const name = "f2ray.location.asset"
 	assetPath := NewEnvFlag(name).GetValue(getExecutableDir)
 	return filepath.Join(assetPath, file)
 }

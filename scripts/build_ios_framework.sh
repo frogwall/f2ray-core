@@ -77,7 +77,7 @@ build_framework() {
     gomobile bind -v \
         -target="$TARGET" \
         -o "$OUTPUT" \
-        -ldflags="-s -w -X github.com/v2fly/v2ray-core/v5.build=release" \
+        -ldflags="-s -w -X github.com/frogwall/f2ray-core/v5.build=release" \
         -trimpath \
         ./mobile
     
