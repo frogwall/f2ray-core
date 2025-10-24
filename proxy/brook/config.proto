@@ -1,0 +1,22 @@
+syntax = "proto3";
+
+package v2ray.core.proxy.brook;
+option go_package = "github.com/v2fly/v2ray-core/v5/proxy/brook";
+
+import "common/protocol/server_spec.proto";
+
+message Account {
+  string password = 1;
+}
+
+message ClientConfig {
+  repeated v2ray.core.common.protocol.ServerEndpoint server = 1;
+  string password = 2;
+  bool without_brook = 3;
+  string path = 4; // for websocket
+  string tls_fingerprint = 5; // for websocket
+}
+
+message ServerConfig {
+  string password = 1;
+}

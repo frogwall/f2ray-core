@@ -1,0 +1,36 @@
+{
+  "log": {
+    "loglevel": "debug"
+  },
+  "inbounds": [
+    {
+      "port": 443,
+      "protocol": "vmess",
+      "settings": {
+        "clients": [
+          {
+            "id": "b831381d-6324-4d53-ad4f-8cda48b30811",
+            "alterId": 0
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "shadowtls",
+        "security": "none",
+        "shadowtlsSettings": {
+          "version": 3,
+          "password": "your-shadowtls-password",
+          "handshakeServer": "bing.com",
+          "handshakePort": 443,
+          "strictMode": false
+        }
+      }
+    }
+  ],
+  "outbounds": [
+    {
+      "protocol": "freedom",
+      "settings": {}
+    }
+  ]
+}

@@ -1,0 +1,35 @@
+syntax = "proto3";
+
+package v2ray.core.transport.internet.shadowtls;
+option csharp_namespace = "V2Ray.Core.Transport.Internet.ShadowTLS";
+option go_package = "github.com/v2fly/v2ray-core/v5/transport/internet/shadowtls";
+option java_package = "com.v2ray.core.transport.internet.shadowtls";
+option java_multiple_files = true;
+
+// Config is the settings for ShadowTLS transport layer.
+message Config {
+  // ShadowTLS protocol version (1, 2, or 3)
+  uint32 version = 1;
+  
+  // Password for authentication (required for v2/v3)
+  string password = 2;
+  
+  // Handshake server address for TLS handshake mimicry (e.g., "google.com")
+  // This is the real server to perform TLS handshake with for traffic obfuscation
+  string handshakeServer = 3;
+  
+  // Handshake server port (defaults to 443 if not specified)
+  uint32 handshakePort = 4;
+  
+  // Strict mode (v3 only)
+  bool strict_mode = 5;
+  
+  // Users for multi-user support (v3 only, server side)
+  repeated User users = 6;
+}
+
+// User represents a ShadowTLS user (v3 only)
+message User {
+  string name = 1;
+  string password = 2;
+}

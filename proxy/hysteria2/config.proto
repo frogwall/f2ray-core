@@ -1,0 +1,61 @@
+syntax = "proto3";
+
+package v2ray.core.proxy.hysteria2;
+option csharp_namespace = "V2Ray.Core.Proxy.Hysteria2";
+option go_package = "proxy/hysteria2";
+option java_package = "com.v2ray.core.proxy.hysteria2";
+option java_multiple_files = true;
+
+import "common/net/packetaddr/config.proto";
+import "common/protocol/server_spec.proto";
+import "common/protoext/extensions.proto";
+
+message Account {
+  string password = 1;
+}
+
+message CongestionControl {
+  string type = 1;        // "bbr" or "brutal"
+  uint64 up_mbps = 2;     // Upload bandwidth in Mbps
+  uint64 down_mbps = 3;   // Download bandwidth in Mbps
+}
+
+message BandwidthConfig {
+  uint64 max_tx = 1;      // Max transmit rate in bytes per second
+  uint64 max_rx = 2;      // Max receive rate in bytes per second
+}
+
+message QUICConfig {
+  uint64 initial_stream_receive_window = 1;
+  uint64 max_stream_receive_window = 2;
+  uint64 initial_connection_receive_window = 3;
+  uint64 max_connection_receive_window = 4;
+  int64 max_idle_timeout = 5;           // in seconds
+  int64 keep_alive_period = 6;          // in seconds
+  bool disable_path_mtu_discovery = 7;
+}
+
+message ClientConfig {
+  option (v2ray.core.common.protoext.message_opt).type = "outbound";
+  option (v2ray.core.common.protoext.message_opt).short_name = "hysteria2";
+
+  repeated v2ray.core.common.protocol.ServerEndpoint server = 1;
+  string password = 2;
+  BandwidthConfig bandwidth = 4;
+  QUICConfig quic = 5;
+  bool ignore_client_bandwidth = 7;
+}
+
+message ServerConfig {
+  option (v2ray.core.common.protoext.message_opt).type = "inbound";
+  option (v2ray.core.common.protoext.message_opt).short_name = "hysteria2";
+
+  v2ray.core.net.packetaddr.PacketAddrType packet_encoding = 1;
+  string password = 2;
+  CongestionControl congestion = 3;
+  BandwidthConfig bandwidth = 4;
+  QUICConfig quic = 5;
+  bool ignore_client_bandwidth = 6;
+  bool disable_udp = 7;
+  int64 udp_idle_timeout = 8;           // in seconds
+}
