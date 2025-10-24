@@ -15,6 +15,7 @@
 - **[Hysteria2 协议](HYSTERIA2_IMPLEMENTATION_SUMMARY.md)** - 基于 QUIC 的高性能代理，支持拥塞控制
 - **[Mieru 协议](MIERU_IMPLEMENTATION_SUMMARY.md)** - 使用 XChaCha20-Poly1305 加密的代理，支持基于时间的密钥轮换
 - **[Brook 协议](BROOK_IMPLEMENTATION_SUMMARY.md)** - 支持 TCP/WebSocket/QUIC 多传输方式的代理
+- **[ShadowTls 协议](SHADOWTLS_IMPLEMENTATION_SUMMARY.md)** - 将shadowTls作为传输层，实现了shadowsocks+shadowTls的出站功能
 
 > ⚠️ **注意**：这些协议实现：
 > - 为 **AI 生成的代码**，目前处于**测试阶段**
