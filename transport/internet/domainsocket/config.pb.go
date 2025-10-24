@@ -92,8 +92,8 @@ const file_transport_internet_domainsocket_config_proto_rawDesc = "" +
 	"\x04path\x18\x01 \x01(\tR\x04path\x12\x1a\n" +
 	"\babstract\x18\x02 \x01(\bR\babstract\x12\x18\n" +
 	"\apadding\x18\x03 \x01(\bR\apadding:\x1d\x82\xb5\x18\x19\n" +
-	"\ttransport\x12\fdomainsocketB\x9f\x01\n" +
-	".com.v2ray.core.transport.internet.domainsocketP\x01Z>github.com/frogwall/f2ray-core/v5/transport/internet/domainsocket\xaa\x02*V2Ray.Core.Transport.Internet.DomainSocketb\x06proto3"
+	"\ttransport\x12\fdomainsocketB\xa2\x01\n" +
+	".com.v2ray.core.transport.internet.domainsocketP\x01ZAgithub.com/frogwall/f2ray-core/v5/transport/internet/domainsocket\xaa\x02*V2Ray.Core.Transport.Internet.DomainSocketb\x06proto3"
 
 var (
 	file_transport_internet_domainsocket_config_proto_rawDescOnce sync.Once

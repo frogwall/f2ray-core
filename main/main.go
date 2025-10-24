@@ -11,6 +11,7 @@ func main() {
 	base.RegisterCommand(commands.CmdRun)
 	base.RegisterCommand(commands.CmdVersion)
 	base.RegisterCommand(commands.CmdTest)
+	base.RegisterCommand(commands.CmdReload)
 	base.SortLessFunc = runIsTheFirst
 	base.SortCommands()
 	base.Execute()

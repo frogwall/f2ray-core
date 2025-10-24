@@ -122,8 +122,8 @@ const file_transport_internet_tlsmirror_mirrorenrollment_config_proto_rawDesc = 
 	"\x14bootstrap_egress_url\x18\x04 \x03(\tR\x12bootstrapEgressUrl\x12N\n" +
 	"\x18bootstrap_ingress_config\x18\x05 \x03(\v2\x14.google.protobuf.AnyR\x16bootstrapIngressConfig\x12L\n" +
 	"\x17bootstrap_egress_config\x18\x06 \x03(\v2\x14.google.protobuf.AnyR\x15bootstrapEgressConfig\x12:\n" +
-	"\x19bootstrap_egress_outbound\x18\a \x01(\tR\x17bootstrapEgressOutboundB\xc9\x01\n" +
-	"<com.v2ray.core.transport.internet.tlsmirror.mirrorenrollmentP\x01ZLgithub.com/frogwall/f2ray-core/v5/transport/internet/tlsmirror/mirrorenrollment\xaa\x028V2Ray.Core.Transport.Internet.Tlsmirror.MirrorEnrollmentb\x06proto3"
+	"\x19bootstrap_egress_outbound\x18\a \x01(\tR\x17bootstrapEgressOutboundB\xcc\x01\n" +
+	"<com.v2ray.core.transport.internet.tlsmirror.mirrorenrollmentP\x01ZOgithub.com/frogwall/f2ray-core/v5/transport/internet/tlsmirror/mirrorenrollment\xaa\x028V2Ray.Core.Transport.Internet.Tlsmirror.MirrorEnrollmentb\x06proto3"
 
 var (
 	file_transport_internet_tlsmirror_mirrorenrollment_config_proto_rawDescOnce sync.Once

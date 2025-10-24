@@ -212,8 +212,8 @@ const file_proxy_http_config_proto_rawDesc = "" +
 	"\x05value\x18\x02 \x01(\tR\x05value:\x028\x01\"\x86\x01\n" +
 	"\fClientConfig\x12B\n" +
 	"\x06server\x18\x01 \x03(\v2*.v2ray.core.common.protocol.ServerEndpointR\x06server\x122\n" +
-	"\x16h1_skip_wait_for_reply\x18\x02 \x01(\bR\x12h1SkipWaitForReplyB`\n" +
-	"\x19com.v2ray.core.proxy.httpP\x01Z)github.com/frogwall/f2ray-core/v5/proxy/http\xaa\x02\x15V2Ray.Core.Proxy.Httpb\x06proto3"
+	"\x16h1_skip_wait_for_reply\x18\x02 \x01(\bR\x12h1SkipWaitForReplyBc\n" +
+	"\x19com.v2ray.core.proxy.httpP\x01Z,github.com/frogwall/f2ray-core/v5/proxy/http\xaa\x02\x15V2Ray.Core.Proxy.Httpb\x06proto3"
 
 var (
 	file_proxy_http_config_proto_rawDescOnce sync.Once

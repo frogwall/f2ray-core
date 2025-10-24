@@ -259,8 +259,8 @@ const file_proxy_trojan_config_proto_rawDesc = "" +
 	"\fServerConfig\x126\n" +
 	"\x05users\x18\x01 \x03(\v2 .v2ray.core.common.protocol.UserR\x05users\x12?\n" +
 	"\tfallbacks\x18\x03 \x03(\v2!.v2ray.core.proxy.trojan.FallbackR\tfallbacks\x12R\n" +
-	"\x0fpacket_encoding\x18\x04 \x01(\x0e2).v2ray.core.net.packetaddr.PacketAddrTypeR\x0epacketEncodingBf\n" +
-	"\x1bcom.v2ray.core.proxy.trojanP\x01Z+github.com/frogwall/f2ray-core/v5/proxy/trojan\xaa\x02\x17V2Ray.Core.Proxy.Trojanb\x06proto3"
+	"\x0fpacket_encoding\x18\x04 \x01(\x0e2).v2ray.core.net.packetaddr.PacketAddrTypeR\x0epacketEncodingBi\n" +
+	"\x1bcom.v2ray.core.proxy.trojanP\x01Z.github.com/frogwall/f2ray-core/v5/proxy/trojan\xaa\x02\x17V2Ray.Core.Proxy.Trojanb\x06proto3"
 
 var (
 	file_proxy_trojan_config_proto_rawDescOnce sync.Once

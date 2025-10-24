@@ -521,8 +521,8 @@ const file_transport_internet_kcp_config_proto_rawDesc = "" +
 	"\x04seed\x18\n" +
 	" \x01(\v21.v2ray.core.transport.internet.kcp.EncryptionSeedR\x04seed: \x82\xb5\x18\x1c\n" +
 	"\ttransport\x12\x03kcp\x8a\xff)\x04mkcp\x90\xff)\x01J\x04\b\t\x10\n" +
-	"B\x84\x01\n" +
-	"%com.v2ray.core.transport.internet.kcpP\x01Z5github.com/frogwall/f2ray-core/v5/transport/internet/kcp\xaa\x02!V2Ray.Core.Transport.Internet.Kcpb\x06proto3"
+	"B\x87\x01\n" +
+	"%com.v2ray.core.transport.internet.kcpP\x01Z8github.com/frogwall/f2ray-core/v5/transport/internet/kcp\xaa\x02!V2Ray.Core.Transport.Internet.Kcpb\x06proto3"
 
 var (
 	file_transport_internet_kcp_config_proto_rawDescOnce sync.Once

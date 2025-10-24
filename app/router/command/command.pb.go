@@ -690,8 +690,8 @@ const file_app_router_command_command_proto_rawDesc = "" +
 	"\x15SubscribeRoutingStats\x12;.v2ray.core.app.router.command.SubscribeRoutingStatsRequest\x1a-.v2ray.core.app.router.command.RoutingContext\"\x000\x01\x12m\n" +
 	"\tTestRoute\x12/.v2ray.core.app.router.command.TestRouteRequest\x1a-.v2ray.core.app.router.command.RoutingContext\"\x00\x12\x82\x01\n" +
 	"\x0fGetBalancerInfo\x125.v2ray.core.app.router.command.GetBalancerInfoRequest\x1a6.v2ray.core.app.router.command.GetBalancerInfoResponse\"\x00\x12\x97\x01\n" +
-	"\x16OverrideBalancerTarget\x12<.v2ray.core.app.router.command.OverrideBalancerTargetRequest\x1a=.v2ray.core.app.router.command.OverrideBalancerTargetResponse\"\x00Bx\n" +
-	"!com.v2ray.core.app.router.commandP\x01Z1github.com/frogwall/f2ray-core/v5/app/router/command\xaa\x02\x1dV2Ray.Core.App.Router.Commandb\x06proto3"
+	"\x16OverrideBalancerTarget\x12<.v2ray.core.app.router.command.OverrideBalancerTargetRequest\x1a=.v2ray.core.app.router.command.OverrideBalancerTargetResponse\"\x00B{\n" +
+	"!com.v2ray.core.app.router.commandP\x01Z4github.com/frogwall/f2ray-core/v5/app/router/command\xaa\x02\x1dV2Ray.Core.App.Router.Commandb\x06proto3"
 
 var (
 	file_app_router_command_command_proto_rawDescOnce sync.Once

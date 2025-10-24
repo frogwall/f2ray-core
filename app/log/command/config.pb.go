@@ -216,8 +216,8 @@ const file_app_log_command_config_proto_rawDesc = "" +
 	"\amessage\x18\x01 \x01(\tR\amessage2\xf5\x01\n" +
 	"\rLoggerService\x12v\n" +
 	"\rRestartLogger\x120.v2ray.core.app.log.command.RestartLoggerRequest\x1a1.v2ray.core.app.log.command.RestartLoggerResponse\"\x00\x12l\n" +
-	"\tFollowLog\x12,.v2ray.core.app.log.command.FollowLogRequest\x1a-.v2ray.core.app.log.command.FollowLogResponse\"\x000\x01Bo\n" +
-	"\x1ecom.v2ray.core.app.log.commandP\x01Z.github.com/frogwall/f2ray-core/v5/app/log/command\xaa\x02\x1aV2Ray.Core.App.Log.Commandb\x06proto3"
+	"\tFollowLog\x12,.v2ray.core.app.log.command.FollowLogRequest\x1a-.v2ray.core.app.log.command.FollowLogResponse\"\x000\x01Br\n" +
+	"\x1ecom.v2ray.core.app.log.commandP\x01Z1github.com/frogwall/f2ray-core/v5/app/log/command\xaa\x02\x1aV2Ray.Core.App.Log.Commandb\x06proto3"
 
 var (
 	file_app_log_command_config_proto_rawDescOnce sync.Once

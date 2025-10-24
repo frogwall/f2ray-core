@@ -284,8 +284,8 @@ const file_config_proto_rawDesc = "" +
 	"\x0fsender_settings\x18\x02 \x01(\v2\x14.google.protobuf.AnyR\x0esenderSettings\x12;\n" +
 	"\x0eproxy_settings\x18\x03 \x01(\v2\x14.google.protobuf.AnyR\rproxySettings\x12\x16\n" +
 	"\x06expire\x18\x04 \x01(\x03R\x06expire\x12\x18\n" +
-	"\acomment\x18\x05 \x01(\tR\acommentBD\n" +
-	"\x0ecom.v2ray.coreP\x01Z#github.com/frogwall/f2ray-core/v5;core\xaa\x02\n" +
+	"\acomment\x18\x05 \x01(\tR\acommentBG\n" +
+	"\x0ecom.v2ray.coreP\x01Z&github.com/frogwall/f2ray-core/v5;core\xaa\x02\n" +
 	"V2Ray.Coreb\x06proto3"
 
 var (

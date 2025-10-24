@@ -95,8 +95,8 @@ const file_app_commander_webcommander_config_proto_rawDesc = "" +
 	"\rweb_root_file\x18\x82\xee\x05 \x01(\tB\x0e\x82\xb5\x18\n" +
 	"\"\bweb_rootR\vwebRootFile\x12%\n" +
 	"\x0eapi_mountpoint\x18\x03 \x01(\tR\rapiMountpoint:\x1b\x82\xb5\x18\x17\n" +
-	"\aservice\x12\fwebcommanderB\x90\x01\n" +
-	")com.v2ray.core.app.commander.webcommanderP\x01Z9github.com/frogwall/f2ray-core/v5/app/commander/webcommander\xaa\x02%V2Ray.Core.App.Commander.WebCommanderb\x06proto3"
+	"\aservice\x12\fwebcommanderB\x93\x01\n" +
+	")com.v2ray.core.app.commander.webcommanderP\x01Z<github.com/frogwall/f2ray-core/v5/app/commander/webcommander\xaa\x02%V2Ray.Core.App.Commander.WebCommanderb\x06proto3"
 
 var (
 	file_app_commander_webcommander_config_proto_rawDescOnce sync.Once

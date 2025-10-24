@@ -242,8 +242,8 @@ const file_proxy_vmess_inbound_config_proto_rawDesc = "" +
 	"\x16secure_encryption_only\x18\x04 \x01(\bR\x14secureEncryptionOnly\">\n" +
 	"\x10SimplifiedConfig\x12\x14\n" +
 	"\x05users\x18\x01 \x03(\tR\x05users:\x14\x82\xb5\x18\x10\n" +
-	"\ainbound\x12\x05vmessB{\n" +
-	"\"com.v2ray.core.proxy.vmess.inboundP\x01Z2github.com/frogwall/f2ray-core/v5/proxy/vmess/inbound\xaa\x02\x1eV2Ray.Core.Proxy.Vmess.Inboundb\x06proto3"
+	"\ainbound\x12\x05vmessB~\n" +
+	"\"com.v2ray.core.proxy.vmess.inboundP\x01Z5github.com/frogwall/f2ray-core/v5/proxy/vmess/inbound\xaa\x02\x1eV2Ray.Core.Proxy.Vmess.Inboundb\x06proto3"
 
 var (
 	file_proxy_vmess_inbound_config_proto_rawDescOnce sync.Once

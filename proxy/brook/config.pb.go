@@ -194,7 +194,7 @@ const file_proxy_brook_config_proto_rawDesc = "" +
 	"\x04path\x18\x04 \x01(\tR\x04path\x12'\n" +
 	"\x0ftls_fingerprint\x18\x05 \x01(\tR\x0etlsFingerprint\"*\n" +
 	"\fServerConfig\x12\x1a\n" +
-	"\bpassword\x18\x01 \x01(\tR\bpasswordB,Z*github.com/frogwall/f2ray-core/v5/proxy/brookb\x06proto3"
+	"\bpassword\x18\x01 \x01(\tR\bpasswordB/Z-github.com/frogwall/f2ray-core/v5/proxy/brookb\x06proto3"
 
 var (
 	file_proxy_brook_config_proto_rawDescOnce sync.Once

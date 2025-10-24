@@ -95,8 +95,8 @@ const file_transport_internet_http_config_proto_rawDesc = "" +
 	"\x04path\x18\x02 \x01(\tR\x04path\x12\x16\n" +
 	"\x06method\x18\x03 \x01(\tR\x06method\x12J\n" +
 	"\x06header\x18\x04 \x03(\v22.v2ray.core.transport.internet.headers.http.HeaderR\x06header:\x1b\x82\xb5\x18\x17\n" +
-	"\ttransport\x12\x02h2\x8a\xff)\x04httpB\x87\x01\n" +
-	"&com.v2ray.core.transport.internet.httpP\x01Z6github.com/frogwall/f2ray-core/v5/transport/internet/http\xaa\x02\"V2Ray.Core.Transport.Internet.Httpb\x06proto3"
+	"\ttransport\x12\x02h2\x8a\xff)\x04httpB\x8a\x01\n" +
+	"&com.v2ray.core.transport.internet.httpP\x01Z9github.com/frogwall/f2ray-core/v5/transport/internet/http\xaa\x02\"V2Ray.Core.Transport.Internet.Httpb\x06proto3"
 
 var (
 	file_transport_internet_http_config_proto_rawDescOnce sync.Once

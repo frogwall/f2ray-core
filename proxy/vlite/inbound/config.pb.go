@@ -113,8 +113,8 @@ const file_proxy_vlite_inbound_config_proto_rawDesc = "" +
 	"\x14enable_stabilization\x18\x06 \x01(\bR\x13enableStabilization\x121\n" +
 	"\x14enable_renegotiation\x18\a \x01(\bR\x13enableRenegotiation\x12C\n" +
 	"\x1ehandshake_masking_padding_size\x18\b \x01(\rR\x1bhandshakeMaskingPaddingSize:\x15\x82\xb5\x18\x11\n" +
-	"\ainbound\x12\x06vliteuB{\n" +
-	"\"com.v2ray.core.proxy.vlite.inboundP\x01Z2github.com/frogwall/f2ray-core/v5/proxy/vlite/inbound\xaa\x02\x1eV2Ray.Core.Proxy.Vlite.Inboundb\x06proto3"
+	"\ainbound\x12\x06vliteuB~\n" +
+	"\"com.v2ray.core.proxy.vlite.inboundP\x01Z5github.com/frogwall/f2ray-core/v5/proxy/vlite/inbound\xaa\x02\x1eV2Ray.Core.Proxy.Vlite.Inboundb\x06proto3"
 
 var (
 	file_proxy_vlite_inbound_config_proto_rawDescOnce sync.Once

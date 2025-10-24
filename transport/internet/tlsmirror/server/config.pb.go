@@ -263,8 +263,8 @@ const file_transport_internet_tlsmirror_server_config_proto_rawDesc = "" +
 	"\x14connection_enrolment\x18\n" +
 	" \x01(\v2@.v2ray.core.transport.internet.tlsmirror.mirrorenrollment.ConfigR\x13connectionEnrolment\x12B\n" +
 	"\x1dsequence_watermarking_enabled\x18\v \x01(\bR\x1bsequenceWatermarkingEnabled:'\x82\xb5\x18#\n" +
-	"\ttransport\x12\ttlsmirror\x8a\xff)\ttlsmirrorB\xab\x01\n" +
-	"2com.v2ray.core.transport.internet.tlsmirror.serverP\x01ZBgithub.com/frogwall/f2ray-core/v5/transport/internet/tlsmirror/server\xaa\x02.V2Ray.Core.Transport.Internet.Tlsmirror.Serverb\x06proto3"
+	"\ttransport\x12\ttlsmirror\x8a\xff)\ttlsmirrorB\xae\x01\n" +
+	"2com.v2ray.core.transport.internet.tlsmirror.serverP\x01ZEgithub.com/frogwall/f2ray-core/v5/transport/internet/tlsmirror/server\xaa\x02.V2Ray.Core.Transport.Internet.Tlsmirror.Serverb\x06proto3"
 
 var (
 	file_transport_internet_tlsmirror_server_config_proto_rawDescOnce sync.Once

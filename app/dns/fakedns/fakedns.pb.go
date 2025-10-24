@@ -123,8 +123,8 @@ const file_app_dns_fakedns_fakedns_proto_rawDesc = "" +
 	"\aservice\x12\afakeDns\"n\n" +
 	"\x10FakeDnsPoolMulti\x12=\n" +
 	"\x05pools\x18\x01 \x03(\v2'.v2ray.core.app.dns.fakedns.FakeDnsPoolR\x05pools:\x1b\x82\xb5\x18\x17\n" +
-	"\aservice\x12\ffakeDnsMultiBo\n" +
-	"\x1ecom.v2ray.core.app.dns.fakednsP\x01Z.github.com/frogwall/f2ray-core/v5/app/dns/fakedns\xaa\x02\x1aV2Ray.Core.App.Dns.Fakednsb\x06proto3"
+	"\aservice\x12\ffakeDnsMultiBr\n" +
+	"\x1ecom.v2ray.core.app.dns.fakednsP\x01Z1github.com/frogwall/f2ray-core/v5/app/dns/fakedns\xaa\x02\x1aV2Ray.Core.App.Dns.Fakednsb\x06proto3"
 
 var (
 	file_app_dns_fakedns_fakedns_proto_rawDescOnce sync.Once

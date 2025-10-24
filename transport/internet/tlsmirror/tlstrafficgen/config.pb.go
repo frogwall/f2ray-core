@@ -377,8 +377,8 @@ const file_transport_internet_tlsmirror_tlstrafficgen_config_proto_rawDesc = "" 
 	"\"h2_do_not_wait_for_download_finish\x18\f \x01(\bR\x1ch2DoNotWaitForDownloadFinish\"\x9e\x01\n" +
 	"\x06Config\x12Q\n" +
 	"\x05steps\x18\x01 \x03(\v2;.v2ray.core.transport.internet.tlsmirror.tlstrafficgen.StepR\x05steps\x12A\n" +
-	"\x11security_settings\x18\x02 \x01(\v2\x14.google.protobuf.AnyR\x10securitySettingsB\xc0\x01\n" +
-	"9com.v2ray.core.transport.internet.tlsmirror.tlstrafficgenP\x01ZIgithub.com/frogwall/f2ray-core/v5/transport/internet/tlsmirror/tlstrafficgen\xaa\x025V2Ray.Core.Transport.Internet.Tlsmirror.Tlstrafficgenb\x06proto3"
+	"\x11security_settings\x18\x02 \x01(\v2\x14.google.protobuf.AnyR\x10securitySettingsB\xc3\x01\n" +
+	"9com.v2ray.core.transport.internet.tlsmirror.tlstrafficgenP\x01ZLgithub.com/frogwall/f2ray-core/v5/transport/internet/tlsmirror/tlstrafficgen\xaa\x025V2Ray.Core.Transport.Internet.Tlsmirror.Tlstrafficgenb\x06proto3"
 
 var (
 	file_transport_internet_tlsmirror_tlstrafficgen_config_proto_rawDescOnce sync.Once

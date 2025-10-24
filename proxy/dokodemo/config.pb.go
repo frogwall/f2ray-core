@@ -204,8 +204,8 @@ const file_proxy_dokodemo_config_proto_rawDesc = "" +
 	"\x04port\x18\x02 \x01(\rR\x04port\x12>\n" +
 	"\bnetworks\x18\x03 \x01(\v2\".v2ray.core.common.net.NetworkListR\bnetworks\x12'\n" +
 	"\x0ffollow_redirect\x18\x04 \x01(\bR\x0efollowRedirect:\x1c\x82\xb5\x18\x18\n" +
-	"\ainbound\x12\rdokodemo-doorBl\n" +
-	"\x1dcom.v2ray.core.proxy.dokodemoP\x01Z-github.com/frogwall/f2ray-core/v5/proxy/dokodemo\xaa\x02\x19V2Ray.Core.Proxy.Dokodemob\x06proto3"
+	"\ainbound\x12\rdokodemo-doorBo\n" +
+	"\x1dcom.v2ray.core.proxy.dokodemoP\x01Z0github.com/frogwall/f2ray-core/v5/proxy/dokodemo\xaa\x02\x19V2Ray.Core.Proxy.Dokodemob\x06proto3"
 
 var (
 	file_proxy_dokodemo_config_proto_rawDescOnce sync.Once

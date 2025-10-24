@@ -283,8 +283,8 @@ const file_proxy_shadowsocks_config_proto_rawDesc = "" +
 	"\vAES_128_GCM\x10\x01\x12\x0f\n" +
 	"\vAES_256_GCM\x10\x02\x12\x15\n" +
 	"\x11CHACHA20_POLY1305\x10\x03\x12\b\n" +
-	"\x04NONE\x10\x04Bu\n" +
-	" com.v2ray.core.proxy.shadowsocksP\x01Z0github.com/frogwall/f2ray-core/v5/proxy/shadowsocks\xaa\x02\x1cV2Ray.Core.Proxy.Shadowsocksb\x06proto3"
+	"\x04NONE\x10\x04Bx\n" +
+	" com.v2ray.core.proxy.shadowsocksP\x01Z3github.com/frogwall/f2ray-core/v5/proxy/shadowsocks\xaa\x02\x1cV2Ray.Core.Proxy.Shadowsocksb\x06proto3"
 
 var (
 	file_proxy_shadowsocks_config_proto_rawDescOnce sync.Once

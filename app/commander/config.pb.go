@@ -176,8 +176,8 @@ const file_app_commander_config_proto_rawDesc = "" +
 	"\x10SimplifiedConfig\x12\x10\n" +
 	"\x03tag\x18\x01 \x01(\tR\x03tag\x12\x12\n" +
 	"\x04name\x18\x02 \x03(\tR\x04name:\x18\x82\xb5\x18\x14\n" +
-	"\aservice\x12\tcommanderBi\n" +
-	"\x1ccom.v2ray.core.app.commanderP\x01Z,github.com/frogwall/f2ray-core/v5/app/commander\xaa\x02\x18V2Ray.Core.App.Commanderb\x06proto3"
+	"\aservice\x12\tcommanderBl\n" +
+	"\x1ccom.v2ray.core.app.commanderP\x01Z/github.com/frogwall/f2ray-core/v5/app/commander\xaa\x02\x18V2Ray.Core.App.Commanderb\x06proto3"
 
 var (
 	file_app_commander_config_proto_rawDescOnce sync.Once

@@ -802,8 +802,8 @@ const file_app_proxyman_config_proto_rawDesc = "" +
 	"\vconcurrency\x18\x02 \x01(\rR\vconcurrency*#\n" +
 	"\x0eKnownProtocols\x12\b\n" +
 	"\x04HTTP\x10\x00\x12\a\n" +
-	"\x03TLS\x10\x01Bf\n" +
-	"\x1bcom.v2ray.core.app.proxymanP\x01Z+github.com/frogwall/f2ray-core/v5/app/proxyman\xaa\x02\x17V2Ray.Core.App.Proxymanb\x06proto3"
+	"\x03TLS\x10\x01Bi\n" +
+	"\x1bcom.v2ray.core.app.proxymanP\x01Z.github.com/frogwall/f2ray-core/v5/app/proxyman\xaa\x02\x17V2Ray.Core.App.Proxymanb\x06proto3"
 
 var (
 	file_app_proxyman_config_proto_rawDescOnce sync.Once

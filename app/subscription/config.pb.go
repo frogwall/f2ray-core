@@ -178,8 +178,8 @@ const file_app_subscription_config_proto_rawDesc = "" +
 	"\x1bnonnative_converter_overlay\x18\x02 \x01(\fR\x19nonnativeConverterOverlay\x12l\n" +
 	" nonnative_converter_overlay_file\x18\x82\xee\x05 \x01(\tB!\x82\xb5\x18\x1d\"\x1bnonnative_converter_overlayR\x1dnonnativeConverterOverlayFile\x12 \n" +
 	"\vpersistence\x18\x03 \x01(\bR\vpersistence:\x1b\x82\xb5\x18\x17\n" +
-	"\aservice\x12\fsubscriptionBr\n" +
-	"\x1fcom.v2ray.core.app.subscriptionP\x01Z/github.com/frogwall/f2ray-core/v5/app/subscription\xaa\x02\x1bV2Ray.Core.App.Subscriptionb\x06proto3"
+	"\aservice\x12\fsubscriptionBu\n" +
+	"\x1fcom.v2ray.core.app.subscriptionP\x01Z2github.com/frogwall/f2ray-core/v5/app/subscription\xaa\x02\x1bV2Ray.Core.App.Subscriptionb\x06proto3"
 
 var (
 	file_app_subscription_config_proto_rawDescOnce sync.Once

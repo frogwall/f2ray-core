@@ -67,8 +67,8 @@ const file_transport_internet_request_stereotype_meek_config_proto_rawDesc = "" 
 	"7transport/internet/request/stereotype/meek/config.proto\x125v2ray.core.transport.internet.request.stereotype.meek\x1a common/protoext/extensions.proto\"5\n" +
 	"\x06Config\x12\x10\n" +
 	"\x03url\x18\x01 \x01(\tR\x03url:\x19\x82\xb5\x18\x15\n" +
-	"\ttransport\x12\x04meek\x90\xff)\x01B\xc0\x01\n" +
-	"9com.v2ray.core.transport.internet.request.stereotype.meekP\x01ZIgithub.com/frogwall/f2ray-core/v5/transport/internet/request/stereotype/meek\xaa\x025V2Ray.Core.Transport.Internet.Request.Stereotype.Meekb\x06proto3"
+	"\ttransport\x12\x04meek\x90\xff)\x01B\xc3\x01\n" +
+	"9com.v2ray.core.transport.internet.request.stereotype.meekP\x01ZLgithub.com/frogwall/f2ray-core/v5/transport/internet/request/stereotype/meek\xaa\x025V2Ray.Core.Transport.Internet.Request.Stereotype.Meekb\x06proto3"
 
 var (
 	file_transport_internet_request_stereotype_meek_config_proto_rawDescOnce sync.Once

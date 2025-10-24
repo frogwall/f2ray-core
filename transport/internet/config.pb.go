@@ -663,8 +663,8 @@ const file_transport_internet_config_proto_rawDesc = "" +
 	"\x04AsIs\x10\x00\x12\n" +
 	"\n" +
 	"\x06Enable\x10\x01\x12\v\n" +
-	"\aDisable\x10\x02Bx\n" +
-	"!com.v2ray.core.transport.internetP\x01Z1github.com/frogwall/f2ray-core/v5/transport/internet\xaa\x02\x1dV2Ray.Core.Transport.Internetb\x06proto3"
+	"\aDisable\x10\x02B{\n" +
+	"!com.v2ray.core.transport.internetP\x01Z4github.com/frogwall/f2ray-core/v5/transport/internet\xaa\x02\x1dV2Ray.Core.Transport.Internetb\x06proto3"
 
 var (
 	file_transport_internet_config_proto_rawDescOnce sync.Once

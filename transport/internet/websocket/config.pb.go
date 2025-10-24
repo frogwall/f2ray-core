@@ -168,8 +168,8 @@ const file_transport_internet_websocket_config_proto_rawDesc = "" +
 	"\x0emax_early_data\x18\x05 \x01(\x05R\fmaxEarlyData\x124\n" +
 	"\x16use_browser_forwarding\x18\x06 \x01(\bR\x14useBrowserForwarding\x123\n" +
 	"\x16early_data_header_name\x18\a \x01(\tR\x13earlyDataHeaderName:$\x82\xb5\x18 \n" +
-	"\ttransport\x12\x02ws\x8a\xff)\twebsocket\x90\xff)\x01J\x04\b\x01\x10\x02B\x96\x01\n" +
-	"+com.v2ray.core.transport.internet.websocketP\x01Z;github.com/frogwall/f2ray-core/v5/transport/internet/websocket\xaa\x02'V2Ray.Core.Transport.Internet.Websocketb\x06proto3"
+	"\ttransport\x12\x02ws\x8a\xff)\twebsocket\x90\xff)\x01J\x04\b\x01\x10\x02B\x99\x01\n" +
+	"+com.v2ray.core.transport.internet.websocketP\x01Z>github.com/frogwall/f2ray-core/v5/transport/internet/websocket\xaa\x02'V2Ray.Core.Transport.Internet.Websocketb\x06proto3"
 
 var (
 	file_transport_internet_websocket_config_proto_rawDescOnce sync.Once

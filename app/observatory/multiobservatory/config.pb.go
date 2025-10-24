@@ -68,8 +68,8 @@ const file_app_observatory_multiobservatory_config_proto_rawDesc = "" +
 	"-app/observatory/multiobservatory/config.proto\x12+v2ray.core.app.observatory.multiobservatory\x1a$common/taggedfeatures/skeleton.proto\x1a common/protoext/extensions.proto\"m\n" +
 	"\x06Config\x12B\n" +
 	"\aholders\x18\x01 \x01(\v2(.v2ray.core.common.taggedfeatures.ConfigR\aholders:\x1f\x82\xb5\x18\x1b\n" +
-	"\aservice\x12\x10multiobservatoryB\xa2\x01\n" +
-	"/com.v2ray.core.app.observatory.multiObservatoryP\x01Z?github.com/frogwall/f2ray-core/v5/app/observatory/multiobservatory\xaa\x02+V2Ray.Core.App.Observatory.MultiObservatoryb\x06proto3"
+	"\aservice\x12\x10multiobservatoryB\xa5\x01\n" +
+	"/com.v2ray.core.app.observatory.multiObservatoryP\x01ZBgithub.com/frogwall/f2ray-core/v5/app/observatory/multiobservatory\xaa\x02+V2Ray.Core.App.Observatory.MultiObservatoryb\x06proto3"
 
 var (
 	file_app_observatory_multiobservatory_config_proto_rawDescOnce sync.Once

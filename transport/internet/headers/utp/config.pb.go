@@ -65,8 +65,8 @@ const file_transport_internet_headers_utp_config_proto_rawDesc = "" +
 	"\n" +
 	"+transport/internet/headers/utp/config.proto\x12)v2ray.core.transport.internet.headers.utp\"\"\n" +
 	"\x06Config\x12\x18\n" +
-	"\aversion\x18\x01 \x01(\rR\aversionB\x9c\x01\n" +
-	"-com.v2ray.core.transport.internet.headers.utpP\x01Z=github.com/frogwall/f2ray-core/v5/transport/internet/headers/utp\xaa\x02)V2Ray.Core.Transport.Internet.Headers.Utpb\x06proto3"
+	"\aversion\x18\x01 \x01(\rR\aversionB\x9f\x01\n" +
+	"-com.v2ray.core.transport.internet.headers.utpP\x01Z@github.com/frogwall/f2ray-core/v5/transport/internet/headers/utp\xaa\x02)V2Ray.Core.Transport.Internet.Headers.Utpb\x06proto3"
 
 var (
 	file_transport_internet_headers_utp_config_proto_rawDescOnce sync.Once

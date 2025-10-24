@@ -80,8 +80,8 @@ const file_common_log_log_proto_rawDesc = "" +
 	"\x05Error\x10\x01\x12\v\n" +
 	"\aWarning\x10\x02\x12\b\n" +
 	"\x04Info\x10\x03\x12\t\n" +
-	"\x05Debug\x10\x04B`\n" +
-	"\x19com.v2ray.core.common.logP\x01Z)github.com/frogwall/f2ray-core/v5/common/log\xaa\x02\x15V2Ray.Core.Common.Logb\x06proto3"
+	"\x05Debug\x10\x04Bc\n" +
+	"\x19com.v2ray.core.common.logP\x01Z,github.com/frogwall/f2ray-core/v5/common/log\xaa\x02\x15V2Ray.Core.Common.Logb\x06proto3"
 
 var (
 	file_common_log_log_proto_rawDescOnce sync.Once

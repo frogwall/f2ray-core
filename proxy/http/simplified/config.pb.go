@@ -124,8 +124,8 @@ const file_proxy_http_simplified_config_proto_rawDesc = "" +
 	"\aaddress\x18\x01 \x01(\v2!.v2ray.core.common.net.IPOrDomainR\aaddress\x12\x12\n" +
 	"\x04port\x18\x02 \x01(\rR\x04port\x122\n" +
 	"\x16h1_skip_wait_for_reply\x18\x03 \x01(\bR\x12h1SkipWaitForReply:\x18\x82\xb5\x18\x14\n" +
-	"\boutbound\x12\x04http\x90\xff)\x01B\x81\x01\n" +
-	"$com.v2ray.core.proxy.http.simplifiedP\x01Z4github.com/frogwall/f2ray-core/v5/proxy/http/simplified\xaa\x02 V2Ray.Core.Proxy.Http.Simplifiedb\x06proto3"
+	"\boutbound\x12\x04http\x90\xff)\x01B\x84\x01\n" +
+	"$com.v2ray.core.proxy.http.simplifiedP\x01Z7github.com/frogwall/f2ray-core/v5/proxy/http/simplified\xaa\x02 V2Ray.Core.Proxy.Http.Simplifiedb\x06proto3"
 
 var (
 	file_proxy_http_simplified_config_proto_rawDescOnce sync.Once

@@ -199,8 +199,8 @@ const file_transport_internet_request_roundtripper_httprt_config_proto_rawDesc =
 	"\n" +
 	"HTTPConfig\x12\x12\n" +
 	"\x04path\x18\x01 \x01(\tR\x04path\x12\x1c\n" +
-	"\turlPrefix\x18\x02 \x01(\tR\turlPrefixB\xcc\x01\n" +
-	"=com.v2ray.core.transport.internet.request.roundtripper.httprtP\x01ZMgithub.com/frogwall/f2ray-core/v5/transport/internet/request/roundtripper/httprt\xaa\x029V2Ray.Core.Transport.Internet.Request.Roundtripper.httprtb\x06proto3"
+	"\turlPrefix\x18\x02 \x01(\tR\turlPrefixB\xcf\x01\n" +
+	"=com.v2ray.core.transport.internet.request.roundtripper.httprtP\x01ZPgithub.com/frogwall/f2ray-core/v5/transport/internet/request/roundtripper/httprt\xaa\x029V2Ray.Core.Transport.Internet.Request.Roundtripper.httprtb\x06proto3"
 
 var (
 	file_transport_internet_request_roundtripper_httprt_config_proto_rawDescOnce sync.Once

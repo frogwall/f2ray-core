@@ -56,8 +56,8 @@ var File_transport_internet_headers_wireguard_config_proto protoreflect.FileDesc
 const file_transport_internet_headers_wireguard_config_proto_rawDesc = "" +
 	"\n" +
 	"1transport/internet/headers/wireguard/config.proto\x12/v2ray.core.transport.internet.headers.wireguard\"\x11\n" +
-	"\x0fWireguardConfigB\xae\x01\n" +
-	"3com.v2ray.core.transport.internet.headers.wireguardP\x01ZCgithub.com/frogwall/f2ray-core/v5/transport/internet/headers/wireguard\xaa\x02/V2Ray.Core.Transport.Internet.Headers.Wireguardb\x06proto3"
+	"\x0fWireguardConfigB\xb1\x01\n" +
+	"3com.v2ray.core.transport.internet.headers.wireguardP\x01ZFgithub.com/frogwall/f2ray-core/v5/transport/internet/headers/wireguard\xaa\x02/V2Ray.Core.Transport.Internet.Headers.Wireguardb\x06proto3"
 
 var (
 	file_transport_internet_headers_wireguard_config_proto_rawDescOnce sync.Once

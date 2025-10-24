@@ -1,7 +1,7 @@
 syntax = "proto3";
 
 package v2ray.core.proxy.brook;
-option go_package = "github.com/v2fly/v2ray-core/v5/proxy/brook";
+option go_package = "github.com/frogwall/f2ray-core/v5/proxy/brook";
 
 import "common/protocol/server_spec.proto";
 

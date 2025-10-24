@@ -465,8 +465,8 @@ const file_app_observatory_config_proto_rawDesc = "" +
 	"\tprobe_url\x18\x03 \x01(\tR\bprobeUrl\x12%\n" +
 	"\x0eprobe_interval\x18\x04 \x01(\x03R\rprobeInterval\x126\n" +
 	"\x17persistent_probe_result\x18\x05 \x01(\bR\x15persistentProbeResult:$\x82\xb5\x18 \n" +
-	"\aservice\x12\x15backgroundObservatoryBo\n" +
-	"\x1ecom.v2ray.core.app.observatoryP\x01Z.github.com/frogwall/f2ray-core/v5/app/observatory\xaa\x02\x1aV2Ray.Core.App.Observatoryb\x06proto3"
+	"\aservice\x12\x15backgroundObservatoryBr\n" +
+	"\x1ecom.v2ray.core.app.observatoryP\x01Z1github.com/frogwall/f2ray-core/v5/app/observatory\xaa\x02\x1aV2Ray.Core.App.Observatoryb\x06proto3"
 
 var (
 	file_app_observatory_config_proto_rawDescOnce sync.Once

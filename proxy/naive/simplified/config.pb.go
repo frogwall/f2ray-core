@@ -126,8 +126,8 @@ const file_proxy_naive_simplified_config_proto_rawDesc = "" +
 	"\aaddress\x18\x01 \x01(\v2!.v2ray.core.common.net.IPOrDomainR\aaddress\x12\x12\n" +
 	"\x04port\x18\x02 \x01(\rR\x04port\x12\x1a\n" +
 	"\bprotocol\x18\x03 \x01(\tR\bprotocol:\x19\x82\xb5\x18\x15\n" +
-	"\boutbound\x12\x05naive\x90\xff)\x01B\x84\x01\n" +
-	"%com.v2ray.core.proxy.naive.simplifiedP\x01Z5github.com/frogwall/f2ray-core/v5/proxy/naive/simplified\xaa\x02!V2Ray.Core.Proxy.Naive.Simplifiedb\x06proto3"
+	"\boutbound\x12\x05naive\x90\xff)\x01B\x87\x01\n" +
+	"%com.v2ray.core.proxy.naive.simplifiedP\x01Z8github.com/frogwall/f2ray-core/v5/proxy/naive/simplified\xaa\x02!V2Ray.Core.Proxy.Naive.Simplifiedb\x06proto3"
 
 var (
 	file_proxy_naive_simplified_config_proto_rawDescOnce sync.Once

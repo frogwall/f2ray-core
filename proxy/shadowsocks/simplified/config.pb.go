@@ -226,8 +226,8 @@ const file_proxy_shadowsocks_simplified_config_proto_rawDesc = "" +
 	"\"experiment_reduced_iv_head_entropy\x18\x91\xbf\x05 \x01(\bR\x1eexperimentReducedIvHeadEntropy:\x1f\x82\xb5\x18\x1b\n" +
 	"\boutbound\x12\vshadowsocks\x90\xff)\x01\"S\n" +
 	"\x11CipherTypeWrapper\x12>\n" +
-	"\x05value\x18\x01 \x01(\x0e2(.v2ray.core.proxy.shadowsocks.CipherTypeR\x05valueB\x96\x01\n" +
-	"+com.v2ray.core.proxy.shadowsocks.simplifiedP\x01Z;github.com/frogwall/f2ray-core/v5/proxy/shadowsocks/simplified\xaa\x02'V2Ray.Core.Proxy.Shadowsocks.Simplifiedb\x06proto3"
+	"\x05value\x18\x01 \x01(\x0e2(.v2ray.core.proxy.shadowsocks.CipherTypeR\x05valueB\x99\x01\n" +
+	"+com.v2ray.core.proxy.shadowsocks.simplifiedP\x01Z>github.com/frogwall/f2ray-core/v5/proxy/shadowsocks/simplified\xaa\x02'V2Ray.Core.Proxy.Shadowsocks.Simplifiedb\x06proto3"
 
 var (
 	file_proxy_shadowsocks_simplified_config_proto_rawDescOnce sync.Once

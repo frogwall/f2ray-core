@@ -1,4 +1,4 @@
-package main
+package commands
 
 import (
 	"fmt"
@@ -9,7 +9,7 @@ import (
 	"github.com/frogwall/f2ray-core/v5/main/commands/base"
 )
 
-var f2CmdReload = &base.Command{
+var CmdReload = &base.Command{
 	UsageLine: "{{.Exec}} reload",
 	Short:     "soft-reload f2ray by reloading config",
 	Long:      "Send SIGHUP to running f2ray (reads pid from /tmp/f2ray.pid) to reload configuration.",

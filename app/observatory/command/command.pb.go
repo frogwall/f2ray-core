@@ -153,8 +153,8 @@ const file_app_observatory_command_command_proto_rawDesc = "" +
 	"\x06Config:\x1e\x82\xb5\x18\x1a\n" +
 	"\vgrpcservice\x12\vobservatory2\xa9\x01\n" +
 	"\x12ObservatoryService\x12\x92\x01\n" +
-	"\x11GetOutboundStatus\x12<.v2ray.core.app.observatory.command.GetOutboundStatusRequest\x1a=.v2ray.core.app.observatory.command.GetOutboundStatusResponse\"\x00B\x87\x01\n" +
-	"&com.v2ray.core.app.observatory.commandP\x01Z6github.com/frogwall/f2ray-core/v5/app/observatory/command\xaa\x02\"V2Ray.Core.App.Observatory.Commandb\x06proto3"
+	"\x11GetOutboundStatus\x12<.v2ray.core.app.observatory.command.GetOutboundStatusRequest\x1a=.v2ray.core.app.observatory.command.GetOutboundStatusResponse\"\x00B\x8a\x01\n" +
+	"&com.v2ray.core.app.observatory.commandP\x01Z9github.com/frogwall/f2ray-core/v5/app/observatory/command\xaa\x02\"V2Ray.Core.App.Observatory.Commandb\x06proto3"
 
 var (
 	file_app_observatory_command_command_proto_rawDescOnce sync.Once

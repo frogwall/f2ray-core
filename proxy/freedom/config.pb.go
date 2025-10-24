@@ -319,8 +319,8 @@ const file_proxy_freedom_config_proto_rawDesc = "" +
 	"\x13ProtocolReplacement\x12\f\n" +
 	"\bIDENTITY\x10\x00\x12\r\n" +
 	"\tFORCE_TCP\x10\x01\x12\r\n" +
-	"\tFORCE_UDP\x10\x02Bi\n" +
-	"\x1ccom.v2ray.core.proxy.freedomP\x01Z,github.com/frogwall/f2ray-core/v5/proxy/freedom\xaa\x02\x18V2Ray.Core.Proxy.Freedomb\x06proto3"
+	"\tFORCE_UDP\x10\x02Bl\n" +
+	"\x1ccom.v2ray.core.proxy.freedomP\x01Z/github.com/frogwall/f2ray-core/v5/proxy/freedom\xaa\x02\x18V2Ray.Core.Proxy.Freedomb\x06proto3"
 
 var (
 	file_proxy_freedom_config_proto_rawDescOnce sync.Once

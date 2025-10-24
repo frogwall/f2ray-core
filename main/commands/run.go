@@ -21,7 +21,7 @@ import (
 var CmdRun = &base.Command{
 	CustomFlags: true,
 	UsageLine:   "{{.Exec}} run [-c config.json] [-d dir]",
-	Short:       "run f2ray with config",
+	Short:       "run f2ray with config (supports SIGHUP reload)",
 	Long: `
 Run f2ray with config.
 
@@ -32,6 +32,9 @@ to load config from one of below:
 	1. The default "config.json" in the current directory
 	2. The config file from ENV "f2ray.location.config"
 	3. The stdin if all failed above
+
+The process writes its PID to /tmp/f2ray.pid and supports SIGHUP
+for configuration reload. Use "{{.Exec}} reload" to reload config.
 
 Arguments:
 
@@ -90,6 +93,18 @@ func executeRun(cmd *base.Command, args []string) {
 		base.Fatalf("Failed to start: %s", err)
 	}
 
+	// Write PID file for reload support
+	pidFile := "/tmp/f2ray.pid"
+	log.Printf("Writing PID file: %s (PID: %d)", pidFile, os.Getpid())
+	if err := os.WriteFile(pidFile, []byte(fmt.Sprintf("%d", os.Getpid())), 0644); err != nil {
+		base.Fatalf("Failed to write pid file: %s", err)
+	}
+	log.Printf("PID file written successfully")
+	defer func() {
+		log.Printf("Removing PID file: %s", pidFile)
+		os.Remove(pidFile)
+	}()
+
 	for _, f := range pluginFuncs {
 		go func(f func() error) {
 			if err := f(); err != nil {
@@ -106,10 +121,33 @@ func executeRun(cmd *base.Command, args []string) {
 	// Explicitly triggering GC to remove garbage from config loading.
 	runtime.GC()
 
-	{
-		osSignals := make(chan os.Signal, 1)
-		signal.Notify(osSignals, os.Interrupt, syscall.SIGTERM)
-		<-osSignals
+	// Support SIGHUP for config reload
+	osSignals := make(chan os.Signal, 1)
+	signal.Notify(osSignals, os.Interrupt, syscall.SIGTERM, syscall.SIGHUP)
+	for {
+		sig := <-osSignals
+		switch sig {
+		case syscall.SIGHUP:
+			// Reload configuration
+			log.Println("Received SIGHUP, reloading configuration...")
+			server.Close()
+			configFiles = getConfigFilePath()
+			s, err := startV2Ray()
+			if err != nil {
+				log.Printf("reload failed to create server: %v", err)
+				continue
+			}
+			if err := s.Start(); err != nil {
+				log.Printf("reload failed to start: %v", err)
+				continue
+			}
+			server = s
+			runtime.GC()
+			log.Printf("Configuration reloaded successfully")
+		default:
+			// SIGINT or SIGTERM
+			return
+		}
 	}
 }
 

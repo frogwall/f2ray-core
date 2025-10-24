@@ -124,8 +124,8 @@ const file_app_stats_config_proto_rawDesc = "" +
 	"\x0fSubscriberLimit\x18\x02 \x01(\x05R\x0fSubscriberLimit\x12\x1e\n" +
 	"\n" +
 	"BufferSize\x18\x03 \x01(\x05R\n" +
-	"BufferSizeB]\n" +
-	"\x18com.v2ray.core.app.statsP\x01Z(github.com/frogwall/f2ray-core/v5/app/stats\xaa\x02\x14V2Ray.Core.App.Statsb\x06proto3"
+	"BufferSizeB`\n" +
+	"\x18com.v2ray.core.app.statsP\x01Z+github.com/frogwall/f2ray-core/v5/app/stats\xaa\x02\x14V2Ray.Core.App.Statsb\x06proto3"
 
 var (
 	file_app_stats_config_proto_rawDescOnce sync.Once

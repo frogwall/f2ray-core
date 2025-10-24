@@ -508,8 +508,8 @@ const file_app_stats_command_command_proto_rawDesc = "" +
 	"\bGetStats\x12-.v2ray.core.app.stats.command.GetStatsRequest\x1a..v2ray.core.app.stats.command.GetStatsResponse\"\x00\x12q\n" +
 	"\n" +
 	"QueryStats\x12/.v2ray.core.app.stats.command.QueryStatsRequest\x1a0.v2ray.core.app.stats.command.QueryStatsResponse\"\x00\x12n\n" +
-	"\vGetSysStats\x12-.v2ray.core.app.stats.command.SysStatsRequest\x1a..v2ray.core.app.stats.command.SysStatsResponse\"\x00Bu\n" +
-	" com.v2ray.core.app.stats.commandP\x01Z0github.com/frogwall/f2ray-core/v5/app/stats/command\xaa\x02\x1cV2Ray.Core.App.Stats.Commandb\x06proto3"
+	"\vGetSysStats\x12-.v2ray.core.app.stats.command.SysStatsRequest\x1a..v2ray.core.app.stats.command.SysStatsResponse\"\x00Bx\n" +
+	" com.v2ray.core.app.stats.commandP\x01Z3github.com/frogwall/f2ray-core/v5/app/stats/command\xaa\x02\x1cV2Ray.Core.App.Stats.Commandb\x06proto3"
 
 var (
 	file_app_stats_command_command_proto_rawDescOnce sync.Once

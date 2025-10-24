@@ -368,8 +368,8 @@ const file_proxy_socks_config_proto_rawDesc = "" +
 	"\x06SOCKS5\x10\x00\x12\n" +
 	"\n" +
 	"\x06SOCKS4\x10\x01\x12\v\n" +
-	"\aSOCKS4A\x10\x02Bc\n" +
-	"\x1acom.v2ray.core.proxy.socksP\x01Z*github.com/frogwall/f2ray-core/v5/proxy/socks\xaa\x02\x16V2Ray.Core.Proxy.Socksb\x06proto3"
+	"\aSOCKS4A\x10\x02Bf\n" +
+	"\x1acom.v2ray.core.proxy.socksP\x01Z-github.com/frogwall/f2ray-core/v5/proxy/socks\xaa\x02\x16V2Ray.Core.Proxy.Socksb\x06proto3"
 
 var (
 	file_proxy_socks_config_proto_rawDescOnce sync.Once

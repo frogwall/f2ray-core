@@ -136,8 +136,8 @@ const file_common_protocol_headers_proto_rawDesc = "" +
 	"AES128_GCM\x10\x03\x12\x15\n" +
 	"\x11CHACHA20_POLY1305\x10\x04\x12\b\n" +
 	"\x04NONE\x10\x05\x12\b\n" +
-	"\x04ZERO\x10\x06Bo\n" +
-	"\x1ecom.v2ray.core.common.protocolP\x01Z.github.com/frogwall/f2ray-core/v5/common/protocol\xaa\x02\x1aV2Ray.Core.Common.Protocolb\x06proto3"
+	"\x04ZERO\x10\x06Br\n" +
+	"\x1ecom.v2ray.core.common.protocolP\x01Z1github.com/frogwall/f2ray-core/v5/common/protocol\xaa\x02\x1aV2Ray.Core.Common.Protocolb\x06proto3"
 
 var (
 	file_common_protocol_headers_proto_rawDescOnce sync.Once

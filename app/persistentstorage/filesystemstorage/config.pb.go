@@ -130,8 +130,8 @@ const file_app_persistentstorage_filesystemstorage_config_proto_rawDesc = "" +
 	"\tprotojson\x18\x05 \x01(\bR\tprotojson: \x82\xb5\x18\x1c\n" +
 	"\aservice\x12\x11filesystemstorage*\x1f\n" +
 	"\x10StateStorageRoot\x12\v\n" +
-	"\aWorkDir\x10\x00B\xb3\x01\n" +
-	"2com.v2ray.core.persistentstorage.filesystemstorageP\x01ZFgithub.com/frogwall/f2ray-core/v5/app/persistentstorage/filesystemstorage\xaa\x022V2Ray.Core.App.Persistentstorage.Filesystemstorageb\x06proto3"
+	"\aWorkDir\x10\x00B\xb6\x01\n" +
+	"2com.v2ray.core.persistentstorage.filesystemstorageP\x01ZIgithub.com/frogwall/f2ray-core/v5/app/persistentstorage/filesystemstorage\xaa\x022V2Ray.Core.App.Persistentstorage.Filesystemstorageb\x06proto3"
 
 var (
 	file_app_persistentstorage_filesystemstorage_config_proto_rawDescOnce sync.Once

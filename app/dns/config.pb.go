@@ -1279,8 +1279,8 @@ const file_app_dns_config_proto_rawDesc = "" +
 	"\x10FallbackStrategy\x12\v\n" +
 	"\aEnabled\x10\x00\x12\f\n" +
 	"\bDisabled\x10\x01\x12\x16\n" +
-	"\x12DisabledIfAnyMatch\x10\x02BW\n" +
-	"\x16com.v2ray.core.app.dnsP\x01Z&github.com/frogwall/f2ray-core/v5/app/dns\xaa\x02\x12V2Ray.Core.App.Dnsb\x06proto3"
+	"\x12DisabledIfAnyMatch\x10\x02BZ\n" +
+	"\x16com.v2ray.core.app.dnsP\x01Z)github.com/frogwall/f2ray-core/v5/app/dns\xaa\x02\x12V2Ray.Core.App.Dnsb\x06proto3"
 
 var (
 	file_app_dns_config_proto_rawDescOnce sync.Once

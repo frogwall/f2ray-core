@@ -153,8 +153,8 @@ const file_transport_internet_request_stereotype_mekya_config_proto_rawDesc = ""
 	"\x03url\x18\xb9\x17 \x01(\tR\x03url\x12!\n" +
 	"\fh2_pool_size\x18\xbb\x17 \x01(\x05R\n" +
 	"h2PoolSize:\x1a\x82\xb5\x18\x16\n" +
-	"\ttransport\x12\x05mekya\x90\xff)\x01B\xc3\x01\n" +
-	":com.v2ray.core.transport.internet.request.stereotype.mekyaP\x01ZJgithub.com/frogwall/f2ray-core/v5/transport/internet/request/stereotype/mekya\xaa\x026V2Ray.Core.Transport.Internet.Request.Stereotype.Mekyab\x06proto3"
+	"\ttransport\x12\x05mekya\x90\xff)\x01B\xc6\x01\n" +
+	":com.v2ray.core.transport.internet.request.stereotype.mekyaP\x01ZMgithub.com/frogwall/f2ray-core/v5/transport/internet/request/stereotype/mekya\xaa\x026V2Ray.Core.Transport.Internet.Request.Stereotype.Mekyab\x06proto3"
 
 var (
 	file_transport_internet_request_stereotype_mekya_config_proto_rawDescOnce sync.Once

@@ -425,8 +425,8 @@ const file_transport_internet_tls_config_proto_rawDesc = "" +
 	"\x06TLS1_2\x10\x03\x12\n" +
 	"\n" +
 	"\x06TLS1_3\x10\x04:\x17\x82\xb5\x18\x13\n" +
-	"\bsecurity\x12\x03tls\x90\xff)\x01B\x84\x01\n" +
-	"%com.v2ray.core.transport.internet.tlsP\x01Z5github.com/frogwall/f2ray-core/v5/transport/internet/tls\xaa\x02!V2Ray.Core.Transport.Internet.Tlsb\x06proto3"
+	"\bsecurity\x12\x03tls\x90\xff)\x01B\x87\x01\n" +
+	"%com.v2ray.core.transport.internet.tlsP\x01Z8github.com/frogwall/f2ray-core/v5/transport/internet/tls\xaa\x02!V2Ray.Core.Transport.Internet.Tlsb\x06proto3"
 
 var (
 	file_transport_internet_tls_config_proto_rawDescOnce sync.Once

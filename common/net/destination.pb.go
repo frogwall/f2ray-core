@@ -84,8 +84,8 @@ const file_common_net_destination_proto_rawDesc = "" +
 	"\bEndpoint\x128\n" +
 	"\anetwork\x18\x01 \x01(\x0e2\x1e.v2ray.core.common.net.NetworkR\anetwork\x12;\n" +
 	"\aaddress\x18\x02 \x01(\v2!.v2ray.core.common.net.IPOrDomainR\aaddress\x12\x12\n" +
-	"\x04port\x18\x03 \x01(\rR\x04portB`\n" +
-	"\x19com.v2ray.core.common.netP\x01Z)github.com/frogwall/f2ray-core/v5/common/net\xaa\x02\x15V2Ray.Core.Common.Netb\x06proto3"
+	"\x04port\x18\x03 \x01(\rR\x04portBc\n" +
+	"\x19com.v2ray.core.common.netP\x01Z,github.com/frogwall/f2ray-core/v5/common/net\xaa\x02\x15V2Ray.Core.Common.Netb\x06proto3"
 
 var (
 	file_common_net_destination_proto_rawDescOnce sync.Once

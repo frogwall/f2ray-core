@@ -124,8 +124,8 @@ const file_common_net_port_proto_rawDesc = "" +
 	"\x04From\x18\x01 \x01(\rR\x04From\x12\x0e\n" +
 	"\x02To\x18\x02 \x01(\rR\x02To\"B\n" +
 	"\bPortList\x126\n" +
-	"\x05range\x18\x01 \x03(\v2 .v2ray.core.common.net.PortRangeR\x05rangeB`\n" +
-	"\x19com.v2ray.core.common.netP\x01Z)github.com/frogwall/f2ray-core/v5/common/net\xaa\x02\x15V2Ray.Core.Common.Netb\x06proto3"
+	"\x05range\x18\x01 \x03(\v2 .v2ray.core.common.net.PortRangeR\x05rangeBc\n" +
+	"\x19com.v2ray.core.common.netP\x01Z,github.com/frogwall/f2ray-core/v5/common/net\xaa\x02\x15V2Ray.Core.Common.Netb\x06proto3"
 
 var (
 	file_common_net_port_proto_rawDescOnce sync.Once

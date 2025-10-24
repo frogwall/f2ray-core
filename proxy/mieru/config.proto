@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package v2ray.core.proxy.mieru;
 option csharp_namespace = "V2Ray.Core.Proxy.Mieru";
-option go_package = "github.com/v2fly/v2ray-core/v5/proxy/mieru";
+option go_package = "github.com/frogwall/f2ray-core/v5/proxy/mieru";
 option java_package = "com.v2ray.core.proxy.mieru";
 option java_multiple_files = true;
 

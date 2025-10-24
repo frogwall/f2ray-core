@@ -143,8 +143,8 @@ const file_transport_internet_dtls_config_proto_rawDesc = "" +
 	"\ttransport\x12\x04dtls* \n" +
 	"\bDTLSMode\x12\v\n" +
 	"\aINVALID\x10\x00\x12\a\n" +
-	"\x03PSK\x10\x01B\x87\x01\n" +
-	"&com.v2ray.core.transport.internet.dtlsP\x01Z6github.com/frogwall/f2ray-core/v5/transport/internet/dtls\xaa\x02\"V2Ray.Core.Transport.Internet.Dtlsb\x06proto3"
+	"\x03PSK\x10\x01B\x8a\x01\n" +
+	"&com.v2ray.core.transport.internet.dtlsP\x01Z9github.com/frogwall/f2ray-core/v5/transport/internet/dtls\xaa\x02\"V2Ray.Core.Transport.Internet.Dtlsb\x06proto3"
 
 var (
 	file_transport_internet_dtls_config_proto_rawDescOnce sync.Once

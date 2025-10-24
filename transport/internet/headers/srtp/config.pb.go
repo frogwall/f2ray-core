@@ -111,8 +111,8 @@ const file_transport_internet_headers_srtp_config_proto_rawDesc = "" +
 	"\n" +
 	"csrc_count\x18\x04 \x01(\rR\tcsrcCount\x12\x16\n" +
 	"\x06marker\x18\x05 \x01(\bR\x06marker\x12!\n" +
-	"\fpayload_type\x18\x06 \x01(\rR\vpayloadTypeB\x9f\x01\n" +
-	".com.v2ray.core.transport.internet.headers.srtpP\x01Z>github.com/frogwall/f2ray-core/v5/transport/internet/headers/srtp\xaa\x02*V2Ray.Core.Transport.Internet.Headers.Srtpb\x06proto3"
+	"\fpayload_type\x18\x06 \x01(\rR\vpayloadTypeB\xa2\x01\n" +
+	".com.v2ray.core.transport.internet.headers.srtpP\x01ZAgithub.com/frogwall/f2ray-core/v5/transport/internet/headers/srtp\xaa\x02*V2Ray.Core.Transport.Internet.Headers.Srtpb\x06proto3"
 
 var (
 	file_transport_internet_headers_srtp_config_proto_rawDescOnce sync.Once

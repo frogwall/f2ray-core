@@ -79,8 +79,8 @@ const file_app_browserforwarder_config_proto_rawDesc = "" +
 	"listenAddr\x12\x1f\n" +
 	"\vlisten_port\x18\x02 \x01(\x05R\n" +
 	"listenPort:\x16\x82\xb5\x18\x12\n" +
-	"\aservice\x12\abrowserB~\n" +
-	"#com.v2ray.core.app.browserforwarderP\x01Z3github.com/frogwall/f2ray-core/v5/app/browserforwarder\xaa\x02\x1fV2Ray.Core.App.Browserforwarderb\x06proto3"
+	"\aservice\x12\abrowserB\x81\x01\n" +
+	"#com.v2ray.core.app.browserforwarderP\x01Z6github.com/frogwall/f2ray-core/v5/app/browserforwarder\xaa\x02\x1fV2Ray.Core.App.Browserforwarderb\x06proto3"
 
 var (
 	file_app_browserforwarder_config_proto_rawDescOnce sync.Once

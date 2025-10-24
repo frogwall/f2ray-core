@@ -56,8 +56,8 @@ var File_transport_internet_headers_tls_config_proto protoreflect.FileDescriptor
 const file_transport_internet_headers_tls_config_proto_rawDesc = "" +
 	"\n" +
 	"+transport/internet/headers/tls/config.proto\x12)v2ray.core.transport.internet.headers.tls\"\x0e\n" +
-	"\fPacketConfigB\x9c\x01\n" +
-	"-com.v2ray.core.transport.internet.headers.tlsP\x01Z=github.com/frogwall/f2ray-core/v5/transport/internet/headers/tls\xaa\x02)V2Ray.Core.Transport.Internet.Headers.Tlsb\x06proto3"
+	"\fPacketConfigB\x9f\x01\n" +
+	"-com.v2ray.core.transport.internet.headers.tlsP\x01Z@github.com/frogwall/f2ray-core/v5/transport/internet/headers/tls\xaa\x02)V2Ray.Core.Transport.Internet.Headers.Tlsb\x06proto3"
 
 var (
 	file_transport_internet_headers_tls_config_proto_rawDescOnce sync.Once

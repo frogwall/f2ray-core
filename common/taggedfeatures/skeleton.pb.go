@@ -69,8 +69,8 @@ const file_common_taggedfeatures_skeleton_proto_rawDesc = "" +
 	"\bfeatures\x18\x01 \x03(\v26.v2ray.core.common.taggedfeatures.Config.FeaturesEntryR\bfeatures\x1aQ\n" +
 	"\rFeaturesEntry\x12\x10\n" +
 	"\x03key\x18\x01 \x01(\tR\x03key\x12*\n" +
-	"\x05value\x18\x02 \x01(\v2\x14.google.protobuf.AnyR\x05value:\x028\x01B\x81\x01\n" +
-	"$com.v2ray.core.common.taggedfeaturesP\x01Z4github.com/frogwall/f2ray-core/v5/common/taggedfeatures\xaa\x02 V2Ray.Core.Common.Taggedfeaturesb\x06proto3"
+	"\x05value\x18\x02 \x01(\v2\x14.google.protobuf.AnyR\x05value:\x028\x01B\x84\x01\n" +
+	"$com.v2ray.core.common.taggedfeaturesP\x01Z7github.com/frogwall/f2ray-core/v5/common/taggedfeatures\xaa\x02 V2Ray.Core.Common.Taggedfeaturesb\x06proto3"
 
 var (
 	file_common_taggedfeatures_skeleton_proto_rawDescOnce sync.Once

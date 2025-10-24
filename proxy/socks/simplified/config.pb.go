@@ -153,8 +153,8 @@ const file_proxy_socks_simplified_config_proto_rawDesc = "" +
 	"\fClientConfig\x12;\n" +
 	"\aaddress\x18\x01 \x01(\v2!.v2ray.core.common.net.IPOrDomainR\aaddress\x12\x12\n" +
 	"\x04port\x18\x02 \x01(\rR\x04port:\x15\x82\xb5\x18\x11\n" +
-	"\boutbound\x12\x05socksB\x84\x01\n" +
-	"%com.v2ray.core.proxy.socks.simplifiedP\x01Z5github.com/frogwall/f2ray-core/v5/proxy/socks/simplified\xaa\x02!V2Ray.Core.Proxy.Socks.Simplifiedb\x06proto3"
+	"\boutbound\x12\x05socksB\x87\x01\n" +
+	"%com.v2ray.core.proxy.socks.simplifiedP\x01Z8github.com/frogwall/f2ray-core/v5/proxy/socks/simplified\xaa\x02!V2Ray.Core.Proxy.Socks.Simplifiedb\x06proto3"
 
 var (
 	file_proxy_socks_simplified_config_proto_rawDescOnce sync.Once

@@ -331,8 +331,8 @@ const file_app_instman_command_command_proto_rawDesc = "" +
 	"\x19InstanceManagementService\x12q\n" +
 	"\fListInstance\x12/.v2ray.core.app.instman.command.ListInstanceReq\x1a0.v2ray.core.app.instman.command.ListInstanceResp\x12n\n" +
 	"\vAddInstance\x12..v2ray.core.app.instman.command.AddInstanceReq\x1a/.v2ray.core.app.instman.command.AddInstanceResp\x12t\n" +
-	"\rStartInstance\x120.v2ray.core.app.instman.command.StartInstanceReq\x1a1.v2ray.core.app.instman.command.StartInstanceRespB\x7f\n" +
-	"&com.v2ray.core.app.observatory.instmanP\x01Z2github.com/frogwall/f2ray-core/v5/app/instman/command\xaa\x02\x1eV2Ray.Core.App.Instman.Commandb\x06proto3"
+	"\rStartInstance\x120.v2ray.core.app.instman.command.StartInstanceReq\x1a1.v2ray.core.app.instman.command.StartInstanceRespB\x82\x01\n" +
+	"&com.v2ray.core.app.observatory.instmanP\x01Z5github.com/frogwall/f2ray-core/v5/app/instman/command\xaa\x02\x1eV2Ray.Core.App.Instman.Commandb\x06proto3"
 
 var (
 	file_app_instman_command_command_proto_rawDescOnce sync.Once

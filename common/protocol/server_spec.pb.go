@@ -93,8 +93,8 @@ const file_common_protocol_server_spec_proto_rawDesc = "" +
 	"\aaddress\x18\x01 \x01(\v2!.v2ray.core.common.net.IPOrDomainR\aaddress\x12\x12\n" +
 	"\x04port\x18\x02 \x01(\rR\x04port\x124\n" +
 	"\x04user\x18\x03 \x03(\v2 .v2ray.core.common.protocol.UserR\x04user\x12\x16\n" +
-	"\x06method\x18\x04 \x01(\tR\x06methodBo\n" +
-	"\x1ecom.v2ray.core.common.protocolP\x01Z.github.com/frogwall/f2ray-core/v5/common/protocol\xaa\x02\x1aV2Ray.Core.Common.Protocolb\x06proto3"
+	"\x06method\x18\x04 \x01(\tR\x06methodBr\n" +
+	"\x1ecom.v2ray.core.common.protocolP\x01Z1github.com/frogwall/f2ray-core/v5/common/protocol\xaa\x02\x1aV2Ray.Core.Common.Protocolb\x06proto3"
 
 var (
 	file_common_protocol_server_spec_proto_rawDescOnce sync.Once
