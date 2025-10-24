@@ -6,16 +6,16 @@ import (
 	gonet "net"
 	"net/http"
 
-	"github.com/v2fly/v2ray-core/v5/common"
-	"github.com/v2fly/v2ray-core/v5/common/net"
+	"github.com/frogwall/v2ray-core/v5/common"
+	"github.com/frogwall/v2ray-core/v5/common/net"
 
-	"github.com/v2fly/v2ray-core/v5/app/subscription"
-	"github.com/v2fly/v2ray-core/v5/app/subscription/documentfetcher"
-	"github.com/v2fly/v2ray-core/v5/common/environment"
-	"github.com/v2fly/v2ray-core/v5/common/environment/envctx"
+	"github.com/frogwall/v2ray-core/v5/app/subscription"
+	"github.com/frogwall/v2ray-core/v5/app/subscription/documentfetcher"
+	"github.com/frogwall/v2ray-core/v5/common/environment"
+	"github.com/frogwall/v2ray-core/v5/common/environment/envctx"
 )
 
-//go:generate go run github.com/v2fly/v2ray-core/v5/common/errors/errorgen
+//go:generate go run github.com/frogwall/v2ray-core/v5/common/errors/errorgen
 
 func newHTTPFetcher() *httpFetcher {
 	return &httpFetcher{}

@@ -3,9 +3,9 @@ package subscriptionmanager
 import (
 	"time"
 
-	"github.com/v2fly/v2ray-core/v5/app/subscription"
-	"github.com/v2fly/v2ray-core/v5/app/subscription/containers"
-	"github.com/v2fly/v2ray-core/v5/app/subscription/specs"
+	"github.com/frogwall/v2ray-core/v5/app/subscription"
+	"github.com/frogwall/v2ray-core/v5/app/subscription/containers"
+	"github.com/frogwall/v2ray-core/v5/app/subscription/specs"
 )
 
 func newTrackedSubscription(importSource *subscription.ImportSource) (*trackedSubscription, error) { //nolint: unparam

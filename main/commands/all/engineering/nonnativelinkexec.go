@@ -6,8 +6,8 @@ import (
 	"io"
 	"os"
 
-	"github.com/v2fly/v2ray-core/v5/app/subscription/entries/nonnative"
-	"github.com/v2fly/v2ray-core/v5/main/commands/base"
+	"github.com/frogwall/v2ray-core/v5/app/subscription/entries/nonnative"
+	"github.com/frogwall/v2ray-core/v5/main/commands/base"
 )
 
 var cmdNonNativeLinkExecInputName *string

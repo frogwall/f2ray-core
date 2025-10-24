@@ -1,8 +1,8 @@
 package inbound
 
 import (
-	protocol "github.com/v2fly/v2ray-core/v5/common/protocol"
-	_ "github.com/v2fly/v2ray-core/v5/common/protoext"
+	protocol "github.com/frogwall/v2ray-core/v5/common/protocol"
+	_ "github.com/frogwall/v2ray-core/v5/common/protoext"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	reflect "reflect"
@@ -243,7 +243,7 @@ const file_proxy_vmess_inbound_config_proto_rawDesc = "" +
 	"\x10SimplifiedConfig\x12\x14\n" +
 	"\x05users\x18\x01 \x03(\tR\x05users:\x14\x82\xb5\x18\x10\n" +
 	"\ainbound\x12\x05vmessB{\n" +
-	"\"com.v2ray.core.proxy.vmess.inboundP\x01Z2github.com/v2fly/v2ray-core/v5/proxy/vmess/inbound\xaa\x02\x1eV2Ray.Core.Proxy.Vmess.Inboundb\x06proto3"
+	"\"com.v2ray.core.proxy.vmess.inboundP\x01Z2github.com/frogwall/v2ray-core/v5/proxy/vmess/inbound\xaa\x02\x1eV2Ray.Core.Proxy.Vmess.Inboundb\x06proto3"
 
 var (
 	file_proxy_vmess_inbound_config_proto_rawDescOnce sync.Once

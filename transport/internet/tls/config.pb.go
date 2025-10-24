@@ -1,7 +1,7 @@
 package tls
 
 import (
-	_ "github.com/v2fly/v2ray-core/v5/common/protoext"
+	_ "github.com/frogwall/v2ray-core/v5/common/protoext"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	reflect "reflect"
@@ -426,7 +426,7 @@ const file_transport_internet_tls_config_proto_rawDesc = "" +
 	"\n" +
 	"\x06TLS1_3\x10\x04:\x17\x82\xb5\x18\x13\n" +
 	"\bsecurity\x12\x03tls\x90\xff)\x01B\x84\x01\n" +
-	"%com.v2ray.core.transport.internet.tlsP\x01Z5github.com/v2fly/v2ray-core/v5/transport/internet/tls\xaa\x02!V2Ray.Core.Transport.Internet.Tlsb\x06proto3"
+	"%com.v2ray.core.transport.internet.tlsP\x01Z5github.com/frogwall/v2ray-core/v5/transport/internet/tls\xaa\x02!V2Ray.Core.Transport.Internet.Tlsb\x06proto3"
 
 var (
 	file_transport_internet_tls_config_proto_rawDescOnce sync.Once

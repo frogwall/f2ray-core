@@ -4,9 +4,6 @@ go 1.24.0
 
 toolchain go1.24.2
 
-// Replace the official v2ray-core with this fork to include custom protocols
-replace github.com/v2fly/v2ray-core/v5 => ./
-
 require (
 	github.com/adrg/xdg v0.5.3
 	github.com/anytls/sing-anytls v0.0.11
@@ -31,6 +28,8 @@ require (
 	github.com/pires/go-proxyproto v0.8.1
 	github.com/quic-go/quic-go v0.54.1
 	github.com/refraction-networking/utls v1.8.0
+	github.com/sagernet/sing v0.6.1
+	github.com/sagernet/sing-shadowtls v0.2.0
 	github.com/seiflotfy/cuckoofilter v0.0.0-20220411075957-e3b120b3f5fb
 	github.com/stretchr/testify v1.11.1
 	github.com/v2fly/BrowserBridge v0.0.0-20210430233438-0570fc1d7d08
@@ -38,7 +37,6 @@ require (
 	github.com/v2fly/hysteria/core/v2 v2.0.0-20250113081444-b0a0747ac7ab
 	github.com/v2fly/ss-bloomring v0.0.0-20210312155135-28617310f63e
 	github.com/v2fly/struc v0.0.0-20241227015403-8e8fa1badfd6
-	github.com/v2fly/v2ray-core/v5 v5.41.0
 	github.com/vincent-petithory/dataurl v1.0.0
 	github.com/xiaokangwang/VLite v0.0.0-20220418190619-cff95160a432
 	go.starlark.net v0.0.0-20230612165344-9532f5667272
@@ -88,8 +86,6 @@ require (
 	github.com/quic-go/qpack v0.5.1 // indirect
 	github.com/riobard/go-bloom v0.0.0-20200614022211-cdc8013cb5b3 // indirect
 	github.com/rs/cors v1.7.0 // indirect
-	github.com/sagernet/sing v0.6.1 // indirect
-	github.com/sagernet/sing-shadowtls v0.2.0 // indirect
 	github.com/secure-io/siv-go v0.0.0-20180922214919-5ff40651e2c4 // indirect
 	github.com/stretchr/objx v0.5.2 // indirect
 	github.com/xtaci/smux v1.5.24 // indirect

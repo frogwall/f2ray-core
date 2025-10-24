@@ -10,12 +10,12 @@ import (
 	"strings"
 	"syscall"
 
-	core "github.com/v2fly/v2ray-core/v5"
-	"github.com/v2fly/v2ray-core/v5/common/cmdarg"
-	verrors "github.com/v2fly/v2ray-core/v5/common/errors"
-	"github.com/v2fly/v2ray-core/v5/common/platform"
-	cmdmain "github.com/v2fly/v2ray-core/v5/main/commands"
-	"github.com/v2fly/v2ray-core/v5/main/commands/base"
+	core "github.com/frogwall/v2ray-core/v5"
+	"github.com/frogwall/v2ray-core/v5/common/cmdarg"
+	verrors "github.com/frogwall/v2ray-core/v5/common/errors"
+	"github.com/frogwall/v2ray-core/v5/common/platform"
+	cmdmain "github.com/frogwall/v2ray-core/v5/main/commands"
+	"github.com/frogwall/v2ray-core/v5/main/commands/base"
 )
 
 var f2CmdRun = &base.Command{

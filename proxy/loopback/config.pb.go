@@ -1,7 +1,7 @@
 package loopback
 
 import (
-	_ "github.com/v2fly/v2ray-core/v5/common/protoext"
+	_ "github.com/frogwall/v2ray-core/v5/common/protoext"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	reflect "reflect"
@@ -69,7 +69,7 @@ const file_proxy_loopback_config_proto_rawDesc = "" +
 	"\vinbound_tag\x18\x01 \x01(\tR\n" +
 	"inboundTag:\x18\x82\xb5\x18\x14\n" +
 	"\boutbound\x12\bloopbackBl\n" +
-	"\x1dcom.v2ray.core.proxy.loopbackP\x01Z-github.com/v2fly/v2ray-core/v5/proxy/loopback\xaa\x02\x19V2Ray.Core.Proxy.Loopbackb\x06proto3"
+	"\x1dcom.v2ray.core.proxy.loopbackP\x01Z-github.com/frogwall/v2ray-core/v5/proxy/loopback\xaa\x02\x19V2Ray.Core.Proxy.Loopbackb\x06proto3"
 
 var (
 	file_proxy_loopback_config_proto_rawDescOnce sync.Once

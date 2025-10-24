@@ -5,9 +5,9 @@ import (
 	"fmt"
 	"strings"
 
-	core "github.com/v2fly/v2ray-core/v5"
-	"github.com/v2fly/v2ray-core/v5/common/serial"
-	_ "github.com/v2fly/v2ray-core/v5/main/distro/all"
+	core "github.com/frogwall/v2ray-core/v5"
+	"github.com/frogwall/v2ray-core/v5/common/serial"
+	_ "github.com/frogwall/v2ray-core/v5/main/distro/all"
 )
 
 // V2RayInstance represents a V2Ray instance

@@ -6,7 +6,7 @@ import (
 
 	"github.com/golang/protobuf/proto"
 
-	naive "github.com/v2fly/v2ray-core/v5/proxy/naive"
+	naive "github.com/frogwall/v2ray-core/v5/proxy/naive"
 )
 
 type NaiveRemoteConfig struct {

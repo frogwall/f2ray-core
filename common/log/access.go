@@ -6,7 +6,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/v2fly/v2ray-core/v5/common/serial"
+	"github.com/frogwall/v2ray-core/v5/common/serial"
 )
 
 type logKey int

@@ -1,10 +1,10 @@
 package dns
 
 import (
-	fakedns "github.com/v2fly/v2ray-core/v5/app/dns/fakedns"
-	routercommon "github.com/v2fly/v2ray-core/v5/app/router/routercommon"
-	net "github.com/v2fly/v2ray-core/v5/common/net"
-	_ "github.com/v2fly/v2ray-core/v5/common/protoext"
+	fakedns "github.com/frogwall/v2ray-core/v5/app/dns/fakedns"
+	routercommon "github.com/frogwall/v2ray-core/v5/app/router/routercommon"
+	net "github.com/frogwall/v2ray-core/v5/common/net"
+	_ "github.com/frogwall/v2ray-core/v5/common/protoext"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	reflect "reflect"
@@ -1280,7 +1280,7 @@ const file_app_dns_config_proto_rawDesc = "" +
 	"\aEnabled\x10\x00\x12\f\n" +
 	"\bDisabled\x10\x01\x12\x16\n" +
 	"\x12DisabledIfAnyMatch\x10\x02BW\n" +
-	"\x16com.v2ray.core.app.dnsP\x01Z&github.com/v2fly/v2ray-core/v5/app/dns\xaa\x02\x12V2Ray.Core.App.Dnsb\x06proto3"
+	"\x16com.v2ray.core.app.dnsP\x01Z&github.com/frogwall/v2ray-core/v5/app/dns\xaa\x02\x12V2Ray.Core.App.Dnsb\x06proto3"
 
 var (
 	file_app_dns_config_proto_rawDescOnce sync.Once

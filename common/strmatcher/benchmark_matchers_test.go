@@ -4,8 +4,8 @@ import (
 	"strconv"
 	"testing"
 
-	"github.com/v2fly/v2ray-core/v5/common"
-	. "github.com/v2fly/v2ray-core/v5/common/strmatcher"
+	"github.com/frogwall/v2ray-core/v5/common"
+	. "github.com/frogwall/v2ray-core/v5/common/strmatcher"
 )
 
 func BenchmarkFullMatcher(b *testing.B) {

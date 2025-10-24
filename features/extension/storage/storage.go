@@ -3,8 +3,8 @@ package storage
 import (
 	"context"
 
-	"github.com/v2fly/v2ray-core/v5/common"
-	"github.com/v2fly/v2ray-core/v5/features"
+	"github.com/frogwall/v2ray-core/v5/common"
+	"github.com/frogwall/v2ray-core/v5/features"
 )
 
 type ScopedPersistentStorage interface {

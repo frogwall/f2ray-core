@@ -5,12 +5,12 @@ import (
 
 	"github.com/pion/dtls/v2"
 
-	"github.com/v2fly/v2ray-core/v5/common"
-	"github.com/v2fly/v2ray-core/v5/common/environment"
-	"github.com/v2fly/v2ray-core/v5/common/environment/envctx"
-	"github.com/v2fly/v2ray-core/v5/common/net"
-	"github.com/v2fly/v2ray-core/v5/common/session"
-	"github.com/v2fly/v2ray-core/v5/transport/internet"
+	"github.com/frogwall/v2ray-core/v5/common"
+	"github.com/frogwall/v2ray-core/v5/common/environment"
+	"github.com/frogwall/v2ray-core/v5/common/environment/envctx"
+	"github.com/frogwall/v2ray-core/v5/common/net"
+	"github.com/frogwall/v2ray-core/v5/common/session"
+	"github.com/frogwall/v2ray-core/v5/transport/internet"
 )
 
 func dialDTLS(ctx context.Context, dest net.Destination, streamSettings *internet.MemoryStreamConfig) (net.Conn, error) {

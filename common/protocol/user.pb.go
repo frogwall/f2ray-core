@@ -88,7 +88,7 @@ const file_common_protocol_user_proto_rawDesc = "" +
 	"\x05level\x18\x01 \x01(\rR\x05level\x12\x14\n" +
 	"\x05email\x18\x02 \x01(\tR\x05email\x12.\n" +
 	"\aaccount\x18\x03 \x01(\v2\x14.google.protobuf.AnyR\aaccountBo\n" +
-	"\x1ecom.v2ray.core.common.protocolP\x01Z.github.com/v2fly/v2ray-core/v5/common/protocol\xaa\x02\x1aV2Ray.Core.Common.Protocolb\x06proto3"
+	"\x1ecom.v2ray.core.common.protocolP\x01Z.github.com/frogwall/v2ray-core/v5/common/protocol\xaa\x02\x1aV2Ray.Core.Common.Protocolb\x06proto3"
 
 var (
 	file_common_protocol_user_proto_rawDescOnce sync.Once

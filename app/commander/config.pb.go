@@ -1,7 +1,7 @@
 package commander
 
 import (
-	_ "github.com/v2fly/v2ray-core/v5/common/protoext"
+	_ "github.com/frogwall/v2ray-core/v5/common/protoext"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	anypb "google.golang.org/protobuf/types/known/anypb"
@@ -177,7 +177,7 @@ const file_app_commander_config_proto_rawDesc = "" +
 	"\x03tag\x18\x01 \x01(\tR\x03tag\x12\x12\n" +
 	"\x04name\x18\x02 \x03(\tR\x04name:\x18\x82\xb5\x18\x14\n" +
 	"\aservice\x12\tcommanderBi\n" +
-	"\x1ccom.v2ray.core.app.commanderP\x01Z,github.com/v2fly/v2ray-core/v5/app/commander\xaa\x02\x18V2Ray.Core.App.Commanderb\x06proto3"
+	"\x1ccom.v2ray.core.app.commanderP\x01Z,github.com/frogwall/v2ray-core/v5/app/commander\xaa\x02\x18V2Ray.Core.App.Commanderb\x06proto3"
 
 var (
 	file_app_commander_config_proto_rawDescOnce sync.Once

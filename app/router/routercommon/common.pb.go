@@ -1,7 +1,7 @@
 package routercommon
 
 import (
-	_ "github.com/v2fly/v2ray-core/v5/common/protoext"
+	_ "github.com/frogwall/v2ray-core/v5/common/protoext"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	reflect "reflect"
@@ -582,7 +582,7 @@ const file_app_router_routercommon_common_proto_rawDesc = "" +
 	"\tfile_path\x18\xa0\x93\x04 \x01(\tB\x13\x82\xb5\x18\x0f2\rresource_hashR\bfilePath\"P\n" +
 	"\vGeoSiteList\x12A\n" +
 	"\x05entry\x18\x01 \x03(\v2+.v2ray.core.app.router.routercommon.GeoSiteR\x05entryB\x87\x01\n" +
-	"&com.v2ray.core.app.router.routercommonP\x01Z6github.com/v2fly/v2ray-core/v5/app/router/routercommon\xaa\x02\"V2Ray.Core.App.Router.Routercommonb\x06proto3"
+	"&com.v2ray.core.app.router.routercommonP\x01Z6github.com/frogwall/v2ray-core/v5/app/router/routercommon\xaa\x02\"V2Ray.Core.App.Router.Routercommonb\x06proto3"
 
 var (
 	file_app_router_routercommon_common_proto_rawDescOnce sync.Once

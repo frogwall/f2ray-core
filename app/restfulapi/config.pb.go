@@ -1,7 +1,7 @@
 package restfulapi
 
 import (
-	_ "github.com/v2fly/v2ray-core/v5/common/protoext"
+	_ "github.com/frogwall/v2ray-core/v5/common/protoext"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	reflect "reflect"
@@ -90,7 +90,7 @@ const file_app_restfulapi_config_proto_rawDesc = "" +
 	"auth_token\x18\x03 \x01(\tR\tauthToken:\x19\x82\xb5\x18\x15\n" +
 	"\aservice\x12\n" +
 	"restfulapiBa\n" +
-	"\x1acom.v2ray.core.app.restapiP\x01Z-github.com/v2fly/v2ray-core/v5/app/restfulapi\xaa\x02\x11V2Ray.App.Restapib\x06proto3"
+	"\x1acom.v2ray.core.app.restapiP\x01Z-github.com/frogwall/v2ray-core/v5/app/restfulapi\xaa\x02\x11V2Ray.App.Restapib\x06proto3"
 
 var (
 	file_app_restfulapi_config_proto_rawDescOnce sync.Once

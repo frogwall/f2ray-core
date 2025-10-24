@@ -4,11 +4,11 @@ import (
 	"context"
 	"net"
 
-	"github.com/v2fly/v2ray-core/v5/common/environment"
-	"github.com/v2fly/v2ray-core/v5/common/environment/envctx"
-	v2net "github.com/v2fly/v2ray-core/v5/common/net"
-	"github.com/v2fly/v2ray-core/v5/transport/internet/tlsmirror"
-	"github.com/v2fly/v2ray-core/v5/transport/internet/tlsmirror/mirrorenrollment/httpenrollmentconfirmation"
+	"github.com/frogwall/v2ray-core/v5/common/environment"
+	"github.com/frogwall/v2ray-core/v5/common/environment/envctx"
+	v2net "github.com/frogwall/v2ray-core/v5/common/net"
+	"github.com/frogwall/v2ray-core/v5/transport/internet/tlsmirror"
+	"github.com/frogwall/v2ray-core/v5/transport/internet/tlsmirror/mirrorenrollment/httpenrollmentconfirmation"
 )
 
 func NewEnrollmentConfirmationClient(

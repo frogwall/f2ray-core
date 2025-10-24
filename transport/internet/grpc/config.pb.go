@@ -1,7 +1,7 @@
 package grpc
 
 import (
-	_ "github.com/v2fly/v2ray-core/v5/common/protoext"
+	_ "github.com/frogwall/v2ray-core/v5/common/protoext"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	reflect "reflect"
@@ -77,7 +77,7 @@ const file_transport_internet_grpc_config_proto_rawDesc = "" +
 	"\x04host\x18\x01 \x01(\tR\x04host\x12!\n" +
 	"\fservice_name\x18\x02 \x01(\tR\vserviceName: \x82\xb5\x18\x1c\n" +
 	"\ttransport\x12\x04grpc\x8a\xff)\x03gun\x90\xff)\x01B\x85\x01\n" +
-	"&com.v2ray.core.transport.internet.grpcZ6github.com/v2fly/v2ray-core/v5/transport/internet/grpc\xaa\x02\"V2Ray.Core.Transport.Internet.Grpcb\x06proto3"
+	"&com.v2ray.core.transport.internet.grpcZ6github.com/frogwall/v2ray-core/v5/transport/internet/grpc\xaa\x02\"V2Ray.Core.Transport.Internet.Grpcb\x06proto3"
 
 var (
 	file_transport_internet_grpc_config_proto_rawDescOnce sync.Once

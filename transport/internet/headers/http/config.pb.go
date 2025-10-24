@@ -428,7 +428,7 @@ const file_transport_internet_headers_http_config_proto_rawDesc = "" +
 	"\x06Config\x12S\n" +
 	"\arequest\x18\x01 \x01(\v29.v2ray.core.transport.internet.headers.http.RequestConfigR\arequest\x12V\n" +
 	"\bresponse\x18\x02 \x01(\v2:.v2ray.core.transport.internet.headers.http.ResponseConfigR\bresponseB\x9f\x01\n" +
-	".com.v2ray.core.transport.internet.headers.httpP\x01Z>github.com/v2fly/v2ray-core/v5/transport/internet/headers/http\xaa\x02*V2Ray.Core.Transport.Internet.Headers.Httpb\x06proto3"
+	".com.v2ray.core.transport.internet.headers.httpP\x01Z>github.com/frogwall/v2ray-core/v5/transport/internet/headers/http\xaa\x02*V2Ray.Core.Transport.Internet.Headers.Httpb\x06proto3"
 
 var (
 	file_transport_internet_headers_http_config_proto_rawDescOnce sync.Once

@@ -3,7 +3,7 @@ package tlsmirror
 import (
 	"context"
 
-	"github.com/v2fly/v2ray-core/v5/common"
+	"github.com/frogwall/v2ray-core/v5/common"
 )
 
 type TLSRecord struct {

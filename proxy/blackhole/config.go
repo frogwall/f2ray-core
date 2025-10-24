@@ -1,9 +1,9 @@
 package blackhole
 
 import (
-	"github.com/v2fly/v2ray-core/v5/common"
-	"github.com/v2fly/v2ray-core/v5/common/buf"
-	"github.com/v2fly/v2ray-core/v5/common/serial"
+	"github.com/frogwall/v2ray-core/v5/common"
+	"github.com/frogwall/v2ray-core/v5/common/buf"
+	"github.com/frogwall/v2ray-core/v5/common/serial"
 )
 
 const (

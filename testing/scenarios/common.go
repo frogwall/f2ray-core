@@ -17,16 +17,16 @@ import (
 
 	"google.golang.org/protobuf/proto"
 
-	core "github.com/v2fly/v2ray-core/v5"
-	"github.com/v2fly/v2ray-core/v5/app/dispatcher"
-	"github.com/v2fly/v2ray-core/v5/app/proxyman"
-	"github.com/v2fly/v2ray-core/v5/common"
-	"github.com/v2fly/v2ray-core/v5/common/errors"
-	"github.com/v2fly/v2ray-core/v5/common/log"
-	"github.com/v2fly/v2ray-core/v5/common/net"
-	"github.com/v2fly/v2ray-core/v5/common/retry"
-	"github.com/v2fly/v2ray-core/v5/common/serial"
-	"github.com/v2fly/v2ray-core/v5/common/units"
+	core "github.com/frogwall/v2ray-core/v5"
+	"github.com/frogwall/v2ray-core/v5/app/dispatcher"
+	"github.com/frogwall/v2ray-core/v5/app/proxyman"
+	"github.com/frogwall/v2ray-core/v5/common"
+	"github.com/frogwall/v2ray-core/v5/common/errors"
+	"github.com/frogwall/v2ray-core/v5/common/log"
+	"github.com/frogwall/v2ray-core/v5/common/net"
+	"github.com/frogwall/v2ray-core/v5/common/retry"
+	"github.com/frogwall/v2ray-core/v5/common/serial"
+	"github.com/frogwall/v2ray-core/v5/common/units"
 )
 
 func xor(b []byte) []byte {

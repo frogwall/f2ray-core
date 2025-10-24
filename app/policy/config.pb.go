@@ -1,7 +1,7 @@
 package policy
 
 import (
-	_ "github.com/v2fly/v2ray-core/v5/common/protoext"
+	_ "github.com/frogwall/v2ray-core/v5/common/protoext"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	reflect "reflect"
@@ -499,7 +499,7 @@ const file_app_policy_config_proto_rawDesc = "" +
 	"\x03key\x18\x01 \x01(\rR\x03key\x123\n" +
 	"\x05value\x18\x02 \x01(\v2\x1d.v2ray.core.app.policy.PolicyR\x05value:\x028\x01:\x15\x82\xb5\x18\x11\n" +
 	"\aservice\x12\x06policyB`\n" +
-	"\x19com.v2ray.core.app.policyP\x01Z)github.com/v2fly/v2ray-core/v5/app/policy\xaa\x02\x15V2Ray.Core.App.Policyb\x06proto3"
+	"\x19com.v2ray.core.app.policyP\x01Z)github.com/frogwall/v2ray-core/v5/app/policy\xaa\x02\x15V2Ray.Core.App.Policyb\x06proto3"
 
 var (
 	file_app_policy_config_proto_rawDescOnce sync.Once

@@ -6,7 +6,7 @@ import (
 	"strconv"
 	"syscall"
 
-	"github.com/v2fly/v2ray-core/v5/main/commands/base"
+	"github.com/frogwall/v2ray-core/v5/main/commands/base"
 )
 
 var f2CmdReload = &base.Command{

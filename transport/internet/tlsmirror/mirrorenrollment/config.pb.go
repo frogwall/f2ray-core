@@ -1,7 +1,7 @@
 package mirrorenrollment
 
 import (
-	_ "github.com/v2fly/v2ray-core/v5/common/protoext"
+	_ "github.com/frogwall/v2ray-core/v5/common/protoext"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	anypb "google.golang.org/protobuf/types/known/anypb"
@@ -123,7 +123,7 @@ const file_transport_internet_tlsmirror_mirrorenrollment_config_proto_rawDesc = 
 	"\x18bootstrap_ingress_config\x18\x05 \x03(\v2\x14.google.protobuf.AnyR\x16bootstrapIngressConfig\x12L\n" +
 	"\x17bootstrap_egress_config\x18\x06 \x03(\v2\x14.google.protobuf.AnyR\x15bootstrapEgressConfig\x12:\n" +
 	"\x19bootstrap_egress_outbound\x18\a \x01(\tR\x17bootstrapEgressOutboundB\xc9\x01\n" +
-	"<com.v2ray.core.transport.internet.tlsmirror.mirrorenrollmentP\x01ZLgithub.com/v2fly/v2ray-core/v5/transport/internet/tlsmirror/mirrorenrollment\xaa\x028V2Ray.Core.Transport.Internet.Tlsmirror.MirrorEnrollmentb\x06proto3"
+	"<com.v2ray.core.transport.internet.tlsmirror.mirrorenrollmentP\x01ZLgithub.com/frogwall/v2ray-core/v5/transport/internet/tlsmirror/mirrorenrollment\xaa\x028V2Ray.Core.Transport.Internet.Tlsmirror.MirrorEnrollmentb\x06proto3"
 
 var (
 	file_transport_internet_tlsmirror_mirrorenrollment_config_proto_rawDescOnce sync.Once

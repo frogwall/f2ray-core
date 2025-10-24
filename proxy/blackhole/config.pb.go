@@ -1,7 +1,7 @@
 package blackhole
 
 import (
-	_ "github.com/v2fly/v2ray-core/v5/common/protoext"
+	_ "github.com/frogwall/v2ray-core/v5/common/protoext"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	anypb "google.golang.org/protobuf/types/known/anypb"
@@ -180,7 +180,7 @@ const file_proxy_blackhole_config_proto_rawDesc = "" +
 	"\bresponse\x18\x01 \x01(\v2\x14.google.protobuf.AnyR\bresponse\"-\n" +
 	"\x10SimplifiedConfig:\x19\x82\xb5\x18\x15\n" +
 	"\boutbound\x12\tblackholeBo\n" +
-	"\x1ecom.v2ray.core.proxy.blackholeP\x01Z.github.com/v2fly/v2ray-core/v5/proxy/blackhole\xaa\x02\x1aV2Ray.Core.Proxy.Blackholeb\x06proto3"
+	"\x1ecom.v2ray.core.proxy.blackholeP\x01Z.github.com/frogwall/v2ray-core/v5/proxy/blackhole\xaa\x02\x1aV2Ray.Core.Proxy.Blackholeb\x06proto3"
 
 var (
 	file_proxy_blackhole_config_proto_rawDescOnce sync.Once

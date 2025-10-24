@@ -10,14 +10,14 @@ import (
 	"golang.org/x/net/http2"
 	"golang.org/x/net/http2/h2c"
 
-	"github.com/v2fly/v2ray-core/v5/common"
-	"github.com/v2fly/v2ray-core/v5/common/net"
-	http_proto "github.com/v2fly/v2ray-core/v5/common/protocol/http"
-	"github.com/v2fly/v2ray-core/v5/common/serial"
-	"github.com/v2fly/v2ray-core/v5/common/session"
-	"github.com/v2fly/v2ray-core/v5/common/signal/done"
-	"github.com/v2fly/v2ray-core/v5/transport/internet"
-	"github.com/v2fly/v2ray-core/v5/transport/internet/tls"
+	"github.com/frogwall/v2ray-core/v5/common"
+	"github.com/frogwall/v2ray-core/v5/common/net"
+	http_proto "github.com/frogwall/v2ray-core/v5/common/protocol/http"
+	"github.com/frogwall/v2ray-core/v5/common/serial"
+	"github.com/frogwall/v2ray-core/v5/common/session"
+	"github.com/frogwall/v2ray-core/v5/common/signal/done"
+	"github.com/frogwall/v2ray-core/v5/transport/internet"
+	"github.com/frogwall/v2ray-core/v5/transport/internet/tls"
 )
 
 type Listener struct {

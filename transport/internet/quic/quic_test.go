@@ -8,17 +8,17 @@ import (
 
 	"github.com/google/go-cmp/cmp"
 
-	"github.com/v2fly/v2ray-core/v5/common"
-	"github.com/v2fly/v2ray-core/v5/common/buf"
-	"github.com/v2fly/v2ray-core/v5/common/net"
-	"github.com/v2fly/v2ray-core/v5/common/protocol"
-	"github.com/v2fly/v2ray-core/v5/common/protocol/tls/cert"
-	"github.com/v2fly/v2ray-core/v5/common/serial"
-	"github.com/v2fly/v2ray-core/v5/testing/servers/udp"
-	"github.com/v2fly/v2ray-core/v5/transport/internet"
-	"github.com/v2fly/v2ray-core/v5/transport/internet/headers/wireguard"
-	"github.com/v2fly/v2ray-core/v5/transport/internet/quic"
-	"github.com/v2fly/v2ray-core/v5/transport/internet/tls"
+	"github.com/frogwall/v2ray-core/v5/common"
+	"github.com/frogwall/v2ray-core/v5/common/buf"
+	"github.com/frogwall/v2ray-core/v5/common/net"
+	"github.com/frogwall/v2ray-core/v5/common/protocol"
+	"github.com/frogwall/v2ray-core/v5/common/protocol/tls/cert"
+	"github.com/frogwall/v2ray-core/v5/common/serial"
+	"github.com/frogwall/v2ray-core/v5/testing/servers/udp"
+	"github.com/frogwall/v2ray-core/v5/transport/internet"
+	"github.com/frogwall/v2ray-core/v5/transport/internet/headers/wireguard"
+	"github.com/frogwall/v2ray-core/v5/transport/internet/quic"
+	"github.com/frogwall/v2ray-core/v5/transport/internet/tls"
 )
 
 func TestQuicConnection(t *testing.T) {

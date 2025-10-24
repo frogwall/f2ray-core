@@ -89,7 +89,7 @@ const file_proxy_vless_account_proto_rawDesc = "" +
 	"\n" +
 	"encryption\x18\x03 \x01(\tR\n" +
 	"encryptionBc\n" +
-	"\x1acom.v2ray.core.proxy.vlessP\x01Z*github.com/v2fly/v2ray-core/v5/proxy/vless\xaa\x02\x16V2Ray.Core.Proxy.Vlessb\x06proto3"
+	"\x1acom.v2ray.core.proxy.vlessP\x01Z*github.com/frogwall/v2ray-core/v5/proxy/vless\xaa\x02\x16V2Ray.Core.Proxy.Vlessb\x06proto3"
 
 var (
 	file_proxy_vless_account_proto_rawDescOnce sync.Once

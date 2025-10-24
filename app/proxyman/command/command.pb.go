@@ -1,9 +1,9 @@
 package command
 
 import (
-	v5 "github.com/v2fly/v2ray-core/v5"
-	protocol "github.com/v2fly/v2ray-core/v5/common/protocol"
-	_ "github.com/v2fly/v2ray-core/v5/common/protoext"
+	v5 "github.com/frogwall/v2ray-core/v5"
+	protocol "github.com/frogwall/v2ray-core/v5/common/protocol"
+	_ "github.com/frogwall/v2ray-core/v5/common/protoext"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	anypb "google.golang.org/protobuf/types/known/anypb"
@@ -678,7 +678,7 @@ const file_app_proxyman_command_command_proto_rawDesc = "" +
 	"\vAddOutbound\x123.v2ray.core.app.proxyman.command.AddOutboundRequest\x1a4.v2ray.core.app.proxyman.command.AddOutboundResponse\"\x00\x12\x83\x01\n" +
 	"\x0eRemoveOutbound\x126.v2ray.core.app.proxyman.command.RemoveOutboundRequest\x1a7.v2ray.core.app.proxyman.command.RemoveOutboundResponse\"\x00\x12\x80\x01\n" +
 	"\rAlterOutbound\x125.v2ray.core.app.proxyman.command.AlterOutboundRequest\x1a6.v2ray.core.app.proxyman.command.AlterOutboundResponse\"\x00B~\n" +
-	"#com.v2ray.core.app.proxyman.commandP\x01Z3github.com/v2fly/v2ray-core/v5/app/proxyman/command\xaa\x02\x1fV2Ray.Core.App.Proxyman.Commandb\x06proto3"
+	"#com.v2ray.core.app.proxyman.commandP\x01Z3github.com/frogwall/v2ray-core/v5/app/proxyman/command\xaa\x02\x1fV2Ray.Core.App.Proxyman.Commandb\x06proto3"
 
 var (
 	file_app_proxyman_command_command_proto_rawDescOnce sync.Once

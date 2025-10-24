@@ -1,8 +1,8 @@
 package command
 
 import (
-	net "github.com/v2fly/v2ray-core/v5/common/net"
-	_ "github.com/v2fly/v2ray-core/v5/common/protoext"
+	net "github.com/frogwall/v2ray-core/v5/common/net"
+	_ "github.com/frogwall/v2ray-core/v5/common/protoext"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	reflect "reflect"
@@ -691,7 +691,7 @@ const file_app_router_command_command_proto_rawDesc = "" +
 	"\tTestRoute\x12/.v2ray.core.app.router.command.TestRouteRequest\x1a-.v2ray.core.app.router.command.RoutingContext\"\x00\x12\x82\x01\n" +
 	"\x0fGetBalancerInfo\x125.v2ray.core.app.router.command.GetBalancerInfoRequest\x1a6.v2ray.core.app.router.command.GetBalancerInfoResponse\"\x00\x12\x97\x01\n" +
 	"\x16OverrideBalancerTarget\x12<.v2ray.core.app.router.command.OverrideBalancerTargetRequest\x1a=.v2ray.core.app.router.command.OverrideBalancerTargetResponse\"\x00Bx\n" +
-	"!com.v2ray.core.app.router.commandP\x01Z1github.com/v2fly/v2ray-core/v5/app/router/command\xaa\x02\x1dV2Ray.Core.App.Router.Commandb\x06proto3"
+	"!com.v2ray.core.app.router.commandP\x01Z1github.com/frogwall/v2ray-core/v5/app/router/command\xaa\x02\x1dV2Ray.Core.App.Router.Commandb\x06proto3"
 
 var (
 	file_app_router_command_command_proto_rawDescOnce sync.Once

@@ -16,7 +16,7 @@ import (
 
 	"golang.org/x/crypto/chacha20poly1305"
 
-	v2net "github.com/v2fly/v2ray-core/v5/common/net"
+	v2net "github.com/frogwall/v2ray-core/v5/common/net"
 )
 
 // MieruSession represents a Mieru protocol session

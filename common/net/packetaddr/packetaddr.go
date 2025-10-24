@@ -4,10 +4,10 @@ import (
 	"bytes"
 	gonet "net"
 
-	"github.com/v2fly/v2ray-core/v5/common/buf"
-	"github.com/v2fly/v2ray-core/v5/common/errors"
-	"github.com/v2fly/v2ray-core/v5/common/net"
-	"github.com/v2fly/v2ray-core/v5/common/protocol"
+	"github.com/frogwall/v2ray-core/v5/common/buf"
+	"github.com/frogwall/v2ray-core/v5/common/errors"
+	"github.com/frogwall/v2ray-core/v5/common/net"
+	"github.com/frogwall/v2ray-core/v5/common/protocol"
 )
 
 var addrParser = protocol.NewAddressParser(

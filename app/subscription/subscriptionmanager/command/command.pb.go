@@ -1,8 +1,8 @@
 package command
 
 import (
-	subscription "github.com/v2fly/v2ray-core/v5/app/subscription"
-	_ "github.com/v2fly/v2ray-core/v5/common/protoext"
+	subscription "github.com/frogwall/v2ray-core/v5/app/subscription"
+	_ "github.com/frogwall/v2ray-core/v5/common/protoext"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	reflect "reflect"
@@ -490,7 +490,7 @@ const file_app_subscription_subscriptionmanager_command_command_proto_rawDesc = 
 	"\x19RemoveTrackedSubscription\x12Y.v2ray.core.app.subscription.subscriptionmanager.command.RemoveTrackedSubscriptionRequest\x1aZ.v2ray.core.app.subscription.subscriptionmanager.command.RemoveTrackedSubscriptionResponse\"\x00\x12\xdd\x01\n" +
 	"\x1cGetTrackedSubscriptionStatus\x12\\.v2ray.core.app.subscription.subscriptionmanager.command.GetTrackedSubscriptionStatusRequest\x1a].v2ray.core.app.subscription.subscriptionmanager.command.GetTrackedSubscriptionStatusResponse\"\x00\x12\xd4\x01\n" +
 	"\x19UpdateTrackedSubscription\x12Y.v2ray.core.app.subscription.subscriptionmanager.command.UpdateTrackedSubscriptionRequest\x1aZ.v2ray.core.app.subscription.subscriptionmanager.command.UpdateTrackedSubscriptionResponse\"\x00B\xc2\x01\n" +
-	"7com.v2ray.core.subscription.subscriptionmanager.commandP\x01ZKgithub.com/v2fly/v2ray-core/v5/app/subscription/subscriptionmanager/command\xaa\x027V2Ray.Core.App.Subscription.Subscriptionmanager.Commandb\x06proto3"
+	"7com.v2ray.core.subscription.subscriptionmanager.commandP\x01ZKgithub.com/frogwall/v2ray-core/v5/app/subscription/subscriptionmanager/command\xaa\x027V2Ray.Core.App.Subscription.Subscriptionmanager.Commandb\x06proto3"
 
 var (
 	file_app_subscription_subscriptionmanager_command_command_proto_rawDescOnce sync.Once

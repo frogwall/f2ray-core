@@ -130,7 +130,7 @@ const file_transport_internet_tlsmirror_data_proto_rawDesc = "" +
 	"$carrier_tls_connection_server_random\x18\x03 \x01(\fR carrierTlsConnectionServerRandom\"8\n" +
 	"\x1aEnrollmentConfirmationResp\x12\x1a\n" +
 	"\benrolled\x18\x01 \x01(\bR\benrolledB\x96\x01\n" +
-	"+com.v2ray.core.transport.internet.tlsmirrorP\x01Z;github.com/v2fly/v2ray-core/v5/transport/internet/tlsmirror\xaa\x02'V2Ray.Core.Transport.Internet.Tlsmirrorb\x06proto3"
+	"+com.v2ray.core.transport.internet.tlsmirrorP\x01Z;github.com/frogwall/v2ray-core/v5/transport/internet/tlsmirror\xaa\x02'V2Ray.Core.Transport.Internet.Tlsmirrorb\x06proto3"
 
 var (
 	file_transport_internet_tlsmirror_data_proto_rawDescOnce sync.Once

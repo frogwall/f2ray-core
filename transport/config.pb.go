@@ -1,7 +1,7 @@
 package transport
 
 import (
-	internet "github.com/v2fly/v2ray-core/v5/transport/internet"
+	internet "github.com/frogwall/v2ray-core/v5/transport/internet"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	reflect "reflect"
@@ -71,7 +71,7 @@ const file_transport_config_proto_rawDesc = "" +
 	"\x16transport/config.proto\x12\x14v2ray.core.transport\x1a\x1ftransport/internet/config.proto\"k\n" +
 	"\x06Config\x12]\n" +
 	"\x12transport_settings\x18\x01 \x03(\v2..v2ray.core.transport.internet.TransportConfigR\x11transportSettings:\x02\x18\x01B]\n" +
-	"\x18com.v2ray.core.transportP\x01Z(github.com/v2fly/v2ray-core/v5/transport\xaa\x02\x14V2Ray.Core.Transportb\x06proto3"
+	"\x18com.v2ray.core.transportP\x01Z(github.com/frogwall/v2ray-core/v5/transport\xaa\x02\x14V2Ray.Core.Transportb\x06proto3"
 
 var (
 	file_transport_config_proto_rawDescOnce sync.Once

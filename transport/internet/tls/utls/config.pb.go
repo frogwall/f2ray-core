@@ -1,8 +1,8 @@
 package utls
 
 import (
-	_ "github.com/v2fly/v2ray-core/v5/common/protoext"
-	tls "github.com/v2fly/v2ray-core/v5/transport/internet/tls"
+	_ "github.com/frogwall/v2ray-core/v5/common/protoext"
+	tls "github.com/frogwall/v2ray-core/v5/transport/internet/tls"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	reflect "reflect"
@@ -152,7 +152,7 @@ const file_transport_internet_tls_utls_config_proto_rawDesc = "" +
 	"\"TRANSPORT_PREFERENCE_TAKE_PRIORITY\x10\x00\x12\v\n" +
 	"\aNO_ALPN\x10\x01\x12\x0f\n" +
 	"\vUTLS_PRESET\x10\x02B\x93\x01\n" +
-	"*com.v2ray.core.transport.internet.tls.utlsP\x01Z:github.com/v2fly/v2ray-core/v5/transport/internet/tls/utls\xaa\x02&V2Ray.Core.Transport.Internet.Tls.UTlsb\x06proto3"
+	"*com.v2ray.core.transport.internet.tls.utlsP\x01Z:github.com/frogwall/v2ray-core/v5/transport/internet/tls/utls\xaa\x02&V2Ray.Core.Transport.Internet.Tls.UTlsb\x06proto3"
 
 var (
 	file_transport_internet_tls_utls_config_proto_rawDescOnce sync.Once

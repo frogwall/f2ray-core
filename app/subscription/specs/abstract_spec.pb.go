@@ -237,7 +237,7 @@ const file_app_subscription_specs_abstract_spec_proto_rawDesc = "" +
 	"\rMetadataEntry\x12\x10\n" +
 	"\x03key\x18\x01 \x01(\tR\x03key\x12\x14\n" +
 	"\x05value\x18\x02 \x01(\tR\x05value:\x028\x01B\x84\x01\n" +
-	"%com.v2ray.core.app.subscription.specsP\x01Z5github.com/v2fly/v2ray-core/v5/app/subscription/specs\xaa\x02!V2Ray.Core.App.Subscription.Specsb\x06proto3"
+	"%com.v2ray.core.app.subscription.specsP\x01Z5github.com/frogwall/v2ray-core/v5/app/subscription/specs\xaa\x02!V2Ray.Core.App.Subscription.Specsb\x06proto3"
 
 var (
 	file_app_subscription_specs_abstract_spec_proto_rawDescOnce sync.Once

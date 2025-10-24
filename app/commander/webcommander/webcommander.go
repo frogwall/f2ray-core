@@ -13,13 +13,13 @@ import (
 	"github.com/improbable-eng/grpc-web/go/grpcweb"
 	"google.golang.org/grpc"
 
-	core "github.com/v2fly/v2ray-core/v5"
-	"github.com/v2fly/v2ray-core/v5/app/commander"
-	"github.com/v2fly/v2ray-core/v5/common"
-	"github.com/v2fly/v2ray-core/v5/features/outbound"
+	core "github.com/frogwall/v2ray-core/v5"
+	"github.com/frogwall/v2ray-core/v5/app/commander"
+	"github.com/frogwall/v2ray-core/v5/common"
+	"github.com/frogwall/v2ray-core/v5/features/outbound"
 )
 
-//go:generate go run github.com/v2fly/v2ray-core/v5/common/errors/errorgen
+//go:generate go run github.com/frogwall/v2ray-core/v5/common/errors/errorgen
 
 func newWebCommander(ctx context.Context, config *Config) (*WebCommander, error) {
 	if config == nil {

@@ -1,7 +1,7 @@
 package assembly
 
 import (
-	_ "github.com/v2fly/v2ray-core/v5/common/protoext"
+	_ "github.com/frogwall/v2ray-core/v5/common/protoext"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	anypb "google.golang.org/protobuf/types/known/anypb"
@@ -78,7 +78,7 @@ const file_transport_internet_request_assembly_config_proto_rawDesc = "" +
 	"\tassembler\x18\x01 \x01(\v2\x14.google.protobuf.AnyR\tassembler\x128\n" +
 	"\froundtripper\x18\x02 \x01(\v2\x14.google.protobuf.AnyR\froundtripper:\x18\x82\xb5\x18\x14\n" +
 	"\ttransport\x12\arequestB\xab\x01\n" +
-	"2com.v2ray.core.transport.internet.request.assemblyP\x01ZBgithub.com/v2fly/v2ray-core/v5/transport/internet/request/assembly\xaa\x02.V2Ray.Core.Transport.Internet.Request.Assemblyb\x06proto3"
+	"2com.v2ray.core.transport.internet.request.assemblyP\x01ZBgithub.com/frogwall/v2ray-core/v5/transport/internet/request/assembly\xaa\x02.V2Ray.Core.Transport.Internet.Request.Assemblyb\x06proto3"
 
 var (
 	file_transport_internet_request_assembly_config_proto_rawDescOnce sync.Once

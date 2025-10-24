@@ -1,9 +1,9 @@
 package shadowsocks
 
 import (
-	net "github.com/v2fly/v2ray-core/v5/common/net"
-	packetaddr "github.com/v2fly/v2ray-core/v5/common/net/packetaddr"
-	protocol "github.com/v2fly/v2ray-core/v5/common/protocol"
+	net "github.com/frogwall/v2ray-core/v5/common/net"
+	packetaddr "github.com/frogwall/v2ray-core/v5/common/net/packetaddr"
+	protocol "github.com/frogwall/v2ray-core/v5/common/protocol"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	reflect "reflect"
@@ -284,7 +284,7 @@ const file_proxy_shadowsocks_config_proto_rawDesc = "" +
 	"\vAES_256_GCM\x10\x02\x12\x15\n" +
 	"\x11CHACHA20_POLY1305\x10\x03\x12\b\n" +
 	"\x04NONE\x10\x04Bu\n" +
-	" com.v2ray.core.proxy.shadowsocksP\x01Z0github.com/v2fly/v2ray-core/v5/proxy/shadowsocks\xaa\x02\x1cV2Ray.Core.Proxy.Shadowsocksb\x06proto3"
+	" com.v2ray.core.proxy.shadowsocksP\x01Z0github.com/frogwall/v2ray-core/v5/proxy/shadowsocks\xaa\x02\x1cV2Ray.Core.Proxy.Shadowsocksb\x06proto3"
 
 var (
 	file_proxy_shadowsocks_config_proto_rawDescOnce sync.Once

@@ -8,11 +8,11 @@ import (
 
 	"golang.org/x/net/context"
 
-	"github.com/v2fly/v2ray-core/v5/common/environment"
-	"github.com/v2fly/v2ray-core/v5/common/environment/envctx"
-	"github.com/v2fly/v2ray-core/v5/common/net"
-	"github.com/v2fly/v2ray-core/v5/transport/internet"
-	"github.com/v2fly/v2ray-core/v5/transport/internet/request"
+	"github.com/frogwall/v2ray-core/v5/common/environment"
+	"github.com/frogwall/v2ray-core/v5/common/environment/envctx"
+	"github.com/frogwall/v2ray-core/v5/common/net"
+	"github.com/frogwall/v2ray-core/v5/transport/internet"
+	"github.com/frogwall/v2ray-core/v5/transport/internet/request"
 )
 
 type udpAssemblerClient struct {

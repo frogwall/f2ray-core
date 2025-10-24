@@ -4,7 +4,7 @@
 // Package dns is an implementation of core.DNS feature.
 package dns
 
-//go:generate go run github.com/v2fly/v2ray-core/v5/common/errors/errorgen
+//go:generate go run github.com/frogwall/v2ray-core/v5/common/errors/errorgen
 
 import (
 	"context"
@@ -12,20 +12,20 @@ import (
 	"strings"
 	"sync"
 
-	core "github.com/v2fly/v2ray-core/v5"
-	"github.com/v2fly/v2ray-core/v5/app/dns/fakedns"
-	"github.com/v2fly/v2ray-core/v5/app/router"
-	"github.com/v2fly/v2ray-core/v5/app/router/routercommon"
-	"github.com/v2fly/v2ray-core/v5/common"
-	"github.com/v2fly/v2ray-core/v5/common/errors"
-	"github.com/v2fly/v2ray-core/v5/common/net"
-	"github.com/v2fly/v2ray-core/v5/common/platform"
-	"github.com/v2fly/v2ray-core/v5/common/session"
-	"github.com/v2fly/v2ray-core/v5/common/strmatcher"
-	"github.com/v2fly/v2ray-core/v5/features"
-	"github.com/v2fly/v2ray-core/v5/features/dns"
-	"github.com/v2fly/v2ray-core/v5/infra/conf/cfgcommon"
-	"github.com/v2fly/v2ray-core/v5/infra/conf/geodata"
+	core "github.com/frogwall/v2ray-core/v5"
+	"github.com/frogwall/v2ray-core/v5/app/dns/fakedns"
+	"github.com/frogwall/v2ray-core/v5/app/router"
+	"github.com/frogwall/v2ray-core/v5/app/router/routercommon"
+	"github.com/frogwall/v2ray-core/v5/common"
+	"github.com/frogwall/v2ray-core/v5/common/errors"
+	"github.com/frogwall/v2ray-core/v5/common/net"
+	"github.com/frogwall/v2ray-core/v5/common/platform"
+	"github.com/frogwall/v2ray-core/v5/common/session"
+	"github.com/frogwall/v2ray-core/v5/common/strmatcher"
+	"github.com/frogwall/v2ray-core/v5/features"
+	"github.com/frogwall/v2ray-core/v5/features/dns"
+	"github.com/frogwall/v2ray-core/v5/infra/conf/cfgcommon"
+	"github.com/frogwall/v2ray-core/v5/infra/conf/geodata"
 )
 
 // DNS is a DNS rely server.

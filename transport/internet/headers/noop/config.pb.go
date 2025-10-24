@@ -94,7 +94,7 @@ const file_transport_internet_headers_noop_config_proto_rawDesc = "" +
 	",transport/internet/headers/noop/config.proto\x12*v2ray.core.transport.internet.headers.noop\"\b\n" +
 	"\x06Config\"\x12\n" +
 	"\x10ConnectionConfigB\x9f\x01\n" +
-	".com.v2ray.core.transport.internet.headers.noopP\x01Z>github.com/v2fly/v2ray-core/v5/transport/internet/headers/noop\xaa\x02*V2Ray.Core.Transport.Internet.Headers.Noopb\x06proto3"
+	".com.v2ray.core.transport.internet.headers.noopP\x01Z>github.com/frogwall/v2ray-core/v5/transport/internet/headers/noop\xaa\x02*V2Ray.Core.Transport.Internet.Headers.Noopb\x06proto3"
 
 var (
 	file_transport_internet_headers_noop_config_proto_rawDescOnce sync.Once

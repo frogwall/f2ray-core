@@ -1,10 +1,10 @@
 package simplified
 
 import (
-	net "github.com/v2fly/v2ray-core/v5/common/net"
-	packetaddr "github.com/v2fly/v2ray-core/v5/common/net/packetaddr"
-	_ "github.com/v2fly/v2ray-core/v5/common/protoext"
-	shadowsocks "github.com/v2fly/v2ray-core/v5/proxy/shadowsocks"
+	net "github.com/frogwall/v2ray-core/v5/common/net"
+	packetaddr "github.com/frogwall/v2ray-core/v5/common/net/packetaddr"
+	_ "github.com/frogwall/v2ray-core/v5/common/protoext"
+	shadowsocks "github.com/frogwall/v2ray-core/v5/proxy/shadowsocks"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	reflect "reflect"
@@ -227,7 +227,7 @@ const file_proxy_shadowsocks_simplified_config_proto_rawDesc = "" +
 	"\boutbound\x12\vshadowsocks\x90\xff)\x01\"S\n" +
 	"\x11CipherTypeWrapper\x12>\n" +
 	"\x05value\x18\x01 \x01(\x0e2(.v2ray.core.proxy.shadowsocks.CipherTypeR\x05valueB\x96\x01\n" +
-	"+com.v2ray.core.proxy.shadowsocks.simplifiedP\x01Z;github.com/v2fly/v2ray-core/v5/proxy/shadowsocks/simplified\xaa\x02'V2Ray.Core.Proxy.Shadowsocks.Simplifiedb\x06proto3"
+	"+com.v2ray.core.proxy.shadowsocks.simplifiedP\x01Z;github.com/frogwall/v2ray-core/v5/proxy/shadowsocks/simplified\xaa\x02'V2Ray.Core.Proxy.Shadowsocks.Simplifiedb\x06proto3"
 
 var (
 	file_proxy_shadowsocks_simplified_config_proto_rawDescOnce sync.Once
