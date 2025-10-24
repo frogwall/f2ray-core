@@ -6,9 +6,9 @@ package dns
 import (
 	"context"
 
-	"github.com/frogwall/v2ray-core/v5/common/net"
-	"github.com/frogwall/v2ray-core/v5/features/dns"
-	"github.com/frogwall/v2ray-core/v5/features/dns/localdns"
+	"github.com/frogwall/f2ray-core/v5/common/net"
+	"github.com/frogwall/f2ray-core/v5/features/dns"
+	"github.com/frogwall/f2ray-core/v5/features/dns/localdns"
 )
 
 // LocalNameServer is an wrapper over local DNS feature.

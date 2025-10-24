@@ -236,7 +236,7 @@ const file_common_protoext_extensions_proto_rawDesc = "" +
 	"\vmessage_opt\x12\x1f.google.protobuf.MessageOptions\x18І\x03 \x01(\v2&.v2ray.core.common.protoext.MessageOptR\n" +
 	"messageOpt:b\n" +
 	"\tfield_opt\x12\x1d.google.protobuf.FieldOptions\x18І\x03 \x01(\v2$.v2ray.core.common.protoext.FieldOptR\bfieldOptBo\n" +
-	"\x1ecom.v2ray.core.common.protoextP\x01Z.github.com/frogwall/v2ray-core/v5/common/protoext\xaa\x02\x1aV2Ray.Core.Common.ProtoExtb\x06proto3"
+	"\x1ecom.v2ray.core.common.protoextP\x01Z.github.com/frogwall/f2ray-core/v5/common/protoext\xaa\x02\x1aV2Ray.Core.Common.ProtoExtb\x06proto3"
 
 var (
 	file_common_protoext_extensions_proto_rawDescOnce sync.Once

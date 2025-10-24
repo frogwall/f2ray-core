@@ -1,13 +1,13 @@
 package mergers
 
-//go:generate go run github.com/frogwall/v2ray-core/v5/common/errors/errorgen
+//go:generate go run github.com/frogwall/f2ray-core/v5/common/errors/errorgen
 
 import (
 	"strings"
 
-	core "github.com/frogwall/v2ray-core/v5"
-	"github.com/frogwall/v2ray-core/v5/common"
-	"github.com/frogwall/v2ray-core/v5/infra/conf/json"
+	core "github.com/frogwall/f2ray-core/v5"
+	"github.com/frogwall/f2ray-core/v5/common"
+	"github.com/frogwall/f2ray-core/v5/infra/conf/json"
 )
 
 func init() {

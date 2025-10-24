@@ -8,11 +8,11 @@ import (
 	"runtime"
 	"testing"
 
-	"github.com/frogwall/v2ray-core/v5/common"
-	"github.com/frogwall/v2ray-core/v5/common/platform/filesystem"
-	"github.com/frogwall/v2ray-core/v5/infra/conf/geodata"
-	_ "github.com/frogwall/v2ray-core/v5/infra/conf/geodata/memconservative"
-	_ "github.com/frogwall/v2ray-core/v5/infra/conf/geodata/standard"
+	"github.com/frogwall/f2ray-core/v5/common"
+	"github.com/frogwall/f2ray-core/v5/common/platform/filesystem"
+	"github.com/frogwall/f2ray-core/v5/infra/conf/geodata"
+	_ "github.com/frogwall/f2ray-core/v5/infra/conf/geodata/memconservative"
+	_ "github.com/frogwall/f2ray-core/v5/infra/conf/geodata/standard"
 )
 
 func init() {

@@ -3,8 +3,8 @@ package buf
 import (
 	"io"
 
-	"github.com/frogwall/v2ray-core/v5/common"
-	"github.com/frogwall/v2ray-core/v5/common/errors"
+	"github.com/frogwall/f2ray-core/v5/common"
+	"github.com/frogwall/f2ray-core/v5/common/errors"
 )
 
 func readOneUDP(r io.Reader) (*Buffer, error) {

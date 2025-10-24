@@ -1,7 +1,7 @@
 package vmess
 
 import (
-	protocol "github.com/frogwall/v2ray-core/v5/common/protocol"
+	protocol "github.com/frogwall/f2ray-core/v5/common/protocol"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	reflect "reflect"
@@ -99,7 +99,7 @@ const file_proxy_vmess_account_proto_rawDesc = "" +
 	"\balter_id\x18\x02 \x01(\rR\aalterId\x12W\n" +
 	"\x11security_settings\x18\x03 \x01(\v2*.v2ray.core.common.protocol.SecurityConfigR\x10securitySettings\x12#\n" +
 	"\rtests_enabled\x18\x04 \x01(\tR\ftestsEnabledBc\n" +
-	"\x1acom.v2ray.core.proxy.vmessP\x01Z*github.com/frogwall/v2ray-core/v5/proxy/vmess\xaa\x02\x16V2Ray.Core.Proxy.Vmessb\x06proto3"
+	"\x1acom.v2ray.core.proxy.vmessP\x01Z*github.com/frogwall/f2ray-core/v5/proxy/vmess\xaa\x02\x16V2Ray.Core.Proxy.Vmessb\x06proto3"
 
 var (
 	file_proxy_vmess_account_proto_rawDescOnce sync.Once

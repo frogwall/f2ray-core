@@ -3,7 +3,7 @@ package units_test
 import (
 	"testing"
 
-	"github.com/frogwall/v2ray-core/v5/common/units"
+	"github.com/frogwall/f2ray-core/v5/common/units"
 )
 
 func TestByteSizes(t *testing.T) {

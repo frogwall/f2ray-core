@@ -4,7 +4,7 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/frogwall/v2ray-core/v5/common/registry"
+	"github.com/frogwall/f2ray-core/v5/common/registry"
 )
 
 // ConfigCreator is a function to create an object by a config.

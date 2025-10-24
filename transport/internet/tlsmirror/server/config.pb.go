@@ -1,9 +1,9 @@
 package server
 
 import (
-	_ "github.com/frogwall/v2ray-core/v5/common/protoext"
-	mirrorenrollment "github.com/frogwall/v2ray-core/v5/transport/internet/tlsmirror/mirrorenrollment"
-	tlstrafficgen "github.com/frogwall/v2ray-core/v5/transport/internet/tlsmirror/tlstrafficgen"
+	_ "github.com/frogwall/f2ray-core/v5/common/protoext"
+	mirrorenrollment "github.com/frogwall/f2ray-core/v5/transport/internet/tlsmirror/mirrorenrollment"
+	tlstrafficgen "github.com/frogwall/f2ray-core/v5/transport/internet/tlsmirror/tlstrafficgen"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	reflect "reflect"
@@ -264,7 +264,7 @@ const file_transport_internet_tlsmirror_server_config_proto_rawDesc = "" +
 	" \x01(\v2@.v2ray.core.transport.internet.tlsmirror.mirrorenrollment.ConfigR\x13connectionEnrolment\x12B\n" +
 	"\x1dsequence_watermarking_enabled\x18\v \x01(\bR\x1bsequenceWatermarkingEnabled:'\x82\xb5\x18#\n" +
 	"\ttransport\x12\ttlsmirror\x8a\xff)\ttlsmirrorB\xab\x01\n" +
-	"2com.v2ray.core.transport.internet.tlsmirror.serverP\x01ZBgithub.com/frogwall/v2ray-core/v5/transport/internet/tlsmirror/server\xaa\x02.V2Ray.Core.Transport.Internet.Tlsmirror.Serverb\x06proto3"
+	"2com.v2ray.core.transport.internet.tlsmirror.serverP\x01ZBgithub.com/frogwall/f2ray-core/v5/transport/internet/tlsmirror/server\xaa\x02.V2Ray.Core.Transport.Internet.Tlsmirror.Serverb\x06proto3"
 
 var (
 	file_transport_internet_tlsmirror_server_config_proto_rawDescOnce sync.Once

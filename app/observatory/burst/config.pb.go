@@ -1,7 +1,7 @@
 package burst
 
 import (
-	_ "github.com/frogwall/v2ray-core/v5/common/protoext"
+	_ "github.com/frogwall/f2ray-core/v5/common/protoext"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	reflect "reflect"
@@ -167,7 +167,7 @@ const file_app_observatory_burst_config_proto_rawDesc = "" +
 	"\binterval\x18\x03 \x01(\x03R\binterval\x12$\n" +
 	"\rsamplingCount\x18\x04 \x01(\x05R\rsamplingCount\x12\x18\n" +
 	"\atimeout\x18\x05 \x01(\x03R\atimeoutB\x81\x01\n" +
-	"$com.v2ray.core.app.observatory.burstP\x01Z4github.com/frogwall/v2ray-core/v5/app/observatory/burst\xaa\x02 V2Ray.Core.App.Observatory.Burstb\x06proto3"
+	"$com.v2ray.core.app.observatory.burstP\x01Z4github.com/frogwall/f2ray-core/v5/app/observatory/burst\xaa\x02 V2Ray.Core.App.Observatory.Burstb\x06proto3"
 
 var (
 	file_app_observatory_burst_config_proto_rawDescOnce sync.Once

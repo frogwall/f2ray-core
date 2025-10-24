@@ -3,9 +3,9 @@ package inbound
 import (
 	"context"
 
-	"github.com/frogwall/v2ray-core/v5/common"
-	"github.com/frogwall/v2ray-core/v5/common/net"
-	"github.com/frogwall/v2ray-core/v5/features"
+	"github.com/frogwall/f2ray-core/v5/common"
+	"github.com/frogwall/f2ray-core/v5/common/net"
+	"github.com/frogwall/f2ray-core/v5/features"
 )
 
 // Handler is the interface for handlers that process inbound connections.

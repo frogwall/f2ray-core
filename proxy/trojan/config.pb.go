@@ -1,8 +1,8 @@
 package trojan
 
 import (
-	packetaddr "github.com/frogwall/v2ray-core/v5/common/net/packetaddr"
-	protocol "github.com/frogwall/v2ray-core/v5/common/protocol"
+	packetaddr "github.com/frogwall/f2ray-core/v5/common/net/packetaddr"
+	protocol "github.com/frogwall/f2ray-core/v5/common/protocol"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	reflect "reflect"
@@ -260,7 +260,7 @@ const file_proxy_trojan_config_proto_rawDesc = "" +
 	"\x05users\x18\x01 \x03(\v2 .v2ray.core.common.protocol.UserR\x05users\x12?\n" +
 	"\tfallbacks\x18\x03 \x03(\v2!.v2ray.core.proxy.trojan.FallbackR\tfallbacks\x12R\n" +
 	"\x0fpacket_encoding\x18\x04 \x01(\x0e2).v2ray.core.net.packetaddr.PacketAddrTypeR\x0epacketEncodingBf\n" +
-	"\x1bcom.v2ray.core.proxy.trojanP\x01Z+github.com/frogwall/v2ray-core/v5/proxy/trojan\xaa\x02\x17V2Ray.Core.Proxy.Trojanb\x06proto3"
+	"\x1bcom.v2ray.core.proxy.trojanP\x01Z+github.com/frogwall/f2ray-core/v5/proxy/trojan\xaa\x02\x17V2Ray.Core.Proxy.Trojanb\x06proto3"
 
 var (
 	file_proxy_trojan_config_proto_rawDescOnce sync.Once

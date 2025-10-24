@@ -3,10 +3,10 @@ package router
 import (
 	"github.com/golang/protobuf/proto"
 
-	"github.com/frogwall/v2ray-core/v5/app/observatory/burst"
-	"github.com/frogwall/v2ray-core/v5/app/router"
-	"github.com/frogwall/v2ray-core/v5/infra/conf/cfgcommon/duration"
-	"github.com/frogwall/v2ray-core/v5/infra/conf/cfgcommon/loader"
+	"github.com/frogwall/f2ray-core/v5/app/observatory/burst"
+	"github.com/frogwall/f2ray-core/v5/app/router"
+	"github.com/frogwall/f2ray-core/v5/infra/conf/cfgcommon/duration"
+	"github.com/frogwall/f2ray-core/v5/infra/conf/cfgcommon/loader"
 )
 
 const (

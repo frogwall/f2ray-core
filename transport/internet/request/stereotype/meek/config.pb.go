@@ -1,7 +1,7 @@
 package meek
 
 import (
-	_ "github.com/frogwall/v2ray-core/v5/common/protoext"
+	_ "github.com/frogwall/f2ray-core/v5/common/protoext"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	reflect "reflect"
@@ -68,7 +68,7 @@ const file_transport_internet_request_stereotype_meek_config_proto_rawDesc = "" 
 	"\x06Config\x12\x10\n" +
 	"\x03url\x18\x01 \x01(\tR\x03url:\x19\x82\xb5\x18\x15\n" +
 	"\ttransport\x12\x04meek\x90\xff)\x01B\xc0\x01\n" +
-	"9com.v2ray.core.transport.internet.request.stereotype.meekP\x01ZIgithub.com/frogwall/v2ray-core/v5/transport/internet/request/stereotype/meek\xaa\x025V2Ray.Core.Transport.Internet.Request.Stereotype.Meekb\x06proto3"
+	"9com.v2ray.core.transport.internet.request.stereotype.meekP\x01ZIgithub.com/frogwall/f2ray-core/v5/transport/internet/request/stereotype/meek\xaa\x025V2Ray.Core.Transport.Internet.Request.Stereotype.Meekb\x06proto3"
 
 var (
 	file_transport_internet_request_stereotype_meek_config_proto_rawDescOnce sync.Once

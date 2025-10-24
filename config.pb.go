@@ -7,7 +7,7 @@
 package core
 
 import (
-	transport "github.com/frogwall/v2ray-core/v5/transport"
+	transport "github.com/frogwall/f2ray-core/v5/transport"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	anypb "google.golang.org/protobuf/types/known/anypb"
@@ -285,7 +285,7 @@ const file_config_proto_rawDesc = "" +
 	"\x0eproxy_settings\x18\x03 \x01(\v2\x14.google.protobuf.AnyR\rproxySettings\x12\x16\n" +
 	"\x06expire\x18\x04 \x01(\x03R\x06expire\x12\x18\n" +
 	"\acomment\x18\x05 \x01(\tR\acommentBD\n" +
-	"\x0ecom.v2ray.coreP\x01Z#github.com/frogwall/v2ray-core/v5;core\xaa\x02\n" +
+	"\x0ecom.v2ray.coreP\x01Z#github.com/frogwall/f2ray-core/v5;core\xaa\x02\n" +
 	"V2Ray.Coreb\x06proto3"
 
 var (

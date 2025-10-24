@@ -1,9 +1,9 @@
 package outbound
 
 import (
-	net "github.com/frogwall/v2ray-core/v5/common/net"
-	protocol "github.com/frogwall/v2ray-core/v5/common/protocol"
-	_ "github.com/frogwall/v2ray-core/v5/common/protoext"
+	net "github.com/frogwall/f2ray-core/v5/common/net"
+	protocol "github.com/frogwall/f2ray-core/v5/common/protocol"
+	_ "github.com/frogwall/f2ray-core/v5/common/protoext"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	reflect "reflect"
@@ -134,7 +134,7 @@ const file_proxy_vmess_outbound_config_proto_rawDesc = "" +
 	"\x04port\x18\x02 \x01(\rR\x04port\x12\x12\n" +
 	"\x04uuid\x18\x03 \x01(\tR\x04uuid:\x19\x82\xb5\x18\x15\n" +
 	"\boutbound\x12\x05vmess\x90\xff)\x01B~\n" +
-	"#com.v2ray.core.proxy.vmess.outboundP\x01Z3github.com/frogwall/v2ray-core/v5/proxy/vmess/outbound\xaa\x02\x1fV2Ray.Core.Proxy.Vmess.Outboundb\x06proto3"
+	"#com.v2ray.core.proxy.vmess.outboundP\x01Z3github.com/frogwall/f2ray-core/v5/proxy/vmess/outbound\xaa\x02\x1fV2Ray.Core.Proxy.Vmess.Outboundb\x06proto3"
 
 var (
 	file_proxy_vmess_outbound_config_proto_rawDescOnce sync.Once

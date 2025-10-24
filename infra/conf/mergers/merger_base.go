@@ -4,9 +4,9 @@ import (
 	"fmt"
 	"io"
 
-	"github.com/frogwall/v2ray-core/v5/common/cmdarg"
-	"github.com/frogwall/v2ray-core/v5/common/errors"
-	"github.com/frogwall/v2ray-core/v5/infra/conf/merge"
+	"github.com/frogwall/f2ray-core/v5/common/cmdarg"
+	"github.com/frogwall/f2ray-core/v5/common/errors"
+	"github.com/frogwall/f2ray-core/v5/infra/conf/merge"
 )
 
 type jsonConverter func(v []byte) ([]byte, error)

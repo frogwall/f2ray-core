@@ -7,11 +7,11 @@ import (
 	"context"
 	"strings"
 
-	core "github.com/frogwall/v2ray-core/v5"
-	"github.com/frogwall/v2ray-core/v5/common"
-	"github.com/frogwall/v2ray-core/v5/common/net"
-	"github.com/frogwall/v2ray-core/v5/common/session"
-	"github.com/frogwall/v2ray-core/v5/features/dns"
+	core "github.com/frogwall/f2ray-core/v5"
+	"github.com/frogwall/f2ray-core/v5/common"
+	"github.com/frogwall/f2ray-core/v5/common/net"
+	"github.com/frogwall/f2ray-core/v5/common/session"
+	"github.com/frogwall/f2ray-core/v5/features/dns"
 )
 
 // newFakeDNSSniffer Creates a Fake DNS metadata sniffer

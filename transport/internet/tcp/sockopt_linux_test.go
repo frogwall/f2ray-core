@@ -8,10 +8,10 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/frogwall/v2ray-core/v5/common"
-	"github.com/frogwall/v2ray-core/v5/testing/servers/tcp"
-	"github.com/frogwall/v2ray-core/v5/transport/internet"
-	. "github.com/frogwall/v2ray-core/v5/transport/internet/tcp"
+	"github.com/frogwall/f2ray-core/v5/common"
+	"github.com/frogwall/f2ray-core/v5/testing/servers/tcp"
+	"github.com/frogwall/f2ray-core/v5/transport/internet"
+	. "github.com/frogwall/f2ray-core/v5/transport/internet/tcp"
 )
 
 func TestGetOriginalDestination(t *testing.T) {

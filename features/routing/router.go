@@ -1,8 +1,8 @@
 package routing
 
 import (
-	"github.com/frogwall/v2ray-core/v5/common"
-	"github.com/frogwall/v2ray-core/v5/features"
+	"github.com/frogwall/f2ray-core/v5/common"
+	"github.com/frogwall/f2ray-core/v5/features"
 )
 
 // Router is a feature to choose an outbound tag for the given request.

@@ -6,13 +6,13 @@ import (
 	"github.com/golang/protobuf/proto"
 	"google.golang.org/protobuf/types/known/anypb"
 
-	"github.com/frogwall/v2ray-core/v5/app/observatory"
-	"github.com/frogwall/v2ray-core/v5/app/observatory/burst"
-	"github.com/frogwall/v2ray-core/v5/app/observatory/multiobservatory"
-	"github.com/frogwall/v2ray-core/v5/common/serial"
-	"github.com/frogwall/v2ray-core/v5/common/taggedfeatures"
-	"github.com/frogwall/v2ray-core/v5/infra/conf/cfgcommon/duration"
-	"github.com/frogwall/v2ray-core/v5/infra/conf/synthetic/router"
+	"github.com/frogwall/f2ray-core/v5/app/observatory"
+	"github.com/frogwall/f2ray-core/v5/app/observatory/burst"
+	"github.com/frogwall/f2ray-core/v5/app/observatory/multiobservatory"
+	"github.com/frogwall/f2ray-core/v5/common/serial"
+	"github.com/frogwall/f2ray-core/v5/common/taggedfeatures"
+	"github.com/frogwall/f2ray-core/v5/infra/conf/cfgcommon/duration"
+	"github.com/frogwall/f2ray-core/v5/infra/conf/synthetic/router"
 )
 
 type ObservatoryConfig struct {

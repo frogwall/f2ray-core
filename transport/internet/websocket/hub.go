@@ -13,12 +13,12 @@ import (
 
 	"github.com/gorilla/websocket"
 
-	"github.com/frogwall/v2ray-core/v5/common"
-	"github.com/frogwall/v2ray-core/v5/common/net"
-	http_proto "github.com/frogwall/v2ray-core/v5/common/protocol/http"
-	"github.com/frogwall/v2ray-core/v5/common/session"
-	"github.com/frogwall/v2ray-core/v5/transport/internet"
-	v2tls "github.com/frogwall/v2ray-core/v5/transport/internet/tls"
+	"github.com/frogwall/f2ray-core/v5/common"
+	"github.com/frogwall/f2ray-core/v5/common/net"
+	http_proto "github.com/frogwall/f2ray-core/v5/common/protocol/http"
+	"github.com/frogwall/f2ray-core/v5/common/session"
+	"github.com/frogwall/f2ray-core/v5/transport/internet"
+	v2tls "github.com/frogwall/f2ray-core/v5/transport/internet/tls"
 )
 
 type requestHandler struct {

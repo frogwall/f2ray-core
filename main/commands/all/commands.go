@@ -1,9 +1,9 @@
 package all
 
 import (
-	"github.com/frogwall/v2ray-core/v5/main/commands/all/api"
-	"github.com/frogwall/v2ray-core/v5/main/commands/all/tls"
-	"github.com/frogwall/v2ray-core/v5/main/commands/base"
+	"github.com/frogwall/f2ray-core/v5/main/commands/all/api"
+	"github.com/frogwall/f2ray-core/v5/main/commands/all/tls"
+	"github.com/frogwall/f2ray-core/v5/main/commands/base"
 )
 
 //go:generate go run v2ray.com/core/common/errors/errorgen

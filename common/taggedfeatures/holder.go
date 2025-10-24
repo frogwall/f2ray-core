@@ -5,8 +5,8 @@ import (
 	"reflect"
 	"sync"
 
-	"github.com/frogwall/v2ray-core/v5/common/task"
-	"github.com/frogwall/v2ray-core/v5/features"
+	"github.com/frogwall/f2ray-core/v5/common/task"
+	"github.com/frogwall/f2ray-core/v5/features"
 )
 
 type Holder struct {

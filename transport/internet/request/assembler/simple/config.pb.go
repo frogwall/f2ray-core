@@ -1,7 +1,7 @@
 package simple
 
 import (
-	_ "github.com/frogwall/v2ray-core/v5/common/protoext"
+	_ "github.com/frogwall/f2ray-core/v5/common/protoext"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	reflect "reflect"
@@ -169,7 +169,7 @@ const file_transport_internet_request_assembler_simple_config_proto_rawDesc = ""
 	"\fServerConfig\x12$\n" +
 	"\x0emax_write_size\x18\x01 \x01(\x05R\fmaxWriteSize:0\x82\xb5\x18,\n" +
 	"\"transport.request.assembler.server\x12\x06simpleB\xc3\x01\n" +
-	":com.v2ray.core.transport.internet.request.assembler.simpleP\x01ZJgithub.com/frogwall/v2ray-core/v5/transport/internet/request/assembler/simple\xaa\x026V2Ray.Core.Transport.Internet.Request.Assembler.Simpleb\x06proto3"
+	":com.v2ray.core.transport.internet.request.assembler.simpleP\x01ZJgithub.com/frogwall/f2ray-core/v5/transport/internet/request/assembler/simple\xaa\x026V2Ray.Core.Transport.Internet.Request.Assembler.Simpleb\x06proto3"
 
 var (
 	file_transport_internet_request_assembler_simple_config_proto_rawDescOnce sync.Once

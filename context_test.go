@@ -5,7 +5,7 @@ import (
 	"testing"
 	_ "unsafe"
 
-	. "github.com/frogwall/v2ray-core/v5"
+	. "github.com/frogwall/f2ray-core/v5"
 )
 
 func TestFromContextPanic(t *testing.T) {

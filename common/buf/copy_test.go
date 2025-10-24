@@ -7,9 +7,9 @@ import (
 
 	"github.com/golang/mock/gomock"
 
-	"github.com/frogwall/v2ray-core/v5/common/buf"
-	"github.com/frogwall/v2ray-core/v5/common/errors"
-	"github.com/frogwall/v2ray-core/v5/testing/mocks"
+	"github.com/frogwall/f2ray-core/v5/common/buf"
+	"github.com/frogwall/f2ray-core/v5/common/errors"
+	"github.com/frogwall/f2ray-core/v5/testing/mocks"
 )
 
 func TestReadError(t *testing.T) {

@@ -5,9 +5,9 @@ import (
 	"io"
 	"testing"
 
-	. "github.com/frogwall/v2ray-core/v5/common/buf"
-	"github.com/frogwall/v2ray-core/v5/common/net"
-	"github.com/frogwall/v2ray-core/v5/testing/servers/tcp"
+	. "github.com/frogwall/f2ray-core/v5/common/buf"
+	"github.com/frogwall/f2ray-core/v5/common/net"
+	"github.com/frogwall/f2ray-core/v5/testing/servers/tcp"
 )
 
 func TestWriterCreation(t *testing.T) {

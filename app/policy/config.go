@@ -3,7 +3,7 @@ package policy
 import (
 	"time"
 
-	"github.com/frogwall/v2ray-core/v5/features/policy"
+	"github.com/frogwall/f2ray-core/v5/features/policy"
 )
 
 // Duration converts Second to time.Duration.

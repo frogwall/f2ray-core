@@ -5,8 +5,8 @@ import (
 	"testing"
 	"time"
 
-	"github.com/frogwall/v2ray-core/v5/common/buf"
-	. "github.com/frogwall/v2ray-core/v5/transport/internet/kcp"
+	"github.com/frogwall/f2ray-core/v5/common/buf"
+	. "github.com/frogwall/f2ray-core/v5/transport/internet/kcp"
 )
 
 type NoOpCloser int

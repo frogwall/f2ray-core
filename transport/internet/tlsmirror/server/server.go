@@ -8,18 +8,18 @@ import (
 
 	"golang.org/x/net/context"
 
-	core "github.com/frogwall/v2ray-core/v5"
-	"github.com/frogwall/v2ray-core/v5/common/environment"
-	"github.com/frogwall/v2ray-core/v5/common/environment/envctx"
-	"github.com/frogwall/v2ray-core/v5/common/net"
-	"github.com/frogwall/v2ray-core/v5/features/outbound"
-	"github.com/frogwall/v2ray-core/v5/transport/internet"
-	"github.com/frogwall/v2ray-core/v5/transport/internet/tlsmirror"
-	"github.com/frogwall/v2ray-core/v5/transport/internet/tlsmirror/mirrorbase"
-	"github.com/frogwall/v2ray-core/v5/transport/internet/tlsmirror/mirrorenrollment"
+	core "github.com/frogwall/f2ray-core/v5"
+	"github.com/frogwall/f2ray-core/v5/common/environment"
+	"github.com/frogwall/f2ray-core/v5/common/environment/envctx"
+	"github.com/frogwall/f2ray-core/v5/common/net"
+	"github.com/frogwall/f2ray-core/v5/features/outbound"
+	"github.com/frogwall/f2ray-core/v5/transport/internet"
+	"github.com/frogwall/f2ray-core/v5/transport/internet/tlsmirror"
+	"github.com/frogwall/f2ray-core/v5/transport/internet/tlsmirror/mirrorbase"
+	"github.com/frogwall/f2ray-core/v5/transport/internet/tlsmirror/mirrorenrollment"
 )
 
-//go:generate go run github.com/frogwall/v2ray-core/v5/common/errors/errorgen
+//go:generate go run github.com/frogwall/f2ray-core/v5/common/errors/errorgen
 
 type Server struct {
 	config *Config

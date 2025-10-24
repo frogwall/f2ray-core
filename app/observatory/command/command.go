@@ -3,7 +3,7 @@
 
 package command
 
-//go:generate go run github.com/frogwall/v2ray-core/v5/common/errors/errorgen
+//go:generate go run github.com/frogwall/f2ray-core/v5/common/errors/errorgen
 
 import (
 	"context"
@@ -11,11 +11,11 @@ import (
 	"github.com/golang/protobuf/proto"
 	"google.golang.org/grpc"
 
-	core "github.com/frogwall/v2ray-core/v5"
-	"github.com/frogwall/v2ray-core/v5/app/observatory"
-	"github.com/frogwall/v2ray-core/v5/common"
-	"github.com/frogwall/v2ray-core/v5/features"
-	"github.com/frogwall/v2ray-core/v5/features/extension"
+	core "github.com/frogwall/f2ray-core/v5"
+	"github.com/frogwall/f2ray-core/v5/app/observatory"
+	"github.com/frogwall/f2ray-core/v5/common"
+	"github.com/frogwall/f2ray-core/v5/features"
+	"github.com/frogwall/f2ray-core/v5/features/extension"
 )
 
 type service struct {

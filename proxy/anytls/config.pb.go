@@ -13,7 +13,7 @@ import (
 	sync "sync"
 	unsafe "unsafe"
 	
-	"github.com/frogwall/v2ray-core/v5/common/protocol"
+	"github.com/frogwall/f2ray-core/v5/common/protocol"
 )
 
 const (
@@ -226,7 +226,7 @@ const file_proxy_anytls_config_proto_rawDesc = "" +
 	"\x1bidle_session_check_interval\x18\x02 \x01(\rR\x18idleSessionCheckInterval\x120\n" +
 	"\x14idle_session_timeout\x18\x03 \x01(\rR\x12idleSessionTimeout\x12(\n" +
 	"\x10min_idle_session\x18\x04 \x01(\rR\x0eminIdleSessionBf\n" +
-	"\x1bcom.v2ray.core.proxy.anytlsP\x01Z+github.com/frogwall/v2ray-core/v5/proxy/anytls\xaa\x02\x17V2Ray.Core.Proxy.AnyTLSb\x06proto3"
+	"\x1bcom.v2ray.core.proxy.anytlsP\x01Z+github.com/frogwall/f2ray-core/v5/proxy/anytls\xaa\x02\x17V2Ray.Core.Proxy.AnyTLSb\x06proto3"
 
 var (
 	file_proxy_anytls_config_proto_rawDescOnce sync.Once

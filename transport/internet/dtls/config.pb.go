@@ -1,7 +1,7 @@
 package dtls
 
 import (
-	_ "github.com/frogwall/v2ray-core/v5/common/protoext"
+	_ "github.com/frogwall/f2ray-core/v5/common/protoext"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	reflect "reflect"
@@ -144,7 +144,7 @@ const file_transport_internet_dtls_config_proto_rawDesc = "" +
 	"\bDTLSMode\x12\v\n" +
 	"\aINVALID\x10\x00\x12\a\n" +
 	"\x03PSK\x10\x01B\x87\x01\n" +
-	"&com.v2ray.core.transport.internet.dtlsP\x01Z6github.com/frogwall/v2ray-core/v5/transport/internet/dtls\xaa\x02\"V2Ray.Core.Transport.Internet.Dtlsb\x06proto3"
+	"&com.v2ray.core.transport.internet.dtlsP\x01Z6github.com/frogwall/f2ray-core/v5/transport/internet/dtls\xaa\x02\"V2Ray.Core.Transport.Internet.Dtlsb\x06proto3"
 
 var (
 	file_transport_internet_dtls_config_proto_rawDescOnce sync.Once

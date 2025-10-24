@@ -1,7 +1,7 @@
 package mirrorbase
 
 import (
-	"github.com/frogwall/v2ray-core/v5/common/crypto"
+	"github.com/frogwall/f2ray-core/v5/common/crypto"
 )
 
 func reverseBytesGeneratorByteOrder(generator crypto.BytesGenerator) crypto.BytesGenerator {

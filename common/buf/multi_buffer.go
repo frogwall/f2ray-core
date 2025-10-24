@@ -3,9 +3,9 @@ package buf
 import (
 	"io"
 
-	"github.com/frogwall/v2ray-core/v5/common"
-	"github.com/frogwall/v2ray-core/v5/common/errors"
-	"github.com/frogwall/v2ray-core/v5/common/serial"
+	"github.com/frogwall/f2ray-core/v5/common"
+	"github.com/frogwall/f2ray-core/v5/common/errors"
+	"github.com/frogwall/f2ray-core/v5/common/serial"
 )
 
 // ReadAllToBytes reads all content from the reader into a byte array, until EOF.

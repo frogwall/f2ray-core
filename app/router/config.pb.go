@@ -1,9 +1,9 @@
 package router
 
 import (
-	routercommon "github.com/frogwall/v2ray-core/v5/app/router/routercommon"
-	net "github.com/frogwall/v2ray-core/v5/common/net"
-	_ "github.com/frogwall/v2ray-core/v5/common/protoext"
+	routercommon "github.com/frogwall/f2ray-core/v5/app/router/routercommon"
+	net "github.com/frogwall/f2ray-core/v5/common/net"
+	_ "github.com/frogwall/f2ray-core/v5/common/protoext"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	anypb "google.golang.org/protobuf/types/known/anypb"
@@ -1046,7 +1046,7 @@ const file_app_router_config_proto_rawDesc = "" +
 	"\fIpIfNonMatch\x10\x02\x12\x0e\n" +
 	"\n" +
 	"IpOnDemand\x10\x03B`\n" +
-	"\x19com.v2ray.core.app.routerP\x01Z)github.com/frogwall/v2ray-core/v5/app/router\xaa\x02\x15V2Ray.Core.App.Routerb\x06proto3"
+	"\x19com.v2ray.core.app.routerP\x01Z)github.com/frogwall/f2ray-core/v5/app/router\xaa\x02\x15V2Ray.Core.App.Routerb\x06proto3"
 
 var (
 	file_app_router_config_proto_rawDescOnce sync.Once

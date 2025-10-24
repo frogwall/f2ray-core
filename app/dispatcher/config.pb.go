@@ -103,7 +103,7 @@ const file_app_dispatcher_config_proto_rawDesc = "" +
 	"\rSessionConfigJ\x04\b\x01\x10\x02\"N\n" +
 	"\x06Config\x12D\n" +
 	"\bsettings\x18\x01 \x01(\v2(.v2ray.core.app.dispatcher.SessionConfigR\bsettingsBl\n" +
-	"\x1dcom.v2ray.core.app.dispatcherP\x01Z-github.com/frogwall/v2ray-core/v5/app/dispatcher\xaa\x02\x19V2Ray.Core.App.Dispatcherb\x06proto3"
+	"\x1dcom.v2ray.core.app.dispatcherP\x01Z-github.com/frogwall/f2ray-core/v5/app/dispatcher\xaa\x02\x19V2Ray.Core.App.Dispatcherb\x06proto3"
 
 var (
 	file_app_dispatcher_config_proto_rawDescOnce sync.Once

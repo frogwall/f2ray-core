@@ -1,6 +1,6 @@
 package common
 
-import "github.com/frogwall/v2ray-core/v5/common/errors"
+import "github.com/frogwall/f2ray-core/v5/common/errors"
 
 // Closable is the interface for objects that can release its resources.
 //

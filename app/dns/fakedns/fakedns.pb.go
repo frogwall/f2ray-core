@@ -1,7 +1,7 @@
 package fakedns
 
 import (
-	_ "github.com/frogwall/v2ray-core/v5/common/protoext"
+	_ "github.com/frogwall/f2ray-core/v5/common/protoext"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	reflect "reflect"
@@ -124,7 +124,7 @@ const file_app_dns_fakedns_fakedns_proto_rawDesc = "" +
 	"\x10FakeDnsPoolMulti\x12=\n" +
 	"\x05pools\x18\x01 \x03(\v2'.v2ray.core.app.dns.fakedns.FakeDnsPoolR\x05pools:\x1b\x82\xb5\x18\x17\n" +
 	"\aservice\x12\ffakeDnsMultiBo\n" +
-	"\x1ecom.v2ray.core.app.dns.fakednsP\x01Z.github.com/frogwall/v2ray-core/v5/app/dns/fakedns\xaa\x02\x1aV2Ray.Core.App.Dns.Fakednsb\x06proto3"
+	"\x1ecom.v2ray.core.app.dns.fakednsP\x01Z.github.com/frogwall/f2ray-core/v5/app/dns/fakedns\xaa\x02\x1aV2Ray.Core.App.Dns.Fakednsb\x06proto3"
 
 var (
 	file_app_dns_fakedns_fakedns_proto_rawDescOnce sync.Once

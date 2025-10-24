@@ -1,8 +1,8 @@
 package engineering
 
-import "github.com/frogwall/v2ray-core/v5/main/commands/base"
+import "github.com/frogwall/f2ray-core/v5/main/commands/base"
 
-//go:generate go run github.com/frogwall/v2ray-core/v5/common/errors/errorgen
+//go:generate go run github.com/frogwall/f2ray-core/v5/common/errors/errorgen
 
 var cmdEngineering = &base.Command{
 	UsageLine: "{{.Exec}} engineering",

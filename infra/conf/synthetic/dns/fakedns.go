@@ -4,7 +4,7 @@ import (
 	"encoding/json"
 	"net"
 
-	"github.com/frogwall/v2ray-core/v5/app/dns/fakedns"
+	"github.com/frogwall/f2ray-core/v5/app/dns/fakedns"
 )
 
 type FakeDNSPoolElementConfig struct {

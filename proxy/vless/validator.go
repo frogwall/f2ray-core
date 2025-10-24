@@ -4,8 +4,8 @@ import (
 	"strings"
 	"sync"
 
-	"github.com/frogwall/v2ray-core/v5/common/protocol"
-	"github.com/frogwall/v2ray-core/v5/common/uuid"
+	"github.com/frogwall/f2ray-core/v5/common/protocol"
+	"github.com/frogwall/f2ray-core/v5/common/uuid"
 )
 
 // Validator stores valid VLESS users.

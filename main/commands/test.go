@@ -3,7 +3,7 @@ package commands
 import (
 	"fmt"
 
-	"github.com/frogwall/v2ray-core/v5/main/commands/base"
+	"github.com/frogwall/f2ray-core/v5/main/commands/base"
 )
 
 // CmdTest tests config files

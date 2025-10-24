@@ -9,12 +9,12 @@ import (
 	"sync/atomic"
 	"time"
 
-	"github.com/frogwall/v2ray-core/v5/common"
-	"github.com/frogwall/v2ray-core/v5/common/dice"
-	"github.com/frogwall/v2ray-core/v5/common/protocol"
-	"github.com/frogwall/v2ray-core/v5/common/serial"
-	"github.com/frogwall/v2ray-core/v5/common/task"
-	"github.com/frogwall/v2ray-core/v5/proxy/vmess/aead"
+	"github.com/frogwall/f2ray-core/v5/common"
+	"github.com/frogwall/f2ray-core/v5/common/dice"
+	"github.com/frogwall/f2ray-core/v5/common/protocol"
+	"github.com/frogwall/f2ray-core/v5/common/serial"
+	"github.com/frogwall/f2ray-core/v5/common/task"
+	"github.com/frogwall/f2ray-core/v5/proxy/vmess/aead"
 )
 
 const (

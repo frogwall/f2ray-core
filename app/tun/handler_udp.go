@@ -8,14 +8,14 @@ import (
 	gvisor_udp "gvisor.dev/gvisor/pkg/tcpip/transport/udp"
 	"gvisor.dev/gvisor/pkg/waiter"
 
-	tun_net "github.com/frogwall/v2ray-core/v5/app/tun/net"
-	"github.com/frogwall/v2ray-core/v5/common/buf"
-	"github.com/frogwall/v2ray-core/v5/common/net"
-	udp_proto "github.com/frogwall/v2ray-core/v5/common/protocol/udp"
-	"github.com/frogwall/v2ray-core/v5/common/session"
-	"github.com/frogwall/v2ray-core/v5/features/policy"
-	"github.com/frogwall/v2ray-core/v5/features/routing"
-	"github.com/frogwall/v2ray-core/v5/transport/internet/udp"
+	tun_net "github.com/frogwall/f2ray-core/v5/app/tun/net"
+	"github.com/frogwall/f2ray-core/v5/common/buf"
+	"github.com/frogwall/f2ray-core/v5/common/net"
+	udp_proto "github.com/frogwall/f2ray-core/v5/common/protocol/udp"
+	"github.com/frogwall/f2ray-core/v5/common/session"
+	"github.com/frogwall/f2ray-core/v5/features/policy"
+	"github.com/frogwall/f2ray-core/v5/features/routing"
+	"github.com/frogwall/f2ray-core/v5/transport/internet/udp"
 )
 
 type UDPHandler struct {

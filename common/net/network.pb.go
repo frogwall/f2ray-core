@@ -129,7 +129,7 @@ const file_common_net_network_proto_rawDesc = "" +
 	"\x03TCP\x10\x02\x12\a\n" +
 	"\x03UDP\x10\x03\x12\b\n" +
 	"\x04UNIX\x10\x04B`\n" +
-	"\x19com.v2ray.core.common.netP\x01Z)github.com/frogwall/v2ray-core/v5/common/net\xaa\x02\x15V2Ray.Core.Common.Netb\x06proto3"
+	"\x19com.v2ray.core.common.netP\x01Z)github.com/frogwall/f2ray-core/v5/common/net\xaa\x02\x15V2Ray.Core.Common.Netb\x06proto3"
 
 var (
 	file_common_net_network_proto_rawDescOnce sync.Once

@@ -6,14 +6,14 @@ import (
 	"testing"
 	"time"
 
-	"github.com/frogwall/v2ray-core/v5/common"
-	"github.com/frogwall/v2ray-core/v5/common/buf"
-	"github.com/frogwall/v2ray-core/v5/common/net"
-	"github.com/frogwall/v2ray-core/v5/common/protocol/udp"
-	"github.com/frogwall/v2ray-core/v5/features/routing"
-	"github.com/frogwall/v2ray-core/v5/transport"
-	. "github.com/frogwall/v2ray-core/v5/transport/internet/udp"
-	"github.com/frogwall/v2ray-core/v5/transport/pipe"
+	"github.com/frogwall/f2ray-core/v5/common"
+	"github.com/frogwall/f2ray-core/v5/common/buf"
+	"github.com/frogwall/f2ray-core/v5/common/net"
+	"github.com/frogwall/f2ray-core/v5/common/protocol/udp"
+	"github.com/frogwall/f2ray-core/v5/features/routing"
+	"github.com/frogwall/f2ray-core/v5/transport"
+	. "github.com/frogwall/f2ray-core/v5/transport/internet/udp"
+	"github.com/frogwall/f2ray-core/v5/transport/pipe"
 )
 
 type TestDispatcher struct {

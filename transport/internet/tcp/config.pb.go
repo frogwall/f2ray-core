@@ -1,7 +1,7 @@
 package tcp
 
 import (
-	_ "github.com/frogwall/v2ray-core/v5/common/protoext"
+	_ "github.com/frogwall/f2ray-core/v5/common/protoext"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	anypb "google.golang.org/protobuf/types/known/anypb"
@@ -78,7 +78,7 @@ const file_transport_internet_tcp_config_proto_rawDesc = "" +
 	"\x0fheader_settings\x18\x02 \x01(\v2\x14.google.protobuf.AnyR\x0eheaderSettings\x122\n" +
 	"\x15accept_proxy_protocol\x18\x03 \x01(\bR\x13acceptProxyProtocol:\x18\x82\xb5\x18\x14\n" +
 	"\ttransport\x12\x03tcp\x90\xff)\x01J\x04\b\x01\x10\x02B\x84\x01\n" +
-	"%com.v2ray.core.transport.internet.tcpP\x01Z5github.com/frogwall/v2ray-core/v5/transport/internet/tcp\xaa\x02!V2Ray.Core.Transport.Internet.Tcpb\x06proto3"
+	"%com.v2ray.core.transport.internet.tcpP\x01Z5github.com/frogwall/f2ray-core/v5/transport/internet/tcp\xaa\x02!V2Ray.Core.Transport.Internet.Tcpb\x06proto3"
 
 var (
 	file_transport_internet_tcp_config_proto_rawDescOnce sync.Once

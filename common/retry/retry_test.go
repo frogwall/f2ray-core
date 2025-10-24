@@ -4,9 +4,9 @@ import (
 	"testing"
 	"time"
 
-	"github.com/frogwall/v2ray-core/v5/common"
-	"github.com/frogwall/v2ray-core/v5/common/errors"
-	. "github.com/frogwall/v2ray-core/v5/common/retry"
+	"github.com/frogwall/f2ray-core/v5/common"
+	"github.com/frogwall/f2ray-core/v5/common/errors"
+	. "github.com/frogwall/f2ray-core/v5/common/retry"
 )
 
 var errorTestOnly = errors.New("this is a fake error")

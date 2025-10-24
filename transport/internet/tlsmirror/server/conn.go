@@ -9,10 +9,10 @@ import (
 
 	"golang.org/x/crypto/chacha20"
 
-	"github.com/frogwall/v2ray-core/v5/transport/internet"
-	"github.com/frogwall/v2ray-core/v5/transport/internet/tlsmirror"
-	"github.com/frogwall/v2ray-core/v5/transport/internet/tlsmirror/mirrorcommon"
-	"github.com/frogwall/v2ray-core/v5/transport/internet/tlsmirror/mirrorcrypto"
+	"github.com/frogwall/f2ray-core/v5/transport/internet"
+	"github.com/frogwall/f2ray-core/v5/transport/internet/tlsmirror"
+	"github.com/frogwall/f2ray-core/v5/transport/internet/tlsmirror/mirrorcommon"
+	"github.com/frogwall/f2ray-core/v5/transport/internet/tlsmirror/mirrorcrypto"
 )
 
 type connState struct {

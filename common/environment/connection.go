@@ -1,6 +1,6 @@
 package environment
 
-import "github.com/frogwall/v2ray-core/v5/common/log"
+import "github.com/frogwall/f2ray-core/v5/common/log"
 
 type ConnectionCapabilitySet interface {
 	ConnectionLogCapabilitySet

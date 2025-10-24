@@ -70,7 +70,7 @@ const file_common_net_packetaddr_config_proto_rawDesc = "" +
 	"\x04None\x10\x00\x12\n" +
 	"\n" +
 	"\x06Packet\x10\x01B\x81\x01\n" +
-	"$com.v2ray.core.common.net.packetaddrP\x01Z4github.com/frogwall/v2ray-core/v5/common/net/packetaddr\xaa\x02 V2Ray.Core.Common.Net.Packetaddrb\x06proto3"
+	"$com.v2ray.core.common.net.packetaddrP\x01Z4github.com/frogwall/f2ray-core/v5/common/net/packetaddr\xaa\x02 V2Ray.Core.Common.Net.Packetaddrb\x06proto3"
 
 var (
 	file_common_net_packetaddr_config_proto_rawDescOnce sync.Once

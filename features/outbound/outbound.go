@@ -3,9 +3,9 @@ package outbound
 import (
 	"context"
 
-	"github.com/frogwall/v2ray-core/v5/common"
-	"github.com/frogwall/v2ray-core/v5/features"
-	"github.com/frogwall/v2ray-core/v5/transport"
+	"github.com/frogwall/f2ray-core/v5/common"
+	"github.com/frogwall/f2ray-core/v5/features"
+	"github.com/frogwall/f2ray-core/v5/transport"
 )
 
 // Handler is the interface for handlers that process outbound connections.

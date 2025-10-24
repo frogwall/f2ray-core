@@ -1,7 +1,7 @@
 package observatory
 
 import (
-	_ "github.com/frogwall/v2ray-core/v5/common/protoext"
+	_ "github.com/frogwall/f2ray-core/v5/common/protoext"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	reflect "reflect"
@@ -466,7 +466,7 @@ const file_app_observatory_config_proto_rawDesc = "" +
 	"\x0eprobe_interval\x18\x04 \x01(\x03R\rprobeInterval\x126\n" +
 	"\x17persistent_probe_result\x18\x05 \x01(\bR\x15persistentProbeResult:$\x82\xb5\x18 \n" +
 	"\aservice\x12\x15backgroundObservatoryBo\n" +
-	"\x1ecom.v2ray.core.app.observatoryP\x01Z.github.com/frogwall/v2ray-core/v5/app/observatory\xaa\x02\x1aV2Ray.Core.App.Observatoryb\x06proto3"
+	"\x1ecom.v2ray.core.app.observatoryP\x01Z.github.com/frogwall/f2ray-core/v5/app/observatory\xaa\x02\x1aV2Ray.Core.App.Observatoryb\x06proto3"
 
 var (
 	file_app_observatory_config_proto_rawDescOnce sync.Once

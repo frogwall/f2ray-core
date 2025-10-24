@@ -14,16 +14,16 @@ import (
 
 	"golang.org/x/net/dns/dnsmessage"
 
-	"github.com/frogwall/v2ray-core/v5/common"
-	"github.com/frogwall/v2ray-core/v5/common/buf"
-	"github.com/frogwall/v2ray-core/v5/common/net"
-	"github.com/frogwall/v2ray-core/v5/common/protocol/dns"
-	"github.com/frogwall/v2ray-core/v5/common/session"
-	"github.com/frogwall/v2ray-core/v5/common/signal/pubsub"
-	"github.com/frogwall/v2ray-core/v5/common/task"
-	dns_feature "github.com/frogwall/v2ray-core/v5/features/dns"
-	"github.com/frogwall/v2ray-core/v5/features/routing"
-	"github.com/frogwall/v2ray-core/v5/transport/internet"
+	"github.com/frogwall/f2ray-core/v5/common"
+	"github.com/frogwall/f2ray-core/v5/common/buf"
+	"github.com/frogwall/f2ray-core/v5/common/net"
+	"github.com/frogwall/f2ray-core/v5/common/protocol/dns"
+	"github.com/frogwall/f2ray-core/v5/common/session"
+	"github.com/frogwall/f2ray-core/v5/common/signal/pubsub"
+	"github.com/frogwall/f2ray-core/v5/common/task"
+	dns_feature "github.com/frogwall/f2ray-core/v5/features/dns"
+	"github.com/frogwall/f2ray-core/v5/features/routing"
+	"github.com/frogwall/f2ray-core/v5/transport/internet"
 )
 
 // TCPNameServer implemented DNS over TCP (RFC7766).

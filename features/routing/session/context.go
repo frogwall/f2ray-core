@@ -3,9 +3,9 @@ package session
 import (
 	"context"
 
-	"github.com/frogwall/v2ray-core/v5/common/net"
-	"github.com/frogwall/v2ray-core/v5/common/session"
-	"github.com/frogwall/v2ray-core/v5/features/routing"
+	"github.com/frogwall/f2ray-core/v5/common/net"
+	"github.com/frogwall/f2ray-core/v5/common/session"
+	"github.com/frogwall/f2ray-core/v5/features/routing"
 )
 
 // Context is an implementation of routing.Context, which is a wrapper of context.context with session info.

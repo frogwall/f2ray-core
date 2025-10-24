@@ -5,10 +5,10 @@ import (
 	"testing"
 	"time"
 
-	. "github.com/frogwall/v2ray-core/v5/app/dns"
-	"github.com/frogwall/v2ray-core/v5/common"
-	"github.com/frogwall/v2ray-core/v5/common/net"
-	"github.com/frogwall/v2ray-core/v5/features/dns"
+	. "github.com/frogwall/f2ray-core/v5/app/dns"
+	"github.com/frogwall/f2ray-core/v5/common"
+	"github.com/frogwall/f2ray-core/v5/common/net"
+	"github.com/frogwall/f2ray-core/v5/features/dns"
 )
 
 func TestLocalNameServer(t *testing.T) {

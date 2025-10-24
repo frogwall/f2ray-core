@@ -3,7 +3,7 @@ package mirrorcrypto
 import (
 	"crypto/cipher"
 
-	"github.com/frogwall/v2ray-core/v5/common/crypto"
+	"github.com/frogwall/f2ray-core/v5/common/crypto"
 )
 
 type Decryptor struct {

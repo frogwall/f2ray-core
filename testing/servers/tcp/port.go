@@ -1,6 +1,6 @@
 package tcp
 
-import "github.com/frogwall/v2ray-core/v5/common/net"
+import "github.com/frogwall/f2ray-core/v5/common/net"
 
 // PickPort returns an unused TCP port of the system.
 func PickPort() net.Port {

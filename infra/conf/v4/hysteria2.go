@@ -3,11 +3,11 @@ package v4
 import (
 	"github.com/golang/protobuf/proto"
 
-	"github.com/frogwall/v2ray-core/v5/common/net/packetaddr"
-	"github.com/frogwall/v2ray-core/v5/common/protocol"
-	"github.com/frogwall/v2ray-core/v5/common/serial"
-	"github.com/frogwall/v2ray-core/v5/infra/conf/cfgcommon"
-	"github.com/frogwall/v2ray-core/v5/proxy/hysteria2"
+	"github.com/frogwall/f2ray-core/v5/common/net/packetaddr"
+	"github.com/frogwall/f2ray-core/v5/common/protocol"
+	"github.com/frogwall/f2ray-core/v5/common/serial"
+	"github.com/frogwall/f2ray-core/v5/infra/conf/cfgcommon"
+	"github.com/frogwall/f2ray-core/v5/proxy/hysteria2"
 )
 
 // Hysteria2ServerTarget is configuration of a single hysteria2 server

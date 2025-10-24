@@ -7,9 +7,9 @@ import (
 	"io"
 	"time"
 
-	"github.com/frogwall/v2ray-core/v5/common"
+	"github.com/frogwall/f2ray-core/v5/common"
 
-	"github.com/frogwall/v2ray-core/v5/transport/internet/request"
+	"github.com/frogwall/f2ray-core/v5/transport/internet/request"
 )
 
 func newClient(config *ClientConfig) request.SessionAssemblerClient {

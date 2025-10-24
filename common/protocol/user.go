@@ -1,6 +1,6 @@
 package protocol
 
-import "github.com/frogwall/v2ray-core/v5/common/serial"
+import "github.com/frogwall/f2ray-core/v5/common/serial"
 
 func (u *User) GetTypedAccount() (Account, error) {
 	if u.GetAccount() == nil {

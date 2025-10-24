@@ -1,8 +1,8 @@
 package dns
 
 import (
-	"github.com/frogwall/v2ray-core/v5/common/net"
-	"github.com/frogwall/v2ray-core/v5/features"
+	"github.com/frogwall/f2ray-core/v5/common/net"
+	"github.com/frogwall/f2ray-core/v5/features"
 )
 
 // FakeDNSEngine is a V2Ray feature for converting between domain and fake IPs.

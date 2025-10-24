@@ -1,7 +1,7 @@
 package net
 
 import (
-	"github.com/frogwall/v2ray-core/v5/common/net"
+	"github.com/frogwall/f2ray-core/v5/common/net"
 
 	"gvisor.dev/gvisor/pkg/tcpip"
 	"gvisor.dev/gvisor/pkg/tcpip/stack"

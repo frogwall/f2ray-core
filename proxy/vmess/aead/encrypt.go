@@ -9,7 +9,7 @@ import (
 	"io"
 	"time"
 
-	"github.com/frogwall/v2ray-core/v5/common"
+	"github.com/frogwall/f2ray-core/v5/common"
 )
 
 func SealVMessAEADHeader(key [16]byte, data []byte) []byte {

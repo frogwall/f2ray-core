@@ -1,9 +1,9 @@
 package filesystemimpl
 
 import (
-	"github.com/frogwall/v2ray-core/v5/common/environment"
-	"github.com/frogwall/v2ray-core/v5/common/platform/filesystem"
-	"github.com/frogwall/v2ray-core/v5/common/platform/filesystem/fsifce"
+	"github.com/frogwall/f2ray-core/v5/common/environment"
+	"github.com/frogwall/f2ray-core/v5/common/platform/filesystem"
+	"github.com/frogwall/f2ray-core/v5/common/platform/filesystem/fsifce"
 )
 
 func NewDefaultFileSystemDefaultImpl() environment.FileSystemCapabilitySet {

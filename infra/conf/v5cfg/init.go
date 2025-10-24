@@ -4,11 +4,11 @@ import (
 	"bytes"
 	"io"
 
-	core "github.com/frogwall/v2ray-core/v5"
-	"github.com/frogwall/v2ray-core/v5/common"
-	"github.com/frogwall/v2ray-core/v5/common/buf"
-	"github.com/frogwall/v2ray-core/v5/common/cmdarg"
-	"github.com/frogwall/v2ray-core/v5/infra/conf/json"
+	core "github.com/frogwall/f2ray-core/v5"
+	"github.com/frogwall/f2ray-core/v5/common"
+	"github.com/frogwall/f2ray-core/v5/common/buf"
+	"github.com/frogwall/f2ray-core/v5/common/cmdarg"
+	"github.com/frogwall/f2ray-core/v5/infra/conf/json"
 )
 
 const jsonV5 = "jsonv5"

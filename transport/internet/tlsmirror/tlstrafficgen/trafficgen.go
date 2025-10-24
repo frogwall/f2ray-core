@@ -9,17 +9,17 @@ import (
 	"net/url"
 	"time"
 
-	"github.com/frogwall/v2ray-core/v5/common"
-	"github.com/frogwall/v2ray-core/v5/common/environment"
-	"github.com/frogwall/v2ray-core/v5/common/environment/envctx"
-	"github.com/frogwall/v2ray-core/v5/common/net"
-	"github.com/frogwall/v2ray-core/v5/common/serial"
-	"github.com/frogwall/v2ray-core/v5/transport/internet/security"
-	"github.com/frogwall/v2ray-core/v5/transport/internet/tlsmirror"
-	"github.com/frogwall/v2ray-core/v5/transport/internet/tlsmirror/httponconnection"
+	"github.com/frogwall/f2ray-core/v5/common"
+	"github.com/frogwall/f2ray-core/v5/common/environment"
+	"github.com/frogwall/f2ray-core/v5/common/environment/envctx"
+	"github.com/frogwall/f2ray-core/v5/common/net"
+	"github.com/frogwall/f2ray-core/v5/common/serial"
+	"github.com/frogwall/f2ray-core/v5/transport/internet/security"
+	"github.com/frogwall/f2ray-core/v5/transport/internet/tlsmirror"
+	"github.com/frogwall/f2ray-core/v5/transport/internet/tlsmirror/httponconnection"
 )
 
-//go:generate go run github.com/frogwall/v2ray-core/v5/common/errors/errorgen
+//go:generate go run github.com/frogwall/f2ray-core/v5/common/errors/errorgen
 
 type TrafficGenerator struct {
 	config *Config

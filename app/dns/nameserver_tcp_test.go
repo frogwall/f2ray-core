@@ -8,10 +8,10 @@ import (
 
 	"github.com/google/go-cmp/cmp"
 
-	. "github.com/frogwall/v2ray-core/v5/app/dns"
-	"github.com/frogwall/v2ray-core/v5/common"
-	"github.com/frogwall/v2ray-core/v5/common/net"
-	dns_feature "github.com/frogwall/v2ray-core/v5/features/dns"
+	. "github.com/frogwall/f2ray-core/v5/app/dns"
+	"github.com/frogwall/f2ray-core/v5/common"
+	"github.com/frogwall/f2ray-core/v5/common/net"
+	dns_feature "github.com/frogwall/f2ray-core/v5/features/dns"
 )
 
 func TestTCPLocalNameServer(t *testing.T) {

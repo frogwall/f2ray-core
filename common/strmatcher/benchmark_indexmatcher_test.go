@@ -3,7 +3,7 @@ package strmatcher_test
 import (
 	"testing"
 
-	. "github.com/frogwall/v2ray-core/v5/common/strmatcher"
+	. "github.com/frogwall/f2ray-core/v5/common/strmatcher"
 )
 
 func BenchmarkLinearIndexMatcher(b *testing.B) {

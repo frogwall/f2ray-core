@@ -10,11 +10,11 @@ import (
 	"strings"
 	"syscall"
 
-	core "github.com/frogwall/v2ray-core/v5"
-	"github.com/frogwall/v2ray-core/v5/common/cmdarg"
-	"github.com/frogwall/v2ray-core/v5/common/platform"
-	"github.com/frogwall/v2ray-core/v5/main/commands/base"
-	"github.com/frogwall/v2ray-core/v5/main/plugins"
+	core "github.com/frogwall/f2ray-core/v5"
+	"github.com/frogwall/f2ray-core/v5/common/cmdarg"
+	"github.com/frogwall/f2ray-core/v5/common/platform"
+	"github.com/frogwall/f2ray-core/v5/main/commands/base"
+	"github.com/frogwall/f2ray-core/v5/main/plugins"
 )
 
 // CmdRun runs V2Ray with config

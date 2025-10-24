@@ -6,8 +6,8 @@ import (
 	"encoding/base64"
 	"io"
 
-	"github.com/frogwall/v2ray-core/v5/app/subscription/containers"
-	"github.com/frogwall/v2ray-core/v5/common"
+	"github.com/frogwall/f2ray-core/v5/app/subscription/containers"
+	"github.com/frogwall/f2ray-core/v5/common"
 )
 
 func newBase64URLLineParser() containers.SubscriptionContainerDocumentParser {

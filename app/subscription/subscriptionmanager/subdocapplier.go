@@ -3,8 +3,8 @@ package subscriptionmanager
 import (
 	"fmt"
 
-	core "github.com/frogwall/v2ray-core/v5"
-	"github.com/frogwall/v2ray-core/v5/app/subscription/specs"
+	core "github.com/frogwall/f2ray-core/v5"
+	"github.com/frogwall/f2ray-core/v5/app/subscription/specs"
 )
 
 func (s *SubscriptionManagerImpl) applySubscriptionTo(name string, document *specs.SubscriptionDocument) error {

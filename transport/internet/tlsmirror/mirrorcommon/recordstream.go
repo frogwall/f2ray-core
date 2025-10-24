@@ -5,7 +5,7 @@ import (
 	"errors"
 	"io"
 
-	"github.com/frogwall/v2ray-core/v5/transport/internet/tlsmirror"
+	"github.com/frogwall/f2ray-core/v5/transport/internet/tlsmirror"
 )
 
 func NewTLSRecordStreamReader(reader *bufio.Reader) *TLSRecordStreamReader {

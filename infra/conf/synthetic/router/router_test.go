@@ -8,14 +8,14 @@ import (
 
 	"github.com/golang/protobuf/proto"
 
-	"github.com/frogwall/v2ray-core/v5/app/router"
-	"github.com/frogwall/v2ray-core/v5/app/router/routercommon"
-	"github.com/frogwall/v2ray-core/v5/common/net"
-	"github.com/frogwall/v2ray-core/v5/common/serial"
-	"github.com/frogwall/v2ray-core/v5/infra/conf/cfgcommon/testassist"
-	_ "github.com/frogwall/v2ray-core/v5/infra/conf/geodata/memconservative"
-	_ "github.com/frogwall/v2ray-core/v5/infra/conf/geodata/standard"
-	router2 "github.com/frogwall/v2ray-core/v5/infra/conf/synthetic/router"
+	"github.com/frogwall/f2ray-core/v5/app/router"
+	"github.com/frogwall/f2ray-core/v5/app/router/routercommon"
+	"github.com/frogwall/f2ray-core/v5/common/net"
+	"github.com/frogwall/f2ray-core/v5/common/serial"
+	"github.com/frogwall/f2ray-core/v5/infra/conf/cfgcommon/testassist"
+	_ "github.com/frogwall/f2ray-core/v5/infra/conf/geodata/memconservative"
+	_ "github.com/frogwall/f2ray-core/v5/infra/conf/geodata/standard"
+	router2 "github.com/frogwall/f2ray-core/v5/infra/conf/synthetic/router"
 )
 
 func TestRouterConfig(t *testing.T) {

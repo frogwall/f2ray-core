@@ -1,11 +1,11 @@
 package tun
 
 import (
-	proxyman "github.com/frogwall/v2ray-core/v5/app/proxyman"
-	routercommon "github.com/frogwall/v2ray-core/v5/app/router/routercommon"
-	packetaddr "github.com/frogwall/v2ray-core/v5/common/net/packetaddr"
-	_ "github.com/frogwall/v2ray-core/v5/common/protoext"
-	internet "github.com/frogwall/v2ray-core/v5/transport/internet"
+	proxyman "github.com/frogwall/f2ray-core/v5/app/proxyman"
+	routercommon "github.com/frogwall/f2ray-core/v5/app/router/routercommon"
+	packetaddr "github.com/frogwall/f2ray-core/v5/common/net/packetaddr"
+	_ "github.com/frogwall/f2ray-core/v5/common/protoext"
+	internet "github.com/frogwall/f2ray-core/v5/transport/internet"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	reflect "reflect"
@@ -164,7 +164,7 @@ const file_app_tun_config_proto_rawDesc = "" +
 	" \x01(\v2+.v2ray.core.transport.internet.SocketConfigR\x0esocketSettings\x12T\n" +
 	"\x11sniffing_settings\x18\v \x01(\v2'.v2ray.core.app.proxyman.SniffingConfigR\x10sniffingSettings:\x12\x82\xb5\x18\x0e\n" +
 	"\aservice\x12\x03tunBW\n" +
-	"\x16com.v2ray.core.app.tunP\x01Z&github.com/frogwall/v2ray-core/v5/app/tun\xaa\x02\x12V2Ray.Core.App.Tunb\x06proto3"
+	"\x16com.v2ray.core.app.tunP\x01Z&github.com/frogwall/f2ray-core/v5/app/tun\xaa\x02\x12V2Ray.Core.App.Tunb\x06proto3"
 
 var (
 	file_app_tun_config_proto_rawDescOnce sync.Once

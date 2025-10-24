@@ -5,7 +5,7 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/frogwall/v2ray-core/v5/common/net"
+	"github.com/frogwall/f2ray-core/v5/common/net"
 )
 
 // ParseXForwardedFor parses X-Forwarded-For header in http headers, and return the IP list in it.

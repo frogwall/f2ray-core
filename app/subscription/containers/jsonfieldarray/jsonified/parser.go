@@ -1,10 +1,10 @@
 package jsonified
 
 import (
-	"github.com/frogwall/v2ray-core/v5/app/subscription/containers"
-	"github.com/frogwall/v2ray-core/v5/app/subscription/containers/jsonfieldarray"
-	"github.com/frogwall/v2ray-core/v5/common"
-	jsonConf "github.com/frogwall/v2ray-core/v5/infra/conf/json"
+	"github.com/frogwall/f2ray-core/v5/app/subscription/containers"
+	"github.com/frogwall/f2ray-core/v5/app/subscription/containers/jsonfieldarray"
+	"github.com/frogwall/f2ray-core/v5/common"
+	jsonConf "github.com/frogwall/f2ray-core/v5/infra/conf/json"
 )
 
 func newJsonifiedYamlParser() containers.SubscriptionContainerDocumentParser {

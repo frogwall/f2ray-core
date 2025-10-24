@@ -4,11 +4,11 @@ import (
 	"bytes"
 	"context"
 
-	"github.com/frogwall/v2ray-core/v5/common"
-	"github.com/frogwall/v2ray-core/v5/common/environment/envctx"
-	"github.com/frogwall/v2ray-core/v5/common/net"
-	"github.com/frogwall/v2ray-core/v5/features/routing"
-	"github.com/frogwall/v2ray-core/v5/transport/internet/udp"
+	"github.com/frogwall/f2ray-core/v5/common"
+	"github.com/frogwall/f2ray-core/v5/common/environment/envctx"
+	"github.com/frogwall/f2ray-core/v5/common/net"
+	"github.com/frogwall/f2ray-core/v5/features/routing"
+	"github.com/frogwall/f2ray-core/v5/transport/internet/udp"
 )
 
 // CreateObject creates a new object based on the given V2Ray instance and config. The V2Ray instance may be nil.

@@ -9,11 +9,11 @@ import (
 
 	"github.com/pion/dtls/v2"
 
-	"github.com/frogwall/v2ray-core/v5/common"
-	"github.com/frogwall/v2ray-core/v5/common/buf"
-	"github.com/frogwall/v2ray-core/v5/common/net"
-	"github.com/frogwall/v2ray-core/v5/transport/internet"
-	"github.com/frogwall/v2ray-core/v5/transport/internet/udp"
+	"github.com/frogwall/f2ray-core/v5/common"
+	"github.com/frogwall/f2ray-core/v5/common/buf"
+	"github.com/frogwall/f2ray-core/v5/common/net"
+	"github.com/frogwall/f2ray-core/v5/transport/internet"
+	"github.com/frogwall/f2ray-core/v5/transport/internet/udp"
 )
 
 type Listener struct {

@@ -8,10 +8,10 @@ import (
 	"strings"
 	"time"
 
-	"github.com/frogwall/v2ray-core/v5/common"
-	"github.com/frogwall/v2ray-core/v5/common/protocol/tls/cert"
-	"github.com/frogwall/v2ray-core/v5/common/task"
-	"github.com/frogwall/v2ray-core/v5/main/commands/base"
+	"github.com/frogwall/f2ray-core/v5/common"
+	"github.com/frogwall/f2ray-core/v5/common/protocol/tls/cert"
+	"github.com/frogwall/f2ray-core/v5/common/task"
+	"github.com/frogwall/f2ray-core/v5/main/commands/base"
 )
 
 // cmdCert is the tls cert command

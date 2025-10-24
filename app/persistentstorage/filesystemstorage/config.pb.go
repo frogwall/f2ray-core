@@ -1,7 +1,7 @@
 package filesystemstorage
 
 import (
-	_ "github.com/frogwall/v2ray-core/v5/common/protoext"
+	_ "github.com/frogwall/f2ray-core/v5/common/protoext"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	reflect "reflect"
@@ -131,7 +131,7 @@ const file_app_persistentstorage_filesystemstorage_config_proto_rawDesc = "" +
 	"\aservice\x12\x11filesystemstorage*\x1f\n" +
 	"\x10StateStorageRoot\x12\v\n" +
 	"\aWorkDir\x10\x00B\xb3\x01\n" +
-	"2com.v2ray.core.persistentstorage.filesystemstorageP\x01ZFgithub.com/frogwall/v2ray-core/v5/app/persistentstorage/filesystemstorage\xaa\x022V2Ray.Core.App.Persistentstorage.Filesystemstorageb\x06proto3"
+	"2com.v2ray.core.persistentstorage.filesystemstorageP\x01ZFgithub.com/frogwall/f2ray-core/v5/app/persistentstorage/filesystemstorage\xaa\x022V2Ray.Core.App.Persistentstorage.Filesystemstorageb\x06proto3"
 
 var (
 	file_app_persistentstorage_filesystemstorage_config_proto_rawDescOnce sync.Once

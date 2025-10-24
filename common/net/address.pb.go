@@ -111,7 +111,7 @@ const file_common_net_address_proto_rawDesc = "" +
 	"\x02ip\x18\x01 \x01(\fH\x00R\x02ip\x12\x18\n" +
 	"\x06domain\x18\x02 \x01(\tH\x00R\x06domainB\t\n" +
 	"\aaddressB`\n" +
-	"\x19com.v2ray.core.common.netP\x01Z)github.com/frogwall/v2ray-core/v5/common/net\xaa\x02\x15V2Ray.Core.Common.Netb\x06proto3"
+	"\x19com.v2ray.core.common.netP\x01Z)github.com/frogwall/f2ray-core/v5/common/net\xaa\x02\x15V2Ray.Core.Common.Netb\x06proto3"
 
 var (
 	file_common_net_address_proto_rawDescOnce sync.Once

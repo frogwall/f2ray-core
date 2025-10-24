@@ -3,9 +3,9 @@ package mux
 import (
 	"io"
 
-	"github.com/frogwall/v2ray-core/v5/common/buf"
-	"github.com/frogwall/v2ray-core/v5/common/crypto"
-	"github.com/frogwall/v2ray-core/v5/common/serial"
+	"github.com/frogwall/f2ray-core/v5/common/buf"
+	"github.com/frogwall/f2ray-core/v5/common/crypto"
+	"github.com/frogwall/f2ray-core/v5/common/serial"
 )
 
 // PacketReader is an io.Reader that reads whole chunk of Mux frames every time.

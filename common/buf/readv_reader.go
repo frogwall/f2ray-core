@@ -8,7 +8,7 @@ import (
 	"runtime"
 	"syscall"
 
-	"github.com/frogwall/v2ray-core/v5/common/platform"
+	"github.com/frogwall/f2ray-core/v5/common/platform"
 )
 
 type allocStrategy struct {

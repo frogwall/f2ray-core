@@ -3,7 +3,7 @@ package buf
 import (
 	"io"
 
-	"github.com/frogwall/v2ray-core/v5/common/bytespool"
+	"github.com/frogwall/f2ray-core/v5/common/bytespool"
 )
 
 const (

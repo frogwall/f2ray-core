@@ -5,9 +5,9 @@ import (
 	"context"
 	"sync"
 
-	"github.com/frogwall/v2ray-core/v5/common"
+	"github.com/frogwall/f2ray-core/v5/common"
 
-	"github.com/frogwall/v2ray-core/v5/transport/internet/request"
+	"github.com/frogwall/f2ray-core/v5/transport/internet/request"
 )
 
 func newServer(config *ServerConfig) request.SessionAssemblerServer {

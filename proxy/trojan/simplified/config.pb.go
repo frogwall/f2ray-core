@@ -1,9 +1,9 @@
 package simplified
 
 import (
-	net "github.com/frogwall/v2ray-core/v5/common/net"
-	packetaddr "github.com/frogwall/v2ray-core/v5/common/net/packetaddr"
-	_ "github.com/frogwall/v2ray-core/v5/common/protoext"
+	net "github.com/frogwall/f2ray-core/v5/common/net"
+	packetaddr "github.com/frogwall/f2ray-core/v5/common/net/packetaddr"
+	_ "github.com/frogwall/f2ray-core/v5/common/protoext"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	reflect "reflect"
@@ -144,7 +144,7 @@ const file_proxy_trojan_simplified_config_proto_rawDesc = "" +
 	"\x04port\x18\x02 \x01(\rR\x04port\x12\x1a\n" +
 	"\bpassword\x18\x03 \x01(\tR\bpassword:\x16\x82\xb5\x18\x12\n" +
 	"\boutbound\x12\x06trojanB\x87\x01\n" +
-	"&com.v2ray.core.proxy.trojan.simplifiedP\x01Z6github.com/frogwall/v2ray-core/v5/proxy/trojan/simplified\xaa\x02\"V2Ray.Core.Proxy.Trojan.Simplifiedb\x06proto3"
+	"&com.v2ray.core.proxy.trojan.simplifiedP\x01Z6github.com/frogwall/f2ray-core/v5/proxy/trojan/simplified\xaa\x02\"V2Ray.Core.Proxy.Trojan.Simplifiedb\x06proto3"
 
 var (
 	file_proxy_trojan_simplified_config_proto_rawDescOnce sync.Once

@@ -1,7 +1,7 @@
 package brook
 
 import (
-	"github.com/frogwall/v2ray-core/v5/common/protocol"
+	"github.com/frogwall/f2ray-core/v5/common/protocol"
 )
 
 // Equals implements protocol.Account.Equals().

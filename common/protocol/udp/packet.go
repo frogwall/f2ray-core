@@ -1,8 +1,8 @@
 package udp
 
 import (
-	"github.com/frogwall/v2ray-core/v5/common/buf"
-	"github.com/frogwall/v2ray-core/v5/common/net"
+	"github.com/frogwall/f2ray-core/v5/common/buf"
+	"github.com/frogwall/f2ray-core/v5/common/net"
 )
 
 // Packet is a UDP packet together with its source and destination address.

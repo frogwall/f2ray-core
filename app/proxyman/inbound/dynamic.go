@@ -5,14 +5,14 @@ import (
 	"sync"
 	"time"
 
-	core "github.com/frogwall/v2ray-core/v5"
-	"github.com/frogwall/v2ray-core/v5/app/proxyman"
-	"github.com/frogwall/v2ray-core/v5/common/dice"
-	"github.com/frogwall/v2ray-core/v5/common/mux"
-	"github.com/frogwall/v2ray-core/v5/common/net"
-	"github.com/frogwall/v2ray-core/v5/common/task"
-	"github.com/frogwall/v2ray-core/v5/proxy"
-	"github.com/frogwall/v2ray-core/v5/transport/internet"
+	core "github.com/frogwall/f2ray-core/v5"
+	"github.com/frogwall/f2ray-core/v5/app/proxyman"
+	"github.com/frogwall/f2ray-core/v5/common/dice"
+	"github.com/frogwall/f2ray-core/v5/common/mux"
+	"github.com/frogwall/f2ray-core/v5/common/net"
+	"github.com/frogwall/f2ray-core/v5/common/task"
+	"github.com/frogwall/f2ray-core/v5/proxy"
+	"github.com/frogwall/f2ray-core/v5/transport/internet"
 )
 
 type DynamicInboundHandler struct {

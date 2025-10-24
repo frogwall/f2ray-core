@@ -9,10 +9,10 @@ import (
 	"testing"
 	"time"
 
-	"github.com/frogwall/v2ray-core/v5/common"
-	"github.com/frogwall/v2ray-core/v5/common/buf"
-	"github.com/frogwall/v2ray-core/v5/common/net"
-	. "github.com/frogwall/v2ray-core/v5/transport/internet/headers/http"
+	"github.com/frogwall/f2ray-core/v5/common"
+	"github.com/frogwall/f2ray-core/v5/common/buf"
+	"github.com/frogwall/f2ray-core/v5/common/net"
+	. "github.com/frogwall/f2ray-core/v5/transport/internet/headers/http"
 )
 
 func TestReaderWriter(t *testing.T) {

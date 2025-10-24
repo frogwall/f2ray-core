@@ -1,7 +1,7 @@
 package browserforwarder
 
 import (
-	_ "github.com/frogwall/v2ray-core/v5/common/protoext"
+	_ "github.com/frogwall/f2ray-core/v5/common/protoext"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	reflect "reflect"
@@ -80,7 +80,7 @@ const file_app_browserforwarder_config_proto_rawDesc = "" +
 	"\vlisten_port\x18\x02 \x01(\x05R\n" +
 	"listenPort:\x16\x82\xb5\x18\x12\n" +
 	"\aservice\x12\abrowserB~\n" +
-	"#com.v2ray.core.app.browserforwarderP\x01Z3github.com/frogwall/v2ray-core/v5/app/browserforwarder\xaa\x02\x1fV2Ray.Core.App.Browserforwarderb\x06proto3"
+	"#com.v2ray.core.app.browserforwarderP\x01Z3github.com/frogwall/f2ray-core/v5/app/browserforwarder\xaa\x02\x1fV2Ray.Core.App.Browserforwarderb\x06proto3"
 
 var (
 	file_app_browserforwarder_config_proto_rawDescOnce sync.Once

@@ -1,11 +1,11 @@
 package dns
 
 import (
-	"github.com/frogwall/v2ray-core/v5/common"
-	"github.com/frogwall/v2ray-core/v5/common/net"
-	"github.com/frogwall/v2ray-core/v5/common/strmatcher"
-	"github.com/frogwall/v2ray-core/v5/features"
-	"github.com/frogwall/v2ray-core/v5/features/dns"
+	"github.com/frogwall/f2ray-core/v5/common"
+	"github.com/frogwall/f2ray-core/v5/common/net"
+	"github.com/frogwall/f2ray-core/v5/common/strmatcher"
+	"github.com/frogwall/f2ray-core/v5/features"
+	"github.com/frogwall/f2ray-core/v5/features/dns"
 )
 
 // StaticHosts represents static domain-ip mapping in DNS server.

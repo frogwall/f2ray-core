@@ -9,9 +9,9 @@ import (
 	"github.com/google/go-cmp/cmp"
 	"golang.org/x/sync/errgroup"
 
-	"github.com/frogwall/v2ray-core/v5/common"
-	"github.com/frogwall/v2ray-core/v5/common/buf"
-	. "github.com/frogwall/v2ray-core/v5/transport/pipe"
+	"github.com/frogwall/f2ray-core/v5/common"
+	"github.com/frogwall/f2ray-core/v5/common/buf"
+	. "github.com/frogwall/f2ray-core/v5/transport/pipe"
 )
 
 func TestPipeReadWrite(t *testing.T) {

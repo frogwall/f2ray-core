@@ -1,10 +1,10 @@
 package environment
 
 import (
-	"github.com/frogwall/v2ray-core/v5/common/environment/filesystemcap"
-	"github.com/frogwall/v2ray-core/v5/features/extension/storage"
-	"github.com/frogwall/v2ray-core/v5/transport/internet"
-	"github.com/frogwall/v2ray-core/v5/transport/internet/tagged"
+	"github.com/frogwall/f2ray-core/v5/common/environment/filesystemcap"
+	"github.com/frogwall/f2ray-core/v5/features/extension/storage"
+	"github.com/frogwall/f2ray-core/v5/transport/internet"
+	"github.com/frogwall/f2ray-core/v5/transport/internet/tagged"
 )
 
 type BaseEnvironmentCapabilitySet interface {

@@ -6,15 +6,15 @@ import (
 
 	"google.golang.org/protobuf/types/known/anypb"
 
-	core "github.com/frogwall/v2ray-core/v5"
-	"github.com/frogwall/v2ray-core/v5/app/dispatcher"
-	"github.com/frogwall/v2ray-core/v5/app/log"
-	. "github.com/frogwall/v2ray-core/v5/app/log/command"
-	"github.com/frogwall/v2ray-core/v5/app/proxyman"
-	_ "github.com/frogwall/v2ray-core/v5/app/proxyman/inbound"
-	_ "github.com/frogwall/v2ray-core/v5/app/proxyman/outbound"
-	"github.com/frogwall/v2ray-core/v5/common"
-	"github.com/frogwall/v2ray-core/v5/common/serial"
+	core "github.com/frogwall/f2ray-core/v5"
+	"github.com/frogwall/f2ray-core/v5/app/dispatcher"
+	"github.com/frogwall/f2ray-core/v5/app/log"
+	. "github.com/frogwall/f2ray-core/v5/app/log/command"
+	"github.com/frogwall/f2ray-core/v5/app/proxyman"
+	_ "github.com/frogwall/f2ray-core/v5/app/proxyman/inbound"
+	_ "github.com/frogwall/f2ray-core/v5/app/proxyman/outbound"
+	"github.com/frogwall/f2ray-core/v5/common"
+	"github.com/frogwall/f2ray-core/v5/common/serial"
 )
 
 func TestLoggerRestart(t *testing.T) {

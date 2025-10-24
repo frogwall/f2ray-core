@@ -3,9 +3,9 @@ package deferredpersistentstorage
 import (
 	"context"
 
-	"github.com/frogwall/v2ray-core/v5/app/persistentstorage"
-	"github.com/frogwall/v2ray-core/v5/common/errors"
-	"github.com/frogwall/v2ray-core/v5/features/extension/storage"
+	"github.com/frogwall/f2ray-core/v5/app/persistentstorage"
+	"github.com/frogwall/f2ray-core/v5/common/errors"
+	"github.com/frogwall/f2ray-core/v5/features/extension/storage"
 )
 
 type DeferredPersistentStorage interface {

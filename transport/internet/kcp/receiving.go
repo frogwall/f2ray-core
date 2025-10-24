@@ -3,7 +3,7 @@ package kcp
 import (
 	"sync"
 
-	"github.com/frogwall/v2ray-core/v5/common/buf"
+	"github.com/frogwall/f2ray-core/v5/common/buf"
 )
 
 type ReceivingWindow struct {

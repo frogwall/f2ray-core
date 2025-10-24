@@ -1,7 +1,7 @@
 package stats
 
 import (
-	_ "github.com/frogwall/v2ray-core/v5/common/protoext"
+	_ "github.com/frogwall/f2ray-core/v5/common/protoext"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	reflect "reflect"
@@ -125,7 +125,7 @@ const file_app_stats_config_proto_rawDesc = "" +
 	"\n" +
 	"BufferSize\x18\x03 \x01(\x05R\n" +
 	"BufferSizeB]\n" +
-	"\x18com.v2ray.core.app.statsP\x01Z(github.com/frogwall/v2ray-core/v5/app/stats\xaa\x02\x14V2Ray.Core.App.Statsb\x06proto3"
+	"\x18com.v2ray.core.app.statsP\x01Z(github.com/frogwall/f2ray-core/v5/app/stats\xaa\x02\x14V2Ray.Core.App.Statsb\x06proto3"
 
 var (
 	file_app_stats_config_proto_rawDescOnce sync.Once

@@ -1,7 +1,7 @@
 package command
 
 import (
-	_ "github.com/frogwall/v2ray-core/v5/common/protoext"
+	_ "github.com/frogwall/f2ray-core/v5/common/protoext"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	reflect "reflect"
@@ -332,7 +332,7 @@ const file_app_instman_command_command_proto_rawDesc = "" +
 	"\fListInstance\x12/.v2ray.core.app.instman.command.ListInstanceReq\x1a0.v2ray.core.app.instman.command.ListInstanceResp\x12n\n" +
 	"\vAddInstance\x12..v2ray.core.app.instman.command.AddInstanceReq\x1a/.v2ray.core.app.instman.command.AddInstanceResp\x12t\n" +
 	"\rStartInstance\x120.v2ray.core.app.instman.command.StartInstanceReq\x1a1.v2ray.core.app.instman.command.StartInstanceRespB\x7f\n" +
-	"&com.v2ray.core.app.observatory.instmanP\x01Z2github.com/frogwall/v2ray-core/v5/app/instman/command\xaa\x02\x1eV2Ray.Core.App.Instman.Commandb\x06proto3"
+	"&com.v2ray.core.app.observatory.instmanP\x01Z2github.com/frogwall/f2ray-core/v5/app/instman/command\xaa\x02\x1eV2Ray.Core.App.Instman.Commandb\x06proto3"
 
 var (
 	file_app_instman_command_command_proto_rawDescOnce sync.Once

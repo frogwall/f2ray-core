@@ -6,9 +6,9 @@ package vmess
 import (
 	"strings"
 
-	"github.com/frogwall/v2ray-core/v5/common/dice"
-	"github.com/frogwall/v2ray-core/v5/common/protocol"
-	"github.com/frogwall/v2ray-core/v5/common/uuid"
+	"github.com/frogwall/f2ray-core/v5/common/dice"
+	"github.com/frogwall/f2ray-core/v5/common/protocol"
+	"github.com/frogwall/f2ray-core/v5/common/uuid"
 )
 
 // MemoryAccount is an in-memory form of VMess account.

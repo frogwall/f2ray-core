@@ -3,11 +3,11 @@ package sniffer
 import (
 	"strings"
 
-	"github.com/frogwall/v2ray-core/v5/app/proxyman"
-	"github.com/frogwall/v2ray-core/v5/infra/conf/cfgcommon"
+	"github.com/frogwall/f2ray-core/v5/app/proxyman"
+	"github.com/frogwall/f2ray-core/v5/infra/conf/cfgcommon"
 )
 
-//go:generate go run github.com/frogwall/v2ray-core/v5/common/errors/errorgen
+//go:generate go run github.com/frogwall/f2ray-core/v5/common/errors/errorgen
 
 type SniffingConfig struct {
 	Enabled      bool                  `json:"enabled"`

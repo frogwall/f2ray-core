@@ -1,8 +1,8 @@
 package proxyman
 
 import (
-	net "github.com/frogwall/v2ray-core/v5/common/net"
-	internet "github.com/frogwall/v2ray-core/v5/transport/internet"
+	net "github.com/frogwall/f2ray-core/v5/common/net"
+	internet "github.com/frogwall/f2ray-core/v5/transport/internet"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	anypb "google.golang.org/protobuf/types/known/anypb"
@@ -803,7 +803,7 @@ const file_app_proxyman_config_proto_rawDesc = "" +
 	"\x0eKnownProtocols\x12\b\n" +
 	"\x04HTTP\x10\x00\x12\a\n" +
 	"\x03TLS\x10\x01Bf\n" +
-	"\x1bcom.v2ray.core.app.proxymanP\x01Z+github.com/frogwall/v2ray-core/v5/app/proxyman\xaa\x02\x17V2Ray.Core.App.Proxymanb\x06proto3"
+	"\x1bcom.v2ray.core.app.proxymanP\x01Z+github.com/frogwall/f2ray-core/v5/app/proxyman\xaa\x02\x17V2Ray.Core.App.Proxymanb\x06proto3"
 
 var (
 	file_app_proxyman_config_proto_rawDescOnce sync.Once

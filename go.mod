@@ -1,4 +1,4 @@
-module github.com/frogwall/v2ray-core/v5
+module github.com/frogwall/f2ray-core/v5
 
 go 1.24.0
 

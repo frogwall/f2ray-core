@@ -3,7 +3,7 @@ package geodata
 import (
 	"strings"
 
-	"github.com/frogwall/v2ray-core/v5/app/router/routercommon"
+	"github.com/frogwall/f2ray-core/v5/app/router/routercommon"
 )
 
 type AttributeList struct {

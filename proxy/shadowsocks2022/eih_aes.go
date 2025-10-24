@@ -6,7 +6,7 @@ import (
 
 	"github.com/v2fly/struc"
 
-	"github.com/frogwall/v2ray-core/v5/common/buf"
+	"github.com/frogwall/f2ray-core/v5/common/buf"
 
 	"lukechampine.com/blake3"
 )

@@ -7,10 +7,10 @@ import (
 	"io"
 	"net"
 
-	"github.com/frogwall/v2ray-core/v5/common"
-	"github.com/frogwall/v2ray-core/v5/common/crypto"
-	"github.com/frogwall/v2ray-core/v5/transport/internet/tlsmirror"
-	"github.com/frogwall/v2ray-core/v5/transport/internet/tlsmirror/mirrorcommon"
+	"github.com/frogwall/f2ray-core/v5/common"
+	"github.com/frogwall/f2ray-core/v5/common/crypto"
+	"github.com/frogwall/f2ray-core/v5/transport/internet/tlsmirror"
+	"github.com/frogwall/f2ray-core/v5/transport/internet/tlsmirror/mirrorcommon"
 )
 
 // NewMirroredTLSConn creates a new mirrored TLS connection.

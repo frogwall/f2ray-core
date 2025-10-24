@@ -1,8 +1,8 @@
 package tls
 
 import (
-	"github.com/frogwall/v2ray-core/v5/common/net"
-	"github.com/frogwall/v2ray-core/v5/transport/internet/security"
+	"github.com/frogwall/f2ray-core/v5/common/net"
+	"github.com/frogwall/f2ray-core/v5/transport/internet/security"
 )
 
 type Engine struct {

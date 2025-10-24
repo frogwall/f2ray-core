@@ -10,12 +10,12 @@ import (
 	"google.golang.org/protobuf/proto"
 	"gopkg.in/yaml.v3"
 
-	core "github.com/frogwall/v2ray-core/v5"
-	"github.com/frogwall/v2ray-core/v5/infra/conf/jsonpb"
-	"github.com/frogwall/v2ray-core/v5/infra/conf/merge"
-	"github.com/frogwall/v2ray-core/v5/infra/conf/v2jsonpb"
-	"github.com/frogwall/v2ray-core/v5/main/commands/base"
-	"github.com/frogwall/v2ray-core/v5/main/commands/helpers"
+	core "github.com/frogwall/f2ray-core/v5"
+	"github.com/frogwall/f2ray-core/v5/infra/conf/jsonpb"
+	"github.com/frogwall/f2ray-core/v5/infra/conf/merge"
+	"github.com/frogwall/f2ray-core/v5/infra/conf/v2jsonpb"
+	"github.com/frogwall/f2ray-core/v5/main/commands/base"
+	"github.com/frogwall/f2ray-core/v5/main/commands/helpers"
 )
 
 var cmdConvert = &base.Command{

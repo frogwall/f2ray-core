@@ -1,8 +1,8 @@
 package localdns
 
 import (
-	"github.com/frogwall/v2ray-core/v5/common/net"
-	"github.com/frogwall/v2ray-core/v5/features/dns"
+	"github.com/frogwall/f2ray-core/v5/common/net"
+	"github.com/frogwall/f2ray-core/v5/features/dns"
 )
 
 // Client is an implementation of dns.Client, which queries localhost for DNS.

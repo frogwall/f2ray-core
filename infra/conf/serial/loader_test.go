@@ -5,7 +5,7 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/frogwall/v2ray-core/v5/infra/conf/serial"
+	"github.com/frogwall/f2ray-core/v5/infra/conf/serial"
 )
 
 func TestLoaderError(t *testing.T) {

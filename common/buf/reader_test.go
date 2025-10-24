@@ -6,9 +6,9 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/frogwall/v2ray-core/v5/common"
-	. "github.com/frogwall/v2ray-core/v5/common/buf"
-	"github.com/frogwall/v2ray-core/v5/transport/pipe"
+	"github.com/frogwall/f2ray-core/v5/common"
+	. "github.com/frogwall/f2ray-core/v5/common/buf"
+	"github.com/frogwall/f2ray-core/v5/transport/pipe"
 )
 
 func TestBytesReaderWriteTo(t *testing.T) {

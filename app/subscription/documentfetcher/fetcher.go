@@ -3,10 +3,10 @@ package documentfetcher
 import (
 	"context"
 
-	"github.com/frogwall/v2ray-core/v5/app/subscription"
+	"github.com/frogwall/f2ray-core/v5/app/subscription"
 )
 
-//go:generate go run github.com/frogwall/v2ray-core/v5/common/errors/errorgen
+//go:generate go run github.com/frogwall/f2ray-core/v5/common/errors/errorgen
 
 type FetcherOptions interface{}
 

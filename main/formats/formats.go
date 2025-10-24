@@ -3,11 +3,11 @@ package formats
 import (
 	"bytes"
 
-	core "github.com/frogwall/v2ray-core/v5"
-	"github.com/frogwall/v2ray-core/v5/common"
-	"github.com/frogwall/v2ray-core/v5/infra/conf/merge"
-	"github.com/frogwall/v2ray-core/v5/infra/conf/mergers"
-	"github.com/frogwall/v2ray-core/v5/infra/conf/serial"
+	core "github.com/frogwall/f2ray-core/v5"
+	"github.com/frogwall/f2ray-core/v5/common"
+	"github.com/frogwall/f2ray-core/v5/infra/conf/merge"
+	"github.com/frogwall/f2ray-core/v5/infra/conf/mergers"
+	"github.com/frogwall/f2ray-core/v5/infra/conf/serial"
 )
 
 func init() {

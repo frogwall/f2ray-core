@@ -5,11 +5,11 @@ import (
 	"crypto/rand"
 	"io"
 
-	"github.com/frogwall/v2ray-core/v5/common"
-	"github.com/frogwall/v2ray-core/v5/common/buf"
-	"github.com/frogwall/v2ray-core/v5/common/bytespool"
-	"github.com/frogwall/v2ray-core/v5/common/errors"
-	"github.com/frogwall/v2ray-core/v5/common/protocol"
+	"github.com/frogwall/f2ray-core/v5/common"
+	"github.com/frogwall/f2ray-core/v5/common/buf"
+	"github.com/frogwall/f2ray-core/v5/common/bytespool"
+	"github.com/frogwall/f2ray-core/v5/common/errors"
+	"github.com/frogwall/f2ray-core/v5/common/protocol"
 )
 
 type BytesGenerator func() []byte

@@ -3,10 +3,10 @@ package jsonv4
 import (
 	"fmt"
 
-	handlerService "github.com/frogwall/v2ray-core/v5/app/proxyman/command"
-	"github.com/frogwall/v2ray-core/v5/main/commands/all/api"
-	"github.com/frogwall/v2ray-core/v5/main/commands/base"
-	"github.com/frogwall/v2ray-core/v5/main/commands/helpers"
+	handlerService "github.com/frogwall/f2ray-core/v5/app/proxyman/command"
+	"github.com/frogwall/f2ray-core/v5/main/commands/all/api"
+	"github.com/frogwall/f2ray-core/v5/main/commands/base"
+	"github.com/frogwall/f2ray-core/v5/main/commands/helpers"
 )
 
 var cmdAddInbounds = &base.Command{

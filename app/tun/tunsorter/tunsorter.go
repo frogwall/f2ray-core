@@ -5,16 +5,16 @@ import (
 	"io"
 	"sync"
 
-	"github.com/frogwall/v2ray-core/v5/app/tun/packetparse"
-	"github.com/frogwall/v2ray-core/v5/common/buf"
-	"github.com/frogwall/v2ray-core/v5/common/net"
-	"github.com/frogwall/v2ray-core/v5/common/net/packetaddr"
-	vudp "github.com/frogwall/v2ray-core/v5/common/protocol/udp"
-	"github.com/frogwall/v2ray-core/v5/features/routing"
-	"github.com/frogwall/v2ray-core/v5/transport/internet/udp"
+	"github.com/frogwall/f2ray-core/v5/app/tun/packetparse"
+	"github.com/frogwall/f2ray-core/v5/common/buf"
+	"github.com/frogwall/f2ray-core/v5/common/net"
+	"github.com/frogwall/f2ray-core/v5/common/net/packetaddr"
+	vudp "github.com/frogwall/f2ray-core/v5/common/protocol/udp"
+	"github.com/frogwall/f2ray-core/v5/features/routing"
+	"github.com/frogwall/f2ray-core/v5/transport/internet/udp"
 )
 
-//go:generate go run github.com/frogwall/v2ray-core/v5/common/errors/errorgen
+//go:generate go run github.com/frogwall/f2ray-core/v5/common/errors/errorgen
 
 func NewTunSorter(tunWriter io.Writer, dispatcher routing.Dispatcher, packetAddrType packetaddr.PacketAddrType, ctx context.Context) *TunSorter {
 	return &TunSorter{

@@ -1,6 +1,6 @@
 package entries
 
-import "github.com/frogwall/v2ray-core/v5/app/subscription/specs"
+import "github.com/frogwall/f2ray-core/v5/app/subscription/specs"
 
 type ConverterRegistry struct {
 	knownConverters map[string]Converter

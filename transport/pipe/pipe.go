@@ -3,9 +3,9 @@ package pipe
 import (
 	"context"
 
-	"github.com/frogwall/v2ray-core/v5/common/signal"
-	"github.com/frogwall/v2ray-core/v5/common/signal/done"
-	"github.com/frogwall/v2ray-core/v5/features/policy"
+	"github.com/frogwall/f2ray-core/v5/common/signal"
+	"github.com/frogwall/f2ray-core/v5/common/signal/done"
+	"github.com/frogwall/f2ray-core/v5/features/policy"
 )
 
 // Option for creating new Pipes.

@@ -10,8 +10,8 @@ import (
 
 	"golang.org/x/crypto/sha3"
 
-	"github.com/frogwall/v2ray-core/v5/app/subscription/containers"
-	"github.com/frogwall/v2ray-core/v5/main/commands/base"
+	"github.com/frogwall/f2ray-core/v5/app/subscription/containers"
+	"github.com/frogwall/f2ray-core/v5/main/commands/base"
 )
 
 var cmdSubscriptionEntriesExtractInputName *string

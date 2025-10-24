@@ -4,8 +4,8 @@ import (
 	"io"
 	"time"
 
-	"github.com/frogwall/v2ray-core/v5/common/errors"
-	"github.com/frogwall/v2ray-core/v5/common/signal"
+	"github.com/frogwall/f2ray-core/v5/common/errors"
+	"github.com/frogwall/f2ray-core/v5/common/signal"
 )
 
 type dataHandler func(MultiBuffer)

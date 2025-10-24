@@ -12,14 +12,14 @@ import (
 	"google.golang.org/grpc/credentials/insecure"
 	"google.golang.org/grpc/test/bufconn"
 
-	"github.com/frogwall/v2ray-core/v5/app/router"
-	. "github.com/frogwall/v2ray-core/v5/app/router/command"
-	"github.com/frogwall/v2ray-core/v5/app/router/routercommon"
-	"github.com/frogwall/v2ray-core/v5/app/stats"
-	"github.com/frogwall/v2ray-core/v5/common"
-	"github.com/frogwall/v2ray-core/v5/common/net"
-	"github.com/frogwall/v2ray-core/v5/features/routing"
-	"github.com/frogwall/v2ray-core/v5/testing/mocks"
+	"github.com/frogwall/f2ray-core/v5/app/router"
+	. "github.com/frogwall/f2ray-core/v5/app/router/command"
+	"github.com/frogwall/f2ray-core/v5/app/router/routercommon"
+	"github.com/frogwall/f2ray-core/v5/app/stats"
+	"github.com/frogwall/f2ray-core/v5/common"
+	"github.com/frogwall/f2ray-core/v5/common/net"
+	"github.com/frogwall/f2ray-core/v5/features/routing"
+	"github.com/frogwall/f2ray-core/v5/testing/mocks"
 )
 
 func TestServiceSubscribeRoutingStats(t *testing.T) {

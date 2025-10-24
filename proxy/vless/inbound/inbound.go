@@ -1,6 +1,6 @@
 package inbound
 
-//go:generate go run github.com/frogwall/v2ray-core/v5/common/errors/errorgen
+//go:generate go run github.com/frogwall/f2ray-core/v5/common/errors/errorgen
 
 import (
 	"context"
@@ -8,26 +8,26 @@ import (
 	"strconv"
 	"time"
 
-	core "github.com/frogwall/v2ray-core/v5"
-	"github.com/frogwall/v2ray-core/v5/common"
-	"github.com/frogwall/v2ray-core/v5/common/buf"
-	"github.com/frogwall/v2ray-core/v5/common/errors"
-	"github.com/frogwall/v2ray-core/v5/common/log"
-	"github.com/frogwall/v2ray-core/v5/common/net"
-	"github.com/frogwall/v2ray-core/v5/common/protocol"
-	"github.com/frogwall/v2ray-core/v5/common/retry"
-	"github.com/frogwall/v2ray-core/v5/common/serial"
-	"github.com/frogwall/v2ray-core/v5/common/session"
-	"github.com/frogwall/v2ray-core/v5/common/signal"
-	"github.com/frogwall/v2ray-core/v5/common/task"
-	"github.com/frogwall/v2ray-core/v5/features/dns"
-	feature_inbound "github.com/frogwall/v2ray-core/v5/features/inbound"
-	"github.com/frogwall/v2ray-core/v5/features/policy"
-	"github.com/frogwall/v2ray-core/v5/features/routing"
-	"github.com/frogwall/v2ray-core/v5/proxy/vless"
-	"github.com/frogwall/v2ray-core/v5/proxy/vless/encoding"
-	"github.com/frogwall/v2ray-core/v5/transport/internet"
-	"github.com/frogwall/v2ray-core/v5/transport/internet/tls"
+	core "github.com/frogwall/f2ray-core/v5"
+	"github.com/frogwall/f2ray-core/v5/common"
+	"github.com/frogwall/f2ray-core/v5/common/buf"
+	"github.com/frogwall/f2ray-core/v5/common/errors"
+	"github.com/frogwall/f2ray-core/v5/common/log"
+	"github.com/frogwall/f2ray-core/v5/common/net"
+	"github.com/frogwall/f2ray-core/v5/common/protocol"
+	"github.com/frogwall/f2ray-core/v5/common/retry"
+	"github.com/frogwall/f2ray-core/v5/common/serial"
+	"github.com/frogwall/f2ray-core/v5/common/session"
+	"github.com/frogwall/f2ray-core/v5/common/signal"
+	"github.com/frogwall/f2ray-core/v5/common/task"
+	"github.com/frogwall/f2ray-core/v5/features/dns"
+	feature_inbound "github.com/frogwall/f2ray-core/v5/features/inbound"
+	"github.com/frogwall/f2ray-core/v5/features/policy"
+	"github.com/frogwall/f2ray-core/v5/features/routing"
+	"github.com/frogwall/f2ray-core/v5/proxy/vless"
+	"github.com/frogwall/f2ray-core/v5/proxy/vless/encoding"
+	"github.com/frogwall/f2ray-core/v5/transport/internet"
+	"github.com/frogwall/f2ray-core/v5/transport/internet/tls"
 )
 
 func init() {

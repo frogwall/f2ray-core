@@ -1,7 +1,7 @@
 package tls
 
 import (
-	"github.com/frogwall/v2ray-core/v5/main/commands/base"
+	"github.com/frogwall/f2ray-core/v5/main/commands/base"
 )
 
 // CmdTLS holds all tls sub commands

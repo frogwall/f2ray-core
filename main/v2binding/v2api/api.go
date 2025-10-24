@@ -3,7 +3,7 @@ package main
 import (
 	"time"
 
-	"github.com/frogwall/v2ray-core/v5/main/v2binding"
+	"github.com/frogwall/f2ray-core/v5/main/v2binding"
 )
 
 func main() {

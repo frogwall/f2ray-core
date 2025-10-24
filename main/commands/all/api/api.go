@@ -1,7 +1,7 @@
 package api
 
 import (
-	"github.com/frogwall/v2ray-core/v5/main/commands/base"
+	"github.com/frogwall/f2ray-core/v5/main/commands/base"
 )
 
 // CmdAPI calls an API in an V2Ray process

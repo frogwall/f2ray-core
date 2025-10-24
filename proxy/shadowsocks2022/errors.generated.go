@@ -1,6 +1,6 @@
 package shadowsocks2022
 
-import "github.com/frogwall/v2ray-core/v5/common/errors"
+import "github.com/frogwall/f2ray-core/v5/common/errors"
 
 type errPathObjHolder struct{}
 

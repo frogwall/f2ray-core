@@ -4,8 +4,8 @@ import (
 	"io"
 	"sync"
 
-	"github.com/frogwall/v2ray-core/v5/common/buf"
-	"github.com/frogwall/v2ray-core/v5/common/retry"
+	"github.com/frogwall/f2ray-core/v5/common/buf"
+	"github.com/frogwall/f2ray-core/v5/common/retry"
 )
 
 type SegmentWriter interface {

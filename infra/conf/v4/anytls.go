@@ -3,7 +3,7 @@ package v4
 import (
 	"github.com/golang/protobuf/proto"
 
-	anytls "github.com/frogwall/v2ray-core/v5/proxy/anytls"
+	anytls "github.com/frogwall/f2ray-core/v5/proxy/anytls"
 )
 
 // AnyTLSServerConfig represents the JSON configuration for an AnyTLS server

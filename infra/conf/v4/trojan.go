@@ -10,12 +10,12 @@ import (
 
 	"github.com/golang/protobuf/proto"
 
-	"github.com/frogwall/v2ray-core/v5/common/net"
-	"github.com/frogwall/v2ray-core/v5/common/net/packetaddr"
-	"github.com/frogwall/v2ray-core/v5/common/protocol"
-	"github.com/frogwall/v2ray-core/v5/common/serial"
-	"github.com/frogwall/v2ray-core/v5/infra/conf/cfgcommon"
-	"github.com/frogwall/v2ray-core/v5/proxy/trojan"
+	"github.com/frogwall/f2ray-core/v5/common/net"
+	"github.com/frogwall/f2ray-core/v5/common/net/packetaddr"
+	"github.com/frogwall/f2ray-core/v5/common/protocol"
+	"github.com/frogwall/f2ray-core/v5/common/serial"
+	"github.com/frogwall/f2ray-core/v5/infra/conf/cfgcommon"
+	"github.com/frogwall/f2ray-core/v5/proxy/trojan"
 )
 
 // TrojanServerTarget is configuration of a single trojan server

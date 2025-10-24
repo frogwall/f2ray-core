@@ -3,7 +3,7 @@ package tls_test
 import (
 	"testing"
 
-	. "github.com/frogwall/v2ray-core/v5/common/protocol/tls"
+	. "github.com/frogwall/f2ray-core/v5/common/protocol/tls"
 )
 
 func TestTLSHeaders(t *testing.T) {

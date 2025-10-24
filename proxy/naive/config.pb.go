@@ -13,7 +13,7 @@ import (
 	sync "sync"
 	unsafe "unsafe"
 	
-	"github.com/frogwall/v2ray-core/v5/common/protocol"
+	"github.com/frogwall/f2ray-core/v5/common/protocol"
 )
 
 const (
@@ -213,7 +213,7 @@ const file_proxy_naive_config_proto_rawDesc = "" +
 	"\bpassword\x18\x04 \x01(\tR\bpassword\"U\n" +
 	"\fClientConfig\x12E\n" +
 	"\aservers\x18\x01 \x03(\v2+.v2ray.core.proxy.naive.NaiveServerEndpointR\aserversBc\n" +
-	"\x1acom.v2ray.core.proxy.naiveP\x01Z*github.com/frogwall/v2ray-core/v5/proxy/naive\xaa\x02\x16V2Ray.Core.Proxy.Naiveb\x06proto3"
+	"\x1acom.v2ray.core.proxy.naiveP\x01Z*github.com/frogwall/f2ray-core/v5/proxy/naive\xaa\x02\x16V2Ray.Core.Proxy.Naiveb\x06proto3"
 
 var (
 	file_proxy_naive_config_proto_rawDescOnce sync.Once

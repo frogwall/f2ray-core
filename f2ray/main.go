@@ -1,9 +1,9 @@
 package main
 
 import (
-	"github.com/frogwall/v2ray-core/v5/main/commands"
-	"github.com/frogwall/v2ray-core/v5/main/commands/base"
-	_ "github.com/frogwall/v2ray-core/v5/main/distro/all"
+	"github.com/frogwall/f2ray-core/v5/main/commands"
+	"github.com/frogwall/f2ray-core/v5/main/commands/base"
+	_ "github.com/frogwall/f2ray-core/v5/main/distro/all"
 )
 
 func main() {

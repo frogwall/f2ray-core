@@ -3,7 +3,7 @@ package task
 import (
 	"context"
 
-	"github.com/frogwall/v2ray-core/v5/common/signal/semaphore"
+	"github.com/frogwall/f2ray-core/v5/common/signal/semaphore"
 )
 
 // OnSuccess executes g() after f() returns nil.

@@ -1,9 +1,9 @@
 package v4
 
 import (
-	"github.com/frogwall/v2ray-core/v5/common/serial"
-	"github.com/frogwall/v2ray-core/v5/transport"
-	"github.com/frogwall/v2ray-core/v5/transport/internet"
+	"github.com/frogwall/f2ray-core/v5/common/serial"
+	"github.com/frogwall/f2ray-core/v5/transport"
+	"github.com/frogwall/f2ray-core/v5/transport/internet"
 )
 
 type TransportConfig struct {

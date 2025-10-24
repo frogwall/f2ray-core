@@ -5,8 +5,8 @@ import (
 	"os"
 	"strings"
 
-	routerService "github.com/frogwall/v2ray-core/v5/app/router/command"
-	"github.com/frogwall/v2ray-core/v5/main/commands/base"
+	routerService "github.com/frogwall/f2ray-core/v5/app/router/command"
+	"github.com/frogwall/f2ray-core/v5/main/commands/base"
 )
 
 // TODO: support "-json" flag for json output

@@ -4,7 +4,7 @@ import (
 	"strings"
 	"sync"
 
-	"github.com/frogwall/v2ray-core/v5/common/protocol"
+	"github.com/frogwall/f2ray-core/v5/common/protocol"
 )
 
 // Validator stores valid trojan users.

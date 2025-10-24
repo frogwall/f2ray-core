@@ -5,8 +5,8 @@ import (
 	"path/filepath"
 	"strings"
 
-	core "github.com/frogwall/v2ray-core/v5"
-	"github.com/frogwall/v2ray-core/v5/common/cmdarg"
+	core "github.com/frogwall/f2ray-core/v5"
+	"github.com/frogwall/f2ray-core/v5/common/cmdarg"
 )
 
 // MergeAs load input and merge as specified format into m

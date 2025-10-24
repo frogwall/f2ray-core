@@ -1,8 +1,8 @@
 package quic
 
 import (
-	protocol "github.com/frogwall/v2ray-core/v5/common/protocol"
-	_ "github.com/frogwall/v2ray-core/v5/common/protoext"
+	protocol "github.com/frogwall/f2ray-core/v5/common/protocol"
+	_ "github.com/frogwall/f2ray-core/v5/common/protoext"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	anypb "google.golang.org/protobuf/types/known/anypb"
@@ -88,7 +88,7 @@ const file_transport_internet_quic_config_proto_rawDesc = "" +
 	"\bsecurity\x18\x02 \x01(\v2*.v2ray.core.common.protocol.SecurityConfigR\bsecurity\x12,\n" +
 	"\x06header\x18\x03 \x01(\v2\x14.google.protobuf.AnyR\x06header:\x15\x82\xb5\x18\x11\n" +
 	"\ttransport\x12\x04quicB\x87\x01\n" +
-	"&com.v2ray.core.transport.internet.quicP\x01Z6github.com/frogwall/v2ray-core/v5/transport/internet/quic\xaa\x02\"V2Ray.Core.Transport.Internet.Quicb\x06proto3"
+	"&com.v2ray.core.transport.internet.quicP\x01Z6github.com/frogwall/f2ray-core/v5/transport/internet/quic\xaa\x02\"V2Ray.Core.Transport.Internet.Quicb\x06proto3"
 
 var (
 	file_transport_internet_quic_config_proto_rawDescOnce sync.Once

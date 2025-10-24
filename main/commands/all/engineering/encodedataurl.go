@@ -7,7 +7,7 @@ import (
 
 	"github.com/vincent-petithory/dataurl"
 
-	"github.com/frogwall/v2ray-core/v5/main/commands/base"
+	"github.com/frogwall/f2ray-core/v5/main/commands/base"
 )
 
 var cmdEncodeDataURLContentType *string

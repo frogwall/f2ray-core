@@ -1,8 +1,8 @@
 package log
 
 import (
-	log "github.com/frogwall/v2ray-core/v5/common/log"
-	_ "github.com/frogwall/v2ray-core/v5/common/protoext"
+	log "github.com/frogwall/f2ray-core/v5/common/log"
+	_ "github.com/frogwall/f2ray-core/v5/common/protoext"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	reflect "reflect"
@@ -199,7 +199,7 @@ const file_app_log_config_proto_rawDesc = "" +
 	"\aConsole\x10\x01\x12\b\n" +
 	"\x04File\x10\x02\x12\t\n" +
 	"\x05Event\x10\x03BW\n" +
-	"\x16com.v2ray.core.app.logP\x01Z&github.com/frogwall/v2ray-core/v5/app/log\xaa\x02\x12V2Ray.Core.App.Logb\x06proto3"
+	"\x16com.v2ray.core.app.logP\x01Z&github.com/frogwall/f2ray-core/v5/app/log\xaa\x02\x12V2Ray.Core.App.Logb\x06proto3"
 
 var (
 	file_app_log_config_proto_rawDescOnce sync.Once

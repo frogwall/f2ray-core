@@ -182,7 +182,7 @@ const file_transport_internet_shadowtls_config_proto_rawDesc = "" +
 	"\x04User\x12\x12\n" +
 	"\x04name\x18\x01 \x01(\tR\x04name\x12\x1a\n" +
 	"\bpassword\x18\x02 \x01(\tR\bpasswordB\x96\x01\n" +
-	"+com.v2ray.core.transport.internet.shadowtlsP\x01Z;github.com/frogwall/v2ray-core/v5/transport/internet/shadowtls\xaa\x02'V2Ray.Core.Transport.Internet.ShadowTLSb\x06proto3"
+	"+com.v2ray.core.transport.internet.shadowtlsP\x01Z;github.com/frogwall/f2ray-core/v5/transport/internet/shadowtls\xaa\x02'V2Ray.Core.Transport.Internet.ShadowTLSb\x06proto3"
 
 var (
 	file_transport_internet_shadowtls_config_proto_rawDescOnce sync.Once

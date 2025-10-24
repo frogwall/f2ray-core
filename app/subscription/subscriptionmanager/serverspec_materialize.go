@@ -1,11 +1,11 @@
 package subscriptionmanager
 
 import (
-	core "github.com/frogwall/v2ray-core/v5"
-	"github.com/frogwall/v2ray-core/v5/app/proxyman"
-	"github.com/frogwall/v2ray-core/v5/app/subscription/specs"
-	"github.com/frogwall/v2ray-core/v5/common/serial"
-	"github.com/frogwall/v2ray-core/v5/transport/internet"
+	core "github.com/frogwall/f2ray-core/v5"
+	"github.com/frogwall/f2ray-core/v5/app/proxyman"
+	"github.com/frogwall/f2ray-core/v5/app/subscription/specs"
+	"github.com/frogwall/f2ray-core/v5/common/serial"
+	"github.com/frogwall/f2ray-core/v5/transport/internet"
 )
 
 func (s *SubscriptionManagerImpl) materialize(subscriptionName, tagName string, serverSpec *specs.SubscriptionServerConfig) (*core.OutboundHandlerConfig, error) {

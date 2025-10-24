@@ -4,7 +4,7 @@ import (
 	"crypto/aes"
 	"crypto/cipher"
 
-	"github.com/frogwall/v2ray-core/v5/common"
+	"github.com/frogwall/f2ray-core/v5/common"
 )
 
 // NewAesDecryptionStream creates a new AES encryption stream based on given key and IV.

@@ -1,7 +1,7 @@
 package instman
 
 import (
-	_ "github.com/frogwall/v2ray-core/v5/common/protoext"
+	_ "github.com/frogwall/f2ray-core/v5/common/protoext"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	reflect "reflect"
@@ -59,7 +59,7 @@ const file_app_instman_config_proto_rawDesc = "" +
 	"\x18app/instman/config.proto\x12\x16v2ray.core.app.instman\x1a common/protoext/extensions.proto\" \n" +
 	"\x06Config:\x16\x82\xb5\x18\x12\n" +
 	"\aservice\x12\ainstmanBc\n" +
-	"\x1acom.v2ray.core.app.instmanP\x01Z*github.com/frogwall/v2ray-core/v5/app/instman\xaa\x02\x16V2Ray.Core.App.Instmanb\x06proto3"
+	"\x1acom.v2ray.core.app.instmanP\x01Z*github.com/frogwall/f2ray-core/v5/app/instman\xaa\x02\x16V2Ray.Core.App.Instmanb\x06proto3"
 
 var (
 	file_app_instman_config_proto_rawDescOnce sync.Once

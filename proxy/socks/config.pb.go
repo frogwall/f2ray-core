@@ -1,9 +1,9 @@
 package socks
 
 import (
-	net "github.com/frogwall/v2ray-core/v5/common/net"
-	packetaddr "github.com/frogwall/v2ray-core/v5/common/net/packetaddr"
-	protocol "github.com/frogwall/v2ray-core/v5/common/protocol"
+	net "github.com/frogwall/f2ray-core/v5/common/net"
+	packetaddr "github.com/frogwall/f2ray-core/v5/common/net/packetaddr"
+	protocol "github.com/frogwall/f2ray-core/v5/common/protocol"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	reflect "reflect"
@@ -369,7 +369,7 @@ const file_proxy_socks_config_proto_rawDesc = "" +
 	"\n" +
 	"\x06SOCKS4\x10\x01\x12\v\n" +
 	"\aSOCKS4A\x10\x02Bc\n" +
-	"\x1acom.v2ray.core.proxy.socksP\x01Z*github.com/frogwall/v2ray-core/v5/proxy/socks\xaa\x02\x16V2Ray.Core.Proxy.Socksb\x06proto3"
+	"\x1acom.v2ray.core.proxy.socksP\x01Z*github.com/frogwall/f2ray-core/v5/proxy/socks\xaa\x02\x16V2Ray.Core.Proxy.Socksb\x06proto3"
 
 var (
 	file_proxy_socks_config_proto_rawDescOnce sync.Once

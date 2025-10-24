@@ -57,7 +57,7 @@ const file_transport_internet_headers_wechat_config_proto_rawDesc = "" +
 	"\n" +
 	".transport/internet/headers/wechat/config.proto\x12,v2ray.core.transport.internet.headers.wechat\"\r\n" +
 	"\vVideoConfigB\xa5\x01\n" +
-	"0com.v2ray.core.transport.internet.headers.wechatP\x01Z@github.com/frogwall/v2ray-core/v5/transport/internet/headers/wechat\xaa\x02,V2Ray.Core.Transport.Internet.Headers.Wechatb\x06proto3"
+	"0com.v2ray.core.transport.internet.headers.wechatP\x01Z@github.com/frogwall/f2ray-core/v5/transport/internet/headers/wechat\xaa\x02,V2Ray.Core.Transport.Internet.Headers.Wechatb\x06proto3"
 
 var (
 	file_transport_internet_headers_wechat_config_proto_rawDescOnce sync.Once

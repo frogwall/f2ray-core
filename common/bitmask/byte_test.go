@@ -3,7 +3,7 @@ package bitmask_test
 import (
 	"testing"
 
-	. "github.com/frogwall/v2ray-core/v5/common/bitmask"
+	. "github.com/frogwall/f2ray-core/v5/common/bitmask"
 )
 
 func TestBitmaskByte(t *testing.T) {

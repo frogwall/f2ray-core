@@ -1,8 +1,8 @@
 package command
 
 import (
-	observatory "github.com/frogwall/v2ray-core/v5/app/observatory"
-	_ "github.com/frogwall/v2ray-core/v5/common/protoext"
+	observatory "github.com/frogwall/f2ray-core/v5/app/observatory"
+	_ "github.com/frogwall/f2ray-core/v5/common/protoext"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	reflect "reflect"
@@ -154,7 +154,7 @@ const file_app_observatory_command_command_proto_rawDesc = "" +
 	"\vgrpcservice\x12\vobservatory2\xa9\x01\n" +
 	"\x12ObservatoryService\x12\x92\x01\n" +
 	"\x11GetOutboundStatus\x12<.v2ray.core.app.observatory.command.GetOutboundStatusRequest\x1a=.v2ray.core.app.observatory.command.GetOutboundStatusResponse\"\x00B\x87\x01\n" +
-	"&com.v2ray.core.app.observatory.commandP\x01Z6github.com/frogwall/v2ray-core/v5/app/observatory/command\xaa\x02\"V2Ray.Core.App.Observatory.Commandb\x06proto3"
+	"&com.v2ray.core.app.observatory.commandP\x01Z6github.com/frogwall/f2ray-core/v5/app/observatory/command\xaa\x02\"V2Ray.Core.App.Observatory.Commandb\x06proto3"
 
 var (
 	file_app_observatory_command_command_proto_rawDescOnce sync.Once

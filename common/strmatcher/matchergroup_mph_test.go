@@ -4,8 +4,8 @@ import (
 	"reflect"
 	"testing"
 
-	"github.com/frogwall/v2ray-core/v5/common"
-	. "github.com/frogwall/v2ray-core/v5/common/strmatcher"
+	"github.com/frogwall/f2ray-core/v5/common"
+	. "github.com/frogwall/f2ray-core/v5/common/strmatcher"
 )
 
 func TestMphMatcherGroup(t *testing.T) {

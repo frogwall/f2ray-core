@@ -7,10 +7,10 @@ import (
 	"sync"
 	"time"
 
-	"github.com/frogwall/v2ray-core/v5/common"
-	"github.com/frogwall/v2ray-core/v5/common/buf"
-	"github.com/frogwall/v2ray-core/v5/common/signal"
-	"github.com/frogwall/v2ray-core/v5/common/signal/done"
+	"github.com/frogwall/f2ray-core/v5/common"
+	"github.com/frogwall/f2ray-core/v5/common/buf"
+	"github.com/frogwall/f2ray-core/v5/common/signal"
+	"github.com/frogwall/f2ray-core/v5/common/signal/done"
 )
 
 type state byte

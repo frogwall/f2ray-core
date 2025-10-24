@@ -12,22 +12,22 @@ import (
 	"sync"
 	"time"
 
-	"github.com/frogwall/v2ray-core/v5/app/persistentstorage"
-	"github.com/frogwall/v2ray-core/v5/app/persistentstorage/protostorage"
-	"github.com/frogwall/v2ray-core/v5/common/environment"
-	"github.com/frogwall/v2ray-core/v5/common/environment/envctx"
+	"github.com/frogwall/f2ray-core/v5/app/persistentstorage"
+	"github.com/frogwall/f2ray-core/v5/app/persistentstorage/protostorage"
+	"github.com/frogwall/f2ray-core/v5/common/environment"
+	"github.com/frogwall/f2ray-core/v5/common/environment/envctx"
 
 	"github.com/golang/protobuf/proto"
 
-	core "github.com/frogwall/v2ray-core/v5"
-	"github.com/frogwall/v2ray-core/v5/common"
-	v2net "github.com/frogwall/v2ray-core/v5/common/net"
-	"github.com/frogwall/v2ray-core/v5/common/session"
-	"github.com/frogwall/v2ray-core/v5/common/signal/done"
-	"github.com/frogwall/v2ray-core/v5/common/task"
-	"github.com/frogwall/v2ray-core/v5/features/extension"
-	"github.com/frogwall/v2ray-core/v5/features/outbound"
-	"github.com/frogwall/v2ray-core/v5/transport/internet/tagged"
+	core "github.com/frogwall/f2ray-core/v5"
+	"github.com/frogwall/f2ray-core/v5/common"
+	v2net "github.com/frogwall/f2ray-core/v5/common/net"
+	"github.com/frogwall/f2ray-core/v5/common/session"
+	"github.com/frogwall/f2ray-core/v5/common/signal/done"
+	"github.com/frogwall/f2ray-core/v5/common/task"
+	"github.com/frogwall/f2ray-core/v5/features/extension"
+	"github.com/frogwall/f2ray-core/v5/features/outbound"
+	"github.com/frogwall/f2ray-core/v5/transport/internet/tagged"
 )
 
 type Observer struct {

@@ -8,7 +8,7 @@ import (
 
 	protov2 "google.golang.org/protobuf/proto"
 
-	"github.com/frogwall/v2ray-core/v5/transport/internet/tlsmirror"
+	"github.com/frogwall/f2ray-core/v5/transport/internet/tlsmirror"
 )
 
 func NewHTTPEnrollmentConfirmationClientFromHTTPRoundTripper(tripper http.RoundTripper) (tlsmirror.ConnectionEnrollmentConfirmation, error) {

@@ -3,8 +3,8 @@ package udp
 import (
 	gonet "net"
 
-	"github.com/frogwall/v2ray-core/v5/common/signal"
-	"github.com/frogwall/v2ray-core/v5/transport/internet"
+	"github.com/frogwall/f2ray-core/v5/common/signal"
+	"github.com/frogwall/f2ray-core/v5/transport/internet"
 )
 
 type dataHandler func(content []byte, address gonet.Addr)

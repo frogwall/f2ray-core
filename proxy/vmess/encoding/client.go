@@ -15,16 +15,16 @@ import (
 
 	"golang.org/x/crypto/chacha20poly1305"
 
-	"github.com/frogwall/v2ray-core/v5/common"
-	"github.com/frogwall/v2ray-core/v5/common/bitmask"
-	"github.com/frogwall/v2ray-core/v5/common/buf"
-	"github.com/frogwall/v2ray-core/v5/common/crypto"
-	"github.com/frogwall/v2ray-core/v5/common/dice"
-	"github.com/frogwall/v2ray-core/v5/common/drain"
-	"github.com/frogwall/v2ray-core/v5/common/protocol"
-	"github.com/frogwall/v2ray-core/v5/common/serial"
-	"github.com/frogwall/v2ray-core/v5/proxy/vmess"
-	vmessaead "github.com/frogwall/v2ray-core/v5/proxy/vmess/aead"
+	"github.com/frogwall/f2ray-core/v5/common"
+	"github.com/frogwall/f2ray-core/v5/common/bitmask"
+	"github.com/frogwall/f2ray-core/v5/common/buf"
+	"github.com/frogwall/f2ray-core/v5/common/crypto"
+	"github.com/frogwall/f2ray-core/v5/common/dice"
+	"github.com/frogwall/f2ray-core/v5/common/drain"
+	"github.com/frogwall/f2ray-core/v5/common/protocol"
+	"github.com/frogwall/f2ray-core/v5/common/serial"
+	"github.com/frogwall/f2ray-core/v5/proxy/vmess"
+	vmessaead "github.com/frogwall/f2ray-core/v5/proxy/vmess/aead"
 )
 
 func hashTimestamp(h hash.Hash, t protocol.Timestamp) []byte {

@@ -5,8 +5,8 @@ import (
 	"sync"
 	"time"
 
-	"github.com/frogwall/v2ray-core/v5/common"
-	"github.com/frogwall/v2ray-core/v5/common/task"
+	"github.com/frogwall/f2ray-core/v5/common"
+	"github.com/frogwall/f2ray-core/v5/common/task"
 )
 
 type ActivityUpdater interface {

@@ -10,11 +10,11 @@ import (
 
 	"google.golang.org/protobuf/proto"
 
-	"github.com/frogwall/v2ray-core/v5/app/router"
-	"github.com/frogwall/v2ray-core/v5/app/router/routercommon"
-	"github.com/frogwall/v2ray-core/v5/common"
-	"github.com/frogwall/v2ray-core/v5/common/net"
-	"github.com/frogwall/v2ray-core/v5/common/platform/filesystem"
+	"github.com/frogwall/f2ray-core/v5/app/router"
+	"github.com/frogwall/f2ray-core/v5/app/router/routercommon"
+	"github.com/frogwall/f2ray-core/v5/common"
+	"github.com/frogwall/f2ray-core/v5/common/net"
+	"github.com/frogwall/f2ray-core/v5/common/platform/filesystem"
 )
 
 func init() {

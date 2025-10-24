@@ -1,7 +1,7 @@
 package http
 
 import (
-	"github.com/frogwall/v2ray-core/v5/common/protocol"
+	"github.com/frogwall/f2ray-core/v5/common/protocol"
 )
 
 func (a *Account) Equals(another protocol.Account) bool {

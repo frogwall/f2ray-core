@@ -1,6 +1,6 @@
 package muxcfg
 
-import "github.com/frogwall/v2ray-core/v5/app/proxyman"
+import "github.com/frogwall/f2ray-core/v5/app/proxyman"
 
 type MuxConfig struct {
 	Enabled     bool  `json:"enabled"`

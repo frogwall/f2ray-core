@@ -4,7 +4,7 @@ import (
 	"encoding/json"
 	"testing"
 
-	. "github.com/frogwall/v2ray-core/v5/infra/conf/json"
+	. "github.com/frogwall/f2ray-core/v5/infra/conf/json"
 )
 
 func TestYMLToJSON_V2Style(t *testing.T) {

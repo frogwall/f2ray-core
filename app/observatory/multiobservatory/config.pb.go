@@ -1,8 +1,8 @@
 package multiobservatory
 
 import (
-	_ "github.com/frogwall/v2ray-core/v5/common/protoext"
-	taggedfeatures "github.com/frogwall/v2ray-core/v5/common/taggedfeatures"
+	_ "github.com/frogwall/f2ray-core/v5/common/protoext"
+	taggedfeatures "github.com/frogwall/f2ray-core/v5/common/taggedfeatures"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	reflect "reflect"
@@ -69,7 +69,7 @@ const file_app_observatory_multiobservatory_config_proto_rawDesc = "" +
 	"\x06Config\x12B\n" +
 	"\aholders\x18\x01 \x01(\v2(.v2ray.core.common.taggedfeatures.ConfigR\aholders:\x1f\x82\xb5\x18\x1b\n" +
 	"\aservice\x12\x10multiobservatoryB\xa2\x01\n" +
-	"/com.v2ray.core.app.observatory.multiObservatoryP\x01Z?github.com/frogwall/v2ray-core/v5/app/observatory/multiobservatory\xaa\x02+V2Ray.Core.App.Observatory.MultiObservatoryb\x06proto3"
+	"/com.v2ray.core.app.observatory.multiObservatoryP\x01Z?github.com/frogwall/f2ray-core/v5/app/observatory/multiobservatory\xaa\x02+V2Ray.Core.App.Observatory.MultiObservatoryb\x06proto3"
 
 var (
 	file_app_observatory_multiobservatory_config_proto_rawDescOnce sync.Once

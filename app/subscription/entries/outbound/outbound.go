@@ -1,12 +1,12 @@
 package outbound
 
 import (
-	"github.com/frogwall/v2ray-core/v5/app/subscription/entries"
-	"github.com/frogwall/v2ray-core/v5/app/subscription/specs"
-	"github.com/frogwall/v2ray-core/v5/common"
+	"github.com/frogwall/f2ray-core/v5/app/subscription/entries"
+	"github.com/frogwall/f2ray-core/v5/app/subscription/specs"
+	"github.com/frogwall/f2ray-core/v5/common"
 )
 
-//go:generate go run github.com/frogwall/v2ray-core/v5/common/errors/errorgen
+//go:generate go run github.com/frogwall/f2ray-core/v5/common/errors/errorgen
 
 // NewOutboundEntriesParser internal api
 func NewOutboundEntriesParser() entries.Converter {

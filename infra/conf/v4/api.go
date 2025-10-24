@@ -7,13 +7,13 @@ import (
 	"github.com/jhump/protoreflect/dynamic"
 	"google.golang.org/protobuf/types/known/anypb"
 
-	"github.com/frogwall/v2ray-core/v5/app/commander"
-	loggerservice "github.com/frogwall/v2ray-core/v5/app/log/command"
-	observatoryservice "github.com/frogwall/v2ray-core/v5/app/observatory/command"
-	handlerservice "github.com/frogwall/v2ray-core/v5/app/proxyman/command"
-	routerservice "github.com/frogwall/v2ray-core/v5/app/router/command"
-	statsservice "github.com/frogwall/v2ray-core/v5/app/stats/command"
-	"github.com/frogwall/v2ray-core/v5/common/serial"
+	"github.com/frogwall/f2ray-core/v5/app/commander"
+	loggerservice "github.com/frogwall/f2ray-core/v5/app/log/command"
+	observatoryservice "github.com/frogwall/f2ray-core/v5/app/observatory/command"
+	handlerservice "github.com/frogwall/f2ray-core/v5/app/proxyman/command"
+	routerservice "github.com/frogwall/f2ray-core/v5/app/router/command"
+	statsservice "github.com/frogwall/f2ray-core/v5/app/stats/command"
+	"github.com/frogwall/f2ray-core/v5/common/serial"
 )
 
 type APIConfig struct {

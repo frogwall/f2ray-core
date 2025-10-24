@@ -1,7 +1,7 @@
 package reverse
 
 import (
-	_ "github.com/frogwall/v2ray-core/v5/common/protoext"
+	_ "github.com/frogwall/f2ray-core/v5/common/protoext"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	reflect "reflect"
@@ -292,7 +292,7 @@ const file_app_reverse_config_proto_rawDesc = "" +
 	"\rbridge_config\x18\x01 \x03(\v2$.v2ray.core.app.reverse.BridgeConfigR\fbridgeConfig\x12I\n" +
 	"\rportal_config\x18\x02 \x03(\v2$.v2ray.core.app.reverse.PortalConfigR\fportalConfig:\x16\x82\xb5\x18\x12\n" +
 	"\aservice\x12\areverseBg\n" +
-	"\x1ccom.v2ray.core.proxy.reverseP\x01Z*github.com/frogwall/v2ray-core/v5/app/reverse\xaa\x02\x18V2Ray.Core.Proxy.Reverseb\x06proto3"
+	"\x1ccom.v2ray.core.proxy.reverseP\x01Z*github.com/frogwall/f2ray-core/v5/app/reverse\xaa\x02\x18V2Ray.Core.Proxy.Reverseb\x06proto3"
 
 var (
 	file_app_reverse_config_proto_rawDescOnce sync.Once

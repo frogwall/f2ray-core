@@ -1,15 +1,15 @@
 // Package blackhole is an outbound handler that blocks all connections.
 package blackhole
 
-//go:generate go run github.com/frogwall/v2ray-core/v5/common/errors/errorgen
+//go:generate go run github.com/frogwall/f2ray-core/v5/common/errors/errorgen
 
 import (
 	"context"
 	"time"
 
-	"github.com/frogwall/v2ray-core/v5/common"
-	"github.com/frogwall/v2ray-core/v5/transport"
-	"github.com/frogwall/v2ray-core/v5/transport/internet"
+	"github.com/frogwall/f2ray-core/v5/common"
+	"github.com/frogwall/f2ray-core/v5/transport"
+	"github.com/frogwall/f2ray-core/v5/transport/internet"
 )
 
 // Handler is an outbound connection that silently swallow the entire payload.

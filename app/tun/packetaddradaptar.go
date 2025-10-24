@@ -4,8 +4,8 @@ import (
 	"gvisor.dev/gvisor/pkg/tcpip"
 	"gvisor.dev/gvisor/pkg/tcpip/stack"
 
-	"github.com/frogwall/v2ray-core/v5/app/tun/device"
-	"github.com/frogwall/v2ray-core/v5/app/tun/tunsorter"
+	"github.com/frogwall/f2ray-core/v5/app/tun/device"
+	"github.com/frogwall/f2ray-core/v5/app/tun/tunsorter"
 )
 
 func NewDeviceWithSorter(overlay device.Device, sorter *tunsorter.TunSorter) device.Device {

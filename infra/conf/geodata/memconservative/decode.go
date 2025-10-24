@@ -7,7 +7,7 @@ import (
 
 	"google.golang.org/protobuf/encoding/protowire"
 
-	"github.com/frogwall/v2ray-core/v5/common/platform/filesystem"
+	"github.com/frogwall/f2ray-core/v5/common/platform/filesystem"
 )
 
 var (

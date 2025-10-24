@@ -3,10 +3,10 @@ package device
 import (
 	"gvisor.dev/gvisor/pkg/tcpip/stack"
 
-	"github.com/frogwall/v2ray-core/v5/common"
+	"github.com/frogwall/f2ray-core/v5/common"
 )
 
-//go:generate go run github.com/frogwall/v2ray-core/v5/common/errors/errorgen
+//go:generate go run github.com/frogwall/f2ray-core/v5/common/errors/errorgen
 
 type Device interface {
 	stack.LinkEndpoint

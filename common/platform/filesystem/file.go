@@ -5,9 +5,9 @@ import (
 	"os"
 	"path/filepath"
 
-	"github.com/frogwall/v2ray-core/v5/common/buf"
-	"github.com/frogwall/v2ray-core/v5/common/platform"
-	"github.com/frogwall/v2ray-core/v5/common/platform/filesystem/fsifce"
+	"github.com/frogwall/f2ray-core/v5/common/buf"
+	"github.com/frogwall/f2ray-core/v5/common/platform"
+	"github.com/frogwall/f2ray-core/v5/common/platform/filesystem/fsifce"
 )
 
 var NewFileSeeker fsifce.FileSeekerFunc = func(path string) (io.ReadSeekCloser, error) {

@@ -3,7 +3,7 @@ package device
 import (
 	"io"
 
-	"github.com/frogwall/v2ray-core/v5/common/errors"
+	"github.com/frogwall/f2ray-core/v5/common/errors"
 
 	"gvisor.dev/gvisor/pkg/buffer"
 	"gvisor.dev/gvisor/pkg/tcpip/stack"

@@ -3,13 +3,13 @@ package internet_test
 import (
 	"testing"
 
-	"github.com/frogwall/v2ray-core/v5/common"
-	. "github.com/frogwall/v2ray-core/v5/transport/internet"
-	"github.com/frogwall/v2ray-core/v5/transport/internet/headers/noop"
-	"github.com/frogwall/v2ray-core/v5/transport/internet/headers/srtp"
-	"github.com/frogwall/v2ray-core/v5/transport/internet/headers/utp"
-	"github.com/frogwall/v2ray-core/v5/transport/internet/headers/wechat"
-	"github.com/frogwall/v2ray-core/v5/transport/internet/headers/wireguard"
+	"github.com/frogwall/f2ray-core/v5/common"
+	. "github.com/frogwall/f2ray-core/v5/transport/internet"
+	"github.com/frogwall/f2ray-core/v5/transport/internet/headers/noop"
+	"github.com/frogwall/f2ray-core/v5/transport/internet/headers/srtp"
+	"github.com/frogwall/f2ray-core/v5/transport/internet/headers/utp"
+	"github.com/frogwall/f2ray-core/v5/transport/internet/headers/wechat"
+	"github.com/frogwall/f2ray-core/v5/transport/internet/headers/wireguard"
 )
 
 func TestAllHeadersLoadable(t *testing.T) {

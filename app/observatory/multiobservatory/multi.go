@@ -6,10 +6,10 @@ import (
 	"github.com/golang/protobuf/jsonpb"
 	"github.com/golang/protobuf/proto"
 
-	"github.com/frogwall/v2ray-core/v5/common"
-	"github.com/frogwall/v2ray-core/v5/common/taggedfeatures"
-	"github.com/frogwall/v2ray-core/v5/features"
-	"github.com/frogwall/v2ray-core/v5/features/extension"
+	"github.com/frogwall/f2ray-core/v5/common"
+	"github.com/frogwall/f2ray-core/v5/common/taggedfeatures"
+	"github.com/frogwall/f2ray-core/v5/features"
+	"github.com/frogwall/f2ray-core/v5/features/extension"
 )
 
 type Observer struct {

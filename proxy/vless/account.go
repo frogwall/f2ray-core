@@ -4,8 +4,8 @@
 package vless
 
 import (
-	"github.com/frogwall/v2ray-core/v5/common/protocol"
-	"github.com/frogwall/v2ray-core/v5/common/uuid"
+	"github.com/frogwall/f2ray-core/v5/common/protocol"
+	"github.com/frogwall/f2ray-core/v5/common/uuid"
 )
 
 // AsAccount implements protocol.Account.AsAccount().

@@ -3,13 +3,13 @@ package dispatcher
 import (
 	"context"
 
-	"github.com/frogwall/v2ray-core/v5/common"
-	"github.com/frogwall/v2ray-core/v5/common/net"
-	"github.com/frogwall/v2ray-core/v5/common/protocol"
-	"github.com/frogwall/v2ray-core/v5/common/protocol/bittorrent"
-	"github.com/frogwall/v2ray-core/v5/common/protocol/http"
-	"github.com/frogwall/v2ray-core/v5/common/protocol/quic"
-	"github.com/frogwall/v2ray-core/v5/common/protocol/tls"
+	"github.com/frogwall/f2ray-core/v5/common"
+	"github.com/frogwall/f2ray-core/v5/common/net"
+	"github.com/frogwall/f2ray-core/v5/common/protocol"
+	"github.com/frogwall/f2ray-core/v5/common/protocol/bittorrent"
+	"github.com/frogwall/f2ray-core/v5/common/protocol/http"
+	"github.com/frogwall/f2ray-core/v5/common/protocol/quic"
+	"github.com/frogwall/f2ray-core/v5/common/protocol/tls"
 )
 
 type SniffResult interface {

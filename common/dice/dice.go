@@ -9,7 +9,7 @@ import (
 	"math/rand"
 	"time"
 
-	"github.com/frogwall/v2ray-core/v5/common"
+	"github.com/frogwall/f2ray-core/v5/common"
 )
 
 // Roll returns a non-negative number between 0 (inclusive) and n (exclusive).

@@ -5,12 +5,12 @@ import (
 
 	"google.golang.org/protobuf/runtime/protoiface"
 
-	core "github.com/frogwall/v2ray-core/v5"
-	"github.com/frogwall/v2ray-core/v5/app/observatory"
-	"github.com/frogwall/v2ray-core/v5/common"
-	"github.com/frogwall/v2ray-core/v5/common/dice"
-	"github.com/frogwall/v2ray-core/v5/features"
-	"github.com/frogwall/v2ray-core/v5/features/extension"
+	core "github.com/frogwall/f2ray-core/v5"
+	"github.com/frogwall/f2ray-core/v5/app/observatory"
+	"github.com/frogwall/f2ray-core/v5/common"
+	"github.com/frogwall/f2ray-core/v5/common/dice"
+	"github.com/frogwall/f2ray-core/v5/features"
+	"github.com/frogwall/f2ray-core/v5/features/extension"
 )
 
 // RandomStrategy represents a random balancing strategy

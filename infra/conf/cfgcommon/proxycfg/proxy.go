@@ -1,13 +1,13 @@
 package proxycfg
 
-import "github.com/frogwall/v2ray-core/v5/transport/internet"
+import "github.com/frogwall/f2ray-core/v5/transport/internet"
 
 type ProxyConfig struct {
 	Tag                 string `json:"tag"`
 	TransportLayerProxy bool   `json:"transportLayer"`
 }
 
-//go:generate go run github.com/frogwall/v2ray-core/v5/common/errors/errorgen
+//go:generate go run github.com/frogwall/f2ray-core/v5/common/errors/errorgen
 
 // Build implements Buildable.
 func (v *ProxyConfig) Build() (*internet.ProxyConfig, error) {

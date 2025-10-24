@@ -57,7 +57,7 @@ const file_transport_internet_udp_config_proto_rawDesc = "" +
 	"\n" +
 	"#transport/internet/udp/config.proto\x12!v2ray.core.transport.internet.udp\"\b\n" +
 	"\x06ConfigB\x84\x01\n" +
-	"%com.v2ray.core.transport.internet.udpP\x01Z5github.com/frogwall/v2ray-core/v5/transport/internet/udp\xaa\x02!V2Ray.Core.Transport.Internet.Udpb\x06proto3"
+	"%com.v2ray.core.transport.internet.udpP\x01Z5github.com/frogwall/f2ray-core/v5/transport/internet/udp\xaa\x02!V2Ray.Core.Transport.Internet.Udpb\x06proto3"
 
 var (
 	file_transport_internet_udp_config_proto_rawDescOnce sync.Once

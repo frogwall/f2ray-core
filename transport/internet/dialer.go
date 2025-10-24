@@ -3,9 +3,9 @@ package internet
 import (
 	"context"
 
-	"github.com/frogwall/v2ray-core/v5/common/net"
-	"github.com/frogwall/v2ray-core/v5/common/session"
-	"github.com/frogwall/v2ray-core/v5/transport/internet/tagged"
+	"github.com/frogwall/f2ray-core/v5/common/net"
+	"github.com/frogwall/f2ray-core/v5/common/session"
+	"github.com/frogwall/f2ray-core/v5/transport/internet/tagged"
 )
 
 // Dialer is the interface for dialing outbound connections.

@@ -1,7 +1,7 @@
 package pipe
 
 import (
-	"github.com/frogwall/v2ray-core/v5/common/buf"
+	"github.com/frogwall/f2ray-core/v5/common/buf"
 )
 
 // Writer is a buf.Writer that writes data into a pipe.

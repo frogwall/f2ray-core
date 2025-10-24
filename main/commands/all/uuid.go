@@ -3,8 +3,8 @@ package all
 import (
 	"fmt"
 
-	"github.com/frogwall/v2ray-core/v5/common/uuid"
-	"github.com/frogwall/v2ray-core/v5/main/commands/base"
+	"github.com/frogwall/f2ray-core/v5/common/uuid"
+	"github.com/frogwall/f2ray-core/v5/main/commands/base"
 )
 
 var cmdUUID = &base.Command{

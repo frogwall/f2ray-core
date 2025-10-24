@@ -6,9 +6,9 @@ import (
 	"testing"
 	"time"
 
-	"github.com/frogwall/v2ray-core/v5/common"
-	"github.com/frogwall/v2ray-core/v5/common/protocol/tls/cert"
-	. "github.com/frogwall/v2ray-core/v5/transport/internet/tls"
+	"github.com/frogwall/f2ray-core/v5/common"
+	"github.com/frogwall/f2ray-core/v5/common/protocol/tls/cert"
+	. "github.com/frogwall/f2ray-core/v5/transport/internet/tls"
 )
 
 func TestCertificateIssuing(t *testing.T) {

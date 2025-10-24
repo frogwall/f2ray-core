@@ -3,7 +3,7 @@ package mirrorcommon
 import (
 	"fmt"
 
-	"github.com/frogwall/v2ray-core/v5/transport/internet/tlsmirror"
+	"github.com/frogwall/f2ray-core/v5/transport/internet/tlsmirror"
 )
 
 // PeekTLSRecord reads a TLS record from peeker.

@@ -8,8 +8,8 @@ import (
 	"runtime"
 	"testing"
 
-	"github.com/frogwall/v2ray-core/v5/common"
-	"github.com/frogwall/v2ray-core/v5/common/platform"
+	"github.com/frogwall/f2ray-core/v5/common"
+	"github.com/frogwall/f2ray-core/v5/common/platform"
 )
 
 func TestNormalizeEnvName(t *testing.T) {

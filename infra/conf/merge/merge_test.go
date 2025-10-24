@@ -10,8 +10,8 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/frogwall/v2ray-core/v5/infra/conf/merge"
-	"github.com/frogwall/v2ray-core/v5/infra/conf/serial"
+	"github.com/frogwall/f2ray-core/v5/infra/conf/merge"
+	"github.com/frogwall/f2ray-core/v5/infra/conf/serial"
 )
 
 func TestMergeV2Style(t *testing.T) {

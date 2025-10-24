@@ -4,7 +4,7 @@ import (
 	"context"
 	"sync"
 
-	"github.com/frogwall/v2ray-core/v5/transport/internet/tlsmirror"
+	"github.com/frogwall/f2ray-core/v5/transport/internet/tlsmirror"
 )
 
 func NewServerEnrollmentProcessor(primaryKey []byte) (tlsmirror.ConnectionEnrollmentConfirmationProcessor, error) {

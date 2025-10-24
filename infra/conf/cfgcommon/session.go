@@ -3,8 +3,8 @@ package cfgcommon
 import (
 	"context"
 
-	"github.com/frogwall/v2ray-core/v5/common"
-	"github.com/frogwall/v2ray-core/v5/infra/conf/geodata"
+	"github.com/frogwall/f2ray-core/v5/common"
+	"github.com/frogwall/f2ray-core/v5/infra/conf/geodata"
 )
 
 type configureLoadingContext int

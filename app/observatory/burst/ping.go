@@ -5,8 +5,8 @@ import (
 	"net/http"
 	"time"
 
-	"github.com/frogwall/v2ray-core/v5/common/net"
-	"github.com/frogwall/v2ray-core/v5/transport/internet/tagged"
+	"github.com/frogwall/f2ray-core/v5/common/net"
+	"github.com/frogwall/f2ray-core/v5/transport/internet/tagged"
 )
 
 type pingClient struct {

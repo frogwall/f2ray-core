@@ -6,10 +6,10 @@ import (
 	"testing"
 	"time"
 
-	"github.com/frogwall/v2ray-core/v5/common"
-	"github.com/frogwall/v2ray-core/v5/testing/servers/tcp"
+	"github.com/frogwall/f2ray-core/v5/common"
+	"github.com/frogwall/f2ray-core/v5/testing/servers/tcp"
 
-	_ "github.com/frogwall/v2ray-core/v5/main/distro/all"
+	_ "github.com/frogwall/f2ray-core/v5/main/distro/all"
 )
 
 func TestMeek(t *testing.T) {

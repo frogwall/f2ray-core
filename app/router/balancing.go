@@ -6,8 +6,8 @@ package router
 import (
 	"context"
 
-	"github.com/frogwall/v2ray-core/v5/features/extension"
-	"github.com/frogwall/v2ray-core/v5/features/outbound"
+	"github.com/frogwall/f2ray-core/v5/features/extension"
+	"github.com/frogwall/f2ray-core/v5/features/outbound"
 )
 
 type BalancingStrategy interface {

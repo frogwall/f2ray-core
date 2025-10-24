@@ -6,8 +6,8 @@ import (
 
 	"google.golang.org/protobuf/proto"
 
-	"github.com/frogwall/v2ray-core/v5/app/router/routercommon"
-	"github.com/frogwall/v2ray-core/v5/common/platform"
+	"github.com/frogwall/f2ray-core/v5/app/router/routercommon"
+	"github.com/frogwall/f2ray-core/v5/common/platform"
 )
 
 type GeoIPCache map[string]*routercommon.GeoIP

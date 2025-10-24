@@ -3,14 +3,14 @@ package v4_test
 import (
 	"testing"
 
-	"github.com/frogwall/v2ray-core/v5/common/net"
-	"github.com/frogwall/v2ray-core/v5/common/net/packetaddr"
-	"github.com/frogwall/v2ray-core/v5/common/protocol"
-	"github.com/frogwall/v2ray-core/v5/common/serial"
-	"github.com/frogwall/v2ray-core/v5/infra/conf/cfgcommon"
-	"github.com/frogwall/v2ray-core/v5/infra/conf/cfgcommon/testassist"
-	v4 "github.com/frogwall/v2ray-core/v5/infra/conf/v4"
-	"github.com/frogwall/v2ray-core/v5/proxy/socks"
+	"github.com/frogwall/f2ray-core/v5/common/net"
+	"github.com/frogwall/f2ray-core/v5/common/net/packetaddr"
+	"github.com/frogwall/f2ray-core/v5/common/protocol"
+	"github.com/frogwall/f2ray-core/v5/common/serial"
+	"github.com/frogwall/f2ray-core/v5/infra/conf/cfgcommon"
+	"github.com/frogwall/f2ray-core/v5/infra/conf/cfgcommon/testassist"
+	v4 "github.com/frogwall/f2ray-core/v5/infra/conf/v4"
+	"github.com/frogwall/f2ray-core/v5/proxy/socks"
 )
 
 func TestSocksInboundConfig(t *testing.T) {

@@ -3,10 +3,10 @@ package environment
 import (
 	"context"
 
-	"github.com/frogwall/v2ray-core/v5/common/platform/filesystem/fsifce"
-	"github.com/frogwall/v2ray-core/v5/features/extension/storage"
-	"github.com/frogwall/v2ray-core/v5/transport/internet"
-	"github.com/frogwall/v2ray-core/v5/transport/internet/tagged"
+	"github.com/frogwall/f2ray-core/v5/common/platform/filesystem/fsifce"
+	"github.com/frogwall/f2ray-core/v5/features/extension/storage"
+	"github.com/frogwall/f2ray-core/v5/transport/internet"
+	"github.com/frogwall/f2ray-core/v5/transport/internet/tagged"
 )
 
 func NewRootEnvImpl(ctx context.Context, transientStorage storage.ScopedTransientStorage,

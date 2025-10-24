@@ -9,9 +9,9 @@ import (
 	"github.com/miekg/dns"
 	"golang.org/x/net/dns/dnsmessage"
 
-	"github.com/frogwall/v2ray-core/v5/common"
-	"github.com/frogwall/v2ray-core/v5/common/net"
-	dns_feature "github.com/frogwall/v2ray-core/v5/features/dns"
+	"github.com/frogwall/f2ray-core/v5/common"
+	"github.com/frogwall/f2ray-core/v5/common/net"
+	dns_feature "github.com/frogwall/f2ray-core/v5/features/dns"
 )
 
 func Test_parseResponse(t *testing.T) {

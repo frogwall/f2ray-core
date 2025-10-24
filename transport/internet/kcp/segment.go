@@ -3,7 +3,7 @@ package kcp
 import (
 	"encoding/binary"
 
-	"github.com/frogwall/v2ray-core/v5/common/buf"
+	"github.com/frogwall/f2ray-core/v5/common/buf"
 )
 
 // Command is a KCP command that indicate the purpose of a Segment.

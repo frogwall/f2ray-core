@@ -5,9 +5,9 @@ import (
 	"testing"
 	"time"
 
-	. "github.com/frogwall/v2ray-core/v5/app/policy"
-	"github.com/frogwall/v2ray-core/v5/common"
-	"github.com/frogwall/v2ray-core/v5/features/policy"
+	. "github.com/frogwall/f2ray-core/v5/app/policy"
+	"github.com/frogwall/f2ray-core/v5/common"
+	"github.com/frogwall/f2ray-core/v5/features/policy"
 )
 
 func TestPolicy(t *testing.T) {

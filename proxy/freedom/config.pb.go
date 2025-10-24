@@ -1,8 +1,8 @@
 package freedom
 
 import (
-	protocol "github.com/frogwall/v2ray-core/v5/common/protocol"
-	_ "github.com/frogwall/v2ray-core/v5/common/protoext"
+	protocol "github.com/frogwall/f2ray-core/v5/common/protocol"
+	_ "github.com/frogwall/f2ray-core/v5/common/protoext"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	reflect "reflect"
@@ -320,7 +320,7 @@ const file_proxy_freedom_config_proto_rawDesc = "" +
 	"\bIDENTITY\x10\x00\x12\r\n" +
 	"\tFORCE_TCP\x10\x01\x12\r\n" +
 	"\tFORCE_UDP\x10\x02Bi\n" +
-	"\x1ccom.v2ray.core.proxy.freedomP\x01Z,github.com/frogwall/v2ray-core/v5/proxy/freedom\xaa\x02\x18V2Ray.Core.Proxy.Freedomb\x06proto3"
+	"\x1ccom.v2ray.core.proxy.freedomP\x01Z,github.com/frogwall/f2ray-core/v5/proxy/freedom\xaa\x02\x18V2Ray.Core.Proxy.Freedomb\x06proto3"
 
 var (
 	file_proxy_freedom_config_proto_rawDescOnce sync.Once

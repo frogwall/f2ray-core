@@ -3,8 +3,8 @@ package log
 import (
 	"strings"
 
-	"github.com/frogwall/v2ray-core/v5/app/log"
-	clog "github.com/frogwall/v2ray-core/v5/common/log"
+	"github.com/frogwall/f2ray-core/v5/app/log"
+	clog "github.com/frogwall/f2ray-core/v5/common/log"
 )
 
 func DefaultLogConfig() *log.Config {

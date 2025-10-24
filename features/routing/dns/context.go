@@ -1,11 +1,11 @@
 package dns
 
-//go:generate go run github.com/frogwall/v2ray-core/v5/common/errors/errorgen
+//go:generate go run github.com/frogwall/f2ray-core/v5/common/errors/errorgen
 
 import (
-	"github.com/frogwall/v2ray-core/v5/common/net"
-	"github.com/frogwall/v2ray-core/v5/features/dns"
-	"github.com/frogwall/v2ray-core/v5/features/routing"
+	"github.com/frogwall/f2ray-core/v5/common/net"
+	"github.com/frogwall/f2ray-core/v5/features/dns"
+	"github.com/frogwall/f2ray-core/v5/features/routing"
 )
 
 // ResolvableContext is an implementation of routing.Context, with domain resolving capability.

@@ -1,7 +1,7 @@
 package v4
 
 import (
-	"github.com/frogwall/v2ray-core/v5/app/policy"
+	"github.com/frogwall/f2ray-core/v5/app/policy"
 )
 
 type Policy struct {

@@ -11,15 +11,15 @@ import (
 	"google.golang.org/protobuf/proto"
 	"google.golang.org/protobuf/types/known/anypb"
 
-	core "github.com/frogwall/v2ray-core/v5"
-	"github.com/frogwall/v2ray-core/v5/app/dispatcher"
-	"github.com/frogwall/v2ray-core/v5/app/proxyman"
-	"github.com/frogwall/v2ray-core/v5/common"
-	"github.com/frogwall/v2ray-core/v5/common/net"
-	"github.com/frogwall/v2ray-core/v5/common/serial"
-	"github.com/frogwall/v2ray-core/v5/proxy/freedom"
-	"github.com/frogwall/v2ray-core/v5/testing/servers/tcp"
-	"github.com/frogwall/v2ray-core/v5/testing/servers/udp"
+	core "github.com/frogwall/f2ray-core/v5"
+	"github.com/frogwall/f2ray-core/v5/app/dispatcher"
+	"github.com/frogwall/f2ray-core/v5/app/proxyman"
+	"github.com/frogwall/f2ray-core/v5/common"
+	"github.com/frogwall/f2ray-core/v5/common/net"
+	"github.com/frogwall/f2ray-core/v5/common/serial"
+	"github.com/frogwall/f2ray-core/v5/proxy/freedom"
+	"github.com/frogwall/f2ray-core/v5/testing/servers/tcp"
+	"github.com/frogwall/f2ray-core/v5/testing/servers/udp"
 )
 
 func xor(b []byte) []byte {

@@ -6,15 +6,15 @@ import (
 	"strings"
 	"time"
 
-	core "github.com/frogwall/v2ray-core/v5"
-	"github.com/frogwall/v2ray-core/v5/app/dns/fakedns"
-	"github.com/frogwall/v2ray-core/v5/app/router"
-	"github.com/frogwall/v2ray-core/v5/common/errors"
-	"github.com/frogwall/v2ray-core/v5/common/net"
-	"github.com/frogwall/v2ray-core/v5/common/session"
-	"github.com/frogwall/v2ray-core/v5/features"
-	"github.com/frogwall/v2ray-core/v5/features/dns"
-	"github.com/frogwall/v2ray-core/v5/features/routing"
+	core "github.com/frogwall/f2ray-core/v5"
+	"github.com/frogwall/f2ray-core/v5/app/dns/fakedns"
+	"github.com/frogwall/f2ray-core/v5/app/router"
+	"github.com/frogwall/f2ray-core/v5/common/errors"
+	"github.com/frogwall/f2ray-core/v5/common/net"
+	"github.com/frogwall/f2ray-core/v5/common/session"
+	"github.com/frogwall/f2ray-core/v5/features"
+	"github.com/frogwall/f2ray-core/v5/features/dns"
+	"github.com/frogwall/f2ray-core/v5/features/routing"
 )
 
 // Server is the interface for Name Server.

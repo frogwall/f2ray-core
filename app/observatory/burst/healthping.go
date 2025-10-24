@@ -7,7 +7,7 @@ import (
 	"sync"
 	"time"
 
-	"github.com/frogwall/v2ray-core/v5/common/dice"
+	"github.com/frogwall/f2ray-core/v5/common/dice"
 )
 
 // HealthPingSettings holds settings for health Checker

@@ -4,8 +4,8 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/frogwall/v2ray-core/v5/main/commands/base"
-	v2tls "github.com/frogwall/v2ray-core/v5/transport/internet/tls"
+	"github.com/frogwall/f2ray-core/v5/main/commands/base"
+	v2tls "github.com/frogwall/f2ray-core/v5/transport/internet/tls"
 )
 
 var cmdChainHash = &base.Command{

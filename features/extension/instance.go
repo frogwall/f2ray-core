@@ -3,7 +3,7 @@ package extension
 import (
 	"context"
 
-	"github.com/frogwall/v2ray-core/v5/features"
+	"github.com/frogwall/f2ray-core/v5/features"
 )
 
 // InstanceManagement : unstable

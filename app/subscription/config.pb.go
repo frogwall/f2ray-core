@@ -1,7 +1,7 @@
 package subscription
 
 import (
-	_ "github.com/frogwall/v2ray-core/v5/common/protoext"
+	_ "github.com/frogwall/f2ray-core/v5/common/protoext"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	reflect "reflect"
@@ -179,7 +179,7 @@ const file_app_subscription_config_proto_rawDesc = "" +
 	" nonnative_converter_overlay_file\x18\x82\xee\x05 \x01(\tB!\x82\xb5\x18\x1d\"\x1bnonnative_converter_overlayR\x1dnonnativeConverterOverlayFile\x12 \n" +
 	"\vpersistence\x18\x03 \x01(\bR\vpersistence:\x1b\x82\xb5\x18\x17\n" +
 	"\aservice\x12\fsubscriptionBr\n" +
-	"\x1fcom.v2ray.core.app.subscriptionP\x01Z/github.com/frogwall/v2ray-core/v5/app/subscription\xaa\x02\x1bV2Ray.Core.App.Subscriptionb\x06proto3"
+	"\x1fcom.v2ray.core.app.subscriptionP\x01Z/github.com/frogwall/f2ray-core/v5/app/subscription\xaa\x02\x1bV2Ray.Core.App.Subscriptionb\x06proto3"
 
 var (
 	file_app_subscription_config_proto_rawDescOnce sync.Once

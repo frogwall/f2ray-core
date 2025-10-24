@@ -3,14 +3,14 @@ package command
 import (
 	"context"
 
-	core "github.com/frogwall/v2ray-core/v5"
-	"github.com/frogwall/v2ray-core/v5/app/subscription"
-	"github.com/frogwall/v2ray-core/v5/common"
+	core "github.com/frogwall/f2ray-core/v5"
+	"github.com/frogwall/f2ray-core/v5/app/subscription"
+	"github.com/frogwall/f2ray-core/v5/common"
 
 	"google.golang.org/grpc"
 )
 
-//go:generate go run github.com/frogwall/v2ray-core/v5/common/errors/errorgen
+//go:generate go run github.com/frogwall/f2ray-core/v5/common/errors/errorgen
 
 type SubscriptionManagerService struct {
 	UnimplementedSubscriptionManagerServiceServer

@@ -5,7 +5,7 @@ import (
 
 	"github.com/google/go-cmp/cmp"
 
-	"github.com/frogwall/v2ray-core/v5/common/crypto"
+	"github.com/frogwall/f2ray-core/v5/common/crypto"
 )
 
 func TestTLS12ExplicitNonceGeneration(t *testing.T) {

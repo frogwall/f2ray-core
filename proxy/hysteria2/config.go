@@ -1,7 +1,7 @@
 package hysteria2
 
 import (
-	"github.com/frogwall/v2ray-core/v5/common/protocol"
+	"github.com/frogwall/f2ray-core/v5/common/protocol"
 )
 
 // MemoryAccount is an account type converted from Account.

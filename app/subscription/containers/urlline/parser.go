@@ -6,8 +6,8 @@ import (
 	"net/url"
 	"strings"
 
-	"github.com/frogwall/v2ray-core/v5/app/subscription/containers"
-	"github.com/frogwall/v2ray-core/v5/common"
+	"github.com/frogwall/f2ray-core/v5/app/subscription/containers"
+	"github.com/frogwall/f2ray-core/v5/common"
 )
 
 func newURLLineParser() containers.SubscriptionContainerDocumentParser {

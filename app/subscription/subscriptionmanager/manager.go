@@ -7,20 +7,20 @@ import (
 	"sync"
 	"time"
 
-	core "github.com/frogwall/v2ray-core/v5"
-	"github.com/frogwall/v2ray-core/v5/app/persistentstorage"
-	"github.com/frogwall/v2ray-core/v5/app/persistentstorage/protostorage"
-	"github.com/frogwall/v2ray-core/v5/app/subscription"
-	"github.com/frogwall/v2ray-core/v5/app/subscription/entries"
-	"github.com/frogwall/v2ray-core/v5/app/subscription/entries/nonnative/nonnativeifce"
-	"github.com/frogwall/v2ray-core/v5/app/subscription/specs"
-	"github.com/frogwall/v2ray-core/v5/common"
-	"github.com/frogwall/v2ray-core/v5/common/environment"
-	"github.com/frogwall/v2ray-core/v5/common/environment/envctx"
-	"github.com/frogwall/v2ray-core/v5/common/task"
+	core "github.com/frogwall/f2ray-core/v5"
+	"github.com/frogwall/f2ray-core/v5/app/persistentstorage"
+	"github.com/frogwall/f2ray-core/v5/app/persistentstorage/protostorage"
+	"github.com/frogwall/f2ray-core/v5/app/subscription"
+	"github.com/frogwall/f2ray-core/v5/app/subscription/entries"
+	"github.com/frogwall/f2ray-core/v5/app/subscription/entries/nonnative/nonnativeifce"
+	"github.com/frogwall/f2ray-core/v5/app/subscription/specs"
+	"github.com/frogwall/f2ray-core/v5/common"
+	"github.com/frogwall/f2ray-core/v5/common/environment"
+	"github.com/frogwall/f2ray-core/v5/common/environment/envctx"
+	"github.com/frogwall/f2ray-core/v5/common/task"
 )
 
-//go:generate go run github.com/frogwall/v2ray-core/v5/common/errors/errorgen
+//go:generate go run github.com/frogwall/f2ray-core/v5/common/errors/errorgen
 
 type SubscriptionManagerImpl struct {
 	sync.Mutex

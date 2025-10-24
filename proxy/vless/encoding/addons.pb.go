@@ -75,7 +75,7 @@ const file_proxy_vless_encoding_addons_proto_rawDesc = "" +
 	"\x06Addons\x12\x12\n" +
 	"\x04Flow\x18\x01 \x01(\tR\x04Flow\x12\x12\n" +
 	"\x04Seed\x18\x02 \x01(\fR\x04SeedB~\n" +
-	"#com.v2ray.core.proxy.vless.encodingP\x01Z3github.com/frogwall/v2ray-core/v5/proxy/vless/encoding\xaa\x02\x1fV2Ray.Core.Proxy.Vless.Encodingb\x06proto3"
+	"#com.v2ray.core.proxy.vless.encodingP\x01Z3github.com/frogwall/f2ray-core/v5/proxy/vless/encoding\xaa\x02\x1fV2Ray.Core.Proxy.Vless.Encodingb\x06proto3"
 
 var (
 	file_proxy_vless_encoding_addons_proto_rawDescOnce sync.Once
