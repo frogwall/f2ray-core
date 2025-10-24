@@ -18,7 +18,7 @@ import (
 )
 
 var (
-	version  = "5.40.0"
+	version  = "25.10.1"
 	build    = "F2Ray"
 	codename = "F2Ray, enhanced edition of V2Ray with advanced features."
 	intro    = "A unified platform for anti-censorship with enhanced capabilities."
@@ -33,7 +33,7 @@ func Version() string {
 // VersionStatement returns a list of strings representing the full version info.
 func VersionStatement() []string {
 	return []string{
-		serial.Concat("V2Ray ", Version(), " (", codename, ") ", build, " (", runtime.Version(), " ", runtime.GOOS, "/", runtime.GOARCH, ")"),
+		serial.Concat("F2Ray ", Version(), " (", codename, ") ", build, " (", runtime.Version(), " ", runtime.GOOS, "/", runtime.GOARCH, ")"),
 		intro,
 	}
 }

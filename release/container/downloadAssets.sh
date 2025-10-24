@@ -13,8 +13,8 @@ downloadAndUnzip() {
 mkdir -p assets
 
 pushd assets
-downloadAndUnzip "$1" "v2ray-linux-$2.zip"
-downloadAndUnzip "$1" "v2ray-extra.zip"
+downloadAndUnzip "$1" "f2ray-linux-$2.zip"
+downloadAndUnzip "$1" "f2ray-extra.zip"
 popd
 
 placeFile() {
@@ -23,7 +23,7 @@ placeFile() {
 }
 
 function generateStandardVersion() {
-  placeFile "$1" "$2/bin" "v2ray"
+  placeFile "$1" "$2/bin" "f2ray"
 }
 
 function generateExtraVersion() {
@@ -31,15 +31,15 @@ function generateExtraVersion() {
   placeFile "$1" "$2/share" "geosite.dat"
   placeFile "$1" "$2/share" "geoip.dat"
   placeFile "$1" "$2/etc" "config.json"
-  placeFile "v2ray-extra" "$2/share" "browserforwarder"
+  placeFile "f2ray-extra" "$2/share" "browserforwarder"
 }
 
 if [ "$4" = "std" ]; then
-    generateStandardVersion "v2ray-linux-$2" "linux/$3/std"
+    generateStandardVersion "f2ray-linux-$2" "linux/$3/std"
 fi
 
 if [ "$4" = "extra" ]; then
-    generateExtraVersion "v2ray-linux-$2" "linux/$3/extra"
+    generateExtraVersion "f2ray-linux-$2" "linux/$3/extra"
 fi
 
 
