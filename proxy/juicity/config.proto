@@ -1,0 +1,26 @@
+syntax = "proto3";
+
+package v2ray.core.proxy.juicity;
+option csharp_namespace = "V2Ray.Core.Proxy.Juicity";
+option go_package = "proxy/juicity";
+option java_package = "com.v2ray.core.proxy.juicity";
+option java_multiple_files = true;
+
+import "common/protocol/server_spec.proto";
+import "common/protoext/extensions.proto";
+
+message ClientConfig {
+  option (v2ray.core.common.protoext.message_opt).type = "outbound";
+  option (v2ray.core.common.protoext.message_opt).short_name = "juicity";
+
+  // Server list with username (UUID) and password in ServerEndpoint.user
+  repeated v2ray.core.common.protocol.ServerEndpoint server = 1;
+  
+  // Congestion control algorithm (e.g., "bbr", "cubic")
+  // This is kept at top level for backward compatibility
+  string congestion_control = 2;
+  
+  // Pinned certificate chain SHA256 hash (base64 encoded)
+  // Note: TLS settings (SNI, allowInsecure) should be configured in streamSettings
+  string pinned_certchain_sha256 = 3;
+}

@@ -59,6 +59,7 @@ import (
 
 	_ "github.com/frogwall/f2ray-core/v5/proxy/brook"
 	_ "github.com/frogwall/f2ray-core/v5/proxy/hysteria2"
+	_ "github.com/frogwall/f2ray-core/v5/proxy/juicity"
 	_ "github.com/frogwall/f2ray-core/v5/proxy/mieru"
 	_ "github.com/frogwall/f2ray-core/v5/proxy/shadowsocks2022"
 

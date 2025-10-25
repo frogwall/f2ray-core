@@ -48,6 +48,7 @@ var (
 		"vmess":       func() interface{} { return new(VMessOutboundConfig) },
 		"trojan":      func() interface{} { return new(TrojanClientConfig) },
 		"hysteria2":   func() interface{} { return new(Hysteria2ClientConfig) },
+		"juicity":     func() interface{} { return new(JuicityClientConfig) },
 		"mieru":       func() interface{} { return new(MieruClientConfig) },
 		"brook":       func() interface{} { return new(BrookClientConfig) },
 		"naive":       func() interface{} { return new(NaiveClientConfig) },
