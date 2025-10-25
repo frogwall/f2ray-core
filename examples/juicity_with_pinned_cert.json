@@ -1,0 +1,45 @@
+{
+  "log": {
+    "loglevel": "info"
+  },
+  "inbounds": [
+    {
+      "port": 1080,
+      "protocol": "socks",
+      "settings": {
+        "auth": "noauth",
+        "udp": true
+      }
+    },
+    {
+      "port": 1081,
+      "protocol": "http"
+    }
+  ],
+  "outbounds": [
+    {
+      "protocol": "juicity",
+      "settings": {
+        "servers": [
+          {
+            "address": "192.168.1.100",
+            "port": 443,
+            "username": "00000000-0000-0000-0000-000000000000",
+            "password": "your-password-here"
+          }
+        ],
+        "congestion_control": "bbr"
+      },
+      "streamSettings": {
+        "security": "tls",
+        "tlsSettings": {
+          "serverName": "localhost",
+          "allowInsecure": false,
+          "pinnedPeerCertificateChainSha256": [
+            "your_certificate_sha256_hash_here"
+          ]
+        }
+      }
+    }
+  ]
+}
