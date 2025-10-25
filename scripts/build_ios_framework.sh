@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # iOS Framework 编译脚本
-# 使用 gomobile 编译 v2ray-core 为 iOS Framework
+# 使用 gomobile 编译 f2ray-core 为 iOS Framework
 
 set -e
 
@@ -54,6 +54,7 @@ check_environment() {
 # 清理旧文件
 clean_old_files() {
     echo_info "清理旧文件..."
+    rm -rf F2Ray.xcframework
     rm -rf V2Ray.xcframework
     rm -rf build/ios
 }
@@ -99,12 +100,12 @@ show_info() {
         echo "  大小: $(du -sh "$OUTPUT" | cut -f1)"
         
         # 显示架构信息
-        if [ -f "$OUTPUT/ios-arm64/V2Ray.framework/V2Ray" ]; then
-            echo "  iOS 架构: $(lipo -info "$OUTPUT/ios-arm64/V2Ray.framework/V2Ray" 2>/dev/null || echo "N/A")"
+        if [ -f "$OUTPUT/ios-arm64/F2Ray.framework/F2Ray" ]; then
+            echo "  iOS 架构: $(lipo -info "$OUTPUT/ios-arm64/F2Ray.framework/F2Ray" 2>/dev/null || echo "N/A")"
         fi
         
-        if [ -f "$OUTPUT/ios-arm64_x86_64-simulator/V2Ray.framework/V2Ray" ]; then
-            echo "  模拟器架构: $(lipo -info "$OUTPUT/ios-arm64_x86_64-simulator/V2Ray.framework/V2Ray" 2>/dev/null || echo "N/A")"
+        if [ -f "$OUTPUT/ios-arm64_x86_64-simulator/F2Ray.framework/F2Ray" ]; then
+            echo "  模拟器架构: $(lipo -info "$OUTPUT/ios-arm64_x86_64-simulator/F2Ray.framework/F2Ray" 2>/dev/null || echo "N/A")"
         fi
     fi
 }
@@ -112,7 +113,7 @@ show_info() {
 # 主函数
 main() {
     echo_info "=========================================="
-    echo_info "  V2Ray iOS Framework 编译脚本"
+    echo_info "  F2Ray iOS Framework 编译脚本"
     echo_info "=========================================="
     echo ""
     
@@ -126,7 +127,7 @@ main() {
     
     # 解析参数
     TARGET="ios,iossimulator"
-    OUTPUT="V2Ray.xcframework"
+    OUTPUT="F2Ray.xcframework"
     
     while [[ $# -gt 0 ]]; do
         case $1 in
@@ -151,7 +152,7 @@ main() {
                 echo ""
                 echo "选项:"
                 echo "  --target <platforms>    指定目标平台 (默认: ios,iossimulator)"
-                echo "  --output <file>         指定输出文件 (默认: V2Ray.xcframework)"
+                echo "  --output <file>         指定输出文件 (默认: F2Ray.xcframework)"
                 echo "  --with-macos            包含 macOS 支持"
                 echo "  --with-catalyst         包含 Mac Catalyst 支持"
                 echo "  --help                  显示此帮助信息"
@@ -185,7 +186,7 @@ main() {
     echo_info "下一步:"
     echo "  1. 将 $OUTPUT 拖入 Xcode 项目"
     echo "  2. 在 General → Frameworks 中设置为 Embed & Sign"
-    echo "  3. 在代码中 import V2Ray 使用"
+    echo "  3. 在代码中 import F2Ray 使用"
 }
 
 # 运行主函数

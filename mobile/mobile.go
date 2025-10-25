@@ -6,7 +6,7 @@ import (
 	"strings"
 
 	core "github.com/frogwall/f2ray-core/v5"
-	"github.com/frogwall/f2ray-core/v5/common/serial"
+	"github.com/frogwall/f2ray-core/v5/infra/conf/serial"
 	_ "github.com/frogwall/f2ray-core/v5/main/distro/all"
 )
 
