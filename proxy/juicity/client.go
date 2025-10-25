@@ -29,6 +29,7 @@ import (
 	"github.com/frogwall/f2ray-core/v5/features/policy"
 	"github.com/frogwall/f2ray-core/v5/transport"
 	"github.com/frogwall/f2ray-core/v5/transport/internet"
+	v2tls "github.com/frogwall/f2ray-core/v5/transport/internet/tls"
 	core "github.com/frogwall/f2ray-core/v5"
 )
 
@@ -138,38 +139,57 @@ func (c *Client) initDialer(ctx context.Context, server *protocol.ServerEndpoint
 		return newError("password not configured")
 	}
 
-	// Build TLS config
-	// For now, always allow insecure to bypass certificate validation issues
-	// TODO: Properly parse TLS settings from streamSettings
-	serverName := dest.String()
-	
-	tlsConfig := &tls.Config{
-		NextProtos:         []string{"h3"},
-		MinVersion:         tls.VersionTLS13,
-		ServerName:         serverName,
-		InsecureSkipVerify: true, // Allow self-signed certificates
-	}
+    // Build TLS config from streamSettings if available
+    var tlsConfig *tls.Config
+    // Try to get stream settings from the provided dialer (app/proxyman/outbound.Handler)
+    type streamSettingsGetter interface{ StreamSettings() *internet.MemoryStreamConfig }
+    if ssg, ok := dialer.(streamSettingsGetter); ok {
+        if mss := ssg.StreamSettings(); mss != nil {
+            if cfg := v2tls.ConfigFromStreamSettings(mss); cfg != nil {
+                // Build crypto/tls.Config honoring allowInsecure, serverName, ALPN, etc.
+                tlsConfig = cfg.GetTLSConfig(v2tls.WithNextProto("h3"))
+            }
+        }
+    }
+    // Fallback if no TLS settings provided
+    if tlsConfig == nil {
+        tlsConfig = &tls.Config{
+            NextProtos: []string{"h3"},
+            MinVersion: tls.VersionTLS13,
+            ServerName: dest.String(),
+        }
+    } else {
+        // Ensure HTTP/3 ALPN is present
+        hasH3 := false
+        for _, np := range tlsConfig.NextProtos {
+            if np == "h3" { hasH3 = true; break }
+        }
+        if !hasH3 { tlsConfig.NextProtos = append(tlsConfig.NextProtos, "h3") }
+        if tlsConfig.MinVersion == 0 { tlsConfig.MinVersion = tls.VersionTLS13 }
+        if tlsConfig.ServerName == "" { tlsConfig.ServerName = dest.String() }
+    }
 
 	// Handle pinned certificate
-	if c.config.PinnedCertchainSha256 != "" {
-		pinnedHash, err := base64.URLEncoding.DecodeString(c.config.PinnedCertchainSha256)
-		if err != nil {
-			pinnedHash, err = base64.StdEncoding.DecodeString(c.config.PinnedCertchainSha256)
-			if err != nil {
-				pinnedHash, err = hex.DecodeString(c.config.PinnedCertchainSha256)
-				if err != nil {
-					return newError("failed to decode pinned_certchain_sha256")
-				}
-			}
-		}
-		tlsConfig.InsecureSkipVerify = true
-		tlsConfig.VerifyPeerCertificate = func(rawCerts [][]byte, verifiedChains [][]*x509.Certificate) error {
-			if !bytes.Equal(generateCertChainHash(rawCerts), pinnedHash) {
-				return newError("pinned hash of cert chain does not match")
-			}
-			return nil
-		}
-	}
+    if c.config.PinnedCertchainSha256 != "" {
+        pinnedHash, err := base64.URLEncoding.DecodeString(c.config.PinnedCertchainSha256)
+        if err != nil {
+            pinnedHash, err = base64.StdEncoding.DecodeString(c.config.PinnedCertchainSha256)
+            if err != nil {
+                pinnedHash, err = hex.DecodeString(c.config.PinnedCertchainSha256)
+                if err != nil {
+                    return newError("failed to decode pinned_certchain_sha256")
+                }
+            }
+        }
+        // When doing pinning, skip default verification and use our own
+        tlsConfig.InsecureSkipVerify = true
+        tlsConfig.VerifyPeerCertificate = func(rawCerts [][]byte, verifiedChains [][]*x509.Certificate) error {
+            if !bytes.Equal(generateCertChainHash(rawCerts), pinnedHash) {
+                return newError("pinned hash of cert chain does not match")
+            }
+            return nil
+        }
+    }
 
 	// Create juicity dialer
 	// Use direct.SymmetricDirect as the underlying dialer (supports UDP)

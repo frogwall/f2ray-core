@@ -325,3 +325,10 @@ func (h *Handler) Close() error {
 	}
 	return nil
 }
+
+// StreamSettings returns the MemoryStreamConfig associated with this outbound handler.
+// Proxies that manage their own upstream security can use this to read TLS settings
+// such as allowInsecure, serverName, ALPN, etc.
+func (h *Handler) StreamSettings() *internet.MemoryStreamConfig {
+	return h.streamSettings
+}

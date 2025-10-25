@@ -22,11 +22,11 @@
     {
       "protocol": "juicity",
       "settings": {
-        "server": [
+        "servers": [
           {
             "address": "example.com",
             "port": 443,
-            "username": "00000000-0000-0000-0000-for-uuid",
+            "username": "00000000-0000-0000-0000-000000000000",
             "password": "your-password-here"
           }
         ],

@@ -45,7 +45,7 @@ github.com/daeuniverse/outbound v0.0.0-20250219135309-c607702d1c85
     {
       "protocol": "juicity",
       "settings": {
-        "server": [
+        "servers": [
           {
             "address": "example.com",
             "port": 443,
@@ -59,6 +59,9 @@ github.com/daeuniverse/outbound v0.0.0-20250219135309-c607702d1c85
         "security": "tls",
         "tlsSettings": {
           "allowInsecure": false,
+            "pinnedPeerCertificateChainSha256": [
+            "sha256_hash_of_your_certificate"
+            ],
           "serverName": "example.com"
         }
       }
@@ -67,19 +70,92 @@ github.com/daeuniverse/outbound v0.0.0-20250219135309-c607702d1c85
 }
 ```
 
+### 使用证书固定（推荐用于自签名证书）
+
+```json
+{
+  "outbounds": [
+    {
+      "protocol": "juicity",
+      "settings": {
+        "servers": [
+          {
+            "address": "192.168.1.100",
+            "port": 443,
+            "username": "00000000-0000-0000-0000-000000000000",
+            "password": "your-password-here"
+          }
+        ],
+        "congestion_control": "bbr"
+      },
+      "streamSettings": {
+        "security": "tls",
+        "tlsSettings": {
+          "serverName": "localhost",
+          "pinnedPeerCertificateChainSha256": [
+            "sha256_hash_of_your_certificate"
+            ],
+        }
+      }
+    }
+  ]
+}
+```
+
+**获取证书 SHA256 哈希值：**
+```bash
+# 从服务器获取
+openssl s_client -connect your-server.com:443 -showcerts < /dev/null 2>/dev/null | \
+  openssl x509 -outform DER | sha256sum | awk '{print $1}'
+
+# 从证书文件
+openssl x509 -in server.crt -outform DER | sha256sum | awk '{print $1}'
+```
+
+### 允许不安全连接（仅用于测试）
+
+```json
+{
+  "outbounds": [
+    {
+      "protocol": "juicity",
+      "settings": {
+        "servers": [
+          {
+            "address": "test-server.com",
+            "port": 443,
+            "username": "00000000-0000-0000-0000-000000000000",
+            "password": "your-password-here"
+          }
+        ]
+      },
+      "streamSettings": {
+        "security": "tls",
+        "tlsSettings": {
+          "allowInsecure": true,
+          "serverName": "test-server.com"
+        }
+      }
+    }
+  ]
+}
+```
+
+⚠️ **注意**：`allowInsecure: true` 会跳过所有证书验证，仅用于测试环境！
+
 ### 配置参数说明
 
 #### settings 部分
 
 | 参数 | 类型 | 必填 | 说明 |
 |------|------|------|------|
-| `server` | array | ✅ | 服务器列表 |
-| `server[].address` | string | ✅ | 服务器地址 |
-| `server[].port` | number | ✅ | 服务器端口 |
-| `server[].username` | string | ✅ | 用户 UUID |
-| `server[].password` | string | ✅ | 认证密码 |
+| `servers` | array | ✅ | 服务器列表 |
+| `servers[].address` | string | ✅ | 服务器地址（域名或 IP） |
+| `servers[].port` | number | ✅ | 服务器端口 |
+| `servers[].username` | string | ✅ | 用户 UUID |
+| `servers[].password` | string | ✅ | 认证密码 |
 | `congestion_control` | string | ❌ | 拥塞控制算法（"bbr", "cubic"），默认 "bbr" |
-| `pinned_certchain_sha256` | string | ❌ | 证书链 SHA256 固定值（base64/hex 编码） |
+| `pinnedPeerCertificateChainSha256` | string | ❌ | 证书链 SHA256 固定值（base64/hex 编码）<br/>用于自签名证书验证 |
 
 #### streamSettings 部分
 
@@ -174,11 +250,11 @@ go build -o f2ray ./main
         "server": [
           {
             "address": "your-server.com",
-            "port": 443
+            "port": 443,
+            "username": "your-uuid",
+          "password": "your-password"
           }
         ],
-        "uuid": "your-uuid",
-        "password": "your-password",
         "congestion_control": "bbr"
       }
     }
