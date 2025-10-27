@@ -4,7 +4,6 @@ import (
 	"bytes"
 	"context"
 	"crypto/rand"
-	"log"
 	"math/big"
 	"net"
 
@@ -108,14 +107,12 @@ func (vw *VisionWriter) WriteMultiBuffer(mb buf.MultiBuffer) error {
 						cmd = commandPaddingDirect
 					}
 				}
-				log.Printf("Vision: detected TLS AppData, cmd=%d enableXtls=%v", cmd, vw.state.EnableXtls)
 				mb[i] = xtlsPadding(b, cmd, &vw.writeOnceUserUUID, true, vw.ctx)
 				*isPadding = false
 				longPadding = false
 				continue
 			} else if vw.state != nil && !vw.state.IsTLS12orAbove && vw.state.NumberOfPacketToFilter <= 1 {
 				// finish padding 1 packet early for pre‑TLS1.2
-				log.Printf("Vision: finish padding early for pre-TLS1.2")
 				*isPadding = false
 				mb[i] = xtlsPadding(b, commandPaddingEnd, &vw.writeOnceUserUUID, longPadding, vw.ctx)
 				break
@@ -154,7 +151,6 @@ func xtlsPadding(b *buf.Buffer, command byte, userUUID *[]byte, longPadding bool
 	if userUUID != nil && len(*userUUID) > 0 {
 		nb.Write(*userUUID)
 		*userUUID = nil
-		log.Printf("[WRITER DEBUG] Added UUID to padding: %x", nb.Bytes()[:16])
 	}
 	nb.Write([]byte{command, byte(contentLen >> 8), byte(contentLen), byte(paddingLen >> 8), byte(paddingLen)})
 	if b != nil {
@@ -165,7 +161,5 @@ func xtlsPadding(b *buf.Buffer, command byte, userUUID *[]byte, longPadding bool
 	if paddingLen > 0 {
 		nb.Extend(paddingLen)
 	}
-	log.Printf("XtlsPadding content=%d padding=%d cmd=%d", contentLen, paddingLen, command)
-	log.Printf("[WRITER DEBUG] Padding header: %x", nb.Bytes()[:21])
 	return nb
 }

@@ -40,7 +40,6 @@ func EncodeRequestHeader(writer io.Writer, request *protocol.RequestHeader, requ
 	}
 
 	uuidBytes := request.User.Account.(*vless.MemoryAccount).ID.Bytes()
-	log.Printf("[ENCODING DEBUG] Writing UUID to request header: %x", uuidBytes)
 	if _, err := buffer.Write(uuidBytes); err != nil {
 		return newError("failed to write request user id").Base(err)
 	}
@@ -60,8 +59,6 @@ func EncodeRequestHeader(writer io.Writer, request *protocol.RequestHeader, requ
 	}
 
 	headerBytes := buffer.Bytes()
-	log.Printf("[ENCODING DEBUG] Writing request header, total length=%d bytes", len(headerBytes))
-	log.Printf("[ENCODING DEBUG] Full header bytes: %x", headerBytes)
 	if _, err := writer.Write(headerBytes); err != nil {
 		return newError("failed to write request header").Base(err)
 	}

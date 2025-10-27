@@ -8,7 +8,6 @@ package proxy
 import (
 	"context"
 	"io"
-	"log"
 	"runtime"
 	"time"
 
@@ -66,19 +65,15 @@ type GetOutbound interface {
 func UnwrapRawConn(conn net.Conn) (net.Conn, stats.Counter, stats.Counter) {
 	var readCounter, writerCounter stats.Counter
 	if conn != nil {
-		log.Printf("[UnwrapRawConn] Input conn type: %T", conn)
 		isEncryption := false
 		if commonConn, ok := conn.(*encryption.CommonConn); ok {
-			log.Printf("[UnwrapRawConn] Unwrapping CommonConn")
 			conn = commonConn.Conn
 			isEncryption = true
 		}
 		if xorConn, ok := conn.(*encryption.XorConn); ok {
-			log.Printf("[UnwrapRawConn] XorConn detected, returning as-is")
 			return xorConn, nil, nil // full-random xorConn should not be penetrated
 		}
 		if statConn, ok := conn.(*internet.StatCouterConnection); ok {
-			log.Printf("[UnwrapRawConn] Unwrapping StatCouterConnection")
 			conn = statConn.Connection
 			readCounter = statConn.ReadCounter
 			writerCounter = statConn.WriteCounter
@@ -86,21 +81,16 @@ func UnwrapRawConn(conn net.Conn) (net.Conn, stats.Counter, stats.Counter) {
 		if !isEncryption { // avoids double penetration
 			// Check for REALITY UConn
 			if realityUConn, ok := conn.(*reality.UConn); ok {
-				log.Printf("[UnwrapRawConn] Unwrapping REALITY UConn")
 				conn = realityUConn.NetConn()
-				log.Printf("[UnwrapRawConn] After unwrapping REALITY, conn type: %T", conn)
 			}
 		}
 		if pc, ok := conn.(*proxyproto.Conn); ok {
-			log.Printf("[UnwrapRawConn] Unwrapping proxyproto.Conn")
 			conn = pc.Raw()
 			// 8192 > 4096, there is no need to process pc's bufReader
 		}
 		if uc, ok := conn.(*internet.UnixConnWrapper); ok {
-			log.Printf("[UnwrapRawConn] Unwrapping UnixConnWrapper")
 			conn = uc.GetUnixConn()
 		}
-		log.Printf("[UnwrapRawConn] Output conn type: %T", conn)
 	}
 	return conn, readCounter, writerCounter
 }
@@ -121,16 +111,7 @@ func CopyRawConnIfExist(ctx context.Context, readerConn net.Conn, writerConn net
 		return readV(ctx, reader, writer, timer, readCounter)
 	}
 	inbound := session.InboundFromContext(ctx)
-	if inbound != nil {
-		log.Printf("[CopyRawConnIfExist] inbound=%p, inbound.CanSpliceCopy=%d, inbound.Conn=%p", inbound, inbound.CanSpliceCopy, inbound.Conn)
-	}
 	if inbound == nil || inbound.CanSpliceCopy == 3 {
-		log.Printf("[CopyRawConnIfExist] Early return: inbound=%v, CanSpliceCopy=%d", inbound == nil, func() int {
-			if inbound != nil {
-				return inbound.CanSpliceCopy
-			}
-			return -1
-		}())
 		return readV(ctx, reader, writer, timer, readCounter)
 	}
 	outbounds := session.OutboundsFromContext(ctx)
@@ -153,7 +134,6 @@ func CopyRawConnIfExist(ctx context.Context, readerConn net.Conn, writerConn net
 			}
 		}
 		if splice {
-			log.Printf("[CopyRawConnIfExist] Using splice copy, inbound.CanSpliceCopy=%d", inbound.CanSpliceCopy)
 			// Note: For f2ray, we don't have SizeStatWriter, so we'll skip that optimization
 			time.Sleep(time.Millisecond)     // without this, there will be a rare ssl error for freedom splice
 			timer.SetTimeout(24 * time.Hour) // prevent leak, just in case
@@ -192,7 +172,6 @@ func CopyRawConnIfExist(ctx context.Context, readerConn net.Conn, writerConn net
 }
 
 func readV(ctx context.Context, reader buf.Reader, writer buf.Writer, timer signal.ActivityUpdater, readCounter stats.Counter) error {
-	log.Printf("[CopyRawConnIfExist] Using readv copy")
 	if err := buf.Copy(reader, writer, buf.UpdateActivity(timer), buf.AddToStatCounter(readCounter)); err != nil {
 		return errors.New("failed to process response").Base(err)
 	}

@@ -3,7 +3,6 @@ package vision
 import (
 	"bytes"
 	"context"
-	"log"
 	"net"
 
 	"github.com/frogwall/f2ray-core/v5/common/buf"
@@ -62,10 +61,8 @@ func (vr *VisionReader) ReadMultiBuffer() (buf.MultiBuffer, error) {
 	// Check if we should process Vision format
 	if *withinPaddingBuffers || vr.state.NumberOfPacketToFilter > 0 {
 		mb2 := make(buf.MultiBuffer, 0, len(buffer))
-		for i, b := range buffer {
-			log.Printf("[VISION DEBUG] Before xtlsUnpadding[%d], buffer len=%d", i, b.Len())
+		for _, b := range buffer {
 			newbuffer := vr.xtlsUnpadding(b)
-			log.Printf("[VISION DEBUG] After xtlsUnpadding[%d], result len=%d", i, newbuffer.Len())
 			if newbuffer.Len() > 0 {
 				mb2 = append(mb2, newbuffer)
 			}
@@ -75,17 +72,12 @@ func (vr *VisionReader) ReadMultiBuffer() (buf.MultiBuffer, error) {
 		// Update withinPaddingBuffers based on remaining state (matching Xray behavior)
 		if *remainingContent > 0 || *remainingPadding > 0 || *currentCommand == 0 {
 			*withinPaddingBuffers = true
-			log.Printf("[VISION STATE] Set withinPaddingBuffers=true, remainingContent=%d, remainingPadding=%d, command=%d", *remainingContent, *remainingPadding, *currentCommand)
 		} else if *currentCommand == 1 {
 			*withinPaddingBuffers = false
-			log.Printf("[VISION STATE] Set withinPaddingBuffers=false, command=1")
 		} else if *currentCommand == 2 {
 			*withinPaddingBuffers = false
 			*switchToDirectCopy = true
-			log.Printf("[VISION STATE] Set withinPaddingBuffers=false, switchToDirectCopy=true, command=2")
 		}
-	} else {
-		log.Printf("[VISION DEBUG] Skipping Vision processing, withinPaddingBuffers=%v, NumberOfPacketToFilter=%d", *withinPaddingBuffers, vr.state.NumberOfPacketToFilter)
 	}
 
 	// Call XtlsFilterTls if NumberOfPacketToFilter > 0 (matching Xray behavior)
@@ -94,15 +86,11 @@ func (vr *VisionReader) ReadMultiBuffer() (buf.MultiBuffer, error) {
 	}
 
 	if *switchToDirectCopy {
-		log.Printf("[VISION] switchToDirectCopy=true, isUplink=%v, vr.ob=%p", vr.isUplink, vr.ob)
-
 		// Set UplinkReaderDirectCopy or DownlinkReaderDirectCopy based on isUplink
 		if vr.isUplink {
 			vr.state.Inbound.UplinkReaderDirectCopy = true
-			log.Printf("[VISION] Set UplinkReaderDirectCopy=true")
 		} else {
 			vr.state.Outbound.DownlinkReaderDirectCopy = true
-			log.Printf("[VISION] Set DownlinkReaderDirectCopy=true")
 		}
 
 		// XTLS Vision processes TLS-like conn's input and rawInput
@@ -125,14 +113,11 @@ func (vr *VisionReader) ReadMultiBuffer() (buf.MultiBuffer, error) {
 		inbound := session.InboundFromContext(vr.ctx)
 
 		if inbound != nil && inbound.Conn != nil {
-			log.Printf("[VISION] inbound.CanSpliceCopy=%d", inbound.CanSpliceCopy)
 			if vr.isUplink && inbound.CanSpliceCopy == 2 {
-				log.Printf("[VISION] Setting inbound.CanSpliceCopy from 2 to 1 (isUplink=true)")
 				inbound.CanSpliceCopy = 1
 			}
 			if !vr.isUplink && vr.ob != nil && vr.ob.CanSpliceCopy == 2 {
 				// For downlink, also set inbound.CanSpliceCopy to 1 when switchToDirectCopy is true
-				log.Printf("[VISION] Setting inbound.CanSpliceCopy from 2 to 1 (isUplink=false)")
 				vr.ob.CanSpliceCopy = 1
 			}
 		}
@@ -147,10 +132,7 @@ func (vr *VisionReader) ReadMultiBuffer() (buf.MultiBuffer, error) {
 }
 
 func (vr *VisionReader) xtlsUnpadding(b *buf.Buffer) *buf.Buffer {
-	// Debug: log when xtlsUnpadding is called
-	log.Printf("[VISION DEBUG] xtlsUnpadding called, buffer len=%d", b.Len())
 	if vr.state == nil {
-		log.Printf("[VISION DEBUG] xtlsUnpadding: state is nil, returning raw buffer")
 		return b
 	}
 	// Use appropriate state based on isUplink
@@ -172,23 +154,12 @@ func (vr *VisionReader) xtlsUnpadding(b *buf.Buffer) *buf.Buffer {
 	}
 
 	if *remainingCommand == -1 && *remainingContent == -1 && *remainingPadding == -1 { // initial state
-		log.Printf("[F2RAY VISION DEBUG] xtlsUnpadding: initial state, buffer len=%d", b.Len())
-		log.Printf("[F2RAY VISION DEBUG] First 16 bytes=%x", b.BytesTo(min(16, b.Len())))
-		log.Printf("[F2RAY VISION DEBUG] UserUUID (raw)=%x", vr.state.UserUUID)
-		first16Bytes := b.BytesTo(min(16, b.Len()))
-		log.Printf("[F2RAY VISION DEBUG] UUID comparison: expected=%x, actual=%x, match=%v", vr.state.UserUUID, first16Bytes, bytes.Equal(vr.state.UserUUID, first16Bytes))
 		// Xray's strict logic: Only parse Vision if UUID matches, otherwise return raw buffer
 		// This prevents parsing non-Vision data as Vision
 		if b.Len() >= 21 && bytes.Equal(vr.state.UserUUID, b.BytesTo(16)) {
-			log.Printf("[F2RAY VISION DEBUG] UUID matched! Advancing 16 bytes")
 			b.Advance(16)
 			*remainingCommand = 5
 		} else {
-			log.Printf("[F2RAY VISION DEBUG] UUID mismatch. Expected UUID bytes 6-7=%x %x", vr.state.UserUUID[6], vr.state.UserUUID[7])
-			if len(first16Bytes) > 7 {
-				log.Printf("[F2RAY VISION DEBUG] Actual UUID bytes 6-7=%x %x", first16Bytes[6], first16Bytes[7])
-			}
-			log.Printf("[F2RAY VISION DEBUG] Returning raw buffer (Xray behavior)")
 			return b
 		}
 	}
@@ -202,17 +173,14 @@ func (vr *VisionReader) xtlsUnpadding(b *buf.Buffer) *buf.Buffer {
 			switch *remainingCommand {
 			case 5:
 				*currentCommand = int(data)
-				log.Printf("[F2RAY VISION DEBUG] Parsed command: %d", data)
 			case 4:
 				*remainingContent = int32(data) << 8
 			case 3:
 				*remainingContent = *remainingContent | int32(data)
-				log.Printf("[F2RAY VISION DEBUG] Parsed content length: %d", *remainingContent)
 			case 2:
 				*remainingPadding = int32(data) << 8
 			case 1:
 				*remainingPadding = *remainingPadding | int32(data)
-				log.Printf("[F2RAY VISION DEBUG] Parsed padding length: %d, command=%d", *remainingPadding, *currentCommand)
 			}
 			*remainingCommand--
 		} else if *remainingContent > 0 {
