@@ -57,10 +57,8 @@ type TrafficState struct {
 }
 
 func NewTrafficState(userUUID []byte) *TrafficState {
-	u := make([]byte, len(userUUID))
-	copy(u, userUUID)
 	return &TrafficState{
-		UserUUID:               u,
+		UserUUID:               userUUID,
 		NumberOfPacketToFilter: 8,
 		EnableXtls:             false,
 		IsTLS12orAbove:         false,

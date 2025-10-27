@@ -48,9 +48,20 @@ type Inbound struct {
 // Outbound is the metadata of an outbound connection.
 type Outbound struct {
 	// Target address of the outbound connection.
-	Target net.Destination
+	OriginalTarget net.Destination
+	Target         net.Destination
+	RouteTarget    net.Destination
 	// Gateway address
 	Gateway net.Address
+	// Tag of the outbound proxy that handles the connection.
+	Tag string
+	// Name of the outbound proxy that handles the connection.
+	Name string
+	// Unused. Conn is actually internet.Connection. May be nil. It is currently nil for outbound with proxySettings
+	Conn net.Conn
+	// CanSpliceCopy is a property for this connection
+	// 1 = can, 2 = after processing protocol info should be able to, 3 = cannot
+	CanSpliceCopy int
 	// Domain resolver to use when dialing
 	Resolver func(ctx context.Context, domain string) net.Address
 }

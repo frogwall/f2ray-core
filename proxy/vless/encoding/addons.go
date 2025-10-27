@@ -4,13 +4,18 @@
 package encoding
 
 import (
+	"context"
 	"io"
+	"log"
+	gnet "net"
 
 	"google.golang.org/protobuf/proto"
 
 	"github.com/frogwall/f2ray-core/v5/common/buf"
 	"github.com/frogwall/f2ray-core/v5/common/errors"
 	"github.com/frogwall/f2ray-core/v5/common/protocol"
+	"github.com/frogwall/f2ray-core/v5/common/session"
+	"github.com/frogwall/f2ray-core/v5/proxy/vision"
 )
 
 // EncodeHeaderAddons Add addons byte to the header
@@ -45,7 +50,9 @@ func DecodeHeaderAddons(buffer *buf.Buffer, reader io.Reader) (*Addons, error) {
 		return nil, newError("failed to read addons protobuf length").Base(err)
 	}
 
-	if length := int32(buffer.Byte(0)); length != 0 {
+	length := int32(buffer.Byte(0))
+	log.Printf("DecodeHeaderAddons: read addons length=%d", length)
+	if length != 0 {
 		buffer.Clear()
 		if _, err := buffer.ReadFullFrom(reader, length); err != nil {
 			return nil, newError("failed to read addons protobuf value").Base(err)
@@ -54,17 +61,28 @@ func DecodeHeaderAddons(buffer *buf.Buffer, reader io.Reader) (*Addons, error) {
 		if err := proto.Unmarshal(buffer.Bytes(), addons); err != nil {
 			return nil, newError("failed to unmarshal addons protobuf value").Base(err)
 		}
+		log.Printf("DecodeHeaderAddons: successfully unmarshaled addons, flow=%s", addons.Flow)
+	} else {
+		log.Printf("DecodeHeaderAddons: addons length is 0, returning empty addons")
 	}
 
 	return addons, nil
 }
 
 // EncodeBodyAddons returns a Writer that auto-encrypt content written by caller.
-func EncodeBodyAddons(writer io.Writer, request *protocol.RequestHeader, addons *Addons) buf.Writer {
+func EncodeBodyAddons(writer io.Writer, request *protocol.RequestHeader, addons *Addons, state *vision.TrafficState, isUplink bool, ctx context.Context, conn gnet.Conn, ob *session.Outbound) buf.Writer {
 	if request.Command == protocol.RequestCommandUDP {
 		return NewMultiLengthPacketWriter(writer.(buf.Writer))
 	}
+	if addons != nil && addons.Flow == "xtls-rprx-vision" {
+		return vision.NewWriter(writer.(buf.Writer), ctx, conn, ob, state, isUplink)
+	}
 	return buf.NewWriter(writer)
+}
+
+// EncodeBodyAddonsOld is the old version for backward compatibility (used by inbound)
+func EncodeBodyAddonsOld(writer io.Writer, request *protocol.RequestHeader, addons *Addons) buf.Writer {
+	return EncodeBodyAddons(writer, request, addons, nil, false, context.Background(), nil, nil)
 }
 
 // DecodeBodyAddons returns a Reader from which caller can fetch decrypted body.
@@ -72,6 +90,7 @@ func DecodeBodyAddons(reader io.Reader, request *protocol.RequestHeader, addons 
 	if request.Command == protocol.RequestCommandUDP {
 		return NewLengthPacketReader(reader)
 	}
+	// Add debug wrapper for TCP to see what data we're reading
 	return buf.NewReader(reader)
 }
 

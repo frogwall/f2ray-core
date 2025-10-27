@@ -3,11 +3,17 @@ package encoding
 //go:generate go run github.com/frogwall/f2ray-core/v5/common/errors/errorgen
 
 import (
+	"context"
 	"io"
+	"log"
+	gnet "net"
 
 	"github.com/frogwall/f2ray-core/v5/common/buf"
+	"github.com/frogwall/f2ray-core/v5/common/errors"
 	"github.com/frogwall/f2ray-core/v5/common/net"
 	"github.com/frogwall/f2ray-core/v5/common/protocol"
+	"github.com/frogwall/f2ray-core/v5/common/signal"
+	"github.com/frogwall/f2ray-core/v5/proxy/vision"
 	"github.com/frogwall/f2ray-core/v5/proxy/vless"
 )
 
@@ -31,7 +37,9 @@ func EncodeRequestHeader(writer io.Writer, request *protocol.RequestHeader, requ
 		return newError("failed to write request version").Base(err)
 	}
 
-	if _, err := buffer.Write(request.User.Account.(*vless.MemoryAccount).ID.Bytes()); err != nil {
+	uuidBytes := request.User.Account.(*vless.MemoryAccount).ID.Bytes()
+	log.Printf("[ENCODING DEBUG] Writing UUID to request header: %x", uuidBytes)
+	if _, err := buffer.Write(uuidBytes); err != nil {
 		return newError("failed to write request user id").Base(err)
 	}
 
@@ -49,7 +57,10 @@ func EncodeRequestHeader(writer io.Writer, request *protocol.RequestHeader, requ
 		}
 	}
 
-	if _, err := writer.Write(buffer.Bytes()); err != nil {
+	headerBytes := buffer.Bytes()
+	log.Printf("[ENCODING DEBUG] Writing request header, total length=%d bytes", len(headerBytes))
+	log.Printf("[ENCODING DEBUG] Full header bytes: %x", headerBytes)
+	if _, err := writer.Write(headerBytes); err != nil {
 		return newError("failed to write request header").Base(err)
 	}
 
@@ -154,8 +165,11 @@ func DecodeResponseHeader(reader io.Reader, request *protocol.RequestHeader) (*A
 		return nil, newError("failed to read response version").Base(err)
 	}
 
-	if buffer.Byte(0) != request.Version {
-		return nil, newError("unexpected response version. Expecting ", int(request.Version), " but actually ", int(buffer.Byte(0)))
+	version := buffer.Byte(0)
+	log.Printf("DecodeResponseHeader: read version=%d, expected=%d", version, request.Version)
+
+	if version != request.Version {
+		return nil, newError("unexpected response version. Expecting ", int(request.Version), " but actually ", int(version))
 	}
 
 	responseAddons, err := DecodeHeaderAddons(&buffer, reader)
@@ -163,5 +177,30 @@ func DecodeResponseHeader(reader io.Reader, request *protocol.RequestHeader) (*A
 		return nil, newError("failed to decode response header addons").Base(err)
 	}
 
+	log.Printf("DecodeResponseHeader: successfully decoded addons, flow=%s", responseAddons.Flow)
 	return responseAddons, nil
+}
+
+// XtlsRead can switch to splice copy
+func XtlsRead(reader buf.Reader, writer buf.Writer, timer *signal.ActivityTimer, conn gnet.Conn, trafficState *vision.TrafficState, isUplink bool, ctx context.Context) error {
+	// Simply copy data from reader to writer
+	// The Vision Reader has already handled Vision formatting if needed
+	err := func() error {
+		for {
+			buffer, err := reader.ReadMultiBuffer()
+			if !buffer.IsEmpty() {
+				timer.Update()
+				if werr := writer.WriteMultiBuffer(buffer); werr != nil {
+					return werr
+				}
+			}
+			if err != nil {
+				return err
+			}
+		}
+	}()
+	if err != nil && errors.Cause(err) != io.EOF {
+		return err
+	}
+	return nil
 }

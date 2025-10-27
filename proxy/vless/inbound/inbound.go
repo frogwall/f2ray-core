@@ -417,7 +417,7 @@ func (h *Handler) Process(ctx context.Context, network net.Network, connection i
 		}
 
 		// default: clientWriter := bufferWriter
-		clientWriter := encoding.EncodeBodyAddons(bufferWriter, request, responseAddons)
+		clientWriter := encoding.EncodeBodyAddonsOld(bufferWriter, request, responseAddons)
 		{
 			multiBuffer, err := serverReader.ReadMultiBuffer()
 			if err != nil {

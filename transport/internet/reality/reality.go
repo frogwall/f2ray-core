@@ -29,6 +29,11 @@ type UConn struct {
 	Verified   bool
 }
 
+// NetConn returns the underlying net.Conn
+func (c *UConn) NetConn() coreNet.Conn {
+	return c.UConn.NetConn()
+}
+
 // Server handles incoming REALITY connections
 // NOTE: Full server implementation would require decrypting the SessionId
 // from ClientHello, extracting ShortId, and performing verification.

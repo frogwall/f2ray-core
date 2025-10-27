@@ -4,6 +4,7 @@ package outbound
 
 import (
 	"context"
+	"time"
 
 	core "github.com/frogwall/f2ray-core/v5"
 	"github.com/frogwall/f2ray-core/v5/common"
@@ -16,12 +17,11 @@ import (
 	"github.com/frogwall/f2ray-core/v5/common/signal"
 	"github.com/frogwall/f2ray-core/v5/common/task"
 	"github.com/frogwall/f2ray-core/v5/features/policy"
-	"github.com/frogwall/f2ray-core/v5/proxy"
+	"github.com/frogwall/f2ray-core/v5/proxy/vision"
 	"github.com/frogwall/f2ray-core/v5/proxy/vless"
 	"github.com/frogwall/f2ray-core/v5/proxy/vless/encoding"
 	"github.com/frogwall/f2ray-core/v5/transport"
 	"github.com/frogwall/f2ray-core/v5/transport/internet"
-	vision "github.com/frogwall/f2ray-core/v5/proxy/vision"
 )
 
 func init() {
@@ -77,6 +77,21 @@ func New(ctx context.Context, config *Config) (*Handler, error) {
 
 // Process implements proxy.Outbound.Process().
 func (h *Handler) Process(ctx context.Context, link *transport.Link, dialer internet.Dialer) error {
+	outbounds := session.OutboundsFromContext(ctx)
+	if len(outbounds) == 0 {
+		// If outbounds is nil or empty, try to get single outbound
+		ob := session.OutboundFromContext(ctx)
+		if ob == nil {
+			return newError("target not specified").AtError()
+		}
+		outbounds = []*session.Outbound{ob}
+	}
+	ob := outbounds[len(outbounds)-1]
+	if !ob.Target.IsValid() && ob.Target.Address.String() != "v1.rvs.cool" {
+		return newError("target not specified").AtError()
+	}
+	ob.Name = "vless"
+
 	var rec *protocol.ServerSpec
 	var conn internet.Connection
 
@@ -93,12 +108,7 @@ func (h *Handler) Process(ctx context.Context, link *transport.Link, dialer inte
 	}
 	defer conn.Close()
 
-	outbound := session.OutboundFromContext(ctx)
-	if outbound == nil || !outbound.Target.IsValid() {
-		return newError("target not specified").AtError()
-	}
-
-	target := outbound.Target
+	target := ob.Target
 	newError("tunneling request to ", target, " via ", rec.Destination().NetAddr()).AtInfo().WriteToLog(session.ExportIDToError(ctx))
 
 	command := protocol.RequestCommandTCP
@@ -119,43 +129,71 @@ func (h *Handler) Process(ctx context.Context, link *transport.Link, dialer inte
 
 	account := request.User.Account.(*vless.MemoryAccount)
 
+	// Force disable Vision flow in request - server doesn't support standard Vision implementation
 	requestAddons := &encoding.Addons{
 		Flow: account.Flow,
 	}
 
+	var newCtx context.Context
+	var newCancel context.CancelFunc
+
 	sessionPolicy := h.policyManager.ForLevel(request.User.Level)
 	ctx, cancel := context.WithCancel(ctx)
-	timer := signal.CancelAfterInactivity(ctx, cancel, sessionPolicy.Timeouts.ConnectionIdle)
+	timer := signal.CancelAfterInactivity(ctx, func() {
+		cancel()
+		if newCancel != nil {
+			newCancel()
+		}
+	}, sessionPolicy.Timeouts.ConnectionIdle)
 
-	clientReader := link.Reader // .(*pipe.Reader)
-	clientWriter := link.Writer // .(*pipe.Writer)
-	var visionState *vision.TrafficState
-	var responseAddons *encoding.Addons
+	clientReader := link.Reader
+	clientWriter := link.Writer
+
+	// Initialize traffic state with raw UUID (Vision doesn't use ProcessUUID)
+	trafficState := vision.NewTrafficState(account.ID.Bytes())
+	newError("[UUID DEBUG] Account UUID bytes: ", account.ID.Bytes()).AtInfo().WriteToLog()
+	if request.Command == protocol.RequestCommandUDP && (requestAddons.Flow == "xtls-rprx-vision" || request.Port != 53 && request.Port != 443) {
+		request.Command = protocol.RequestCommandMux
+		request.Address = net.DomainAddress("v1.mux.cool")
+		request.Port = net.Port(666)
+	}
 
 	postRequest := func() error {
 		defer timer.SetTimeout(sessionPolicy.Timeouts.DownlinkOnly)
+
+		newError("[FLOW DEBUG] Request flow: ", requestAddons.Flow).AtInfo().WriteToLog()
+		newError("[FLOW DEBUG] Request command: ", request.Command).AtInfo().WriteToLog()
 
 		bufferWriter := buf.NewBufferedWriter(buf.NewWriter(conn))
 		if err := encoding.EncodeRequestHeader(bufferWriter, request, requestAddons); err != nil {
 			return newError("failed to encode request header").Base(err).AtWarning()
 		}
-		newError("request flow=", requestAddons.Flow).AtInfo().WriteToLog(session.ExportIDToError(ctx))
-		// Flush header so that server can respond with response header before body
+
+		// default: serverWriter := bufferWriter
+		serverWriter := encoding.EncodeBodyAddons(bufferWriter, request, requestAddons, trafficState, true, ctx, conn, ob)
+		newError("[FLOW DEBUG] Created serverWriter, Flow=", requestAddons.Flow).AtInfo().WriteToLog()
+
+		timeoutReader, ok := clientReader.(buf.TimeoutReader)
+		if ok {
+			multiBuffer, err1 := timeoutReader.ReadMultiBufferTimeout(time.Millisecond * 500)
+			if err1 == nil {
+				if err := serverWriter.WriteMultiBuffer(multiBuffer); err != nil {
+					return err
+				}
+			} else if err1 != buf.ErrReadTimeout {
+				return err1
+			} else if requestAddons.Flow == "xtls-rprx-vision" {
+				mb := make(buf.MultiBuffer, 1)
+				if err := serverWriter.WriteMultiBuffer(mb); err != nil {
+					return err
+				}
+			}
+		}
+
+		// Flush
 		if err := bufferWriter.SetBuffered(false); err != nil {
 			return newError("failed to flush request header").Base(err).AtWarning()
 		}
-
-		var serverWriter buf.Writer
-		if request.Command == protocol.RequestCommandUDP {
-			serverWriter = encoding.EncodeBodyAddons(bufferWriter, request, requestAddons)
-		} else {
-			// Always use plain writer for TCP; Vision writer only when server echo is confirmed (not done in postRequest)
-			serverWriter = encoding.EncodeBodyAddons(bufferWriter, request, requestAddons)
-		}
-		if err := buf.CopyOnceTimeout(clientReader, serverWriter, proxy.FirstPayloadTimeout); err != nil && err != buf.ErrNotTimeoutReader && err != buf.ErrReadTimeout {
-			return err // ...
-		}
-		// Already unbuffered above; proceed
 
 		if err := buf.Copy(clientReader, serverWriter, buf.UpdateActivity(timer)); err != nil {
 			return newError("failed to transfer request payload").Base(err).AtInfo()
@@ -167,41 +205,52 @@ func (h *Handler) Process(ctx context.Context, link *transport.Link, dialer inte
 	getResponse := func() error {
 		defer timer.SetTimeout(sessionPolicy.Timeouts.UplinkOnly)
 
-		// If we didn't decode response header early, do it now before streaming body
-		if responseAddons == nil {
-			ra, err := encoding.DecodeResponseHeader(conn, request)
-			if err != nil {
-				return newError("failed to decode response header").Base(err).AtInfo()
-			}
-			responseAddons = ra
-			if responseAddons != nil {
-				newError("response flow=", responseAddons.GetFlow()).AtInfo().WriteToLog(session.ExportIDToError(ctx))
-			} else {
-				newError("response flow=<nil>").AtInfo().WriteToLog(session.ExportIDToError(ctx))
-			}
+		responseAddons, err := encoding.DecodeResponseHeader(conn, request)
+		if err != nil {
+			return newError("failed to decode response header").Base(err).AtInfo()
 		}
 
-		var serverReader buf.Reader
-		if request.Command == protocol.RequestCommandUDP {
-			serverReader = encoding.DecodeBodyAddons(conn, request, responseAddons)
-		} else if responseAddons != nil && responseAddons.GetFlow() == "xtls-rprx-vision" {
-			ob := session.OutboundFromContext(ctx)
-			if visionState == nil {
-				visionState = vision.NewTrafficState(account.ID.Bytes())
-			}
-			inner := encoding.DecodeBodyAddons(conn, request, responseAddons)
-			serverReader = vision.NewReader(inner, ctx, conn, ob, visionState, false)
+		newError("[FLOW DEBUG] Response header decoded, ResponseFlow=", responseAddons.Flow, ", RequestFlow=", requestAddons.Flow).AtInfo().WriteToLog()
+
+		// Debug: peek at first data after response header
+		// Note: This will consume data from conn, which will break the subsequent read
+		// So we'll skip this debug code for now
+
+		// default: serverReader := buf.NewReader(conn)
+		serverReader := encoding.DecodeBodyAddons(conn, request, responseAddons)
+
+		// Use Vision Reader whenever request flow is Vision (matching Xray behavior)
+		useVision := requestAddons.Flow == "xtls-rprx-vision"
+		if useVision && responseAddons.Flow != "xtls-rprx-vision" {
+			newError("[FLOW DEBUG] Request is Vision but response flow is empty, still using Vision Reader (Xray behavior)").AtInfo().WriteToLog()
+		}
+
+		if useVision {
+			newError("[FLOW DEBUG] Creating Vision Reader for response").AtInfo().WriteToLog()
+			// Note: Xray's signature is different but we're using our own implementation
+			// Xray: NewVisionReader(reader, trafficState, isUplink, ctx, conn, input, rawInput, ob)
+			// Ours: NewReader(r, ctx, conn, input, rawInput, ob, state, isUplink)
+			serverReader = vision.NewReader(serverReader, ctx, conn, nil, nil, ob, trafficState, false)
+			newError("[FLOW DEBUG] Using XtlsRead for response").AtInfo().WriteToLog()
+			err = encoding.XtlsRead(serverReader, clientWriter, timer, conn, trafficState, false, ctx)
 		} else {
-			serverReader = encoding.DecodeBodyAddons(conn, request, responseAddons)
+			newError("[FLOW DEBUG] Using plain reader for response").AtInfo().WriteToLog()
+			newError("[FLOW DEBUG] Using buf.Copy for response").AtInfo().WriteToLog()
+			err = buf.Copy(serverReader, clientWriter, buf.UpdateActivity(timer))
 		}
 
-		if err := buf.Copy(serverReader, clientWriter, buf.UpdateActivity(timer)); err != nil {
+		if err != nil {
 			return newError("failed to transfer response payload").Base(err).AtInfo()
 		}
+
 		return nil
 	}
 
-	if err := task.Run(ctx, postRequest, getResponse); err != nil {
+	if newCtx != nil {
+		ctx = newCtx
+	}
+
+	if err := task.Run(ctx, postRequest, task.OnSuccess(getResponse, task.Close(clientWriter))); err != nil {
 		return newError("connection ends").Base(err).AtInfo()
 	}
 

@@ -93,6 +93,11 @@ var (
 		runtime.GOARCH == "s390x" && hasGCMAsmS390X
 )
 
+// HasAESGCMHardwareSupport returns whether the platform has hardware support for AES-GCM
+func HasAESGCMHardwareSupport() bool {
+	return hasAESGCMHardwareSupport
+}
+
 func (sc *SecurityConfig) GetSecurityType() SecurityType {
 	if sc == nil || sc.Type == SecurityType_AUTO {
 		if hasAESGCMHardwareSupport {
