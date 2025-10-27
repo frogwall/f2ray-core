@@ -3,6 +3,7 @@ package vision
 import (
 	"bytes"
 	"context"
+	"log"
 
 	"github.com/frogwall/f2ray-core/v5/common/buf"
 )
@@ -12,7 +13,7 @@ var (
 	TlsClientHandShakeStart = []byte{0x16, 0x03}
 	TlsServerHandShakeStart = []byte{0x16, 0x03, 0x03}
 	TlsApplicationDataStart = []byte{0x17, 0x03, 0x03}
-	Tls13CipherSuiteDic = map[uint16]string{
+	Tls13CipherSuiteDic     = map[uint16]string{
 		0x1301: "TLS_AES_128_GCM_SHA256",
 		0x1302: "TLS_AES_256_GCM_SHA384",
 		0x1303: "TLS_CHACHA20_POLY1305_SHA256",
@@ -22,13 +23,13 @@ var (
 )
 
 type InboundState struct {
-	WithinPaddingBuffers   bool
-	UplinkReaderDirectCopy bool
-	RemainingCommand       int32
-	RemainingContent       int32
-	RemainingPadding       int32
-	CurrentCommand         int
-	IsPadding              bool
+	WithinPaddingBuffers     bool
+	UplinkReaderDirectCopy   bool
+	RemainingCommand         int32
+	RemainingContent         int32
+	RemainingPadding         int32
+	CurrentCommand           int
+	IsPadding                bool
 	DownlinkWriterDirectCopy bool
 }
 
@@ -148,17 +149,22 @@ func XtlsFilterTls(buffer buf.MultiBuffer, s *TrafficState, ctx context.Context)
 			}
 			s.RemainingServerHello -= b.Len()
 			if bytes.Contains(b.BytesTo(end), Tls13SupportedVersions) {
-				if name, ok := Tls13CipherSuiteDic[s.Cipher]; ok {
-					if name != "TLS_AES_128_CCM_8_SHA256" {
-						s.EnableXtls = true
-					}
+				v, ok := Tls13CipherSuiteDic[s.Cipher]
+				if !ok {
+					// Add log for old cipher
+					log.Printf("XtlsFilterTls: Old cipher: %x", s.Cipher)
+				} else if v != "TLS_AES_128_CCM_8_SHA256" {
+					s.EnableXtls = true
 				}
+				log.Printf("XtlsFilterTls found tls 1.3! %d %s", b.Len(), v)
 				s.NumberOfPacketToFilter = 0
 				return
 			} else if s.RemainingServerHello <= 0 {
+				log.Printf("XtlsFilterTls found tls 1.2! %d", b.Len())
 				s.NumberOfPacketToFilter = 0
 				return
 			}
+			log.Printf("XtlsFilterTls inconclusive server hello %d %d", b.Len(), s.RemainingServerHello)
 		}
 		if s.NumberOfPacketToFilter <= 0 {
 			return

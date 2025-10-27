@@ -20,25 +20,26 @@ import (
 
 // EncodeHeaderAddons Add addons byte to the header
 func EncodeHeaderAddons(buffer *buf.Buffer, addons *Addons) error {
-	if addons == nil || (addons.Flow == "" && len(addons.Seed) == 0) {
+	switch addons.Flow {
+	case "xtls-rprx-vision":
+		data, err := proto.Marshal(addons)
+		if err != nil {
+			return newError("failed to marshal addons protobuf value").Base(err)
+		}
+		if len(data) > 255 {
+			// current header reserves 1 byte length field
+			return newError("addons protobuf too large")
+		}
+		if err := buffer.WriteByte(byte(len(data))); err != nil {
+			return newError("failed to write addons protobuf length").Base(err)
+		}
+		if _, err := buffer.Write(data); err != nil {
+			return newError("failed to write addons protobuf value").Base(err)
+		}
+	default:
 		if err := buffer.WriteByte(0); err != nil {
 			return newError("failed to write addons protobuf length").Base(err)
 		}
-		return nil
-	}
-	data, err := proto.Marshal(addons)
-	if err != nil {
-		return newError("failed to marshal addons protobuf value").Base(err)
-	}
-	if len(data) > 255 {
-		// current header reserves 1 byte length field
-		return newError("addons protobuf too large")
-	}
-	if err := buffer.WriteByte(byte(len(data))); err != nil {
-		return newError("failed to write addons protobuf length").Base(err)
-	}
-	if _, err := buffer.Write(data); err != nil {
-		return newError("failed to write addons protobuf value").Base(err)
 	}
 	return nil
 }
@@ -75,7 +76,7 @@ func EncodeBodyAddons(writer io.Writer, request *protocol.RequestHeader, addons 
 		return NewMultiLengthPacketWriter(writer.(buf.Writer))
 	}
 	if addons != nil && addons.Flow == "xtls-rprx-vision" {
-		return vision.NewWriter(writer.(buf.Writer), ctx, conn, ob, state, isUplink)
+		return vision.NewVisionWriter(writer.(buf.Writer), ctx, conn, ob, state, isUplink)
 	}
 	return buf.NewWriter(writer)
 }

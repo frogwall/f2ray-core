@@ -52,3 +52,13 @@ func (c *StatCouterConnection) Write(b []byte) (int, error) {
 	}
 	return nBytes, err
 }
+
+// UnixConnWrapper wraps a net.UnixConn to provide UnwrapRawConn support
+type UnixConnWrapper struct {
+	*net.UnixConn
+}
+
+// GetUnixConn returns the underlying UnixConn
+func (c *UnixConnWrapper) GetUnixConn() *net.UnixConn {
+	return c.UnixConn
+}

@@ -76,15 +76,14 @@ func UClient(ctx context.Context, c coreNet.Conn, config *Config) (coreNet.Conn,
 	u.BuildHandshakeState()
 	hello := u.HandshakeState.Hello
 
-	// Customize SessionId with version and ShortId
-	if len(hello.SessionId) < 32 {
-		hello.SessionId = make([]byte, 32)
-	}
+	// Allocate SessionId and copy to raw ClientHello first (like Xray does)
+	hello.SessionId = make([]byte, 32)
+	copy(hello.Raw[39:], hello.SessionId) // the fixed location of `Session ID`
 
-	// Set version bytes (can be customized)
-	hello.SessionId[0] = 0 // version
-	hello.SessionId[1] = 0 // version
-	hello.SessionId[2] = 0 // version
+	// Set version bytes (f2ray version)
+	hello.SessionId[0] = 2 // f2ray version major
+	hello.SessionId[1] = 0 // f2ray version minor
+	hello.SessionId[2] = 0 // f2ray version patch
 	hello.SessionId[3] = 0 // reserved
 
 	// Set timestamp
@@ -96,11 +95,6 @@ func UClient(ctx context.Context, c coreNet.Conn, config *Config) (coreNet.Conn,
 		sid = sid[:16]
 	}
 	copy(hello.SessionId[8:], sid)
-
-	// Write SessionId back to raw ClientHello
-	if len(hello.Raw) >= 39+len(hello.SessionId) {
-		copy(hello.Raw[39:], hello.SessionId)
-	}
 
 	// 3) Derive shared key using X25519 public key
 	pub, err := ecdh.X25519().NewPublicKey(config.PublicKey)

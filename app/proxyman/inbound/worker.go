@@ -80,11 +80,14 @@ func (w *tcpWorker) callback(conn internet.Connection) {
 			})
 		}
 	}
-	ctx = session.ContextWithInbound(ctx, &session.Inbound{
-		Source:  net.DestinationFromAddr(conn.RemoteAddr()),
-		Gateway: net.TCPDestination(w.address, w.port),
-		Tag:     w.tag,
-	})
+	inbound := &session.Inbound{
+		Source:        net.DestinationFromAddr(conn.RemoteAddr()),
+		Gateway:       net.TCPDestination(w.address, w.port),
+		Tag:           w.tag,
+		Conn:          conn,
+		CanSpliceCopy: 2, // Will be set to 1 when switchToDirectCopy is true, or 3 if cannot splice
+	}
+	ctx = session.ContextWithInbound(ctx, inbound)
 	content := new(session.Content)
 	if w.sniffingConfig != nil {
 		content.SniffingRequest.Enabled = w.sniffingConfig.Enabled

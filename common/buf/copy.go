@@ -6,6 +6,7 @@ import (
 
 	"github.com/frogwall/f2ray-core/v5/common/errors"
 	"github.com/frogwall/f2ray-core/v5/common/signal"
+	"github.com/frogwall/f2ray-core/v5/features/stats"
 )
 
 type dataHandler func(MultiBuffer)
@@ -36,6 +37,18 @@ func CountSize(sc *SizeCounter) CopyOption {
 	return func(handler *copyHandler) {
 		handler.onData = append(handler.onData, func(b MultiBuffer) {
 			sc.Size += int64(b.Len())
+		})
+	}
+}
+
+// AddToStatCounter is a CopyOption that adds the size of data copied to a stats.Counter.
+func AddToStatCounter(counter stats.Counter) CopyOption {
+	if counter == nil {
+		return func(*copyHandler) {}
+	}
+	return func(handler *copyHandler) {
+		handler.onData = append(handler.onData, func(b MultiBuffer) {
+			counter.Add(int64(b.Len()))
 		})
 	}
 }

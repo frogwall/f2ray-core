@@ -13,7 +13,7 @@ import (
 	"github.com/pires/go-proxyproto"
 )
 
-type reader struct {
+type VisionReader struct {
 	r                 buf.Reader
 	state             *TrafficState
 	isUplink          bool
@@ -25,7 +25,7 @@ type reader struct {
 	directReadCounter stats.Counter
 }
 
-func (vr *reader) ReadMultiBuffer() (buf.MultiBuffer, error) {
+func (vr *VisionReader) ReadMultiBuffer() (buf.MultiBuffer, error) {
 	buffer, err := vr.r.ReadMultiBuffer()
 	if buffer.IsEmpty() {
 		return buffer, err
@@ -75,11 +75,14 @@ func (vr *reader) ReadMultiBuffer() (buf.MultiBuffer, error) {
 		// Update withinPaddingBuffers based on remaining state (matching Xray behavior)
 		if *remainingContent > 0 || *remainingPadding > 0 || *currentCommand == 0 {
 			*withinPaddingBuffers = true
+			log.Printf("[VISION STATE] Set withinPaddingBuffers=true, remainingContent=%d, remainingPadding=%d, command=%d", *remainingContent, *remainingPadding, *currentCommand)
 		} else if *currentCommand == 1 {
 			*withinPaddingBuffers = false
+			log.Printf("[VISION STATE] Set withinPaddingBuffers=false, command=1")
 		} else if *currentCommand == 2 {
 			*withinPaddingBuffers = false
 			*switchToDirectCopy = true
+			log.Printf("[VISION STATE] Set withinPaddingBuffers=false, switchToDirectCopy=true, command=2")
 		}
 	} else {
 		log.Printf("[VISION DEBUG] Skipping Vision processing, withinPaddingBuffers=%v, NumberOfPacketToFilter=%d", *withinPaddingBuffers, vr.state.NumberOfPacketToFilter)
@@ -91,36 +94,59 @@ func (vr *reader) ReadMultiBuffer() (buf.MultiBuffer, error) {
 	}
 
 	if *switchToDirectCopy {
+		log.Printf("[VISION] switchToDirectCopy=true, isUplink=%v, vr.ob=%p", vr.isUplink, vr.ob)
+
+		// Set UplinkReaderDirectCopy or DownlinkReaderDirectCopy based on isUplink
+		if vr.isUplink {
+			vr.state.Inbound.UplinkReaderDirectCopy = true
+			log.Printf("[VISION] Set UplinkReaderDirectCopy=true")
+		} else {
+			vr.state.Outbound.DownlinkReaderDirectCopy = true
+			log.Printf("[VISION] Set DownlinkReaderDirectCopy=true")
+		}
+
 		// XTLS Vision processes TLS-like conn's input and rawInput
 		if vr.input != nil {
 			if inputBuffer, err := buf.ReadFrom(vr.input); err == nil && !inputBuffer.IsEmpty() {
 				buffer, _ = buf.MergeMulti(buffer, inputBuffer)
 			}
-			*vr.input = bytes.Reader{} // release memory
+			// Note: vr.input is a pointer to bytes.Reader, we just set it to nil
 			vr.input = nil
 		}
 		if vr.rawInput != nil {
 			if rawInputBuffer, err := buf.ReadFrom(vr.rawInput); err == nil && !rawInputBuffer.IsEmpty() {
 				buffer, _ = buf.MergeMulti(buffer, rawInputBuffer)
 			}
-			*vr.rawInput = bytes.Buffer{} // release memory
+			// Note: vr.rawInput is a pointer to bytes.Buffer, we just set it to nil
 			vr.rawInput = nil
 		}
 
-		if vr.conn != nil {
-			// TODO: Implement UnwrapRawConn similar to Xray
-			// This requires additional infrastructure to unwrap the connection and get the read counter
-			// For now, we skip switching to raw conn
-			readerConn, readCounter, _ := UnwrapRawConn(vr.conn)
-			vr.directReadCounter = readCounter
-			vr.r = buf.NewReader(readerConn)
+		// Enable splice copy by setting CanSpliceCopy (matching Xray behavior)
+		inbound := session.InboundFromContext(vr.ctx)
+
+		if inbound != nil && inbound.Conn != nil {
+			log.Printf("[VISION] inbound.CanSpliceCopy=%d", inbound.CanSpliceCopy)
+			if vr.isUplink && inbound.CanSpliceCopy == 2 {
+				log.Printf("[VISION] Setting inbound.CanSpliceCopy from 2 to 1 (isUplink=true)")
+				inbound.CanSpliceCopy = 1
+			}
+			if !vr.isUplink && vr.ob != nil && vr.ob.CanSpliceCopy == 2 {
+				// For downlink, also set inbound.CanSpliceCopy to 1 when switchToDirectCopy is true
+				log.Printf("[VISION] Setting inbound.CanSpliceCopy from 2 to 1 (isUplink=false)")
+				vr.ob.CanSpliceCopy = 1
+			}
 		}
+
+		readerConn, readCounter, _ := UnwrapRawConn(vr.conn)
+		vr.directReadCounter = readCounter
+		vr.r = buf.NewReader(readerConn)
+
 	}
 
 	return buffer, err
 }
 
-func (vr *reader) xtlsUnpadding(b *buf.Buffer) *buf.Buffer {
+func (vr *VisionReader) xtlsUnpadding(b *buf.Buffer) *buf.Buffer {
 	// Debug: log when xtlsUnpadding is called
 	log.Printf("[VISION DEBUG] xtlsUnpadding called, buffer len=%d", b.Len())
 	if vr.state == nil {
@@ -227,8 +253,8 @@ func (vr *reader) xtlsUnpadding(b *buf.Buffer) *buf.Buffer {
 	return newbuffer
 }
 
-func NewReader(r buf.Reader, ctx context.Context, conn net.Conn, input *bytes.Reader, rawInput *bytes.Buffer, ob *session.Outbound, state *TrafficState, isUplink bool) buf.Reader {
-	return &reader{
+func NewVisionReader(r buf.Reader, ctx context.Context, conn net.Conn, input *bytes.Reader, rawInput *bytes.Buffer, ob *session.Outbound, state *TrafficState, isUplink bool) buf.Reader {
+	return &VisionReader{
 		r:        r,
 		state:    state,
 		isUplink: isUplink,

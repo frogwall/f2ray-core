@@ -12,7 +12,9 @@ import (
 	"github.com/frogwall/f2ray-core/v5/common/errors"
 	"github.com/frogwall/f2ray-core/v5/common/net"
 	"github.com/frogwall/f2ray-core/v5/common/protocol"
+	"github.com/frogwall/f2ray-core/v5/common/session"
 	"github.com/frogwall/f2ray-core/v5/common/signal"
+	"github.com/frogwall/f2ray-core/v5/proxy"
 	"github.com/frogwall/f2ray-core/v5/proxy/vision"
 	"github.com/frogwall/f2ray-core/v5/proxy/vless"
 )
@@ -183,10 +185,22 @@ func DecodeResponseHeader(reader io.Reader, request *protocol.RequestHeader) (*A
 
 // XtlsRead can switch to splice copy
 func XtlsRead(reader buf.Reader, writer buf.Writer, timer *signal.ActivityTimer, conn gnet.Conn, trafficState *vision.TrafficState, isUplink bool, ctx context.Context) error {
-	// Simply copy data from reader to writer
-	// The Vision Reader has already handled Vision formatting if needed
 	err := func() error {
 		for {
+			// Debug logging
+			log.Printf("[XtlsRead] isUplink=%v, UplinkReaderDirectCopy=%v, DownlinkReaderDirectCopy=%v",
+				isUplink, trafficState.Inbound.UplinkReaderDirectCopy, trafficState.Outbound.DownlinkReaderDirectCopy)
+
+			if isUplink && trafficState.Inbound.UplinkReaderDirectCopy || !isUplink && trafficState.Outbound.DownlinkReaderDirectCopy {
+				log.Printf("[XtlsRead] Switch to splice copy, isUplink=%v", isUplink)
+				var writerConn gnet.Conn
+				var inTimer *signal.ActivityTimer
+				if inbound := session.InboundFromContext(ctx); inbound != nil && inbound.Conn != nil {
+					writerConn = inbound.Conn
+					inTimer = inbound.Timer
+				}
+				return proxy.CopyRawConnIfExist(ctx, conn, writerConn, writer, timer, inTimer)
+			}
 			buffer, err := reader.ReadMultiBuffer()
 			if !buffer.IsEmpty() {
 				timer.Update()

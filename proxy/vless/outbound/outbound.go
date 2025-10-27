@@ -3,6 +3,7 @@ package outbound
 //go:generate go run github.com/frogwall/f2ray-core/v5/common/errors/errorgen
 
 import (
+	"bytes"
 	"context"
 	"time"
 
@@ -85,6 +86,8 @@ func (h *Handler) Process(ctx context.Context, link *transport.Link, dialer inte
 			return newError("target not specified").AtError()
 		}
 		outbounds = []*session.Outbound{ob}
+		// Put outbounds back to context so it can be accessed later
+		ctx = session.ContextWithOutbounds(ctx, outbounds)
 	}
 	ob := outbounds[len(outbounds)-1]
 	if !ob.Target.IsValid() && ob.Target.Address.String() != "v1.rvs.cool" {
@@ -132,6 +135,26 @@ func (h *Handler) Process(ctx context.Context, link *transport.Link, dialer inte
 	// Force disable Vision flow in request - server doesn't support standard Vision implementation
 	requestAddons := &encoding.Addons{
 		Flow: account.Flow,
+	}
+
+	// Set CanSpliceCopy for Vision flow (matching Xray behavior)
+	if requestAddons.Flow == "xtls-rprx-vision" {
+		ob.CanSpliceCopy = 2 // Will be set to 1 when switchToDirectCopy is true
+		// TODO: Check for XorConn or non-RAW transport and set to 3 if needed
+	} else {
+		ob.CanSpliceCopy = 3
+	}
+
+	// Put outbounds back to context so modified ob.CanSpliceCopy can be accessed later
+	ctx = session.ContextWithOutbounds(ctx, outbounds)
+
+	var input *bytes.Reader
+	var rawInput *bytes.Buffer
+	if requestAddons.Flow == "xtls-rprx-vision" {
+		// Extract input and rawInput from the connection for Vision splice copy
+		// This requires getting the inner connection from REALITY/TLS wrapper
+		// For now, we'll leave them as nil and see if it causes issues
+		// TODO: Implement proper connection unwrapping like Xray does
 	}
 
 	var newCtx context.Context
@@ -218,24 +241,22 @@ func (h *Handler) Process(ctx context.Context, link *transport.Link, dialer inte
 
 		// default: serverReader := buf.NewReader(conn)
 		serverReader := encoding.DecodeBodyAddons(conn, request, responseAddons)
-
-		// Use Vision Reader whenever request flow is Vision (matching Xray behavior)
-		useVision := requestAddons.Flow == "xtls-rprx-vision"
-		if useVision && responseAddons.Flow != "xtls-rprx-vision" {
-			newError("[FLOW DEBUG] Request is Vision but response flow is empty, still using Vision Reader (Xray behavior)").AtInfo().WriteToLog()
-		}
-
-		if useVision {
+		if requestAddons.Flow == "xtls-rprx-vision" {
 			newError("[FLOW DEBUG] Creating Vision Reader for response").AtInfo().WriteToLog()
 			// Note: Xray's signature is different but we're using our own implementation
 			// Xray: NewVisionReader(reader, trafficState, isUplink, ctx, conn, input, rawInput, ob)
 			// Ours: NewReader(r, ctx, conn, input, rawInput, ob, state, isUplink)
-			serverReader = vision.NewReader(serverReader, ctx, conn, nil, nil, ob, trafficState, false)
+			serverReader = vision.NewVisionReader(serverReader, ctx, conn, input, rawInput, ob, trafficState, false)
+		} else {
+			newError("[FLOW DEBUG] Using plain reader for response").AtInfo().WriteToLog()
+		}
+
+		if requestAddons.Flow == "xtls-rprx-vision" {
 			newError("[FLOW DEBUG] Using XtlsRead for response").AtInfo().WriteToLog()
 			err = encoding.XtlsRead(serverReader, clientWriter, timer, conn, trafficState, false, ctx)
 		} else {
-			newError("[FLOW DEBUG] Using plain reader for response").AtInfo().WriteToLog()
 			newError("[FLOW DEBUG] Using buf.Copy for response").AtInfo().WriteToLog()
+			// from serverReader.ReadMultiBuffer to clientWriter.WriteMultiBuffer
 			err = buf.Copy(serverReader, clientWriter, buf.UpdateActivity(timer))
 		}
 

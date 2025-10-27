@@ -4,10 +4,12 @@ package session
 import (
 	"context"
 	"math/rand"
+	"net"
 
 	"github.com/frogwall/f2ray-core/v5/common/errors"
-	"github.com/frogwall/f2ray-core/v5/common/net"
+	net2 "github.com/frogwall/f2ray-core/v5/common/net"
 	"github.com/frogwall/f2ray-core/v5/common/protocol"
+	"github.com/frogwall/f2ray-core/v5/common/signal"
 )
 
 // ID of a session.
@@ -36,23 +38,30 @@ func ExportIDToError(ctx context.Context) errors.ExportOption {
 // Inbound is the metadata of an inbound connection.
 type Inbound struct {
 	// Source address of the inbound connection.
-	Source net.Destination
+	Source net2.Destination
 	// Gateway address
-	Gateway net.Destination
+	Gateway net2.Destination
 	// Tag of the inbound proxy that handles the connection.
 	Tag string
 	// User is the user that authencates for the inbound. May be nil if the protocol allows anounymous traffic.
 	User *protocol.MemoryUser
+	// Used by splice copy. Conn is actually internet.Connection. May be nil.
+	Conn net.Conn
+	// Used by splice copy. Timer of the inbound buf copier. May be nil.
+	Timer *signal.ActivityTimer
+	// CanSpliceCopy is a property for this connection
+	// 1 = can, 2 = after processing protocol info should be able to, 3 = cannot
+	CanSpliceCopy int
 }
 
 // Outbound is the metadata of an outbound connection.
 type Outbound struct {
 	// Target address of the outbound connection.
-	OriginalTarget net.Destination
-	Target         net.Destination
-	RouteTarget    net.Destination
+	OriginalTarget net2.Destination
+	Target         net2.Destination
+	RouteTarget    net2.Destination
 	// Gateway address
-	Gateway net.Address
+	Gateway net2.Address
 	// Tag of the outbound proxy that handles the connection.
 	Tag string
 	// Name of the outbound proxy that handles the connection.
@@ -63,7 +72,7 @@ type Outbound struct {
 	// 1 = can, 2 = after processing protocol info should be able to, 3 = cannot
 	CanSpliceCopy int
 	// Domain resolver to use when dialing
-	Resolver func(ctx context.Context, domain string) net.Address
+	Resolver func(ctx context.Context, domain string) net2.Address
 }
 
 // SniffingRequest controls the behavior of content sniffing.
