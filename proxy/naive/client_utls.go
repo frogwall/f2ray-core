@@ -207,7 +207,6 @@ func (c *Client) Process(ctx context.Context, link *transport.Link, dialer inter
 		if username != "" {
 			auth := username + ":" + password
 			req.Header.Set("Proxy-Authorization", "Basic "+base64.StdEncoding.EncodeToString([]byte(auth)))
-			fmt.Printf("[DEBUG] Added auth for user: %s\n", username)
 		} else {
 			fmt.Printf("[DEBUG] No username found in account\n")
 		}
@@ -233,20 +232,16 @@ func (c *Client) Process(ctx context.Context, link *transport.Link, dialer inter
 	}
 
 	// Use HTTP/2 if negotiated, otherwise fallback to HTTP/1.1
-	fmt.Printf("[DEBUG] Negotiated protocol: %s\n", nextProto)
 	if nextProto == "h2" {
-		fmt.Printf("[DEBUG] Using HTTP/2\n")
 		return c.processHTTP2(ctx, req, iConn, link)
 	}
 
 	// Fallback to HTTP/1.1
-	fmt.Printf("[DEBUG] Using HTTP/1.1\n")
 	return c.processHTTP1(ctx, req, iConn, link)
 }
 
 // processHTTP2 handles HTTP/2 connections with Chrome-like behavior
 func (c *Client) processHTTP2(ctx context.Context, req *http.Request, tlsConn net.Conn, link *transport.Link) error {
-	fmt.Printf("[DEBUG] Starting HTTP/2 processing for %s\n", req.Host)
 
 	// Create HTTP/2 client connection
 	var t http2.Transport
@@ -255,43 +250,34 @@ func (c *Client) processHTTP2(ctx context.Context, req *http.Request, tlsConn ne
 
 	h2clientConn, err := t.NewClientConn(tlsConn)
 	if err != nil {
-		fmt.Printf("[DEBUG] Failed to create HTTP/2 client connection: %v\n", err)
 		return fmt.Errorf("failed to create HTTP/2 client connection: %w", err)
 	}
-	fmt.Printf("[DEBUG] HTTP/2 client connection created successfully\n")
 
 	// Create pipe for HTTP/2 CONNECT tunnel
 	// The pipe allows us to write data that will be sent through the HTTP/2 stream
 	pr, pw := io.Pipe()
 	req.Body = pr
 
-	fmt.Printf("[DEBUG] Sending HTTP/2 CONNECT request\n")
-	fmt.Printf("[DEBUG] Request headers: %+v\n", req.Header)
 
 	resp, err := h2clientConn.RoundTrip(req)
 	if err != nil {
 		pw.Close() // Close pipe writer on error
-		fmt.Printf("[DEBUG] HTTP/2 RoundTrip failed: %v\n", err)
 		return err
 	}
 	defer resp.Body.Close()
 
-	fmt.Printf("[DEBUG] HTTP/2 response received: %s\n", resp.Status)
 
 	if resp.StatusCode != http.StatusOK {
 		pw.Close() // Close pipe writer on non-200 response
-		fmt.Printf("[DEBUG] Non-200 response: %s\n", resp.Status)
 		return fmt.Errorf("proxy responded non-200: %s", resp.Status)
 	}
 
-	fmt.Printf("[DEBUG] CONNECT successful, creating HTTP/2 connection wrapper\n")
 
 	// Create HTTP/2 connection wrapper
 	// pw is used for writing data to the server
 	// resp.Body is used for reading data from the server
 	proxyConn := &PaddingConn{Conn: newHTTP2Conn(tlsConn, pw, resp.Body)}
 
-	fmt.Printf("[DEBUG] Starting bidirectional data transfer\n")
 
 	// Start bidirectional data transfer
 	requestFunc := func() error {
@@ -312,15 +298,10 @@ func (c *Client) processHTTP2(ctx context.Context, req *http.Request, tlsConn ne
 func (c *Client) processHTTP1(ctx context.Context, req *http.Request, conn net.Conn, link *transport.Link) error {
 	// Remove artificial delay for better performance
 
-	fmt.Printf("[DEBUG] Sending HTTP/1.1 CONNECT request to %s\n", req.Host)
-	fmt.Printf("[DEBUG] Request headers: %+v\n", req.Header)
-
 	if err := req.Write(conn); err != nil {
-		fmt.Printf("[DEBUG] Failed to write request: %v\n", err)
 		return err
 	}
 
-	fmt.Printf("[DEBUG] Request sent successfully\n")
 
 	bufferedReader := bufio.NewReader(conn)
 	resp, err := http.ReadResponse(bufferedReader, req)
@@ -348,27 +329,21 @@ func (c *Client) processHTTP1(ctx context.Context, req *http.Request, conn net.C
 // handleConnection manages the bidirectional data transfer
 func (c *Client) handleConnection(ctx context.Context, conn net.Conn, link *transport.Link, wg *sync.WaitGroup) error {
 	defer conn.Close()
-	fmt.Printf("[DEBUG] Starting bidirectional data transfer\n")
 
 	requestDone := func() error {
-		fmt.Printf("[DEBUG] Request handler starting\n")
 		wg.Wait()
-		fmt.Printf("[DEBUG] Request handler completed\n")
 		return nil
 	}
 
 	responseDone := func() error {
-		fmt.Printf("[DEBUG] Response handler starting\n")
 		// Copy response data with random micro-delays
 		for {
 			buffer := buf.New()
 			n, err := conn.Read(buffer.Bytes())
 			if err != nil {
-				fmt.Printf("[DEBUG] Read error: %v\n", err)
 				buffer.Release()
 				return err
 			}
-			fmt.Printf("[DEBUG] Read %d bytes from connection\n", n)
 
 			buffer.Resize(0, int32(n))
 			if err := link.Writer.WriteMultiBuffer(buf.MultiBuffer{buffer}); err != nil {

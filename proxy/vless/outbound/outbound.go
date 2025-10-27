@@ -184,9 +184,6 @@ func (h *Handler) Process(ctx context.Context, link *transport.Link, dialer inte
 	postRequest := func() error {
 		defer timer.SetTimeout(sessionPolicy.Timeouts.DownlinkOnly)
 
-		newError("[FLOW DEBUG] Request flow: ", requestAddons.Flow).AtInfo().WriteToLog()
-		newError("[FLOW DEBUG] Request command: ", request.Command).AtInfo().WriteToLog()
-
 		bufferWriter := buf.NewBufferedWriter(buf.NewWriter(conn))
 		if err := encoding.EncodeRequestHeader(bufferWriter, request, requestAddons); err != nil {
 			return newError("failed to encode request header").Base(err).AtWarning()
@@ -194,7 +191,6 @@ func (h *Handler) Process(ctx context.Context, link *transport.Link, dialer inte
 
 		// default: serverWriter := bufferWriter
 		serverWriter := encoding.EncodeBodyAddons(bufferWriter, request, requestAddons, trafficState, true, ctx, conn, ob)
-		newError("[FLOW DEBUG] Created serverWriter, Flow=", requestAddons.Flow).AtInfo().WriteToLog()
 
 		timeoutReader, ok := clientReader.(buf.TimeoutReader)
 		if ok {
@@ -233,8 +229,6 @@ func (h *Handler) Process(ctx context.Context, link *transport.Link, dialer inte
 			return newError("failed to decode response header").Base(err).AtInfo()
 		}
 
-		newError("[FLOW DEBUG] Response header decoded, ResponseFlow=", responseAddons.Flow, ", RequestFlow=", requestAddons.Flow).AtInfo().WriteToLog()
-
 		// Debug: peek at first data after response header
 		// Note: This will consume data from conn, which will break the subsequent read
 		// So we'll skip this debug code for now
@@ -242,7 +236,6 @@ func (h *Handler) Process(ctx context.Context, link *transport.Link, dialer inte
 		// default: serverReader := buf.NewReader(conn)
 		serverReader := encoding.DecodeBodyAddons(conn, request, responseAddons)
 		if requestAddons.Flow == "xtls-rprx-vision" {
-			newError("[FLOW DEBUG] Creating Vision Reader for response").AtInfo().WriteToLog()
 			// Note: Xray's signature is different but we're using our own implementation
 			// Xray: NewVisionReader(reader, trafficState, isUplink, ctx, conn, input, rawInput, ob)
 			// Ours: NewReader(r, ctx, conn, input, rawInput, ob, state, isUplink)
@@ -252,10 +245,8 @@ func (h *Handler) Process(ctx context.Context, link *transport.Link, dialer inte
 		}
 
 		if requestAddons.Flow == "xtls-rprx-vision" {
-			newError("[FLOW DEBUG] Using XtlsRead for response").AtInfo().WriteToLog()
 			err = encoding.XtlsRead(serverReader, clientWriter, timer, conn, trafficState, false, ctx)
 		} else {
-			newError("[FLOW DEBUG] Using buf.Copy for response").AtInfo().WriteToLog()
 			// from serverReader.ReadMultiBuffer to clientWriter.WriteMultiBuffer
 			err = buf.Copy(serverReader, clientWriter, buf.UpdateActivity(timer))
 		}
