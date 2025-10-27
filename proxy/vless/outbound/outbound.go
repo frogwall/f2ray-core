@@ -21,6 +21,7 @@ import (
 	"github.com/frogwall/f2ray-core/v5/proxy/vless/encoding"
 	"github.com/frogwall/f2ray-core/v5/transport"
 	"github.com/frogwall/f2ray-core/v5/transport/internet"
+	vision "github.com/frogwall/f2ray-core/v5/proxy/vision"
 )
 
 func init() {
@@ -128,6 +129,8 @@ func (h *Handler) Process(ctx context.Context, link *transport.Link, dialer inte
 
 	clientReader := link.Reader // .(*pipe.Reader)
 	clientWriter := link.Writer // .(*pipe.Writer)
+	var visionState *vision.TrafficState
+	var responseAddons *encoding.Addons
 
 	postRequest := func() error {
 		defer timer.SetTimeout(sessionPolicy.Timeouts.DownlinkOnly)
@@ -136,19 +139,24 @@ func (h *Handler) Process(ctx context.Context, link *transport.Link, dialer inte
 		if err := encoding.EncodeRequestHeader(bufferWriter, request, requestAddons); err != nil {
 			return newError("failed to encode request header").Base(err).AtWarning()
 		}
+		newError("request flow=", requestAddons.Flow).AtInfo().WriteToLog(session.ExportIDToError(ctx))
+		// Flush header so that server can respond with response header before body
+		if err := bufferWriter.SetBuffered(false); err != nil {
+			return newError("failed to flush request header").Base(err).AtWarning()
+		}
 
-		// default: serverWriter := bufferWriter
-		serverWriter := encoding.EncodeBodyAddons(bufferWriter, request, requestAddons)
+		var serverWriter buf.Writer
+		if request.Command == protocol.RequestCommandUDP {
+			serverWriter = encoding.EncodeBodyAddons(bufferWriter, request, requestAddons)
+		} else {
+			// Always use plain writer for TCP; Vision writer only when server echo is confirmed (not done in postRequest)
+			serverWriter = encoding.EncodeBodyAddons(bufferWriter, request, requestAddons)
+		}
 		if err := buf.CopyOnceTimeout(clientReader, serverWriter, proxy.FirstPayloadTimeout); err != nil && err != buf.ErrNotTimeoutReader && err != buf.ErrReadTimeout {
 			return err // ...
 		}
+		// Already unbuffered above; proceed
 
-		// Flush; bufferWriter.WriteMultiBuffer now is bufferWriter.writer.WriteMultiBuffer
-		if err := bufferWriter.SetBuffered(false); err != nil {
-			return newError("failed to write A request payload").Base(err).AtWarning()
-		}
-
-		// from clientReader.ReadMultiBuffer to serverWriter.WriteMultiBuffer
 		if err := buf.Copy(clientReader, serverWriter, buf.UpdateActivity(timer)); err != nil {
 			return newError("failed to transfer request payload").Base(err).AtInfo()
 		}
@@ -159,23 +167,41 @@ func (h *Handler) Process(ctx context.Context, link *transport.Link, dialer inte
 	getResponse := func() error {
 		defer timer.SetTimeout(sessionPolicy.Timeouts.UplinkOnly)
 
-		responseAddons, err := encoding.DecodeResponseHeader(conn, request)
-		if err != nil {
-			return newError("failed to decode response header").Base(err).AtInfo()
+		// If we didn't decode response header early, do it now before streaming body
+		if responseAddons == nil {
+			ra, err := encoding.DecodeResponseHeader(conn, request)
+			if err != nil {
+				return newError("failed to decode response header").Base(err).AtInfo()
+			}
+			responseAddons = ra
+			if responseAddons != nil {
+				newError("response flow=", responseAddons.GetFlow()).AtInfo().WriteToLog(session.ExportIDToError(ctx))
+			} else {
+				newError("response flow=<nil>").AtInfo().WriteToLog(session.ExportIDToError(ctx))
+			}
 		}
 
-		// default: serverReader := buf.NewReader(conn)
-		serverReader := encoding.DecodeBodyAddons(conn, request, responseAddons)
+		var serverReader buf.Reader
+		if request.Command == protocol.RequestCommandUDP {
+			serverReader = encoding.DecodeBodyAddons(conn, request, responseAddons)
+		} else if responseAddons != nil && responseAddons.GetFlow() == "xtls-rprx-vision" {
+			ob := session.OutboundFromContext(ctx)
+			if visionState == nil {
+				visionState = vision.NewTrafficState(account.ID.Bytes())
+			}
+			inner := encoding.DecodeBodyAddons(conn, request, responseAddons)
+			serverReader = vision.NewReader(inner, ctx, conn, ob, visionState, false)
+		} else {
+			serverReader = encoding.DecodeBodyAddons(conn, request, responseAddons)
+		}
 
-		// from serverReader.ReadMultiBuffer to clientWriter.WriteMultiBuffer
 		if err := buf.Copy(serverReader, clientWriter, buf.UpdateActivity(timer)); err != nil {
 			return newError("failed to transfer response payload").Base(err).AtInfo()
 		}
-
 		return nil
 	}
 
-	if err := task.Run(ctx, postRequest, task.OnSuccess(getResponse, task.Close(clientWriter))); err != nil {
+	if err := task.Run(ctx, postRequest, getResponse); err != nil {
 		return newError("connection ends").Base(err).AtInfo()
 	}
 

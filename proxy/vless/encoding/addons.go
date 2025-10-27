@@ -15,8 +15,25 @@ import (
 
 // EncodeHeaderAddons Add addons byte to the header
 func EncodeHeaderAddons(buffer *buf.Buffer, addons *Addons) error {
-	if err := buffer.WriteByte(0); err != nil {
+	if addons == nil || (addons.Flow == "" && len(addons.Seed) == 0) {
+		if err := buffer.WriteByte(0); err != nil {
+			return newError("failed to write addons protobuf length").Base(err)
+		}
+		return nil
+	}
+	data, err := proto.Marshal(addons)
+	if err != nil {
+		return newError("failed to marshal addons protobuf value").Base(err)
+	}
+	if len(data) > 255 {
+		// current header reserves 1 byte length field
+		return newError("addons protobuf too large")
+	}
+	if err := buffer.WriteByte(byte(len(data))); err != nil {
 		return newError("failed to write addons protobuf length").Base(err)
+	}
+	if _, err := buffer.Write(data); err != nil {
+		return newError("failed to write addons protobuf value").Base(err)
 	}
 	return nil
 }

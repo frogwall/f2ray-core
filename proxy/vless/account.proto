@@ -11,6 +11,16 @@ message Account {
   string id = 1;
   // Flow settings.
   string flow = 2;
-  // Encryption settings. Only applies to client side, and only accepts "none" for now.
+  // Encryption settings.
   string encryption = 3;
+  // XOR mode for encryption.
+  uint32 xor_mode = 4;
+  // Seconds configuration.
+  uint32 seconds = 5;
+  // Padding configuration.
+  string padding = 6;
+}
+
+message Reverse {
+  // Placeholder for future use
 }

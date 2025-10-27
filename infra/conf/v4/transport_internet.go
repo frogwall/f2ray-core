@@ -1,6 +1,8 @@
 package v4
 
 import (
+	"encoding/base64"
+	"encoding/hex"
 	"encoding/json"
 	"strings"
 
@@ -21,6 +23,7 @@ import (
 	"github.com/frogwall/f2ray-core/v5/transport/internet/quic"
 	"github.com/frogwall/f2ray-core/v5/transport/internet/tcp"
 	"github.com/frogwall/f2ray-core/v5/transport/internet/websocket"
+	reality "github.com/frogwall/f2ray-core/v5/transport/internet/reality"
 )
 
 var (
@@ -304,6 +307,74 @@ func (c *DomainSocketConfig) Build() (proto.Message, error) {
 	}, nil
 }
 
+// RealitySecurityConfig is the v4 JSON for REALITY security (client side only for now).
+// Note: actual proto.Config will be built after protobuf generation is added.
+type RealitySecurityConfig struct {
+	ServerName  string `json:"serverName"`
+	PublicKey   string `json:"publicKey"`   // hex
+	ShortId     string `json:"shortId"`     // hex (8~16 bytes)
+	Fingerprint string `json:"fingerprint"` // utls fingerprint name
+	Show        bool   `json:"show"`
+	SpiderX     string `json:"spiderX"`
+}
+
+// Build implements Buildable.
+func (c *RealitySecurityConfig) Build() (proto.Message, error) {
+	var pub []byte
+	var sid []byte
+	var err error
+
+	// helper: try decode with hex and multiple base64 variants
+	decodeFlexible := func(s string) ([]byte, error) {
+		if s == "" {
+			return nil, nil
+		}
+		if b, e := hex.DecodeString(s); e == nil {
+			return b, nil
+		}
+		if b, e := base64.StdEncoding.DecodeString(s); e == nil {
+			return b, nil
+		}
+		if b, e := base64.RawStdEncoding.DecodeString(s); e == nil {
+			return b, nil
+		}
+		if b, e := base64.URLEncoding.DecodeString(s); e == nil {
+			return b, nil
+		}
+		if b, e := base64.RawURLEncoding.DecodeString(s); e == nil {
+			return b, nil
+		}
+		return nil, newError("Failed to decode (expect hex/base64)")
+	}
+
+	if c.PublicKey != "" {
+		pub, err = decodeFlexible(c.PublicKey)
+		if err != nil {
+			return nil, newError("Failed to decode REALITY publicKey").Base(err)
+		}
+		if len(pub) != 32 {
+			return nil, newError("REALITY publicKey must be 32 bytes (X25519)")
+		}
+	}
+	if c.ShortId != "" {
+		sid, err = decodeFlexible(c.ShortId)
+		if err != nil {
+			return nil, newError("Failed to decode REALITY shortId").Base(err)
+		}
+		if len(sid) > 16 {
+			return nil, newError("REALITY shortId must be <= 16 bytes")
+		}
+	}
+	return &reality.Config{
+		ServerName:  c.ServerName,
+		PublicKey:   pub,
+		ShortId:     sid,
+		Fingerprint: c.Fingerprint,
+		Show:        c.Show,
+		SpiderX:     c.SpiderX,
+	}, nil
+}
+
 type TransportProtocol string
 
 // Build implements Buildable.
@@ -336,6 +407,7 @@ type StreamConfig struct {
 	Network           *TransportProtocol      `json:"network"`
 	Security          string                  `json:"security"`
 	TLSSettings       *tlscfg.TLSConfig       `json:"tlsSettings"`
+	RealitySettings   *RealitySecurityConfig  `json:"realitySettings"`
 	TCPSettings       *TCPConfig              `json:"tcpSettings"`
 	KCPSettings       *KCPConfig              `json:"kcpSettings"`
 	WSSettings        *WebSocketConfig        `json:"wsSettings"`
@@ -369,6 +441,19 @@ func (c *StreamConfig) Build() (*internet.StreamConfig, error) {
 		ts, err := tlsSettings.Build()
 		if err != nil {
 			return nil, newError("Failed to build TLS config.").Base(err)
+		}
+		tm := serial.ToTypedMessage(ts)
+		config.SecuritySettings = append(config.SecuritySettings, tm)
+		config.SecurityType = serial.V2Type(tm)
+	} else if strings.EqualFold(c.Security, "reality") {
+		// Build REALITY security settings
+		rs := c.RealitySettings
+		if rs == nil {
+			rs = &RealitySecurityConfig{}
+		}
+		ts, err := rs.Build()
+		if err != nil {
+			return nil, newError("Failed to build REALITY config.").Base(err)
 		}
 		tm := serial.ToTypedMessage(ts)
 		config.SecuritySettings = append(config.SecuritySettings, tm)
