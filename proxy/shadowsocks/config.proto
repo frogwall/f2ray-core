@@ -25,6 +25,9 @@ enum CipherType {
   AES_256_GCM = 2;
   CHACHA20_POLY1305 = 3;
   NONE = 4;
+  // Shadowsocks2022 methods
+  SS2022_BLAKE3_AES_128_GCM = 5;
+  SS2022_BLAKE3_AES_256_GCM = 6;
 }
 
 message ServerConfig {

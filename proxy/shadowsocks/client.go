@@ -4,7 +4,6 @@ import (
 	"context"
 
 	core "github.com/frogwall/f2ray-core/v5"
-	"github.com/frogwall/f2ray-core/v5/common"
 	"github.com/frogwall/f2ray-core/v5/common/buf"
 	"github.com/frogwall/f2ray-core/v5/common/net"
 	"github.com/frogwall/f2ray-core/v5/common/net/packetaddr"
@@ -202,8 +201,4 @@ func (c *Client) Process(ctx context.Context, link *transport.Link, dialer inter
 	return nil
 }
 
-func init() {
-	common.Must(common.RegisterConfig((*ClientConfig)(nil), func(ctx context.Context, config interface{}) (interface{}, error) {
-		return NewClient(ctx, config.(*ClientConfig))
-	}))
-}
+// Registration moved to unified_client.go

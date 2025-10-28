@@ -83,6 +83,19 @@ func (a *Account) getCipher() (Cipher, error) {
 		}, nil
 	case CipherType_NONE:
 		return NoneCipher{}, nil
+	// Shadowsocks2022 methods - use enhanced cipher with traditional protocol
+	case CipherType_SS2022_BLAKE3_AES_128_GCM:
+		return &AEADCipher{
+			KeyBytes:        16,
+			IVBytes:         16,
+			AEADAuthCreator: createAesGcm,
+		}, nil
+	case CipherType_SS2022_BLAKE3_AES_256_GCM:
+		return &AEADCipher{
+			KeyBytes:        32,
+			IVBytes:         32,
+			AEADAuthCreator: createAesGcm,
+		}, nil
 	default:
 		return nil, newError("Unsupported cipher.")
 	}
@@ -220,6 +233,11 @@ func CipherFromString(c string) CipherType {
 		return CipherType_CHACHA20_POLY1305
 	case "none", "plain":
 		return CipherType_NONE
+	// Shadowsocks2022 methods
+	case "2022-blake3-aes-128-gcm", "ss2022-blake3-aes-128-gcm":
+		return CipherType_SS2022_BLAKE3_AES_128_GCM
+	case "2022-blake3-aes-256-gcm", "ss2022-blake3-aes-256-gcm":
+		return CipherType_SS2022_BLAKE3_AES_256_GCM
 	default:
 		return CipherType_UNKNOWN
 	}
