@@ -16,6 +16,8 @@
 - **[Mieru 协议](MIERU_IMPLEMENTATION_SUMMARY.md)** - 使用 XChaCha20-Poly1305 加密的代理，支持基于时间的密钥轮换
 - **[Brook 协议](BROOK_IMPLEMENTATION_SUMMARY.md)** - 支持 TCP/WebSocket/QUIC 多传输方式的代理
 - **[ShadowTls 协议](SHADOWTLS_IMPLEMENTATION_SUMMARY.md)** - 将shadowTls作为传输层，实现了shadowsocks+shadowTls的出站功能
+- **[Juicity 协议](JUICITY_IMPLEMENTATION_SUMMARY.md)** - 基于 QUIC 和 HTTP/3 的代理协议，支持 TLS 1.3 加密和拥塞控制
+- **[Shadowsocks-2022 协议]** - 在传统 Shadowsocks 协议中集成了 Shadowsocks2022 算法支持，包括 `2022-blake3-aes-128-gcm` 和 `2022-blake3-aes-256-gcm` 加密方法
 
 > ⚠️ **注意**：这些协议实现：
 > - 为 **AI 生成的代码**，目前处于**测试阶段**
