@@ -48,11 +48,6 @@ type MemoryAccount struct {
 	Reverse *Reverse
 }
 
-// Reverse configuration placeholder
-type Reverse struct {
-	// Placeholder for future implementation
-}
-
 // Equals implements protocol.Account.Equals().
 func (a *MemoryAccount) Equals(account protocol.Account) bool {
 	vlessAccount, ok := account.(*MemoryAccount)

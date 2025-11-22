@@ -57,6 +57,7 @@ var (
 		"dns":         func() interface{} { return new(DNSOutboundConfig) },
 		"loopback":    func() interface{} { return new(LoopbackConfig) },
 		"snell":       func() interface{} { return new(SnellClientConfig) },
+		"tuic":        func() interface{} { return new(TUICClientConfig) },
 	}, "protocol", "settings")
 )
 

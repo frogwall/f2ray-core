@@ -9,8 +9,8 @@ import (
 
 // This is a compile-time assertion to ensure that this generated file
 // is compatible with the grpc package it is being compiled against.
-// Requires gRPC-Go v1.64.0 or later.
-const _ = grpc.SupportPackageIsVersion9
+// Requires gRPC-Go v1.32.0 or later.
+const _ = grpc.SupportPackageIsVersion7
 
 const (
 	SubscriptionManagerService_ListTrackedSubscription_FullMethodName      = "/v2ray.core.app.subscription.subscriptionmanager.command.SubscriptionManagerService/ListTrackedSubscription"
@@ -40,9 +40,8 @@ func NewSubscriptionManagerServiceClient(cc grpc.ClientConnInterface) Subscripti
 }
 
 func (c *subscriptionManagerServiceClient) ListTrackedSubscription(ctx context.Context, in *ListTrackedSubscriptionRequest, opts ...grpc.CallOption) (*ListTrackedSubscriptionResponse, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(ListTrackedSubscriptionResponse)
-	err := c.cc.Invoke(ctx, SubscriptionManagerService_ListTrackedSubscription_FullMethodName, in, out, cOpts...)
+	err := c.cc.Invoke(ctx, SubscriptionManagerService_ListTrackedSubscription_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -50,9 +49,8 @@ func (c *subscriptionManagerServiceClient) ListTrackedSubscription(ctx context.C
 }
 
 func (c *subscriptionManagerServiceClient) AddTrackedSubscription(ctx context.Context, in *AddTrackedSubscriptionRequest, opts ...grpc.CallOption) (*AddTrackedSubscriptionResponse, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(AddTrackedSubscriptionResponse)
-	err := c.cc.Invoke(ctx, SubscriptionManagerService_AddTrackedSubscription_FullMethodName, in, out, cOpts...)
+	err := c.cc.Invoke(ctx, SubscriptionManagerService_AddTrackedSubscription_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -60,9 +58,8 @@ func (c *subscriptionManagerServiceClient) AddTrackedSubscription(ctx context.Co
 }
 
 func (c *subscriptionManagerServiceClient) RemoveTrackedSubscription(ctx context.Context, in *RemoveTrackedSubscriptionRequest, opts ...grpc.CallOption) (*RemoveTrackedSubscriptionResponse, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(RemoveTrackedSubscriptionResponse)
-	err := c.cc.Invoke(ctx, SubscriptionManagerService_RemoveTrackedSubscription_FullMethodName, in, out, cOpts...)
+	err := c.cc.Invoke(ctx, SubscriptionManagerService_RemoveTrackedSubscription_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -70,9 +67,8 @@ func (c *subscriptionManagerServiceClient) RemoveTrackedSubscription(ctx context
 }
 
 func (c *subscriptionManagerServiceClient) GetTrackedSubscriptionStatus(ctx context.Context, in *GetTrackedSubscriptionStatusRequest, opts ...grpc.CallOption) (*GetTrackedSubscriptionStatusResponse, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(GetTrackedSubscriptionStatusResponse)
-	err := c.cc.Invoke(ctx, SubscriptionManagerService_GetTrackedSubscriptionStatus_FullMethodName, in, out, cOpts...)
+	err := c.cc.Invoke(ctx, SubscriptionManagerService_GetTrackedSubscriptionStatus_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -80,9 +76,8 @@ func (c *subscriptionManagerServiceClient) GetTrackedSubscriptionStatus(ctx cont
 }
 
 func (c *subscriptionManagerServiceClient) UpdateTrackedSubscription(ctx context.Context, in *UpdateTrackedSubscriptionRequest, opts ...grpc.CallOption) (*UpdateTrackedSubscriptionResponse, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(UpdateTrackedSubscriptionResponse)
-	err := c.cc.Invoke(ctx, SubscriptionManagerService_UpdateTrackedSubscription_FullMethodName, in, out, cOpts...)
+	err := c.cc.Invoke(ctx, SubscriptionManagerService_UpdateTrackedSubscription_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -91,7 +86,7 @@ func (c *subscriptionManagerServiceClient) UpdateTrackedSubscription(ctx context
 
 // SubscriptionManagerServiceServer is the server API for SubscriptionManagerService service.
 // All implementations must embed UnimplementedSubscriptionManagerServiceServer
-// for forward compatibility.
+// for forward compatibility
 type SubscriptionManagerServiceServer interface {
 	ListTrackedSubscription(context.Context, *ListTrackedSubscriptionRequest) (*ListTrackedSubscriptionResponse, error)
 	AddTrackedSubscription(context.Context, *AddTrackedSubscriptionRequest) (*AddTrackedSubscriptionResponse, error)
@@ -101,12 +96,9 @@ type SubscriptionManagerServiceServer interface {
 	mustEmbedUnimplementedSubscriptionManagerServiceServer()
 }
 
-// UnimplementedSubscriptionManagerServiceServer must be embedded to have
-// forward compatible implementations.
-//
-// NOTE: this should be embedded by value instead of pointer to avoid a nil
-// pointer dereference when methods are called.
-type UnimplementedSubscriptionManagerServiceServer struct{}
+// UnimplementedSubscriptionManagerServiceServer must be embedded to have forward compatible implementations.
+type UnimplementedSubscriptionManagerServiceServer struct {
+}
 
 func (UnimplementedSubscriptionManagerServiceServer) ListTrackedSubscription(context.Context, *ListTrackedSubscriptionRequest) (*ListTrackedSubscriptionResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListTrackedSubscription not implemented")
@@ -125,7 +117,6 @@ func (UnimplementedSubscriptionManagerServiceServer) UpdateTrackedSubscription(c
 }
 func (UnimplementedSubscriptionManagerServiceServer) mustEmbedUnimplementedSubscriptionManagerServiceServer() {
 }
-func (UnimplementedSubscriptionManagerServiceServer) testEmbeddedByValue() {}
 
 // UnsafeSubscriptionManagerServiceServer may be embedded to opt out of forward compatibility for this service.
 // Use of this interface is not recommended, as added methods to SubscriptionManagerServiceServer will
@@ -135,13 +126,6 @@ type UnsafeSubscriptionManagerServiceServer interface {
 }
 
 func RegisterSubscriptionManagerServiceServer(s grpc.ServiceRegistrar, srv SubscriptionManagerServiceServer) {
-	// If the following call pancis, it indicates UnimplementedSubscriptionManagerServiceServer was
-	// embedded by pointer and is nil.  This will cause panics if an
-	// unimplemented method is ever invoked, so we test this at initialization
-	// time to prevent it from happening at runtime later due to I/O.
-	if t, ok := srv.(interface{ testEmbeddedByValue() }); ok {
-		t.testEmbeddedByValue()
-	}
 	s.RegisterService(&SubscriptionManagerService_ServiceDesc, srv)
 }
 

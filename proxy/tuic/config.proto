@@ -1,0 +1,37 @@
+syntax = "proto3";
+
+package v2ray.core.proxy.tuic;
+option csharp_namespace = "V2Ray.Core.Proxy.Tuic";
+option go_package = "proxy/tuic";
+option java_package = "com.v2ray.core.proxy.tuic";
+option java_multiple_files = true;
+
+import "common/protocol/server_spec.proto";
+import "common/protoext/extensions.proto";
+
+message Account {
+  string uuid = 1;
+  string password = 2;
+}
+
+message QUICConfig {
+  uint64 initial_stream_receive_window = 1;
+  uint64 max_stream_receive_window = 2;
+  uint64 initial_connection_receive_window = 3;
+  uint64 max_connection_receive_window = 4;
+  int64 max_idle_timeout = 5;           // in seconds
+  int64 keep_alive_period = 6;          // in seconds
+  bool disable_path_mtu_discovery = 7;
+}
+
+message ClientConfig {
+  option (v2ray.core.common.protoext.message_opt).type = "outbound";
+  option (v2ray.core.common.protoext.message_opt).short_name = "tuic";
+
+  repeated v2ray.core.common.protocol.ServerEndpoint server = 1;
+  string udp_relay_mode = 2;            // "native" or "quic"
+  string congestion_control = 3;        // congestion control algorithm
+  QUICConfig quic = 4;
+  bool reduce_rtt = 5;                  // enable 0-RTT handshake
+  int32 max_udp_relay_packet_size = 6;
+}

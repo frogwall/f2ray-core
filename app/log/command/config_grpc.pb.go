@@ -9,8 +9,8 @@ import (
 
 // This is a compile-time assertion to ensure that this generated file
 // is compatible with the grpc package it is being compiled against.
-// Requires gRPC-Go v1.64.0 or later.
-const _ = grpc.SupportPackageIsVersion9
+// Requires gRPC-Go v1.32.0 or later.
+const _ = grpc.SupportPackageIsVersion7
 
 const (
 	LoggerService_RestartLogger_FullMethodName = "/v2ray.core.app.log.command.LoggerService/RestartLogger"
@@ -23,7 +23,7 @@ const (
 type LoggerServiceClient interface {
 	RestartLogger(ctx context.Context, in *RestartLoggerRequest, opts ...grpc.CallOption) (*RestartLoggerResponse, error)
 	// Unstable interface
-	FollowLog(ctx context.Context, in *FollowLogRequest, opts ...grpc.CallOption) (grpc.ServerStreamingClient[FollowLogResponse], error)
+	FollowLog(ctx context.Context, in *FollowLogRequest, opts ...grpc.CallOption) (LoggerService_FollowLogClient, error)
 }
 
 type loggerServiceClient struct {
@@ -35,22 +35,20 @@ func NewLoggerServiceClient(cc grpc.ClientConnInterface) LoggerServiceClient {
 }
 
 func (c *loggerServiceClient) RestartLogger(ctx context.Context, in *RestartLoggerRequest, opts ...grpc.CallOption) (*RestartLoggerResponse, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(RestartLoggerResponse)
-	err := c.cc.Invoke(ctx, LoggerService_RestartLogger_FullMethodName, in, out, cOpts...)
+	err := c.cc.Invoke(ctx, LoggerService_RestartLogger_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *loggerServiceClient) FollowLog(ctx context.Context, in *FollowLogRequest, opts ...grpc.CallOption) (grpc.ServerStreamingClient[FollowLogResponse], error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	stream, err := c.cc.NewStream(ctx, &LoggerService_ServiceDesc.Streams[0], LoggerService_FollowLog_FullMethodName, cOpts...)
+func (c *loggerServiceClient) FollowLog(ctx context.Context, in *FollowLogRequest, opts ...grpc.CallOption) (LoggerService_FollowLogClient, error) {
+	stream, err := c.cc.NewStream(ctx, &LoggerService_ServiceDesc.Streams[0], LoggerService_FollowLog_FullMethodName, opts...)
 	if err != nil {
 		return nil, err
 	}
-	x := &grpc.GenericClientStream[FollowLogRequest, FollowLogResponse]{ClientStream: stream}
+	x := &loggerServiceFollowLogClient{stream}
 	if err := x.ClientStream.SendMsg(in); err != nil {
 		return nil, err
 	}
@@ -60,34 +58,44 @@ func (c *loggerServiceClient) FollowLog(ctx context.Context, in *FollowLogReques
 	return x, nil
 }
 
-// This type alias is provided for backwards compatibility with existing code that references the prior non-generic stream type by name.
-type LoggerService_FollowLogClient = grpc.ServerStreamingClient[FollowLogResponse]
+type LoggerService_FollowLogClient interface {
+	Recv() (*FollowLogResponse, error)
+	grpc.ClientStream
+}
+
+type loggerServiceFollowLogClient struct {
+	grpc.ClientStream
+}
+
+func (x *loggerServiceFollowLogClient) Recv() (*FollowLogResponse, error) {
+	m := new(FollowLogResponse)
+	if err := x.ClientStream.RecvMsg(m); err != nil {
+		return nil, err
+	}
+	return m, nil
+}
 
 // LoggerServiceServer is the server API for LoggerService service.
 // All implementations must embed UnimplementedLoggerServiceServer
-// for forward compatibility.
+// for forward compatibility
 type LoggerServiceServer interface {
 	RestartLogger(context.Context, *RestartLoggerRequest) (*RestartLoggerResponse, error)
 	// Unstable interface
-	FollowLog(*FollowLogRequest, grpc.ServerStreamingServer[FollowLogResponse]) error
+	FollowLog(*FollowLogRequest, LoggerService_FollowLogServer) error
 	mustEmbedUnimplementedLoggerServiceServer()
 }
 
-// UnimplementedLoggerServiceServer must be embedded to have
-// forward compatible implementations.
-//
-// NOTE: this should be embedded by value instead of pointer to avoid a nil
-// pointer dereference when methods are called.
-type UnimplementedLoggerServiceServer struct{}
+// UnimplementedLoggerServiceServer must be embedded to have forward compatible implementations.
+type UnimplementedLoggerServiceServer struct {
+}
 
 func (UnimplementedLoggerServiceServer) RestartLogger(context.Context, *RestartLoggerRequest) (*RestartLoggerResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method RestartLogger not implemented")
 }
-func (UnimplementedLoggerServiceServer) FollowLog(*FollowLogRequest, grpc.ServerStreamingServer[FollowLogResponse]) error {
+func (UnimplementedLoggerServiceServer) FollowLog(*FollowLogRequest, LoggerService_FollowLogServer) error {
 	return status.Errorf(codes.Unimplemented, "method FollowLog not implemented")
 }
 func (UnimplementedLoggerServiceServer) mustEmbedUnimplementedLoggerServiceServer() {}
-func (UnimplementedLoggerServiceServer) testEmbeddedByValue()                       {}
 
 // UnsafeLoggerServiceServer may be embedded to opt out of forward compatibility for this service.
 // Use of this interface is not recommended, as added methods to LoggerServiceServer will
@@ -97,13 +105,6 @@ type UnsafeLoggerServiceServer interface {
 }
 
 func RegisterLoggerServiceServer(s grpc.ServiceRegistrar, srv LoggerServiceServer) {
-	// If the following call pancis, it indicates UnimplementedLoggerServiceServer was
-	// embedded by pointer and is nil.  This will cause panics if an
-	// unimplemented method is ever invoked, so we test this at initialization
-	// time to prevent it from happening at runtime later due to I/O.
-	if t, ok := srv.(interface{ testEmbeddedByValue() }); ok {
-		t.testEmbeddedByValue()
-	}
 	s.RegisterService(&LoggerService_ServiceDesc, srv)
 }
 
@@ -130,11 +131,21 @@ func _LoggerService_FollowLog_Handler(srv interface{}, stream grpc.ServerStream)
 	if err := stream.RecvMsg(m); err != nil {
 		return err
 	}
-	return srv.(LoggerServiceServer).FollowLog(m, &grpc.GenericServerStream[FollowLogRequest, FollowLogResponse]{ServerStream: stream})
+	return srv.(LoggerServiceServer).FollowLog(m, &loggerServiceFollowLogServer{stream})
 }
 
-// This type alias is provided for backwards compatibility with existing code that references the prior non-generic stream type by name.
-type LoggerService_FollowLogServer = grpc.ServerStreamingServer[FollowLogResponse]
+type LoggerService_FollowLogServer interface {
+	Send(*FollowLogResponse) error
+	grpc.ServerStream
+}
+
+type loggerServiceFollowLogServer struct {
+	grpc.ServerStream
+}
+
+func (x *loggerServiceFollowLogServer) Send(m *FollowLogResponse) error {
+	return x.ServerStream.SendMsg(m)
+}
 
 // LoggerService_ServiceDesc is the grpc.ServiceDesc for LoggerService service.
 // It's only intended for direct use with grpc.RegisterService,

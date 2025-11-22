@@ -21,8 +21,14 @@ type Account struct {
 	Id string `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
 	// Flow settings.
 	Flow string `protobuf:"bytes,2,opt,name=flow,proto3" json:"flow,omitempty"`
-	// Encryption settings. Only applies to client side, and only accepts "none" for now.
-	Encryption    string `protobuf:"bytes,3,opt,name=encryption,proto3" json:"encryption,omitempty"`
+	// Encryption settings.
+	Encryption string `protobuf:"bytes,3,opt,name=encryption,proto3" json:"encryption,omitempty"`
+	// XOR mode for encryption.
+	XorMode uint32 `protobuf:"varint,4,opt,name=xor_mode,json=xorMode,proto3" json:"xor_mode,omitempty"`
+	// Seconds configuration.
+	Seconds uint32 `protobuf:"varint,5,opt,name=seconds,proto3" json:"seconds,omitempty"`
+	// Padding configuration.
+	Padding       string `protobuf:"bytes,6,opt,name=padding,proto3" json:"padding,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -78,17 +84,78 @@ func (x *Account) GetEncryption() string {
 	return ""
 }
 
+func (x *Account) GetXorMode() uint32 {
+	if x != nil {
+		return x.XorMode
+	}
+	return 0
+}
+
+func (x *Account) GetSeconds() uint32 {
+	if x != nil {
+		return x.Seconds
+	}
+	return 0
+}
+
+func (x *Account) GetPadding() string {
+	if x != nil {
+		return x.Padding
+	}
+	return ""
+}
+
+type Reverse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *Reverse) Reset() {
+	*x = Reverse{}
+	mi := &file_proxy_vless_account_proto_msgTypes[1]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *Reverse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*Reverse) ProtoMessage() {}
+
+func (x *Reverse) ProtoReflect() protoreflect.Message {
+	mi := &file_proxy_vless_account_proto_msgTypes[1]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use Reverse.ProtoReflect.Descriptor instead.
+func (*Reverse) Descriptor() ([]byte, []int) {
+	return file_proxy_vless_account_proto_rawDescGZIP(), []int{1}
+}
+
 var File_proxy_vless_account_proto protoreflect.FileDescriptor
 
 const file_proxy_vless_account_proto_rawDesc = "" +
 	"\n" +
-	"\x19proxy/vless/account.proto\x12\x16v2ray.core.proxy.vless\"M\n" +
+	"\x19proxy/vless/account.proto\x12\x16v2ray.core.proxy.vless\"\x9c\x01\n" +
 	"\aAccount\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12\x12\n" +
 	"\x04flow\x18\x02 \x01(\tR\x04flow\x12\x1e\n" +
 	"\n" +
 	"encryption\x18\x03 \x01(\tR\n" +
-	"encryptionBf\n" +
+	"encryption\x12\x19\n" +
+	"\bxor_mode\x18\x04 \x01(\rR\axorMode\x12\x18\n" +
+	"\aseconds\x18\x05 \x01(\rR\aseconds\x12\x18\n" +
+	"\apadding\x18\x06 \x01(\tR\apadding\"\t\n" +
+	"\aReverseBf\n" +
 	"\x1acom.v2ray.core.proxy.vlessP\x01Z-github.com/frogwall/f2ray-core/v5/proxy/vless\xaa\x02\x16V2Ray.Core.Proxy.Vlessb\x06proto3"
 
 var (
@@ -103,9 +170,10 @@ func file_proxy_vless_account_proto_rawDescGZIP() []byte {
 	return file_proxy_vless_account_proto_rawDescData
 }
 
-var file_proxy_vless_account_proto_msgTypes = make([]protoimpl.MessageInfo, 1)
+var file_proxy_vless_account_proto_msgTypes = make([]protoimpl.MessageInfo, 2)
 var file_proxy_vless_account_proto_goTypes = []any{
 	(*Account)(nil), // 0: v2ray.core.proxy.vless.Account
+	(*Reverse)(nil), // 1: v2ray.core.proxy.vless.Reverse
 }
 var file_proxy_vless_account_proto_depIdxs = []int32{
 	0, // [0:0] is the sub-list for method output_type
@@ -126,7 +194,7 @@ func file_proxy_vless_account_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_proxy_vless_account_proto_rawDesc), len(file_proxy_vless_account_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   1,
+			NumMessages:   2,
 			NumExtensions: 0,
 			NumServices:   0,
 		},
