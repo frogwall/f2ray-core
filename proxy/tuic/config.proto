@@ -24,6 +24,12 @@ message QUICConfig {
   bool disable_path_mtu_discovery = 7;
 }
 
+message TLSConfig {
+  string server_name = 1;
+  repeated string alpn = 2;
+  bool allow_insecure = 3;
+}
+
 message ClientConfig {
   option (v2ray.core.common.protoext.message_opt).type = "outbound";
   option (v2ray.core.common.protoext.message_opt).short_name = "tuic";
@@ -34,4 +40,5 @@ message ClientConfig {
   QUICConfig quic = 4;
   bool reduce_rtt = 5;                  // enable 0-RTT handshake
   int32 max_udp_relay_packet_size = 6;
+  TLSConfig tls = 7;
 }

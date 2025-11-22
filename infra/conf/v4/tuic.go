@@ -16,13 +16,20 @@ type TUICServerTarget struct {
 	Password string             `json:"password"`
 }
 
+type TUICTLSConfig struct {
+	ServerName    string   `json:"serverName"`
+	ALPN          []string `json:"alpn"`
+	AllowInsecure bool     `json:"allowInsecure"`
+}
+
 type TUICClientConfig struct {
 	Servers               []*TUICServerTarget `json:"servers"`
-	UDPRelayMode          string              `json:"udpRelayMode"`
+	UdpRelayMode          string              `json:"udpRelayMode"`
 	CongestionControl     string              `json:"congestionControl"`
-	ReduceRTT             bool                `json:"reduceRtt"`
-	MaxUDPRelayPacketSize int32               `json:"maxUdpRelayPacketSize"`
+	ReduceRtt             bool                `json:"reduceRtt"`
+	MaxUdpRelayPacketSize int32               `json:"maxUdpRelayPacketSize"`
 	QUIC                  *TUICQUICConfig     `json:"quic"`
+	TLS                   *TUICTLSConfig      `json:"tls"`
 }
 
 type TUICQUICConfig struct {
@@ -36,81 +43,49 @@ type TUICQUICConfig struct {
 }
 
 func (c *TUICClientConfig) Build() (proto.Message, error) {
-	config := new(tuic.ClientConfig)
-
-	if len(c.Servers) == 0 {
-		return nil, newError("0 TUIC server configured.")
+	config := &tuic.ClientConfig{
+		UdpRelayMode:          c.UdpRelayMode,
+		CongestionControl:     c.CongestionControl,
+		ReduceRtt:             c.ReduceRtt,
+		MaxUdpRelayPacketSize: c.MaxUdpRelayPacketSize,
 	}
 
-	serverSpecs := make([]*protocol.ServerEndpoint, len(c.Servers))
-	for idx, server := range c.Servers {
-		if server.Address == nil {
-			return nil, newError("TUIC server address is not set.")
-		}
-		if server.Port == 0 {
-			return nil, newError("Invalid TUIC port.")
-		}
-		if server.UUID == "" {
-			return nil, newError("TUIC UUID is not specified.")
-		}
-		if server.Password == "" {
-			return nil, newError("TUIC password is not specified.")
-		}
-
-		account := &tuic.Account{
-			Uuid:     server.UUID,
-			Password: server.Password,
-		}
-
-		ss := &protocol.ServerEndpoint{
-			Address: server.Address.Build(),
-			Port:    uint32(server.Port),
-			User: []*protocol.User{
-				{
-					Account: serial.ToTypedMessage(account),
+	if c.Servers != nil {
+		for _, server := range c.Servers {
+			account := &tuic.Account{
+				Uuid:     server.UUID,
+				Password: server.Password,
+			}
+			ss := &protocol.ServerEndpoint{
+				Address: server.Address.Build(),
+				Port:    uint32(server.Port),
+				User: []*protocol.User{
+					{
+						Account: serial.ToTypedMessage(account),
+					},
 				},
-			},
+			}
+			config.Server = append(config.Server, ss)
 		}
-
-		serverSpecs[idx] = ss
 	}
 
-	config.Server = serverSpecs
-
-	// Set UDP relay mode
-	if c.UDPRelayMode != "" {
-		config.UdpRelayMode = c.UDPRelayMode
-	} else {
-		config.UdpRelayMode = "native" // default
-	}
-
-	// Set congestion control
-	if c.CongestionControl != "" {
-		config.CongestionControl = c.CongestionControl
-	} else {
-		config.CongestionControl = "bbr" // default
-	}
-
-	// Set reduce RTT
-	config.ReduceRtt = c.ReduceRTT
-
-	// Set max UDP relay packet size
-	if c.MaxUDPRelayPacketSize > 0 {
-		config.MaxUdpRelayPacketSize = c.MaxUDPRelayPacketSize
-	} else {
-		config.MaxUdpRelayPacketSize = 1400 // default
-	}
-
-	// Set QUIC config if provided
 	if c.QUIC != nil {
 		config.Quic = &tuic.QUICConfig{
-			InitialStreamReceiveWindow:     c.QUIC.InitialStreamReceiveWindow,
-			MaxStreamReceiveWindow:         c.QUIC.MaxStreamReceiveWindow,
-			InitialConnectionReceiveWindow: c.QUIC.InitialConnectionReceiveWindow,
-			MaxConnectionReceiveWindow:     c.QUIC.MaxConnectionReceiveWindow,
-			MaxIdleTimeout:                 c.QUIC.MaxIdleTimeout,
-			KeepAlivePeriod:                c.QUIC.KeepAlivePeriod,
+			InitialStreamReceiveWindow:     uint64(c.QUIC.InitialStreamReceiveWindow),
+			MaxStreamReceiveWindow:         uint64(c.QUIC.MaxStreamReceiveWindow),
+			InitialConnectionReceiveWindow: uint64(c.QUIC.InitialConnectionReceiveWindow),
+			MaxConnectionReceiveWindow:     uint64(c.QUIC.MaxConnectionReceiveWindow),
+			MaxIdleTimeout:                 int64(c.QUIC.MaxIdleTimeout),
+			KeepAlivePeriod:                int64(c.QUIC.KeepAlivePeriod),
 			DisablePathMtuDiscovery:        c.QUIC.DisablePathMTUDiscovery,
+		}
+	}
+
+	if c.TLS != nil {
+		config.Tls = &tuic.TLSConfig{
+			ServerName:    c.TLS.ServerName,
+			Alpn:          c.TLS.ALPN,
+			AllowInsecure: c.TLS.AllowInsecure,
 		}
 	}
 

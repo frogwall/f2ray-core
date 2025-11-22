@@ -161,6 +161,66 @@ func (x *QUICConfig) GetDisablePathMtuDiscovery() bool {
 	return false
 }
 
+type TLSConfig struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	ServerName    string                 `protobuf:"bytes,1,opt,name=server_name,json=serverName,proto3" json:"server_name,omitempty"`
+	Alpn          []string               `protobuf:"bytes,2,rep,name=alpn,proto3" json:"alpn,omitempty"`
+	AllowInsecure bool                   `protobuf:"varint,3,opt,name=allow_insecure,json=allowInsecure,proto3" json:"allow_insecure,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *TLSConfig) Reset() {
+	*x = TLSConfig{}
+	mi := &file_proxy_tuic_config_proto_msgTypes[2]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *TLSConfig) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*TLSConfig) ProtoMessage() {}
+
+func (x *TLSConfig) ProtoReflect() protoreflect.Message {
+	mi := &file_proxy_tuic_config_proto_msgTypes[2]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use TLSConfig.ProtoReflect.Descriptor instead.
+func (*TLSConfig) Descriptor() ([]byte, []int) {
+	return file_proxy_tuic_config_proto_rawDescGZIP(), []int{2}
+}
+
+func (x *TLSConfig) GetServerName() string {
+	if x != nil {
+		return x.ServerName
+	}
+	return ""
+}
+
+func (x *TLSConfig) GetAlpn() []string {
+	if x != nil {
+		return x.Alpn
+	}
+	return nil
+}
+
+func (x *TLSConfig) GetAllowInsecure() bool {
+	if x != nil {
+		return x.AllowInsecure
+	}
+	return false
+}
+
 type ClientConfig struct {
 	state                 protoimpl.MessageState     `protogen:"open.v1"`
 	Server                []*protocol.ServerEndpoint `protobuf:"bytes,1,rep,name=server,proto3" json:"server,omitempty"`
@@ -169,13 +229,14 @@ type ClientConfig struct {
 	Quic                  *QUICConfig                `protobuf:"bytes,4,opt,name=quic,proto3" json:"quic,omitempty"`
 	ReduceRtt             bool                       `protobuf:"varint,5,opt,name=reduce_rtt,json=reduceRtt,proto3" json:"reduce_rtt,omitempty"` // enable 0-RTT handshake
 	MaxUdpRelayPacketSize int32                      `protobuf:"varint,6,opt,name=max_udp_relay_packet_size,json=maxUdpRelayPacketSize,proto3" json:"max_udp_relay_packet_size,omitempty"`
+	Tls                   *TLSConfig                 `protobuf:"bytes,7,opt,name=tls,proto3" json:"tls,omitempty"`
 	unknownFields         protoimpl.UnknownFields
 	sizeCache             protoimpl.SizeCache
 }
 
 func (x *ClientConfig) Reset() {
 	*x = ClientConfig{}
-	mi := &file_proxy_tuic_config_proto_msgTypes[2]
+	mi := &file_proxy_tuic_config_proto_msgTypes[3]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -187,7 +248,7 @@ func (x *ClientConfig) String() string {
 func (*ClientConfig) ProtoMessage() {}
 
 func (x *ClientConfig) ProtoReflect() protoreflect.Message {
-	mi := &file_proxy_tuic_config_proto_msgTypes[2]
+	mi := &file_proxy_tuic_config_proto_msgTypes[3]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -200,7 +261,7 @@ func (x *ClientConfig) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ClientConfig.ProtoReflect.Descriptor instead.
 func (*ClientConfig) Descriptor() ([]byte, []int) {
-	return file_proxy_tuic_config_proto_rawDescGZIP(), []int{2}
+	return file_proxy_tuic_config_proto_rawDescGZIP(), []int{3}
 }
 
 func (x *ClientConfig) GetServer() []*protocol.ServerEndpoint {
@@ -245,6 +306,13 @@ func (x *ClientConfig) GetMaxUdpRelayPacketSize() int32 {
 	return 0
 }
 
+func (x *ClientConfig) GetTls() *TLSConfig {
+	if x != nil {
+		return x.Tls
+	}
+	return nil
+}
+
 var File_proxy_tuic_config_proto protoreflect.FileDescriptor
 
 const file_proxy_tuic_config_proto_rawDesc = "" +
@@ -261,7 +329,12 @@ const file_proxy_tuic_config_proto_rawDesc = "" +
 	"\x1dmax_connection_receive_window\x18\x04 \x01(\x04R\x1amaxConnectionReceiveWindow\x12(\n" +
 	"\x10max_idle_timeout\x18\x05 \x01(\x03R\x0emaxIdleTimeout\x12*\n" +
 	"\x11keep_alive_period\x18\x06 \x01(\x03R\x0fkeepAlivePeriod\x12;\n" +
-	"\x1adisable_path_mtu_discovery\x18\a \x01(\bR\x17disablePathMtuDiscovery\"\xcd\x02\n" +
+	"\x1adisable_path_mtu_discovery\x18\a \x01(\bR\x17disablePathMtuDiscovery\"g\n" +
+	"\tTLSConfig\x12\x1f\n" +
+	"\vserver_name\x18\x01 \x01(\tR\n" +
+	"serverName\x12\x12\n" +
+	"\x04alpn\x18\x02 \x03(\tR\x04alpn\x12%\n" +
+	"\x0eallow_insecure\x18\x03 \x01(\bR\rallowInsecure\"\x81\x03\n" +
 	"\fClientConfig\x12B\n" +
 	"\x06server\x18\x01 \x03(\v2*.v2ray.core.common.protocol.ServerEndpointR\x06server\x12$\n" +
 	"\x0eudp_relay_mode\x18\x02 \x01(\tR\fudpRelayMode\x12-\n" +
@@ -269,7 +342,8 @@ const file_proxy_tuic_config_proto_rawDesc = "" +
 	"\x04quic\x18\x04 \x01(\v2!.v2ray.core.proxy.tuic.QUICConfigR\x04quic\x12\x1d\n" +
 	"\n" +
 	"reduce_rtt\x18\x05 \x01(\bR\treduceRtt\x128\n" +
-	"\x19max_udp_relay_packet_size\x18\x06 \x01(\x05R\x15maxUdpRelayPacketSize:\x14\x82\xb5\x18\x10\n" +
+	"\x19max_udp_relay_packet_size\x18\x06 \x01(\x05R\x15maxUdpRelayPacketSize\x122\n" +
+	"\x03tls\x18\a \x01(\v2 .v2ray.core.proxy.tuic.TLSConfigR\x03tls:\x14\x82\xb5\x18\x10\n" +
 	"\boutbound\x12\x04tuicBA\n" +
 	"\x19com.v2ray.core.proxy.tuicP\x01Z\n" +
 	"proxy/tuic\xaa\x02\x15V2Ray.Core.Proxy.Tuicb\x06proto3"
@@ -286,21 +360,23 @@ func file_proxy_tuic_config_proto_rawDescGZIP() []byte {
 	return file_proxy_tuic_config_proto_rawDescData
 }
 
-var file_proxy_tuic_config_proto_msgTypes = make([]protoimpl.MessageInfo, 3)
+var file_proxy_tuic_config_proto_msgTypes = make([]protoimpl.MessageInfo, 4)
 var file_proxy_tuic_config_proto_goTypes = []any{
 	(*Account)(nil),                 // 0: v2ray.core.proxy.tuic.Account
 	(*QUICConfig)(nil),              // 1: v2ray.core.proxy.tuic.QUICConfig
-	(*ClientConfig)(nil),            // 2: v2ray.core.proxy.tuic.ClientConfig
-	(*protocol.ServerEndpoint)(nil), // 3: v2ray.core.common.protocol.ServerEndpoint
+	(*TLSConfig)(nil),               // 2: v2ray.core.proxy.tuic.TLSConfig
+	(*ClientConfig)(nil),            // 3: v2ray.core.proxy.tuic.ClientConfig
+	(*protocol.ServerEndpoint)(nil), // 4: v2ray.core.common.protocol.ServerEndpoint
 }
 var file_proxy_tuic_config_proto_depIdxs = []int32{
-	3, // 0: v2ray.core.proxy.tuic.ClientConfig.server:type_name -> v2ray.core.common.protocol.ServerEndpoint
+	4, // 0: v2ray.core.proxy.tuic.ClientConfig.server:type_name -> v2ray.core.common.protocol.ServerEndpoint
 	1, // 1: v2ray.core.proxy.tuic.ClientConfig.quic:type_name -> v2ray.core.proxy.tuic.QUICConfig
-	2, // [2:2] is the sub-list for method output_type
-	2, // [2:2] is the sub-list for method input_type
-	2, // [2:2] is the sub-list for extension type_name
-	2, // [2:2] is the sub-list for extension extendee
-	0, // [0:2] is the sub-list for field type_name
+	2, // 2: v2ray.core.proxy.tuic.ClientConfig.tls:type_name -> v2ray.core.proxy.tuic.TLSConfig
+	3, // [3:3] is the sub-list for method output_type
+	3, // [3:3] is the sub-list for method input_type
+	3, // [3:3] is the sub-list for extension type_name
+	3, // [3:3] is the sub-list for extension extendee
+	0, // [0:3] is the sub-list for field type_name
 }
 
 func init() { file_proxy_tuic_config_proto_init() }
@@ -314,7 +390,7 @@ func file_proxy_tuic_config_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_proxy_tuic_config_proto_rawDesc), len(file_proxy_tuic_config_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   3,
+			NumMessages:   4,
 			NumExtensions: 0,
 			NumServices:   0,
 		},

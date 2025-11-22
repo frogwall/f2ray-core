@@ -120,6 +120,17 @@ func (c *Client) createTUICDialer(ctx context.Context, conn internet.Connection,
 		}
 	}
 
+	// Apply TLS config from settings
+	if c.config.Tls != nil {
+		if c.config.Tls.ServerName != "" {
+			tlsConfig.ServerName = c.config.Tls.ServerName
+		}
+		if len(c.config.Tls.Alpn) > 0 {
+			tlsConfig.NextProtos = c.config.Tls.Alpn
+		}
+		tlsConfig.InsecureSkipVerify = c.config.Tls.AllowInsecure
+	}
+
 	// Determine UDP relay mode
 	udpRelayMode := tuicCommon.NATIVE
 	if c.config.UdpRelayMode == "quic" {

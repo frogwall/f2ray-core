@@ -75,6 +75,11 @@ func TestClientConfig(t *testing.T) {
 		UdpRelayMode:      "native",
 		CongestionControl: "bbr",
 		ReduceRtt:         false,
+		Tls: &tuic.TLSConfig{
+			ServerName:    "example.com",
+			Alpn:          []string{"h3"},
+			AllowInsecure: true,
+		},
 	}
 
 	assert.NotNil(t, config)
@@ -83,4 +88,8 @@ func TestClientConfig(t *testing.T) {
 	assert.Equal(t, "native", config.UdpRelayMode)
 	assert.Equal(t, "bbr", config.CongestionControl)
 	assert.False(t, config.ReduceRtt)
+	assert.NotNil(t, config.Tls)
+	assert.Equal(t, "example.com", config.Tls.ServerName)
+	assert.Equal(t, []string{"h3"}, config.Tls.Alpn)
+	assert.True(t, config.Tls.AllowInsecure)
 }

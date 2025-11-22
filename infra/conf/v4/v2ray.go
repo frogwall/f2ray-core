@@ -277,6 +277,27 @@ func (c *OutboundDetourConfig) Build() (*core.OutboundHandlerConfig, error) {
 	if err != nil {
 		return nil, newError("failed to parse to outbound detour config.").Base(err)
 	}
+
+	// Special handling for TUIC to support streamSettings
+	if c.Protocol == "tuic" && c.StreamSetting != nil && strings.EqualFold(c.StreamSetting.Security, "tls") {
+		if tuicConfig, ok := rawConfig.(*TUICClientConfig); ok {
+			if c.StreamSetting.TLSSettings != nil {
+				if tuicConfig.TLS == nil {
+					tuicConfig.TLS = &TUICTLSConfig{}
+				}
+				if c.StreamSetting.TLSSettings.ServerName != "" {
+					tuicConfig.TLS.ServerName = c.StreamSetting.TLSSettings.ServerName
+				}
+				if c.StreamSetting.TLSSettings.Insecure {
+					tuicConfig.TLS.AllowInsecure = true
+				}
+				if c.StreamSetting.TLSSettings.ALPN != nil && len(*c.StreamSetting.TLSSettings.ALPN) > 0 {
+					tuicConfig.TLS.ALPN = *c.StreamSetting.TLSSettings.ALPN
+				}
+			}
+		}
+	}
+
 	ts, err := rawConfig.(cfgcommon.Buildable).Build()
 	if err != nil {
 		return nil, err

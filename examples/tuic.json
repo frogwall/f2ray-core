@@ -33,6 +33,16 @@
         "udpRelayMode": "native",
         "congestionControl": "bbr"
       },
+      "streamSettings": {
+        "security": "tls",
+        "tlsSettings": {
+          "serverName": "tuic.example.com",
+          "allowInsecure": false,
+          "alpn": [
+            "h3"
+          ]
+        }
+      },
       "tag": "tuic-out"
     },
     {
