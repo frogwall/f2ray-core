@@ -17,11 +17,12 @@
 - **[Brook 协议](BROOK_IMPLEMENTATION_SUMMARY.md)** - 支持 TCP/WebSocket/QUIC 多传输方式的代理
 - **[ShadowTls 协议](SHADOWTLS_IMPLEMENTATION_SUMMARY.md)** - 将shadowTls作为传输层，实现了shadowsocks+shadowTls的出站功能
 - **[Juicity 协议](JUICITY_IMPLEMENTATION_SUMMARY.md)** - 基于 QUIC 和 HTTP/3 的代理协议，支持 TLS 1.3 加密和拥塞控制
-- **[Shadowsocks-2022 协议]** - 在传统 Shadowsocks 协议中集成了 Shadowsocks2022 算法支持，包括 `2022-blake3-aes-128-gcm` 和 `2022-blake3-aes-256-gcm` 加密方法
+- **[TUIC 协议](TUIC_IMPLEMENTATION_SUMMARY.md)** - 基于 QUIC 的低延迟代理，支持 UDP 原生/QUIC 转发与拥塞控制
+- **[AnyTLS 协议](proxy/anytls/README.md)** - 轻量 TLS 隧道，支持会话复用与会话池管理
+- **[Shadowsocks-2022 协议](SHADOWSOCKS2022_IMPLEMENTATION_SUMMARY.md)** - 在传统 Shadowsocks 协议中集成了 Shadowsocks2022 算法支持，包括 `2022-blake3-aes-128-gcm` 和 `2022-blake3-aes-256-gcm` 加密方法
 
 > ⚠️ **注意**：这些协议实现：
 > - 为 **AI 生成的代码**，目前处于**测试阶段**
 > - 主要是**仅出站**的实现
 > - 在生产环境使用前可能需要额外的测试和验证
 > - 不属于官方 V2Ray 项目的一部分
-
