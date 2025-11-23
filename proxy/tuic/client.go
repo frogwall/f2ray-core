@@ -246,44 +246,45 @@ func (c *Client) handleUDP(ctx context.Context, link *transport.Link, dialer net
 		return newError("TUIC dialer did not return PacketConn for UDP")
 	}
 
-	requestDone := func() error {
-		for {
-			mb, err := link.Reader.ReadMultiBuffer()
-			if err != nil {
-				return err
-			}
-			timer.Update()
+        requestDone := func() error {
+            for {
+                mb, err := link.Reader.ReadMultiBuffer()
+                if err != nil {
+                    return err
+                }
+                timer.Update()
 
-			for _, buffer := range mb {
-				payload := buffer.Bytes()
-				// Write UDP packet (destination is already set in TUIC connection)
-				_, err := packetConn.Write(payload)
-				buffer.Release()
-				if err != nil {
-					return err
-				}
-			}
-		}
-	}
+                for _, buffer := range mb {
+                    payload := buffer.Bytes()
+                    newError("TUIC UDP write size=", len(payload), " dest=", destination).AtDebug().WriteToLog(session.ExportIDToError(ctx))
+                    // Write UDP packet (destination is already set in TUIC connection)
+                    _, err := packetConn.Write(payload)
+                    buffer.Release()
+                    if err != nil {
+                        return err
+                    }
+                }
+            }
+        }
 
-	responseDone := func() error {
-		readBuf := make([]byte, buf.Size)
-		for {
-			n, _, err := packetConn.ReadFrom(readBuf)
-			if err != nil {
-				return err
-			}
-			timer.Update()
+        responseDone := func() error {
+            readBuf := make([]byte, buf.Size)
+            for {
+                n, addr, err := packetConn.ReadFrom(readBuf)
+                if err != nil {
+                    return err
+                }
+                newError("TUIC UDP read size=", n, " src=", addr).AtDebug().WriteToLog(session.ExportIDToError(ctx))
+                timer.Update()
 
-			// Create buffer and write to link
-			buffer := buf.New()
-			buffer.Write(readBuf[:n])
-			if err := link.Writer.WriteMultiBuffer(buf.MultiBuffer{buffer}); err != nil {
-				buffer.Release()
-				return err
-			}
-		}
-	}
+                buffer := buf.New()
+                buffer.Write(readBuf[:n])
+                if err := link.Writer.WriteMultiBuffer(buf.MultiBuffer{buffer}); err != nil {
+                    buffer.Release()
+                    return err
+                }
+            }
+        }
 
 	if err := task.Run(ctx, requestDone, responseDone); err != nil {
 		return newError("connection ends").Base(err)
