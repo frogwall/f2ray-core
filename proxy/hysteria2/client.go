@@ -174,7 +174,7 @@ func (c *Client) Process(ctx context.Context, link *transport.Link, dialer inter
 			packetWriter := &PacketWriter{Writer: connWriter, Target: dest, HyConn: hyConn}
 
 			// write some request payload to buffer
-			if _, err := packetWriter.WriteTo(buffer[:n], addr); err != nil {
+			if _, err = packetWriter.WriteTo(buffer[:n], addr); err != nil {
 				return newError("failed to write a request payload").Base(err)
 			}
 

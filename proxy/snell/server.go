@@ -67,15 +67,19 @@ func (s *Server) handleConnection(ctx context.Context, conn internet.Connection,
 	sessionPolicy := s.policyManager.ForLevel(0) // Default level
 	conn.SetReadDeadline(time.Now().Add(sessionPolicy.Timeouts.Handshake))
 
+	newError("snell server: start handshake").AtInfo().WriteToLog(session.ExportIDToError(ctx))
 	// 1. Read IV
 	iv := make([]byte, s.user.Cipher.IVSize())
 	if _, err := io.ReadFull(conn, iv); err != nil {
+		newError("snell server: read IV failed", err).AtError().WriteToLog(session.ExportIDToError(ctx))
 		return newError("failed to read IV").Base(err)
 	}
+	newError("snell server: read IV ok size=", len(iv)).AtDebug().WriteToLog(session.ExportIDToError(ctx))
 
 	// 2. Create Decryption Reader
 	reader, err := s.user.Cipher.NewDecryptionReader(iv, conn)
 	if err != nil {
+		newError("snell server: new decrypt reader failed", err).AtError().WriteToLog(session.ExportIDToError(ctx))
 		return newError("failed to create decryption reader").Base(err)
 	}
 	bufferedReader := &buf.BufferedReader{Reader: reader}
@@ -83,8 +87,10 @@ func (s *Server) handleConnection(ctx context.Context, conn internet.Connection,
 	// 3. Read Snell Request
 	request, err := ReadSnellRequest(bufferedReader)
 	if err != nil {
+		newError("snell server: read snell request failed", err).AtError().WriteToLog(session.ExportIDToError(ctx))
 		return newError("failed to read snell request").Base(err)
 	}
+	newError("snell server: request cmd=", request.Command, " addr=", request.Address, " port=", request.Port).AtInfo().WriteToLog(session.ExportIDToError(ctx))
 	conn.SetReadDeadline(time.Time{})
 
 	// 4. Create Encryption Writer
@@ -92,8 +98,10 @@ func (s *Server) handleConnection(ctx context.Context, conn internet.Connection,
 	respIV := make([]byte, s.user.Cipher.IVSize())
 	common.Must2(rand.Read(respIV)) // Use random source
 	if _, err := conn.Write(respIV); err != nil {
+		newError("snell server: write resp IV failed", err).AtError().WriteToLog(session.ExportIDToError(ctx))
 		return newError("failed to write response IV").Base(err)
 	}
+	newError("snell server: write resp IV ok size=", len(respIV)).AtDebug().WriteToLog(session.ExportIDToError(ctx))
 
 	// But first, handle the command.
 
@@ -250,6 +258,7 @@ func (s *Server) handleUDP(ctx context.Context, conn internet.Connection, reader
 		buffer.Write(payload)
 		packet.Payload.Release()
 
+		newError("snell udp server write back size=", buffer.Len(), " src=", dest).AtDebug().WriteToLog(session.ExportIDToError(ctx))
 		writer.WriteMultiBuffer(buf.MultiBuffer{buffer})
 	})
 
@@ -263,10 +272,12 @@ func (s *Server) handleUDP(ctx context.Context, conn internet.Connection, reader
 	// Or we can wrap it.
 
 	for {
-		dest, payload, err := ReadUDPPacket(reader)
+		dest, payload, err := ReadClientUDPPacket(reader)
 		if err != nil {
+			newError("snell udp server read failed", err).AtError().WriteToLog(session.ExportIDToError(ctx))
 			return err
 		}
+		newError("snell udp server read size=", payload.Len(), " dest=", dest).AtDebug().WriteToLog(session.ExportIDToError(ctx))
 
 		currentPacketCtx := ctx
 		if dest != nil {

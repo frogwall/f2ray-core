@@ -219,6 +219,11 @@ func ReadUDPPacket(reader buf.Reader) (*net.Destination, *buf.Buffer, error) {
 	return &dest, buffer, nil
 }
 
+// ReadClientUDPPacket is an alias for client-originated UDP packet reader (Cmd=1)
+func ReadClientUDPPacket(reader buf.Reader) (*net.Destination, *buf.Buffer, error) {
+	return ReadUDPPacket(reader)
+}
+
 // WriteUDPPacket writes a UDP packet to the tunnel.
 // Format: [Cmd=4/6] [IP] [Port] [Payload]
 // Note: Cmd=4 for IPv4, Cmd=6 for IPv6. Domain is NOT supported for writing to tunnel in reference implementation?
@@ -250,6 +255,94 @@ func WriteUDPPacket(writer io.Writer, payload []byte, dest net.Destination) erro
 
 	buffer.Write(payload)
 	return buf.WriteAllBytes(writer, buffer.Bytes())
+}
+
+// WriteClientUDPPacket writes a client-originated UDP packet (Cmd=1)
+func WriteClientUDPPacket(writer io.Writer, payload []byte, dest net.Destination) error {
+	buffer := buf.New()
+	defer buffer.Release()
+
+	buffer.WriteByte(1)
+
+	if dest.Address.Family().IsDomain() {
+		host := dest.Address.Domain()
+		if len(host) > 255 {
+			return newError("hostname too long")
+		}
+		buffer.WriteByte(byte(len(host)))
+		buffer.WriteString(host)
+		portBytes := make([]byte, 2)
+		binary.BigEndian.PutUint16(portBytes, dest.Port.Value())
+		buffer.Write(portBytes)
+	} else {
+		buffer.WriteByte(0)
+		if dest.Address.Family().IsIPv4() {
+			buffer.WriteByte(4)
+			buffer.Write(dest.Address.IP())
+			portBytes := make([]byte, 2)
+			binary.BigEndian.PutUint16(portBytes, dest.Port.Value())
+			buffer.Write(portBytes)
+		} else if dest.Address.Family().IsIPv6() {
+			buffer.WriteByte(6)
+			buffer.Write(dest.Address.IP())
+			portBytes := make([]byte, 2)
+			binary.BigEndian.PutUint16(portBytes, dest.Port.Value())
+			buffer.Write(portBytes)
+		} else {
+			return newError("unknown address family")
+		}
+	}
+
+	buffer.Write(payload)
+	return buf.WriteAllBytes(writer, buffer.Bytes())
+}
+
+// ReadServerUDPPacket reads a server-originated UDP packet (Cmd=4/6)
+func ReadServerUDPPacket(reader buf.Reader) (*net.Destination, *buf.Buffer, error) {
+	mb, err := reader.ReadMultiBuffer()
+	if err != nil {
+		return nil, nil, newError("failed to read UDP packet chunk").Base(err)
+	}
+
+	buffer := buf.New()
+	if _, err := buf.WriteMultiBuffer(buffer, mb); err != nil {
+		buffer.Release()
+		return nil, nil, newError("failed to write multi buffer").Base(err)
+	}
+
+	if buffer.Len() < 1 {
+		buffer.Release()
+		return nil, nil, newError("packet too short")
+	}
+
+	cmd := buffer.Byte(0)
+	buffer.Advance(1)
+
+	var dest net.Destination
+	if cmd == UDPCommandIPv4 {
+		if buffer.Len() < 6 {
+			buffer.Release()
+			return nil, nil, newError("packet too short for IPv4")
+		}
+		ip := net.IPAddress(buffer.BytesTo(4))
+		port := net.PortFromBytes(buffer.BytesRange(4, 6))
+		dest = net.UDPDestination(ip, port)
+		buffer.Advance(6)
+	} else if cmd == UDPCommandIPv6 {
+		if buffer.Len() < 18 {
+			buffer.Release()
+			return nil, nil, newError("packet too short for IPv6")
+		}
+		ip := net.IPAddress(buffer.BytesTo(16))
+		port := net.PortFromBytes(buffer.BytesRange(16, 18))
+		dest = net.UDPDestination(ip, port)
+		buffer.Advance(18)
+	} else {
+		buffer.Release()
+		return nil, nil, newError("invalid snell udp command: ", cmd)
+	}
+
+	return &dest, buffer, nil
 }
 
 func newError(values ...interface{}) *errors.Error {

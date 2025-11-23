@@ -84,16 +84,20 @@ func (c *Client) Process(ctx context.Context, link *transport.Link, dialer inter
 
 	// Handshake
 
+	newError("snell client: start handshake dest=", destination).AtInfo().WriteToLog(session.ExportIDToError(ctx))
 	// 1. Write IV
 	iv := make([]byte, account.Cipher.IVSize())
 	common.Must2(rand.Read(iv))
 	if _, err := conn.Write(iv); err != nil {
+		newError("snell client: write IV failed", err).AtError().WriteToLog(session.ExportIDToError(ctx))
 		return newError("failed to write IV").Base(err)
 	}
+	newError("snell client: write IV ok size=", len(iv)).AtDebug().WriteToLog(session.ExportIDToError(ctx))
 
 	// 2. Create Encryption Writer
 	writer, err := account.Cipher.NewEncryptionWriter(iv, conn)
 	if err != nil {
+		newError("snell client: new encrypt writer failed", err).AtError().WriteToLog(session.ExportIDToError(ctx))
 		return newError("failed to create encryption writer").Base(err)
 	}
 
@@ -114,22 +118,28 @@ func (c *Client) Process(ctx context.Context, link *transport.Link, dialer inter
 	// `buf.NewBufferedWriter` implements `io.Writer`.
 	bufferedWriter := buf.NewBufferedWriter(writer)
 	if err := WriteSnellRequest(bufferedWriter, req); err != nil {
+		newError("snell client: write request failed", err).AtError().WriteToLog(session.ExportIDToError(ctx))
 		return newError("failed to write snell request").Base(err)
 	}
 	// Flush request
 	if err := bufferedWriter.SetBuffered(false); err != nil {
+		newError("snell client: flush request failed", err).AtError().WriteToLog(session.ExportIDToError(ctx))
 		return err
 	}
+	newError("snell client: request cmd=", req.Command, " addr=", req.Address, " port=", req.Port).AtInfo().WriteToLog(session.ExportIDToError(ctx))
 
 	// 4. Read Response IV
 	respIV := make([]byte, account.Cipher.IVSize())
 	if _, err := io.ReadFull(conn, respIV); err != nil {
+		newError("snell client: read resp IV failed", err).AtError().WriteToLog(session.ExportIDToError(ctx))
 		return newError("failed to read response IV").Base(err)
 	}
+	newError("snell client: read resp IV ok size=", len(respIV)).AtDebug().WriteToLog(session.ExportIDToError(ctx))
 
 	// 5. Create Decryption Reader
 	reader, err := account.Cipher.NewDecryptionReader(respIV, conn)
 	if err != nil {
+		newError("snell client: new decrypt reader failed", err).AtError().WriteToLog(session.ExportIDToError(ctx))
 		return newError("failed to create decryption reader").Base(err)
 	}
 	bufferedReader := &buf.BufferedReader{Reader: reader}
@@ -137,11 +147,14 @@ func (c *Client) Process(ctx context.Context, link *transport.Link, dialer inter
 	// 6. Read Response (0x00)
 	b, err := bufferedReader.ReadByte()
 	if err != nil {
+		newError("snell client: read response failed", err).AtError().WriteToLog(session.ExportIDToError(ctx))
 		return newError("failed to read response").Base(err)
 	}
 	if b != 0x00 {
+		newError("snell client: unexpected response=", b).AtError().WriteToLog(session.ExportIDToError(ctx))
 		return newError("unexpected response: ", b)
 	}
+	newError("snell client: handshake ok").AtInfo().WriteToLog(session.ExportIDToError(ctx))
 
 	if network == net.Network_TCP {
 		return c.handleTCP(ctx, link, bufferedReader, writer, timer)
@@ -234,8 +247,10 @@ func (c *Client) handleUDP(ctx context.Context, link *transport.Link, reader buf
 				// Actually, `outbound.Target` is `destination`.
 
 				payload := buffer.Bytes()
-				if err := WriteUDPPacket(udpWriter, payload, session.OutboundFromContext(ctx).Target); err != nil {
+				newError("snell udp client write size=", len(payload), " dest=", session.OutboundFromContext(ctx).Target).AtDebug().WriteToLog(session.ExportIDToError(ctx))
+				if err := WriteClientUDPPacket(udpWriter, payload, session.OutboundFromContext(ctx).Target); err != nil {
 					buffer.Release()
+					newError("snell udp client write failed", err).AtError().WriteToLog(session.ExportIDToError(ctx))
 					return err
 				}
 				buffer.Release()
@@ -250,10 +265,12 @@ func (c *Client) handleUDP(ctx context.Context, link *transport.Link, reader buf
 
 	responseDone := func() error {
 		for {
-			dest, payload, err := ReadUDPPacket(reader)
+			dest, payload, err := ReadServerUDPPacket(reader)
 			if err != nil {
+				newError("snell udp client read failed", err).AtError().WriteToLog(session.ExportIDToError(ctx))
 				return err
 			}
+			newError("snell udp client read size=", payload.Len(), " src=", dest).AtDebug().WriteToLog(session.ExportIDToError(ctx))
 			timer.Update()
 
 			// We got a packet from tunnel.
