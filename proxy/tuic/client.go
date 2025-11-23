@@ -4,13 +4,13 @@ import (
 	"context"
 	"crypto/tls"
 	"net"
+	"net/netip"
 	"time"
 
 	core "github.com/frogwall/f2ray-core/v5"
 	"github.com/frogwall/f2ray-core/v5/common/buf"
 	v2net "github.com/frogwall/f2ray-core/v5/common/net"
 	"github.com/frogwall/f2ray-core/v5/common/protocol"
-	"github.com/frogwall/f2ray-core/v5/common/retry"
 	"github.com/frogwall/f2ray-core/v5/common/session"
 	"github.com/frogwall/f2ray-core/v5/common/signal"
 	"github.com/frogwall/f2ray-core/v5/common/task"
@@ -59,26 +59,10 @@ func (c *Client) Process(ctx context.Context, link *transport.Link, dialer inter
 	destination := outbound.Target
 	network := destination.Network
 
-	var server *protocol.ServerSpec
-	var conn internet.Connection
+	newError("TUIC: Processing connection to ", destination, " via ", network.String()).AtInfo().WriteToLog(session.ExportIDToError(ctx))
 
-	err := retry.ExponentialBackoff(5, 100).On(func() error {
-		server = c.serverPicker.PickServer()
-		dest := server.Destination()
-		dest.Network = v2net.Network_TCP
-
-		var err error
-		conn, err = dialer.Dial(ctx, dest)
-		if err != nil {
-			return err
-		}
-		return nil
-	})
-	if err != nil {
-		return newError("failed to find an available destination").Base(err)
-	}
-	defer conn.Close()
-
+	// Pick server
+	server := c.serverPicker.PickServer()
 	user := server.PickUser()
 	account, ok := user.Account.(*MemoryAccount)
 	if !ok {
@@ -89,8 +73,11 @@ func (c *Client) Process(ctx context.Context, link *transport.Link, dialer inter
 	ctx, cancel := context.WithCancel(ctx)
 	timer := signal.CancelAfterInactivity(ctx, cancel, sessionPolicy.Timeouts.ConnectionIdle)
 
-	// Create TUIC dialer
-	tuicDialer, err := c.createTUICDialer(ctx, conn, server, account)
+	newError("TUIC: Connection idle timeout: ", sessionPolicy.Timeouts.ConnectionIdle).AtDebug().WriteToLog(session.ExportIDToError(ctx))
+
+	// Create TUIC dialer - TUIC uses UDP for QUIC, so we don't need to establish a connection first
+	// The outbound library will handle the UDP connection internally
+	tuicDialer, err := c.createTUICDialer(ctx, server, account)
 	if err != nil {
 		return newError("failed to create TUIC dialer").Base(err)
 	}
@@ -102,22 +89,13 @@ func (c *Client) Process(ctx context.Context, link *transport.Link, dialer inter
 	}
 }
 
-func (c *Client) createTUICDialer(ctx context.Context, conn internet.Connection, server *protocol.ServerSpec, account *MemoryAccount) (netproxy.Dialer, error) {
-	// Get TLS config from connection if available
-	tlsConn, ok := conn.(*tls.Conn)
-	var tlsConfig *tls.Config
-	if ok {
-		connState := tlsConn.ConnectionState()
-		tlsConfig = &tls.Config{
-			ServerName:         connState.ServerName,
-			InsecureSkipVerify: false,
-		}
-	} else {
-		// Create basic TLS config
-		tlsConfig = &tls.Config{
-			ServerName:         server.Destination().Address.String(),
-			InsecureSkipVerify: false,
-		}
+func (c *Client) createTUICDialer(ctx context.Context, server *protocol.ServerSpec, account *MemoryAccount) (netproxy.Dialer, error) {
+	// Create TLS config for QUIC connection
+	// TUIC uses QUIC which requires TLS, but we don't have a pre-established connection
+	// The outbound library will establish the QUIC connection using UDP
+	tlsConfig := &tls.Config{
+		ServerName:         server.Destination().Address.String(),
+		InsecureSkipVerify: false,
 	}
 
 	// Apply TLS config from settings
@@ -193,41 +171,64 @@ func (c *Client) createTUICDialer(ctx context.Context, conn internet.Connection,
 		header.Flags = outboundProtocol.Flags_Tuic_UdpRelayModeQuic
 	}
 
-	// Create base dialer (wraps the connection)
-	baseDialer := &connectionDialer{conn: conn}
+	// Create base dialer - TUIC needs UDP, so we create a simple UDP dialer
+	// The outbound library will use this to create UDP connections for QUIC
+	baseDialer := &udpDialer{}
 
 	// Create TUIC dialer using the outbound library
+	newError("TUIC: Creating TUIC protocol dialer for server ", server.Destination().NetAddr()).AtDebug().WriteToLog(session.ExportIDToError(ctx))
 	tuicDialer, err := outboundProtocol.NewDialer("tuic", baseDialer, header)
 	if err != nil {
+		newError("TUIC: Failed to create TUIC protocol dialer, error: ", err).AtError().WriteToLog(session.ExportIDToError(ctx))
 		return nil, newError("failed to create TUIC protocol dialer").Base(err)
 	}
+	newError("TUIC: Successfully created TUIC protocol dialer").AtDebug().WriteToLog(session.ExportIDToError(ctx))
 
 	return tuicDialer, nil
 }
 
 func (c *Client) handleTCP(ctx context.Context, link *transport.Link, dialer netproxy.Dialer, destination v2net.Destination, timer *signal.ActivityTimer) error {
 	// Dial TCP connection through TUIC
+	newError("TUIC: Dialing TCP connection to ", destination.NetAddr()).AtInfo().WriteToLog(session.ExportIDToError(ctx))
 	tuicConn, err := dialer.DialContext(ctx, "tcp", destination.NetAddr())
 	if err != nil {
+		newError("TUIC: Failed to dial TCP through TUIC to ", destination.NetAddr(), ", error: ", err).AtError().WriteToLog(session.ExportIDToError(ctx))
 		return newError("failed to dial TCP through TUIC").Base(err)
 	}
 	defer tuicConn.Close()
+	newError("TUIC: Successfully dialed TCP connection to ", destination.NetAddr()).AtInfo().WriteToLog(session.ExportIDToError(ctx))
 
 	// Wrap connection for buf.Reader/Writer
 	reader := buf.NewReader(tuicConn)
 	writer := buf.NewWriter(tuicConn)
 
 	requestDone := func() error {
-		return buf.Copy(link.Reader, writer, buf.UpdateActivity(timer))
+		newError("TUIC: Starting to copy request data to ", destination).AtDebug().WriteToLog(session.ExportIDToError(ctx))
+		err := buf.Copy(link.Reader, writer, buf.UpdateActivity(timer))
+		if err != nil {
+			newError("TUIC: Error copying request data to ", destination, ", error: ", err).AtError().WriteToLog(session.ExportIDToError(ctx))
+		} else {
+			newError("TUIC: Finished copying request data to ", destination).AtDebug().WriteToLog(session.ExportIDToError(ctx))
+		}
+		return err
 	}
 
 	responseDone := func() error {
-		return buf.Copy(reader, link.Writer, buf.UpdateActivity(timer))
+		newError("TUIC: Starting to copy response data from ", destination).AtDebug().WriteToLog(session.ExportIDToError(ctx))
+		err := buf.Copy(reader, link.Writer, buf.UpdateActivity(timer))
+		if err != nil {
+			newError("TUIC: Error copying response data from ", destination, ", error: ", err).AtError().WriteToLog(session.ExportIDToError(ctx))
+		} else {
+			newError("TUIC: Finished copying response data from ", destination).AtDebug().WriteToLog(session.ExportIDToError(ctx))
+		}
+		return err
 	}
 
 	if err := task.Run(ctx, requestDone, responseDone); err != nil {
+		newError("TUIC: Connection ends for ", destination, ", error: ", err).AtInfo().WriteToLog(session.ExportIDToError(ctx))
 		return newError("connection ends").Base(err)
 	}
+	newError("TUIC: Connection completed successfully for ", destination).AtInfo().WriteToLog(session.ExportIDToError(ctx))
 	return nil
 }
 
@@ -290,23 +291,60 @@ func (c *Client) handleUDP(ctx context.Context, link *transport.Link, dialer net
 	return nil
 }
 
-// connectionDialer wraps an internet.Connection to implement netproxy.Dialer
-type connectionDialer struct {
-	conn internet.Connection
+// udpDialer implements netproxy.Dialer for UDP connections
+// TUIC uses QUIC which requires UDP, not TCP
+type udpDialer struct{}
+
+func (d *udpDialer) DialContext(ctx context.Context, network, addr string) (netproxy.Conn, error) {
+	// TUIC outbound library expects UDP PacketConn
+	// Parse the network to ensure it's UDP
+	magicNetwork, err := netproxy.ParseMagicNetwork(network)
+	if err != nil {
+		return nil, newError("failed to parse network").Base(err)
+	}
+
+	// Ensure we're using UDP
+	if magicNetwork.Network != "udp" {
+		return nil, newError("TUIC requires UDP network, got: ", magicNetwork.Network)
+	}
+
+	// For TUIC, prefer a non-connected UDP socket, similar to hysteria2 transport
+	// This allows the protocol layer to use WriteTo/ReadFrom freely
+	conn, err := net.ListenUDP("udp", nil)
+	if err != nil {
+		return nil, newError("failed to listen UDP").Base(err)
+	}
+
+	// Wrap as netproxy.PacketConn
+	// net.UDPConn implements both net.Conn and net.PacketConn
+	// We need to implement netproxy.PacketConn interface
+	return &udpPacketConnWrapper{UDPConn: conn}, nil
 }
 
-func (d *connectionDialer) DialContext(ctx context.Context, network, addr string) (netproxy.Conn, error) {
-	// For TUIC, we return the underlying connection wrapped as netproxy.Conn
-	// The TUIC library will handle the QUIC transport
-	// We use a simple wrapper that implements netproxy.Conn interface
-	return &netproxyConnWrapper{Conn: d.conn}, nil
+// udpPacketConnWrapper wraps net.UDPConn to implement netproxy.PacketConn
+type udpPacketConnWrapper struct {
+	*net.UDPConn
 }
 
-// netproxyConnWrapper wraps internet.Connection to implement netproxy.Conn
-type netproxyConnWrapper struct {
-	net.Conn
+func (w *udpPacketConnWrapper) ReadFrom(p []byte) (n int, addr netip.AddrPort, err error) {
+	n, addrNet, err := w.UDPConn.ReadFromUDP(p)
+	if err != nil {
+		return 0, netip.AddrPort{}, err
+	}
+	if addrNet != nil {
+		ip, _ := netip.ParseAddr(addrNet.IP.String())
+		addr = netip.AddrPortFrom(ip, uint16(addrNet.Port))
+	}
+	return n, addr, nil
 }
 
-func (w *netproxyConnWrapper) NeedAdditionalReadDeadline() bool {
-	return false
+func (w *udpPacketConnWrapper) WriteTo(p []byte, addr string) (n int, err error) {
+	if w.UDPConn.RemoteAddr() != nil {
+		return w.UDPConn.Write(p)
+	}
+	udpAddr, err := net.ResolveUDPAddr("udp", addr)
+	if err != nil {
+		return 0, err
+	}
+	return w.UDPConn.WriteTo(p, udpAddr)
 }
