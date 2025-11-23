@@ -24,12 +24,12 @@ type TUICTLSConfig struct {
 
 type TUICClientConfig struct {
 	Servers               []*TUICServerTarget `json:"servers"`
-	UdpRelayMode          string              `json:"udpRelayMode"`
-	CongestionControl     string              `json:"congestionControl"`
-	ReduceRtt             bool                `json:"reduceRtt"`
-	MaxUdpRelayPacketSize int32               `json:"maxUdpRelayPacketSize"`
-	QUIC                  *TUICQUICConfig     `json:"quic"`
-	TLS                   *TUICTLSConfig      `json:"tls"`
+	UdpRelayMode          string
+	CongestionControl     string          `json:"congestionControl"`
+	ReduceRtt             bool            `json:"reduceRtt"`
+	MaxUdpRelayPacketSize int32           `json:"maxUdpRelayPacketSize"`
+	QUIC                  *TUICQUICConfig `json:"quic"`
+	TLS                   *TUICTLSConfig  `json:"tls"`
 }
 
 type TUICQUICConfig struct {

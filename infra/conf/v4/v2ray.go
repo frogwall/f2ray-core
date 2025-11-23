@@ -279,20 +279,28 @@ func (c *OutboundDetourConfig) Build() (*core.OutboundHandlerConfig, error) {
 	}
 
 	// Special handling for TUIC to support streamSettings
-	if c.Protocol == "tuic" && c.StreamSetting != nil && strings.EqualFold(c.StreamSetting.Security, "tls") {
+	if c.Protocol == "tuic" && c.StreamSetting != nil {
 		if tuicConfig, ok := rawConfig.(*TUICClientConfig); ok {
-			if c.StreamSetting.TLSSettings != nil {
-				if tuicConfig.TLS == nil {
-					tuicConfig.TLS = &TUICTLSConfig{}
-				}
-				if c.StreamSetting.TLSSettings.ServerName != "" {
-					tuicConfig.TLS.ServerName = c.StreamSetting.TLSSettings.ServerName
-				}
-				if c.StreamSetting.TLSSettings.Insecure {
-					tuicConfig.TLS.AllowInsecure = true
-				}
-				if c.StreamSetting.TLSSettings.ALPN != nil && len(*c.StreamSetting.TLSSettings.ALPN) > 0 {
-					tuicConfig.TLS.ALPN = *c.StreamSetting.TLSSettings.ALPN
+			if c.StreamSetting.Network != nil && strings.EqualFold(string(*c.StreamSetting.Network), "quic") {
+				tuicConfig.UdpRelayMode = "quic"
+			} else {
+				tuicConfig.UdpRelayMode = "native"
+			}
+
+			if strings.EqualFold(c.StreamSetting.Security, "tls") {
+				if c.StreamSetting.TLSSettings != nil {
+					if tuicConfig.TLS == nil {
+						tuicConfig.TLS = &TUICTLSConfig{}
+					}
+					if c.StreamSetting.TLSSettings.ServerName != "" {
+						tuicConfig.TLS.ServerName = c.StreamSetting.TLSSettings.ServerName
+					}
+					if c.StreamSetting.TLSSettings.Insecure {
+						tuicConfig.TLS.AllowInsecure = true
+					}
+					if c.StreamSetting.TLSSettings.ALPN != nil && len(*c.StreamSetting.TLSSettings.ALPN) > 0 {
+						tuicConfig.TLS.ALPN = *c.StreamSetting.TLSSettings.ALPN
+					}
 				}
 			}
 		}

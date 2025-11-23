@@ -30,10 +30,10 @@
             "password": "your-password-here"
           }
         ],
-        "udpRelayMode": "native",
         "congestionControl": "bbr"
       },
       "streamSettings": {
+        "network": "quic",
         "security": "tls",
         "tlsSettings": {
           "serverName": "tuic.example.com",
