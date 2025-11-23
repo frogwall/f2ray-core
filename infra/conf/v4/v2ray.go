@@ -36,7 +36,6 @@ var (
 		"vmess":         func() interface{} { return new(VMessInboundConfig) },
 		"trojan":        func() interface{} { return new(TrojanServerConfig) },
 		"hysteria2":     func() interface{} { return new(Hysteria2ServerConfig) },
-		"snell":         func() interface{} { return new(SnellServerConfig) },
 	}, "protocol", "settings")
 
 	outboundConfigLoader = loader.NewJSONConfigLoader(loader.ConfigCreatorCache{
@@ -56,7 +55,6 @@ var (
 		"anytls":      func() interface{} { return new(AnyTLSClientConfig) },
 		"dns":         func() interface{} { return new(DNSOutboundConfig) },
 		"loopback":    func() interface{} { return new(LoopbackConfig) },
-		"snell":       func() interface{} { return new(SnellClientConfig) },
 		"tuic":        func() interface{} { return new(TUICClientConfig) },
 	}, "protocol", "settings")
 )
