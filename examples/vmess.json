@@ -1,0 +1,27 @@
+{
+  "log": { "loglevel": "info" },
+  "inbounds": [
+    { "port": 1080, "protocol": "socks", "settings": { "auth": "noauth", "udp": true }, "tag": "socks-in" }
+  ],
+  "outbounds": [
+    {
+      "protocol": "vmess",
+      "settings": {
+        "vnext": [
+          {
+            "address": "example.com",
+            "port": 443,
+            "users": [
+              { "id": "00000000-0000-0000-0000-000000000000", "alterId": 0, "security": "auto" }
+            ]
+          }
+        ]
+      },
+      "streamSettings": { "security": "tls" },
+      "tag": "vmess-out"
+    },
+    { "protocol": "freedom", "tag": "direct" },
+    { "protocol": "blackhole", "tag": "block" }
+  ]
+}
+

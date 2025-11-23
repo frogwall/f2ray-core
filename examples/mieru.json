@@ -1,0 +1,15 @@
+{
+  "log": { "loglevel": "info" },
+  "inbounds": [ { "port": 1080, "protocol": "socks", "settings": { "auth": "noauth", "udp": true } } ],
+  "outbounds": [
+    {
+      "protocol": "mieru",
+      "settings": {
+        "servers": [ { "address": "example.com", "port": 443, "username": "user", "password": "pass" } ],
+        "mtu": 1350
+      },
+      "tag": "mieru-out"
+    }
+  ]
+}
+

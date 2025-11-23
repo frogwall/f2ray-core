@@ -1,0 +1,14 @@
+{
+  "log": { "loglevel": "info" },
+  "inbounds": [ { "port": 1080, "protocol": "socks", "settings": { "auth": "noauth", "udp": true } } ],
+  "outbounds": [
+    {
+      "protocol": "naive",
+      "settings": {
+        "servers": [ { "address": "https://user:pass@example.com:443" } ]
+      },
+      "tag": "naive-out"
+    }
+  ]
+}
+

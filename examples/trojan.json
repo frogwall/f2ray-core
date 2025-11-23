@@ -1,0 +1,17 @@
+{
+  "log": { "loglevel": "info" },
+  "inbounds": [
+    { "port": 443, "protocol": "trojan", "settings": { "clients": [ { "password": "your-password" } ] } }
+  ],
+  "outbounds": [
+    {
+      "protocol": "trojan",
+      "settings": {
+        "servers": [ { "address": "example.com", "port": 443, "password": "your-password" } ]
+      },
+      "streamSettings": { "security": "tls" },
+      "tag": "trojan-out"
+    }
+  ]
+}
+

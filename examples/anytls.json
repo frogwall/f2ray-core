@@ -1,0 +1,15 @@
+{
+  "log": { "loglevel": "info" },
+  "inbounds": [ { "port": 1080, "protocol": "socks", "settings": { "auth": "noauth", "udp": true } } ],
+  "outbounds": [
+    {
+      "protocol": "anytls",
+      "settings": {
+        "servers": [ { "address": "example.com", "port": 443, "password": "your-password" } ]
+      },
+      "streamSettings": { "security": "tls" },
+      "tag": "anytls-out"
+    }
+  ]
+}
+

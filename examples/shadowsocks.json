@@ -1,0 +1,16 @@
+{
+  "log": { "loglevel": "info" },
+  "inbounds": [
+    { "port": 1080, "protocol": "socks", "settings": { "auth": "noauth", "udp": true } }
+  ],
+  "outbounds": [
+    {
+      "protocol": "shadowsocks",
+      "settings": {
+        "servers": [ { "address": "example.com", "port": 8388, "method": "aes-128-gcm", "password": "your-password" } ]
+      },
+      "tag": "ss-out"
+    }
+  ]
+}
+

@@ -1,0 +1,17 @@
+{
+  "log": { "loglevel": "info" },
+  "inbounds": [ { "port": 1080, "protocol": "socks", "settings": { "auth": "noauth", "udp": true } } ],
+  "outbounds": [
+    {
+      "protocol": "brook",
+      "settings": {
+        "servers": [ { "address": "example.com", "port": 443, "password": "your-password", "method": "wss" } ],
+        "path": "/ws",
+        "tlsFingerprint": "chrome"
+      },
+      "streamSettings": { "security": "tls" },
+      "tag": "brook-out"
+    }
+  ]
+}
+

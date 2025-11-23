@@ -1,0 +1,16 @@
+{
+  "log": { "loglevel": "info" },
+  "inbounds": [ { "port": 1080, "protocol": "socks", "settings": { "auth": "noauth", "udp": true } } ],
+  "outbounds": [
+    {
+      "protocol": "juicity",
+      "settings": {
+        "servers": [ { "address": "example.com", "port": 443, "username": "00000000-0000-0000-0000-000000000000", "password": "your-password" } ],
+        "congestion_control": "bbr"
+      },
+      "streamSettings": { "security": "tls" },
+      "tag": "juicity-out"
+    }
+  ]
+}
+
