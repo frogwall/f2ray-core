@@ -95,6 +95,50 @@ func (x *ClientConfig) GetPort() uint32 {
 	return 0
 }
 
+type Account struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	UserPsk       []byte                 `protobuf:"bytes,1,opt,name=user_psk,json=userPsk,proto3" json:"user_psk,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *Account) Reset() {
+	*x = Account{}
+	mi := &file_proxy_shadowsocks2022_config_proto_msgTypes[1]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *Account) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*Account) ProtoMessage() {}
+
+func (x *Account) ProtoReflect() protoreflect.Message {
+	mi := &file_proxy_shadowsocks2022_config_proto_msgTypes[1]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use Account.ProtoReflect.Descriptor instead.
+func (*Account) Descriptor() ([]byte, []int) {
+	return file_proxy_shadowsocks2022_config_proto_rawDescGZIP(), []int{1}
+}
+
+func (x *Account) GetUserPsk() []byte {
+	if x != nil {
+		return x.UserPsk
+	}
+	return nil
+}
+
 type ServerConfig struct {
 	state          protoimpl.MessageState    `protogen:"open.v1"`
 	Method         string                    `protobuf:"bytes,1,opt,name=method,proto3" json:"method,omitempty"`
@@ -102,14 +146,14 @@ type ServerConfig struct {
 	Ipsk           [][]byte                  `protobuf:"bytes,3,rep,name=ipsk,proto3" json:"ipsk,omitempty"`
 	Network        []net.Network             `protobuf:"varint,4,rep,packed,name=network,proto3,enum=v2ray.core.common.net.Network" json:"network,omitempty"`
 	PacketEncoding packetaddr.PacketAddrType `protobuf:"varint,5,opt,name=packet_encoding,json=packetEncoding,proto3,enum=v2ray.core.net.packetaddr.PacketAddrType" json:"packet_encoding,omitempty"`
-	User           *protocol.User            `protobuf:"bytes,6,opt,name=user,proto3" json:"user,omitempty"`
+	Users          []*protocol.User          `protobuf:"bytes,6,rep,name=users,proto3" json:"users,omitempty"`
 	unknownFields  protoimpl.UnknownFields
 	sizeCache      protoimpl.SizeCache
 }
 
 func (x *ServerConfig) Reset() {
 	*x = ServerConfig{}
-	mi := &file_proxy_shadowsocks2022_config_proto_msgTypes[1]
+	mi := &file_proxy_shadowsocks2022_config_proto_msgTypes[2]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -121,7 +165,7 @@ func (x *ServerConfig) String() string {
 func (*ServerConfig) ProtoMessage() {}
 
 func (x *ServerConfig) ProtoReflect() protoreflect.Message {
-	mi := &file_proxy_shadowsocks2022_config_proto_msgTypes[1]
+	mi := &file_proxy_shadowsocks2022_config_proto_msgTypes[2]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -134,7 +178,7 @@ func (x *ServerConfig) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ServerConfig.ProtoReflect.Descriptor instead.
 func (*ServerConfig) Descriptor() ([]byte, []int) {
-	return file_proxy_shadowsocks2022_config_proto_rawDescGZIP(), []int{1}
+	return file_proxy_shadowsocks2022_config_proto_rawDescGZIP(), []int{2}
 }
 
 func (x *ServerConfig) GetMethod() string {
@@ -172,9 +216,9 @@ func (x *ServerConfig) GetPacketEncoding() packetaddr.PacketAddrType {
 	return packetaddr.PacketAddrType(0)
 }
 
-func (x *ServerConfig) GetUser() *protocol.User {
+func (x *ServerConfig) GetUsers() []*protocol.User {
 	if x != nil {
-		return x.User
+		return x.Users
 	}
 	return nil
 }
@@ -190,14 +234,16 @@ const file_proxy_shadowsocks2022_config_proto_rawDesc = "" +
 	"\x04ipsk\x18\x04 \x03(\fR\x04ipsk\x12;\n" +
 	"\aaddress\x18\x05 \x01(\v2!.v2ray.core.common.net.IPOrDomainR\aaddress\x12\x12\n" +
 	"\x04port\x18\x06 \x01(\rR\x04port:#\x82\xb5\x18\x1f\n" +
-	"\boutbound\x12\x0fshadowsocks2022\x90\xff)\x01\"\xb4\x02\n" +
+	"\boutbound\x12\x0fshadowsocks2022\x90\xff)\x01\"$\n" +
+	"\aAccount\x12\x19\n" +
+	"\buser_psk\x18\x01 \x01(\fR\auserPsk\"\xb6\x02\n" +
 	"\fServerConfig\x12\x16\n" +
 	"\x06method\x18\x01 \x01(\tR\x06method\x12\x10\n" +
 	"\x03psk\x18\x02 \x01(\fR\x03psk\x12\x12\n" +
 	"\x04ipsk\x18\x03 \x03(\fR\x04ipsk\x128\n" +
 	"\anetwork\x18\x04 \x03(\x0e2\x1e.v2ray.core.common.net.NetworkR\anetwork\x12R\n" +
-	"\x0fpacket_encoding\x18\x05 \x01(\x0e2).v2ray.core.net.packetaddr.PacketAddrTypeR\x0epacketEncoding\x124\n" +
-	"\x04user\x18\x06 \x01(\v2 .v2ray.core.common.protocol.UserR\x04user:\"\x82\xb5\x18\x1e\n" +
+	"\x0fpacket_encoding\x18\x05 \x01(\x0e2).v2ray.core.net.packetaddr.PacketAddrTypeR\x0epacketEncoding\x126\n" +
+	"\x05users\x18\x06 \x03(\v2 .v2ray.core.common.protocol.UserR\x05users:\"\x82\xb5\x18\x1e\n" +
 	"\ainbound\x12\x0fshadowsocks2022\x90\xff)\x01B\x84\x01\n" +
 	"$com.v2ray.core.proxy.shadowsocks2022P\x01Z7github.com/frogwall/f2ray-core/v5/proxy/shadowsocks2022\xaa\x02 V2Ray.Core.Proxy.Shadowsocks2022b\x06proto3"
 
@@ -213,20 +259,21 @@ func file_proxy_shadowsocks2022_config_proto_rawDescGZIP() []byte {
 	return file_proxy_shadowsocks2022_config_proto_rawDescData
 }
 
-var file_proxy_shadowsocks2022_config_proto_msgTypes = make([]protoimpl.MessageInfo, 2)
+var file_proxy_shadowsocks2022_config_proto_msgTypes = make([]protoimpl.MessageInfo, 3)
 var file_proxy_shadowsocks2022_config_proto_goTypes = []any{
 	(*ClientConfig)(nil),           // 0: v2ray.core.proxy.shadowsocks2022.ClientConfig
-	(*ServerConfig)(nil),           // 1: v2ray.core.proxy.shadowsocks2022.ServerConfig
-	(*net.IPOrDomain)(nil),         // 2: v2ray.core.common.net.IPOrDomain
-	(net.Network)(0),               // 3: v2ray.core.common.net.Network
-	(packetaddr.PacketAddrType)(0), // 4: v2ray.core.net.packetaddr.PacketAddrType
-	(*protocol.User)(nil),          // 5: v2ray.core.common.protocol.User
+	(*Account)(nil),                // 1: v2ray.core.proxy.shadowsocks2022.Account
+	(*ServerConfig)(nil),           // 2: v2ray.core.proxy.shadowsocks2022.ServerConfig
+	(*net.IPOrDomain)(nil),         // 3: v2ray.core.common.net.IPOrDomain
+	(net.Network)(0),               // 4: v2ray.core.common.net.Network
+	(packetaddr.PacketAddrType)(0), // 5: v2ray.core.net.packetaddr.PacketAddrType
+	(*protocol.User)(nil),          // 6: v2ray.core.common.protocol.User
 }
 var file_proxy_shadowsocks2022_config_proto_depIdxs = []int32{
-	2, // 0: v2ray.core.proxy.shadowsocks2022.ClientConfig.address:type_name -> v2ray.core.common.net.IPOrDomain
-	3, // 1: v2ray.core.proxy.shadowsocks2022.ServerConfig.network:type_name -> v2ray.core.common.net.Network
-	4, // 2: v2ray.core.proxy.shadowsocks2022.ServerConfig.packet_encoding:type_name -> v2ray.core.net.packetaddr.PacketAddrType
-	5, // 3: v2ray.core.proxy.shadowsocks2022.ServerConfig.user:type_name -> v2ray.core.common.protocol.User
+	3, // 0: v2ray.core.proxy.shadowsocks2022.ClientConfig.address:type_name -> v2ray.core.common.net.IPOrDomain
+	4, // 1: v2ray.core.proxy.shadowsocks2022.ServerConfig.network:type_name -> v2ray.core.common.net.Network
+	5, // 2: v2ray.core.proxy.shadowsocks2022.ServerConfig.packet_encoding:type_name -> v2ray.core.net.packetaddr.PacketAddrType
+	6, // 3: v2ray.core.proxy.shadowsocks2022.ServerConfig.users:type_name -> v2ray.core.common.protocol.User
 	4, // [4:4] is the sub-list for method output_type
 	4, // [4:4] is the sub-list for method input_type
 	4, // [4:4] is the sub-list for extension type_name
@@ -245,7 +292,7 @@ func file_proxy_shadowsocks2022_config_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_proxy_shadowsocks2022_config_proto_rawDesc), len(file_proxy_shadowsocks2022_config_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   2,
+			NumMessages:   3,
 			NumExtensions: 0,
 			NumServices:   0,
 		},

@@ -15,6 +15,12 @@ import (
 	"github.com/frogwall/f2ray-core/v5/proxy/shadowsocks2022"
 )
 
+type Shadowsocks2022User struct {
+	Password string `json:"password"` // Base64 encoded user PSK
+	Email    string `json:"email"`
+	Level    byte   `json:"level"`
+}
+
 type ShadowsocksServerConfig struct {
 	Cipher         string                 `json:"method"`
 	Password       string                 `json:"password"`
@@ -24,6 +30,8 @@ type ShadowsocksServerConfig struct {
 	NetworkList    *cfgcommon.NetworkList `json:"network"`
 	IVCheck        bool                   `json:"ivCheck"`
 	PacketEncoding string                 `json:"packetEncoding"`
+	// For Shadowsocks-2022 multi-user
+	Users []Shadowsocks2022User `json:"users"`
 }
 
 func (v *ShadowsocksServerConfig) Build() (proto.Message, error) {
@@ -76,7 +84,7 @@ func (v *ShadowsocksServerConfig) buildShadowsocks2022Config() (proto.Message, e
 	config := new(shadowsocks2022.ServerConfig)
 	config.Method = v.Cipher
 
-	// Parse PSK from password (base64 encoded or raw bytes)
+	// Parse server PSK from password (base64 encoded or raw bytes)
 	var psk []byte
 	var err error
 
@@ -99,7 +107,7 @@ func (v *ShadowsocksServerConfig) buildShadowsocks2022Config() (proto.Message, e
 	}
 
 	if len(psk) != expectedLen {
-		return nil, newError("invalid PSK length for ", v.Cipher, ": expected ", expectedLen, " bytes, got ", len(psk))
+		return nil, newError("invalid server PSK length for ", v.Cipher, ": expected ", expectedLen, " bytes, got ", len(psk))
 	}
 
 	config.Psk = psk
@@ -133,11 +141,46 @@ func (v *ShadowsocksServerConfig) buildShadowsocks2022Config() (proto.Message, e
 		config.PacketEncoding = packetaddr.PacketAddrType_None
 	}
 
-	// Set user if email is provided
-	if v.Email != "" {
-		config.User = &protocol.User{
-			Email: v.Email,
-			Level: uint32(v.Level),
+	// Parse users (multi-user mode)
+	if len(v.Users) > 0 {
+		// Multi-user mode
+		for _, user := range v.Users {
+			// Parse user PSK
+			var userPsk []byte
+			userPsk, err = base64.StdEncoding.DecodeString(user.Password)
+			if err != nil {
+				// If not base64, use raw password bytes
+				userPsk = []byte(user.Password)
+			}
+
+			if len(userPsk) != expectedLen {
+				return nil, newError("invalid user PSK length for ", user.Email, ": expected ", expectedLen, " bytes, got ", len(userPsk))
+			}
+
+			// Create account with user PSK
+			account := &shadowsocks2022.Account{
+				UserPsk: userPsk,
+			}
+
+			config.Users = append(config.Users, &protocol.User{
+				Email:   user.Email,
+				Level:   uint32(user.Level),
+				Account: serial.ToTypedMessage(account),
+			})
+		}
+	} else {
+		// Single-user mode (backward compatibility)
+		if v.Email != "" {
+			// Create account with server PSK as user PSK
+			account := &shadowsocks2022.Account{
+				UserPsk: psk,
+			}
+
+			config.Users = append(config.Users, &protocol.User{
+				Email:   v.Email,
+				Level:   uint32(v.Level),
+				Account: serial.ToTypedMessage(account),
+			})
 		}
 	}
 

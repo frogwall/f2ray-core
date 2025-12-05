@@ -36,6 +36,15 @@ func (a AES256GCMMethod) GenerateEIH(currentIdentitySubKey []byte, nextPskHash [
 	return nil
 }
 
+func (a AES256GCMMethod) DecryptEIH(currentIdentitySubKey []byte, eih []byte, out []byte) error {
+	aesCipher, err := aes.NewCipher(currentIdentitySubKey)
+	if err != nil {
+		return newError("failed to create AES cipher").Base(err)
+	}
+	aesCipher.Decrypt(out, eih)
+	return nil
+}
+
 func (a AES256GCMMethod) GetUDPClientProcessor(ipsk [][]byte, psk []byte, derivation KeyDerivation) (UDPClientPacketProcessor, error) {
 	reqSeparateHeaderPsk := psk
 	if ipsk != nil {

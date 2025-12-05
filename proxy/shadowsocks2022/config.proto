@@ -25,6 +25,10 @@ message ClientConfig {
   uint32 port = 6;
 }
 
+message Account {
+  bytes user_psk = 1;
+}
+
 message ServerConfig {
   option (v2ray.core.common.protoext.message_opt).type = "inbound";
   option (v2ray.core.common.protoext.message_opt).short_name = "shadowsocks2022";
@@ -35,5 +39,5 @@ message ServerConfig {
   repeated bytes ipsk = 3;
   repeated v2ray.core.common.net.Network network = 4;
   v2ray.core.net.packetaddr.PacketAddrType packet_encoding = 5;
-  v2ray.core.common.protocol.User user = 6;
+  repeated v2ray.core.common.protocol.User users = 6;
 }

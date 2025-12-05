@@ -22,6 +22,7 @@ type Method interface {
 	GetSessionSubKeyAndSaltLength() int
 	GetStreamAEAD(SessionSubKey []byte) (cipher.AEAD, error)
 	GenerateEIH(CurrentIdentitySubKey []byte, nextPskHash []byte, out []byte) error
+	DecryptEIH(CurrentIdentitySubKey []byte, eih []byte, out []byte) error
 	GetUDPClientProcessor(ipsk [][]byte, psk []byte, derivation KeyDerivation) (UDPClientPacketProcessor, error)
 }
 
