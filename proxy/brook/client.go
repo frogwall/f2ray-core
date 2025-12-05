@@ -104,12 +104,12 @@ func (c *Client) Process(ctx context.Context, link *transport.Link, dialer inter
 			password = acc.Password
 		}
 	}
-	
+
 	// Fallback to global password if server password is not set
 	if password == "" {
 		password = c.config.Password
 	}
-	
+
 	if password == "" {
 		return newError("no password configured")
 	}

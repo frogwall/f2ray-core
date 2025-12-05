@@ -21,9 +21,9 @@ type JuicityServerTarget struct {
 
 // JuicityClientConfig is configuration of juicity client
 type JuicityClientConfig struct {
-	Servers              []*JuicityServerTarget `json:"servers"`
-	CongestionControl    string                 `json:"congestion_control"`
-	PinnedCertchainSha256 string                `json:"pinned_certchain_sha256"`
+	Servers               []*JuicityServerTarget `json:"servers"`
+	CongestionControl     string                 `json:"congestion_control"`
+	PinnedCertchainSha256 string                 `json:"pinned_certchain_sha256"`
 }
 
 // Build implements Buildable
@@ -56,8 +56,8 @@ func (c *JuicityClientConfig) Build() (proto.Message, error) {
 			Port:    uint32(rec.Port),
 			User: []*protocol.User{
 				{
-					Level:   uint32(rec.Level),
-					Email:   rec.Username, // Store UUID in Email field
+					Level: uint32(rec.Level),
+					Email: rec.Username, // Store UUID in Email field
 					Account: &anypb.Any{
 						Value: []byte(rec.Password),
 					},

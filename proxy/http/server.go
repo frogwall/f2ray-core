@@ -136,7 +136,7 @@ Start:
 	}
 	// Record start time for duration calculation
 	startTime := time.Now()
-	
+
 	ctx = log.ContextWithAccessMessage(ctx, &log.AccessMessage{
 		From:     conn.RemoteAddr(),
 		To:       request.URL,
@@ -145,7 +145,7 @@ Start:
 		Method:   request.Method,
 		Protocol: "http",
 	})
-	
+
 	// Defer logging with duration
 	defer func() {
 		if accessMsg := log.AccessMessageFromContext(ctx); accessMsg != nil {

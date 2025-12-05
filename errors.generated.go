@@ -1,4 +1,4 @@
-package core
+package f2ray-core
 
 import "github.com/frogwall/f2ray-core/v5/common/errors"
 

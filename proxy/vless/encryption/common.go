@@ -7,12 +7,12 @@ import (
 	"crypto/rand"
 	"fmt"
 	"io"
+	"math/big"
 	"net"
 	"strconv"
 	"strings"
 	"sync"
 	"time"
-	"math/big"
 
 	"github.com/frogwall/f2ray-core/v5/common/errors"
 	"golang.org/x/crypto/chacha20poly1305"

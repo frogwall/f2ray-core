@@ -6,7 +6,6 @@ import (
 	"time"
 
 	anytls "github.com/anytls/sing-anytls"
-	"github.com/sagernet/sing/common/metadata"
 	core "github.com/frogwall/f2ray-core/v5"
 	"github.com/frogwall/f2ray-core/v5/common"
 	"github.com/frogwall/f2ray-core/v5/common/buf"
@@ -18,6 +17,7 @@ import (
 	"github.com/frogwall/f2ray-core/v5/features/policy"
 	"github.com/frogwall/f2ray-core/v5/transport"
 	"github.com/frogwall/f2ray-core/v5/transport/internet"
+	"github.com/sagernet/sing/common/metadata"
 )
 
 // Client is an outbound handler for AnyTLS protocol
@@ -179,8 +179,8 @@ func newAnytlsLogger(ctx context.Context) *anytlsLogger {
 
 func (l *anytlsLogger) Trace(args ...interface{}) {}
 func (l *anytlsLogger) Debug(args ...interface{}) {}
-func (l *anytlsLogger) Info(args ...interface{}) {}
-func (l *anytlsLogger) Warn(args ...interface{}) {}
+func (l *anytlsLogger) Info(args ...interface{})  {}
+func (l *anytlsLogger) Warn(args ...interface{})  {}
 func (l *anytlsLogger) Error(args ...interface{}) {
 	newError(args...).AtError().WriteToLog(session.ExportIDToError(l.ctx))
 }
@@ -193,8 +193,8 @@ func (l *anytlsLogger) Panic(args ...interface{}) {
 
 func (l *anytlsLogger) TraceContext(ctx context.Context, args ...interface{}) {}
 func (l *anytlsLogger) DebugContext(ctx context.Context, args ...interface{}) {}
-func (l *anytlsLogger) InfoContext(ctx context.Context, args ...interface{}) {}
-func (l *anytlsLogger) WarnContext(ctx context.Context, args ...interface{}) {}
+func (l *anytlsLogger) InfoContext(ctx context.Context, args ...interface{})  {}
+func (l *anytlsLogger) WarnContext(ctx context.Context, args ...interface{})  {}
 func (l *anytlsLogger) ErrorContext(ctx context.Context, args ...interface{}) {
 	newError(args...).AtError().WriteToLog(session.ExportIDToError(ctx))
 }

@@ -3,12 +3,12 @@ package shadowtls
 import (
 	"context"
 
-	"github.com/sagernet/sing-shadowtls"
-	M "github.com/sagernet/sing/common/metadata"
 	"github.com/frogwall/f2ray-core/v5/common"
 	"github.com/frogwall/f2ray-core/v5/common/net"
 	"github.com/frogwall/f2ray-core/v5/common/session"
 	"github.com/frogwall/f2ray-core/v5/transport/internet"
+	"github.com/sagernet/sing-shadowtls"
+	M "github.com/sagernet/sing/common/metadata"
 )
 
 // Listener is a ShadowTLS listener
@@ -115,7 +115,7 @@ func (l *Listener) acceptLoop() {
 // handleConn handles a single connection
 func (l *Listener) handleConn(conn net.Conn) {
 	ctx := context.Background()
-	
+
 	// Get source and destination addresses
 	source := M.SocksaddrFromNet(conn.RemoteAddr())
 	dest := M.SocksaddrFromNet(conn.LocalAddr())
@@ -138,7 +138,6 @@ func (l *Listener) Close() error {
 	return l.listener.Close()
 }
 
-
 // shadowtlsHandler implements shadowtls.Handler interface
 type shadowtlsHandler struct {
 	handler internet.ConnHandler
@@ -158,9 +157,9 @@ func (h *shadowtlsHandler) NewConnectionEx(ctx context.Context, conn net.Conn, s
 		Source: v2raySource,
 		Tag:    "shadowtls",
 	}
-	
+
 	ctx = session.ContextWithInbound(ctx, inbound)
-	
+
 	// Handle the connection - wrap net.Conn as internet.Connection
 	h.handler(internet.Connection(conn))
 }

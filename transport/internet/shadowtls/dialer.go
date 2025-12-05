@@ -4,12 +4,12 @@ import (
 	"context"
 	"crypto/tls"
 
-	"github.com/sagernet/sing-shadowtls"
-	M "github.com/sagernet/sing/common/metadata"
 	"github.com/frogwall/f2ray-core/v5/common"
 	"github.com/frogwall/f2ray-core/v5/common/net"
 	"github.com/frogwall/f2ray-core/v5/common/session"
 	"github.com/frogwall/f2ray-core/v5/transport/internet"
+	"github.com/sagernet/sing-shadowtls"
+	M "github.com/sagernet/sing/common/metadata"
 )
 
 // Dial dials a ShadowTLS connection to the given destination.
@@ -17,7 +17,7 @@ func Dial(ctx context.Context, dest net.Destination, streamSettings *internet.Me
 	newError("creating ShadowTLS connection to ", dest).WriteToLog(session.ExportIDToError(ctx))
 
 	stSettings := streamSettings.ProtocolSettings.(*Config)
-	
+
 	// Validate settings
 	if stSettings.Version == 0 {
 		stSettings.Version = 3 // Default to v3
@@ -50,12 +50,12 @@ func Dial(ctx context.Context, dest net.Destination, streamSettings *internet.Me
 	}
 
 	// Create ShadowTLS client
-	// Server is the ShadowTLS server address 
+	// Server is the ShadowTLS server address
 	// The ShadowTLS server will forward TLS handshake to the handshake server (bing.com:443)
 	client, err := shadowtls.NewClient(shadowtls.ClientConfig{
 		Version:      int(stSettings.Version),
 		Password:     stSettings.Password,
-		Server:       M.ParseSocksaddr(dest.NetAddr()),  // ShadowTLS server address
+		Server:       M.ParseSocksaddr(dest.NetAddr()), // ShadowTLS server address
 		Dialer:       v2rayDialer,
 		TLSHandshake: tlsHandshakeFunc,
 		Logger:       &stLogger{},
@@ -85,7 +85,7 @@ func createTLSHandshakeFunc(config *Config, serverName string) shadowtls.TLSHand
 				MinVersion:         tls.VersionTLS12,
 				MaxVersion:         tls.VersionTLS12,
 			}
-			
+
 			if config.Version == 2 {
 				// v2 can use TLS 1.3
 				tlsConfig.MinVersion = tls.VersionTLS12
@@ -130,7 +130,7 @@ func (d *v2rayDialerWrapper) DialContext(ctx context.Context, network string, de
 	default:
 		return nil, newError("unsupported network: ", network)
 	}
-	
+
 	dest := net.Destination{
 		Network: netNetwork,
 		Address: net.ParseAddress(destination.AddrString()),

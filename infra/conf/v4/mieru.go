@@ -1,8 +1,8 @@
 package v4
 
 import (
-	"github.com/golang/protobuf/proto"
 	"github.com/frogwall/f2ray-core/v5/proxy/mieru"
+	"github.com/golang/protobuf/proto"
 )
 
 type MieruServer struct {

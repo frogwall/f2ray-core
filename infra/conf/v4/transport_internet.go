@@ -21,9 +21,9 @@ import (
 	"github.com/frogwall/f2ray-core/v5/transport/internet/hysteria2"
 	"github.com/frogwall/f2ray-core/v5/transport/internet/kcp"
 	"github.com/frogwall/f2ray-core/v5/transport/internet/quic"
+	reality "github.com/frogwall/f2ray-core/v5/transport/internet/reality"
 	"github.com/frogwall/f2ray-core/v5/transport/internet/tcp"
 	"github.com/frogwall/f2ray-core/v5/transport/internet/websocket"
-	reality "github.com/frogwall/f2ray-core/v5/transport/internet/reality"
 )
 
 var (

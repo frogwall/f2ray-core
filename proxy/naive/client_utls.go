@@ -258,7 +258,6 @@ func (c *Client) processHTTP2(ctx context.Context, req *http.Request, tlsConn ne
 	pr, pw := io.Pipe()
 	req.Body = pr
 
-
 	resp, err := h2clientConn.RoundTrip(req)
 	if err != nil {
 		pw.Close() // Close pipe writer on error
@@ -266,18 +265,15 @@ func (c *Client) processHTTP2(ctx context.Context, req *http.Request, tlsConn ne
 	}
 	defer resp.Body.Close()
 
-
 	if resp.StatusCode != http.StatusOK {
 		pw.Close() // Close pipe writer on non-200 response
 		return fmt.Errorf("proxy responded non-200: %s", resp.Status)
 	}
 
-
 	// Create HTTP/2 connection wrapper
 	// pw is used for writing data to the server
 	// resp.Body is used for reading data from the server
 	proxyConn := &PaddingConn{Conn: newHTTP2Conn(tlsConn, pw, resp.Body)}
-
 
 	// Start bidirectional data transfer
 	requestFunc := func() error {
@@ -301,7 +297,6 @@ func (c *Client) processHTTP1(ctx context.Context, req *http.Request, conn net.C
 	if err := req.Write(conn); err != nil {
 		return err
 	}
-
 
 	bufferedReader := bufio.NewReader(conn)
 	resp, err := http.ReadResponse(bufferedReader, req)

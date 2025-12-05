@@ -23,18 +23,18 @@ const (
 )
 
 type AccessMessage struct {
-	From      interface{}
-	To        interface{}
-	Status    AccessStatus
-	Reason    interface{}
-	Email     string
-	Detour    string
+	From   interface{}
+	To     interface{}
+	Status AccessStatus
+	Reason interface{}
+	Email  string
+	Detour string
 	// Extended fields
-	Method    string        // HTTP method or protocol command
-	Duration  time.Duration // Connection duration
-	Upload    int64         // Uploaded bytes
-	Download  int64         // Downloaded bytes
-	Protocol  string        // Protocol name (http, socks, vmess, etc.)
+	Method   string        // HTTP method or protocol command
+	Duration time.Duration // Connection duration
+	Upload   int64         // Uploaded bytes
+	Download int64         // Downloaded bytes
+	Protocol string        // Protocol name (http, socks, vmess, etc.)
 }
 
 func (m *AccessMessage) String() string {
@@ -128,14 +128,13 @@ func (m *AccessMessage) ShouldFilter() bool {
 	if m.Detour == "api" {
 		return true
 	}
-	
+
 	// Get destination string
 	dest := serial.ToString(m.To)
-	
+
 	// Filter rules for Telegram API requests
-	filterPatterns := []string{
-	}
-	
+	filterPatterns := []string{}
+
 	// Check if destination matches any filter pattern
 	for _, pattern := range filterPatterns {
 		if strings.Contains(dest, pattern) {
@@ -145,6 +144,6 @@ func (m *AccessMessage) ShouldFilter() bool {
 			}
 		}
 	}
-	
+
 	return false
 }

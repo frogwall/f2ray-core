@@ -10,10 +10,10 @@ import (
 	"time"
 	_ "unsafe"
 
+	core "github.com/frogwall/f2ray-core/v5"
 	"github.com/frogwall/f2ray-core/v5/common/cmdarg"
 	"github.com/frogwall/f2ray-core/v5/common/net"
 	"github.com/frogwall/f2ray-core/v5/common/platform"
-	core "github.com/frogwall/f2ray-core/v5"
 	"github.com/frogwall/f2ray-core/v5/main/commands/base"
 	"github.com/frogwall/f2ray-core/v5/transport/internet/tagged"
 )
@@ -170,7 +170,7 @@ func (s *pingClient) MeasureDelay() (time.Duration, error) {
 		return 0, err
 	}
 	// Don't set User-Agent to match Observatory behavior
-	
+
 	start := time.Now()
 	resp, err := s.httpClient.Do(req)
 	if err != nil {
@@ -197,7 +197,7 @@ type PingResult struct {
 // extractOutbounds extracts all outbound configurations from config
 func extractOutbounds(config *core.Config) []OutboundInfo {
 	var outbounds []OutboundInfo
-	
+
 	// Tags to skip (non-proxy outbounds)
 	skipTags := map[string]bool{
 		"block":     true,
@@ -207,25 +207,25 @@ func extractOutbounds(config *core.Config) []OutboundInfo {
 		"direct":    true,
 		"dns":       true,
 	}
-	
+
 	for _, outbound := range config.Outbound {
 		if outbound.Tag == "" {
 			continue
 		}
-		
+
 		// Skip special outbounds
 		tagLower := strings.ToLower(outbound.Tag)
 		if skipTags[tagLower] {
 			continue
 		}
-		
+
 		// Skip tags containing "block" or "reject"
-		if strings.Contains(tagLower, "block") || 
-		   strings.Contains(tagLower, "reject") ||
-		   strings.Contains(tagLower, "direct") {
+		if strings.Contains(tagLower, "block") ||
+			strings.Contains(tagLower, "reject") ||
+			strings.Contains(tagLower, "direct") {
 			continue
 		}
-		
+
 		outbounds = append(outbounds, OutboundInfo{
 			Tag: outbound.Tag,
 		})
@@ -245,10 +245,10 @@ func warmupOutbounds(ctx context.Context, outbounds []OutboundInfo, testURL stri
 			if d > 0 {
 				time.Sleep(d)
 			}
-			
+
 			// Create ping client
 			client := newPingClient(ctx, testURL, time.Duration(timeout)*time.Second, ob.Tag)
-			
+
 			// Perform warmup request (ignore result)
 			_, err := client.MeasureDelay()
 			if verbose && err != nil {
@@ -360,7 +360,7 @@ func testAllOutbounds(config *core.Config, outbounds []OutboundInfo, testURL str
 func testSingleOutbound(ctx context.Context, outboundTag, testURL string, timeout int) (int64, error) {
 	// Create ping client with tagged dialer
 	client := newPingClient(ctx, testURL, time.Duration(timeout)*time.Second, outboundTag)
-	
+
 	// Measure delay
 	delay, err := client.MeasureDelay()
 	if err != nil {

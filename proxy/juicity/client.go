@@ -20,6 +20,7 @@ import (
 	"github.com/daeuniverse/outbound/protocol/direct"
 	"github.com/daeuniverse/outbound/protocol/juicity"
 
+	core "github.com/frogwall/f2ray-core/v5"
 	"github.com/frogwall/f2ray-core/v5/common"
 	"github.com/frogwall/f2ray-core/v5/common/buf"
 	"github.com/frogwall/f2ray-core/v5/common/protocol"
@@ -30,14 +31,13 @@ import (
 	"github.com/frogwall/f2ray-core/v5/transport"
 	"github.com/frogwall/f2ray-core/v5/transport/internet"
 	v2tls "github.com/frogwall/f2ray-core/v5/transport/internet/tls"
-	core "github.com/frogwall/f2ray-core/v5"
 )
 
 // Client is a Juicity outbound handler
 type Client struct {
-	config         *ClientConfig
-	dialer         *juicity.Dialer
-	policyManager  policy.Manager
+	config        *ClientConfig
+	dialer        *juicity.Dialer
+	policyManager policy.Manager
 }
 
 // NewClient creates a new Juicity client
@@ -69,7 +69,7 @@ func (c *Client) Process(ctx context.Context, link *transport.Link, dialer inter
 	// Get server config
 	server := c.config.Server[0]
 	dest := server.Address.AsAddress()
-	
+
 	// Initialize dialer if not already done
 	if c.dialer == nil {
 		if err := c.initDialer(ctx, server, dialer); err != nil {
@@ -120,8 +120,8 @@ func (c *Client) initDialer(ctx context.Context, server *protocol.ServerEndpoint
 		return newError("no user configured in server endpoint")
 	}
 	user := server.User[0]
-	uuid := user.Email  // username is stored in Email field
-	
+	uuid := user.Email // username is stored in Email field
+
 	// Password is stored directly in the user
 	// In JSON config: {"username": "uuid", "password": "pass"}
 	// username maps to Email, password is handled by the protocol layer
@@ -131,7 +131,7 @@ func (c *Client) initDialer(ctx context.Context, server *protocol.ServerEndpoint
 		// For now, we'll use a simple approach
 		password = string(user.Account.Value)
 	}
-	
+
 	if uuid == "" {
 		return newError("UUID (username) not configured")
 	}
@@ -139,57 +139,68 @@ func (c *Client) initDialer(ctx context.Context, server *protocol.ServerEndpoint
 		return newError("password not configured")
 	}
 
-    // Build TLS config from streamSettings if available
-    var tlsConfig *tls.Config
-    // Try to get stream settings from the provided dialer (app/proxyman/outbound.Handler)
-    type streamSettingsGetter interface{ StreamSettings() *internet.MemoryStreamConfig }
-    if ssg, ok := dialer.(streamSettingsGetter); ok {
-        if mss := ssg.StreamSettings(); mss != nil {
-            if cfg := v2tls.ConfigFromStreamSettings(mss); cfg != nil {
-                // Build crypto/tls.Config honoring allowInsecure, serverName, ALPN, etc.
-                tlsConfig = cfg.GetTLSConfig(v2tls.WithNextProto("h3"))
-            }
-        }
-    }
-    // Fallback if no TLS settings provided
-    if tlsConfig == nil {
-        tlsConfig = &tls.Config{
-            NextProtos: []string{"h3"},
-            MinVersion: tls.VersionTLS13,
-            ServerName: dest.String(),
-        }
-    } else {
-        // Ensure HTTP/3 ALPN is present
-        hasH3 := false
-        for _, np := range tlsConfig.NextProtos {
-            if np == "h3" { hasH3 = true; break }
-        }
-        if !hasH3 { tlsConfig.NextProtos = append(tlsConfig.NextProtos, "h3") }
-        if tlsConfig.MinVersion == 0 { tlsConfig.MinVersion = tls.VersionTLS13 }
-        if tlsConfig.ServerName == "" { tlsConfig.ServerName = dest.String() }
-    }
+	// Build TLS config from streamSettings if available
+	var tlsConfig *tls.Config
+	// Try to get stream settings from the provided dialer (app/proxyman/outbound.Handler)
+	type streamSettingsGetter interface {
+		StreamSettings() *internet.MemoryStreamConfig
+	}
+	if ssg, ok := dialer.(streamSettingsGetter); ok {
+		if mss := ssg.StreamSettings(); mss != nil {
+			if cfg := v2tls.ConfigFromStreamSettings(mss); cfg != nil {
+				// Build crypto/tls.Config honoring allowInsecure, serverName, ALPN, etc.
+				tlsConfig = cfg.GetTLSConfig(v2tls.WithNextProto("h3"))
+			}
+		}
+	}
+	// Fallback if no TLS settings provided
+	if tlsConfig == nil {
+		tlsConfig = &tls.Config{
+			NextProtos: []string{"h3"},
+			MinVersion: tls.VersionTLS13,
+			ServerName: dest.String(),
+		}
+	} else {
+		// Ensure HTTP/3 ALPN is present
+		hasH3 := false
+		for _, np := range tlsConfig.NextProtos {
+			if np == "h3" {
+				hasH3 = true
+				break
+			}
+		}
+		if !hasH3 {
+			tlsConfig.NextProtos = append(tlsConfig.NextProtos, "h3")
+		}
+		if tlsConfig.MinVersion == 0 {
+			tlsConfig.MinVersion = tls.VersionTLS13
+		}
+		if tlsConfig.ServerName == "" {
+			tlsConfig.ServerName = dest.String()
+		}
+	}
 
 	// Handle pinned certificate
-    if c.config.PinnedCertchainSha256 != "" {
-        pinnedHash, err := base64.URLEncoding.DecodeString(c.config.PinnedCertchainSha256)
-        if err != nil {
-            pinnedHash, err = base64.StdEncoding.DecodeString(c.config.PinnedCertchainSha256)
-            if err != nil {
-                pinnedHash, err = hex.DecodeString(c.config.PinnedCertchainSha256)
-                if err != nil {
-                    return newError("failed to decode pinned_certchain_sha256")
-                }
-            }
-        }
-        // When doing pinning, skip default verification and use our own
-        tlsConfig.InsecureSkipVerify = true
-        tlsConfig.VerifyPeerCertificate = func(rawCerts [][]byte, verifiedChains [][]*x509.Certificate) error {
-            if !bytes.Equal(generateCertChainHash(rawCerts), pinnedHash) {
-                return newError("pinned hash of cert chain does not match")
-            }
-            return nil
-        }
-    }
+	if c.config.PinnedCertchainSha256 != "" {
+		pinnedHash, err := base64.URLEncoding.DecodeString(c.config.PinnedCertchainSha256)
+		if err != nil {
+			pinnedHash, err = base64.StdEncoding.DecodeString(c.config.PinnedCertchainSha256)
+			if err != nil {
+				pinnedHash, err = hex.DecodeString(c.config.PinnedCertchainSha256)
+				if err != nil {
+					return newError("failed to decode pinned_certchain_sha256")
+				}
+			}
+		}
+		// When doing pinning, skip default verification and use our own
+		tlsConfig.InsecureSkipVerify = true
+		tlsConfig.VerifyPeerCertificate = func(rawCerts [][]byte, verifiedChains [][]*x509.Certificate) error {
+			if !bytes.Equal(generateCertChainHash(rawCerts), pinnedHash) {
+				return newError("pinned hash of cert chain does not match")
+			}
+			return nil
+		}
+	}
 
 	// Create juicity dialer
 	// Use direct.SymmetricDirect as the underlying dialer (supports UDP)
@@ -223,7 +234,7 @@ func (d *simpleDialer) DialContext(ctx context.Context, network, addr string) (n
 	// QUIC uses UDP, so we need to support UDP connections
 	// Debug: log the network type
 	newError("DialContext called with network=", network, " addr=", addr).AtDebug().WriteToLog()
-	
+
 	switch network {
 	case "udp", "udp4", "udp6":
 		// For UDP, we need to use DialUDP
