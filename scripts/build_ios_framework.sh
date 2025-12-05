@@ -74,15 +74,31 @@ build_framework() {
         exit 1
     fi
     
+    # 临时移动 vendor 目录 (Go 1.22+ gomobile 兼容性问题)
+    local VENDOR_MOVED=0
+    if [ -d "vendor" ]; then
+        echo_info "临时移动 vendor 目录 (Go 1.22+ gomobile workaround)..."
+        mv vendor vendor.bak
+        VENDOR_MOVED=1
+    fi
+    
     # 编译
-    gomobile bind -v \
+    local BUILD_STATUS=0
+    GOTOOLCHAIN=local gomobile bind -v \
         -target="$TARGET" \
         -o "$OUTPUT" \
         -ldflags="-s -w -X github.com/frogwall/f2ray-core/v5.build=release" \
         -trimpath \
-        ./mobile
+        ./mobile || BUILD_STATUS=$?
     
-    if [ $? -eq 0 ]; then
+    # 恢复 vendor 目录
+    if [ $VENDOR_MOVED -eq 1 ]; then
+        echo_info "恢复 vendor 目录..."
+        mv vendor.bak vendor
+    fi
+    
+    # 检查编译结果
+    if [ $BUILD_STATUS -eq 0 ]; then
         echo_info "✅ 编译成功!"
     else
         echo_error "❌ 编译失败"
